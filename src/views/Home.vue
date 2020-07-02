@@ -38,7 +38,7 @@ export default {
 .flex-row {
   height: -webkit-fill-available;
   margin-top: -56px;
-  padding-top: 60px;
+  padding-top: 56px;
 }
 .menu {
   position: relative;

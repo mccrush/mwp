@@ -55,8 +55,22 @@
         />
         <span
           v-if="projectName"
-          class="navbar-brand bg-light p-0 pl-3 pr-3 rounded-lg ml-1 project-name"
+          class="navbar-brand bg-light p-0 pl-3 pr-3 rounded-lg ml-2 mr-2 project-name"
         >{{projectName}}</span>
+        <a
+          v-if="projectName"
+          href="https://drive.google.com/drive/folders/18xYc_spl0XP5Rx-4kmvhZTvP2IgCStQp"
+          target="_blank"
+          class="btn btn-sm p-0 pl-1 pr-1"
+        >
+          <img
+            src="@/assets/icons/folder-symlink.svg"
+            alt="Folder icon"
+            width="16"
+            height="16"
+            class
+          />
+        </a>
       </div>
     </div>
   </nav>
@@ -71,6 +85,11 @@ export default {
       projectName: localStorage.getItem('projectName') || 'ATIOP'
     }
   },
+  // computed: {
+  //   projectName() {
+  //     return localStorage.getItem('projectName') || 'ATIOP'
+  //   }
+  // },
   methods: {
     setProject(name, alias) {
       this.projectName = name
