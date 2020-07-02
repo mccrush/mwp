@@ -51,9 +51,12 @@
           alt="Row right"
           width="12"
           height="12"
-          class="mt-1"
+          class
         />
-        <span v-if="projectName" class="navbar-brand ml-1">{{projectName}}</span>
+        <span
+          v-if="projectName"
+          class="navbar-brand bg-light p-0 pl-3 pr-3 rounded-lg ml-1"
+        >{{projectName}}</span>
       </div>
     </div>
   </nav>
