@@ -3,6 +3,7 @@ export default [
     name: 'ATIOP',
     alias: 'atiop',
     tz: '<iframe src="https://docs.google.com/document/d/e/2PACX-1vRkV_T9gKOdXHseGZrKczNmIALtFlizKvu_fSZXrEuXiC6Pv0EvhfM3xD_4QJACl8dCs_8qor7tShjl/pub?embedded=true"></iframe>',
+    tzlink: 'https://docs.google.com/document/d/1KCx-HJANPW94J71curChC63ei4PWCAEmi55W8EgjME8/edit',
     project: '<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQ-DHaB-zP1FE5cNPRPmmxEXmVvq3xkKwyQhuMMhfm1AZYT9__b2K1A30LswKJzH-KJJ0tOvBBhhQGV/embed?start=false&loop=false&delayms=60000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>',
     devel: '<iframe src="https://mccrush.atlassian.net/jira/software/projects/ATIOP/boards/2" height="720" width="100%"></iframe>',
     test: '',

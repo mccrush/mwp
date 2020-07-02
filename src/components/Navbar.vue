@@ -55,7 +55,7 @@
         />
         <span
           v-if="projectName"
-          class="navbar-brand bg-light p-0 pl-3 pr-3 rounded-lg ml-1"
+          class="navbar-brand bg-light p-0 pl-3 pr-3 rounded-lg ml-1 project-name"
         >{{projectName}}</span>
       </div>
     </div>
@@ -84,5 +84,8 @@ export default {
 <style scoped>
 .dropdown-item {
   cursor: pointer;
+}
+.project-name {
+  font-size: 18px;
 }
 </style>

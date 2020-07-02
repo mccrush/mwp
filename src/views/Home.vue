@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex flex-row align-items-stretch">
-    <div class="flex-shrink-1 p-3 menu">
+    <div class="flex-shrink-1 align-self-stretch p-3 menu border-right">
       <router-link
         v-for="(but, index) in buttons"
         tag="button"
@@ -13,7 +13,7 @@
         <small>{{but.title}}</small>
       </router-link>
     </div>
-    <div class="container-fluid w-100 border">
+    <div class="container-fluid w-100">
       <router-view />
     </div>
   </div>
@@ -35,6 +35,11 @@ export default {
 </script>
 
 <style scoped>
+.flex-row {
+  height: -webkit-fill-available;
+  margin-top: -56px;
+  padding-top: 60px;
+}
 .menu {
   position: relative;
   width: 260px;
