@@ -1,11 +1,13 @@
 <template>
   <div class="row">
-    <div class="col-12">
-      <iframe
-        src="https://mccrush.atlassian.net/jira/software/projects/ATIOP/boards/2"
-        height="720"
-        width="100%"
-      ></iframe>
+    <div class="col-12 p-0">
+      <iframe src="https://atiop.ru/" height="720" width="100%" class></iframe>
     </div>
   </div>
 </template>
+
+<style scoped>
+.frame {
+  margin-top: -105px;
+}
+</style>
