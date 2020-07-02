@@ -1,28 +1,6 @@
 <template>
   <div class="d-flex flex-row align-items-stretch">
     <div class="flex-shrink-1 p-3 menu">
-      <!-- <button
-        class="btn btn-sm btn-light float-right p-1 menu-toogle"
-        @click="showMenu = !showMenu"
-      >
-        <img
-          v-if="showMenu"
-          src="@/assets/icons/chevron-left.svg"
-          alt
-          width="24"
-          height="24"
-          title="Закрыть"
-        />
-        <img
-          v-else
-          src="@/assets/icons/chevron-right.svg"
-          alt
-          width="24"
-          height="24"
-          title="Открыть"
-        />
-      </button>-->
-
       <router-link
         v-for="(but, index) in buttons"
         tag="button"
@@ -35,7 +13,7 @@
         <small>{{but.title}}</small>
       </router-link>
     </div>
-    <div class="container-fluid w-100 border p-3">
+    <div class="container-fluid w-100 border">
       <router-view />
     </div>
   </div>
