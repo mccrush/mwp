@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex flex-row align-items-stretch">
-    <div class="flex-shrink-1 border p-3 menu">
+    <div class="flex-shrink-1 p-3 menu">
       <!-- <button
         class="btn btn-sm btn-light float-right p-1 menu-toogle"
         @click="showMenu = !showMenu"

@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-md navbar-light bg-light">
+  <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img
@@ -25,11 +25,29 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto mb-2 mb-md-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-expanded="false"
+            >Проекты</a>
+            <ul class="dropdown-menu shadow-sm border-0" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item" href="#">ATIOP</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">ENTR</a>
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Контроль</a>
+              </li>
+            </ul>
           </li>
         </ul>
       </div>
