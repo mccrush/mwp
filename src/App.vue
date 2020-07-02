@@ -1,15 +1,17 @@
 <template>
   <div id="app">
     <Navbar />
-    <router-view />
+    <Home />
   </div>
 </template>
 
 <script>
 import Navbar from '@/components/Navbar'
+import Home from '@/views/Home'
 export default {
   components: {
-    Navbar
+    Navbar,
+    Home
   }
 }
 </script>

@@ -23,40 +23,33 @@
         />
       </button>-->
 
-      <button class="b-yellow btn btn-block text-left">
-        <span class="badge bg-light text-dark mr-2">1</span>
-        <small>Требования</small>
-      </button>
-      <button class="b-green btn btn-block text-left">
-        <span class="badge bg-light text-dark mr-2">2</span>
-        <small>Проектирование</small>
-      </button>
-      <button class="b-blue btn btn-block text-left">
-        <span class="badge bg-light text-dark mr-2">3</span>
-        <small>Разработка</small>
-      </button>
-      <button class="b-purpur btn btn-block text-left">
-        <span class="badge bg-light text-dark mr-2">4</span>
-        <small>Внедрение</small>
-      </button>
-      <button class="b-pink btn btn-block text-left">
-        <span class="badge bg-light text-dark mr-2">5</span>
-        <small>Сопровождение</small>
-      </button>
+      <router-link
+        v-for="(but, index) in buttons"
+        tag="button"
+        :to="but.link"
+        :key="'bt'+index"
+        class="btn btn-block text-left"
+        :style="'background:'+ but.color"
+      >
+        <span class="badge bg-light text-dark mr-2">{{index+1}}</span>
+        <small>{{but.title}}</small>
+      </router-link>
     </div>
-    <div class="content w-100 border p-3">Home</div>
+    <div class="container-fluid w-100 border p-3">
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-//import HelloWorld from '@/components/HelloWorld.vue'
+import buttons from '@/data/buttons'
 
 export default {
   name: 'Home',
   components: {},
   data() {
     return {
+      buttons,
       showMenu: true
     }
   }
