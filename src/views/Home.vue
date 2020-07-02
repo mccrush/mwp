@@ -47,7 +47,9 @@ export default {
 
 <style scoped>
 .menu {
+  /* display: block; */
   width: 260px;
+  overflow: hidden;
 }
 
 /* .menu-toogle {
