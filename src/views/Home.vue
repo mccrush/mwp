@@ -1,5 +1,8 @@
 <template>
-  <div class="home"></div>
+  <div class="d-flex flex-row align-items-stretch">
+    <div class="menu flex-shrink-1 border p-3">HelloWorld</div>
+    <div class="content w-100 border p-3">Home</div>
+  </div>
 </template>
 
 <script>
@@ -11,3 +14,10 @@ export default {
   components: {}
 }
 </script>
+
+<style scoped>
+.menu {
+  width: 200px;
+  /* height: 450px; */
+}
+</style>
