@@ -1,53 +1,29 @@
 <template>
   <div class="row p-1 pt-2">
-    <div v-for="(login, index) in logins" :key="'lg'+index" class="col-6 p-2">
-      <table class="table table-bordered border-left border-right table-sm m-0">
-        <tr>
-          <td class="w-50 border-right">
-            <div class="input-group input-group-sm p-0">
-              <input type="text" class="form-control form-control-sm border-0 rounded-0" />
-            </div>
-          </td>
-          <td class="p-0">
-            <div class="input-group input-group-sm p-0">
-              <input type="text" class="form-control form-control-sm border-0 rounded-0" />
-              <button class="btn btn-light rounded-0" type="button" title="Open">o</button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="p-0 w-50 border-right">
-            <div class="input-group input-group-sm p-0">
-              <input type="text" class="form-control form-control-sm border-0 rounded-0" />
-              <button class="btn btn-light rounded-0" type="button" title="Copy">c</button>
-            </div>
-          </td>
-          <td class="p-0">
-            <div class="input-group input-group-sm p-0">
-              <input type="text" class="form-control form-control-sm border-0 rounded-0" />
-              <button class="btn btn-light rounded-0" type="button" title="Copy">c</button>
-            </div>
-          </td>
-        </tr>
-      </table>
+    <LoginForm v-for="(login, index) in logins" :key="'lg'+index" :logins="logins" :login="login" />
+    <div class="col-6 col-lg-4 p-2">
+      <button
+        @click="logins.push({id: '887', name: '', host: '', login: '', pass: ''})"
+        class="btn btn-sm btn-light text-muted"
+      >Добавить</button>
     </div>
   </div>
 </template>
 
 <script>
+import LoginForm from '@/components/LoginForm'
+
 export default {
+  components: { LoginForm },
   data() {
     return {
-      logins: [
-        { name: '', host: '', login: '', pass: '' },
-        { name: '', host: '', login: '', pass: '' }
-      ]
+      logins: JSON.parse(localStorage.getItem('logins')) || []
     }
   },
   computed: {
-    logins() {
-      return false
-    }
+    // logins() {
+    //   return JSON.parse(localStorage.getItem('logins')) || []
+    // }
   }
 }
 </script>
