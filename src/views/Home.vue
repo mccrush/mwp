@@ -6,7 +6,7 @@
         tag="button"
         :to="but.link"
         :key="'bt'+index"
-        class="btn btn-block text-left"
+        class="btn btn-block text-left pl-2"
         :style="'background:'+ but.color"
       >
         <span class="badge bg-light text-dark mr-2">{{index+1}}</span>
