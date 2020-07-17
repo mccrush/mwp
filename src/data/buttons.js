@@ -2,26 +2,26 @@ export default [
   {
     title: 'Требования',
     color: '#faedcb',
-    link: '/tz'
+    comp: 'tz'
   },
   {
     title: 'Проектирование',
     color: '#c9e4de',
-    link: '/project'
+    comp: 'project'
   },
   {
     title: 'Разработка',
     color: '#c6def1',
-    link: '/'
+    comp: 'devel'
   },
   {
     title: 'Тестирование',
     color: '#dbcdf0',
-    link: '/test'
+    comp: 'test'
   },
   {
     title: 'Сопровождение',
     color: '#f2c6de',
-    link: '/help'
+    comp: 'help'
   }
 ]

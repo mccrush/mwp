@@ -1,34 +1,46 @@
 <template>
   <div class="d-flex flex-row align-items-stretch">
     <div class="flex-shrink-1 align-self-stretch p-3 menu border-right">
-      <router-link
+      <button
         v-for="(but, index) in buttons"
-        tag="button"
-        :to="but.link"
+        type="button"
         :key="'bt'+index"
         class="btn btn-block text-left pl-2"
         :style="'background:'+ but.color"
+        @click="comp = but.comp"
       >
         <span class="badge bg-light text-dark mr-2">{{index+1}}</span>
         <small>{{but.title}}</small>
-      </router-link>
+      </button>
     </div>
     <div class="container-fluid w-100">
-      <router-view />
+      <component :is="comp" />
     </div>
   </div>
 </template>
 
 <script>
 import buttons from '@/data/buttons'
+import devel from '@/frames/Devel'
+import tz from '@/frames/Tz'
+import project from '@/frames/Project'
+import test from '@/frames/Test'
+import help from '@/frames/Help'
 
 export default {
-  name: 'Home',
-  components: {},
+  name: 'index',
+  components: {
+    devel,
+    tz,
+    project,
+    test,
+    help
+  },
   data() {
     return {
       buttons,
-      showMenu: true
+      showMenu: true,
+      comp: 'devel'
     }
   }
 }

@@ -23,7 +23,7 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div v-if="user" class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mb-2 mb-md-0">
           <li class="nav-item dropdown">
             <a
@@ -77,10 +77,13 @@
 </template>
 
 <script>
+import { auth } from '@/main.js'
 import projects from '@/data/projects'
+
 export default {
   data() {
     return {
+      user: auth.currentUser,
       projects,
       projectName: localStorage.getItem('projectName') || 'ATIOP'
     }

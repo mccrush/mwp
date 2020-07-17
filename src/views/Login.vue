@@ -27,30 +27,28 @@
             maxlength="20"
           />
 
-          <div class="input-group-append">
-            <button
-              class="btn btn-light p-0 pl-2 pr-2 border"
-              type="button"
-              @click="passType = !passType"
-            >
-              <img
-                v-if="passType"
-                src="@/assets/icons/eye-slash.svg"
-                width="24"
-                height="24"
-                alt="Показать пароль"
-                class="opacity-06"
-              />
-              <img
-                v-else
-                src="@/assets/icons/eye.svg"
-                width="24"
-                height="24"
-                alt="Скрыть пароль"
-                class="opacity-06"
-              />
-            </button>
-          </div>
+          <button
+            class="btn btn-light p-0 pl-2 pr-2 border"
+            type="button"
+            @click="passType = !passType"
+          >
+            <img
+              v-if="passType"
+              src="@/assets/icons/eye-slash.svg"
+              width="24"
+              height="24"
+              alt="Показать пароль"
+              class="opacity-06"
+            />
+            <img
+              v-else
+              src="@/assets/icons/eye.svg"
+              width="24"
+              height="24"
+              alt="Скрыть пароль"
+              class="opacity-06"
+            />
+          </button>
         </div>
         <br />
         <button class="btn btn-success btn-block" type="submit">Войти</button>
@@ -101,7 +99,7 @@ export default {
       if (this.email && this.password) {
         try {
           await this.$store.dispatch('logIn', formData)
-          this.$router.push('/admin')
+          this.$router.push('/')
         } catch (err) {
           this.showError()
           if (err.code === 'auth/invalid-email') {

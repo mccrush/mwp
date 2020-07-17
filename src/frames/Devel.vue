@@ -1,7 +1,8 @@
 <template>
   <div class="row">
     <div class="col-12 p-0">
-      <iframe src="https://atiop.ru/" height="720" width="100%" class></iframe>
+      <h4>Devel</h4>
+      <!-- <iframe src="https://atiop.ru/" height="720" width="100%" class></iframe> -->
     </div>
   </div>
 </template>
