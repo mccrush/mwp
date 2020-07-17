@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex flex-row align-items-stretch">
-    <div class="flex-shrink-1 align-self-stretch p-3 menu border-right">
+    <div class="flex-shrink-1 align-self-stretch p-3 pl-0 menu border-right">
       <button
         v-for="(but, index) in buttons"
         type="button"

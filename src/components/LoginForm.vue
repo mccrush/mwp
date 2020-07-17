@@ -18,7 +18,7 @@
             >r</button>
           </div>
         </td>
-        <td class="p-0">
+        <td class>
           <div class="input-group input-group-sm p-0">
             <input
               type="text"
@@ -37,7 +37,7 @@
         </td>
       </tr>
       <tr>
-        <td class="p-0 w-50 border-right">
+        <td class="w-50 border-right">
           <div class="input-group input-group-sm p-0">
             <input
               type="text"
@@ -48,7 +48,7 @@
             <button class="btn btn-light rounded-0" type="button" title="Copy">c</button>
           </div>
         </td>
-        <td class="p-0">
+        <td class>
           <div class="input-group input-group-sm p-0">
             <input
               type="text"
@@ -86,3 +86,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.btn {
+  width: 31px;
+}
+</style>

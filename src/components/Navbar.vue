@@ -61,6 +61,7 @@
           v-if="projectName"
           href="https://drive.google.com/drive/folders/18xYc_spl0XP5Rx-4kmvhZTvP2IgCStQp"
           target="_blank"
+          title="Open project folder"
           class="btn btn-sm p-0 pl-1 pr-1"
         >
           <img
@@ -108,6 +109,6 @@ export default {
   cursor: pointer;
 }
 .project-name {
-  font-size: 18px;
+  font-size: 1rem;
 }
 </style>
