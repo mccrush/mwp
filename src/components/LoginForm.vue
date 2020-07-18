@@ -12,10 +12,18 @@
             />
             <button
               @click="remove(login.id)"
-              class="btn btn-outline-light rounded-0"
+              class="btn btn-outline-light rounded-0 p-0"
               type="button"
               title="Remove"
-            >r</button>
+            >
+              <img
+                src="@/assets/icons/trash.svg"
+                class="m-0 opacity-05"
+                width="16"
+                height="16"
+                alt="Remove"
+              />
+            </button>
           </div>
         </td>
         <td class>
@@ -32,7 +40,15 @@
               title="Open"
               target="_blank"
               :href="login.host"
-            >o</a>
+            >
+              <img
+                src="@/assets/icons/box-arrow-up-right.svg"
+                class="m-0 opacity-05"
+                width="16"
+                height="16"
+                alt="Open"
+              />
+            </a>
           </div>
         </td>
       </tr>
@@ -45,7 +61,15 @@
               v-model="login.login"
               @blur="update(login.id)"
             />
-            <button class="btn btn-light rounded-0" type="button" title="Copy">c</button>
+            <button class="btn btn-light rounded-0 p-0" type="button" title="Copy">
+              <img
+                src="@/assets/icons/files.svg"
+                class="m-0 opacity-05"
+                width="16"
+                height="16"
+                alt="Copy"
+              />
+            </button>
           </div>
         </td>
         <td class>
@@ -56,7 +80,15 @@
               v-model="login.pass"
               @blur="update(login.id)"
             />
-            <button class="btn btn-light rounded-0" type="button" title="Copy">c</button>
+            <button class="btn btn-light rounded-0 p-0" type="button" title="Copy">
+              <img
+                src="@/assets/icons/files.svg"
+                class="m-0 opacity-05"
+                width="16"
+                height="16"
+                alt="Copy"
+              />
+            </button>
           </div>
         </td>
       </tr>
@@ -92,5 +124,9 @@ export default {
 <style scoped>
 .btn {
   width: 31px;
+}
+
+.opacity-05 {
+  opacity: 0.5;
 }
 </style>
