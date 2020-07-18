@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">
+      <router-link tag="a" class="navbar-brand" to="/">
         <img
           src="/img/logo.png"
           width="30"
@@ -11,7 +11,7 @@
           loading="lazy"
         />
         MWP
-      </a>
+      </router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -73,7 +73,7 @@
           />
         </a>
       </div>
-      <button v-if="user" class="btn btn-sm btn-light mr-0" @click="logOut">Logout</button>
+      <button v-if="user" class="btn btn-sm btn-light text-muted mr-0" @click="logOut">Logout</button>
     </div>
   </nav>
 </template>

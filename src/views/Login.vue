@@ -1,10 +1,10 @@
 <template>
   <div class="row justify-content-center">
-    <vue-headful title="Авторизация" description="Авторизация" />
+    <vue-headful title="Authorization" description="Authorization" />
     <div class="col-12 col-sm-8 col-md-6 text-left">
       <form @submit.prevent="login" class="mt-5 mb-3 p-3 border ml-auto mr-auto max-width">
-        <h4 class="text-center mt-2 mb-4">Авторизация</h4>
-        <label for="email">Почта</label>
+        <h4 class="text-center mt-2 mb-4">Authorization</h4>
+        <label for="email">Email</label>
         <br />
         <input
           type="text"
@@ -15,7 +15,7 @@
           placeholder="example@mail.ru"
         />
         <br />
-        <label for="password">Пароль</label>
+        <label for="password">Password</label>
         <div class="input-group">
           <input
             :type="passType ? 'password' : 'text'"
@@ -37,7 +37,7 @@
               src="@/assets/icons/eye-slash.svg"
               width="24"
               height="24"
-              alt="Показать пароль"
+              alt="Show password"
               class="opacity-06"
             />
             <img
@@ -45,13 +45,13 @@
               src="@/assets/icons/eye.svg"
               width="24"
               height="24"
-              alt="Скрыть пароль"
+              alt="Hide password"
               class="opacity-06"
             />
           </button>
         </div>
         <br />
-        <button class="btn btn-success btn-block" type="submit">Войти</button>
+        <button class="btn btn-success btn-block" type="submit">Login</button>
       </form>
     </div>
     <transition name="fade" mode="out-in">

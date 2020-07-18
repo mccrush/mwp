@@ -1,5 +1,6 @@
 <template>
   <div class="d-flex flex-row align-items-stretch">
+    <vue-headful title="MWP v0.1" description="Manager of Web Projects" />
     <div class="flex-shrink-1 align-self-stretch p-3 pl-0 menu border-right">
       <button
         v-for="(but, index) in buttons"
@@ -20,6 +21,7 @@
 </template>
 
 <script>
+import vueHeadful from 'vue-headful'
 import buttons from '@/data/buttons'
 import devel from '@/frames/Devel'
 import tz from '@/frames/Tz'
@@ -30,6 +32,7 @@ import help from '@/frames/Help'
 export default {
   name: 'index',
   components: {
+    vueHeadful,
     devel,
     tz,
     project,
