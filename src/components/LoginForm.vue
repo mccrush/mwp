@@ -7,8 +7,8 @@
             <input
               type="text"
               class="form-control form-control-sm border-0 rounded-0"
-              v-model="login.name"
-              @blur="update(login.id)"
+              v-model.trim="login.name"
+              @blur="update($event, login.id)"
             />
             <button
               @click="remove(login.id)"
@@ -31,8 +31,8 @@
             <input
               type="text"
               class="form-control form-control-sm border-0 rounded-0"
-              v-model="login.host"
-              @blur="update(login.id)"
+              v-model.trim="login.host"
+              @blur="update($event, login.id)"
             />
             <a
               class="btn btn-light rounded-0"
@@ -44,8 +44,8 @@
               <img
                 src="@/assets/icons/box-arrow-up-right.svg"
                 class="m-0 opacity-05"
-                width="16"
-                height="16"
+                width="14"
+                height="14"
                 alt="Open"
               />
             </a>
@@ -58,11 +58,18 @@
             <input
               type="text"
               class="form-control form-control-sm border-0 rounded-0"
-              v-model="login.login"
-              @blur="update(login.id)"
+              v-model.trim="login.login"
+              ref="login"
+              @blur="update($event, login.id)"
             />
-            <button class="btn btn-light rounded-0 p-0" type="button" title="Copy">
+            <button
+              @click="copy($refs.login)"
+              class="btn btn-light rounded-0 p-0"
+              type="button"
+              title="Copy"
+            >
               <img
+                @
                 src="@/assets/icons/files.svg"
                 class="m-0 opacity-05"
                 width="16"
@@ -77,10 +84,16 @@
             <input
               type="text"
               class="form-control form-control-sm border-0 rounded-0"
-              v-model="login.pass"
-              @blur="update(login.id)"
+              v-model.trim="login.pass"
+              ref="pass"
+              @blur="update($event, login.id)"
             />
-            <button class="btn btn-light rounded-0 p-0" type="button" title="Copy">
+            <button
+              @click="copy($refs.pass)"
+              class="btn btn-light rounded-0 p-0"
+              type="button"
+              title="Copy"
+            >
               <img
                 src="@/assets/icons/files.svg"
                 class="m-0 opacity-05"
@@ -99,23 +112,32 @@
 <script>
 export default {
   props: ['login', 'logins'],
+  data() {
+    return {
+      nocopy: true
+    }
+  },
   methods: {
+    copy(elem) {
+      elem.select()
+      document.execCommand('copy')
+      this.nocopy = false
+      elem.blur()
+      this.nocopy = true
+    },
     remove(id) {},
-    update(id) {
-      const login = {
-        id: this.login.id,
-        name: this.login.name,
-        host: this.login.host,
-        login: this.login.login,
-        pass: this.login.pass
+    async update(e, id) {
+      if (e.target.value && this.nocopy) {
+        const login = {
+          id: this.login.id,
+          name: this.login.name,
+          host: this.login.host,
+          login: this.login.login,
+          pass: this.login.pass
+        }
+
+        await this.$store.dispatch('updateLogin', { doc: login })
       }
-
-      // const index = this.logins.findIndex(item => item.id === id)
-      // this.logins[index] = log
-
-      // localStorage.setItem('logins', JSON.stringify(this.logins))
-
-      this.$store.dispatch('updateLogin', { doc: login })
     }
   }
 }
