@@ -27,7 +27,7 @@
         <ul class="navbar-nav mb-2 mb-md-0">
           <li class="nav-item dropdown">
             <a
-              class="nav-link dropdown-toggle"
+              class="nav-link dropdown-toggle p-1 pl-2 pr-2 rounded-sm border"
               href="#"
               id="navbarDropdown"
               role="button"
@@ -51,7 +51,7 @@
           alt="Row right"
           width="12"
           height="12"
-          class
+          class="ml-2"
         />
         <span
           v-if="projectName"
@@ -62,14 +62,14 @@
           href="https://drive.google.com/drive/folders/18xYc_spl0XP5Rx-4kmvhZTvP2IgCStQp"
           target="_blank"
           title="Open project folder"
-          class="btn btn-sm p-0 pl-1 pr-1"
+          class="btn btn-sm btn-light p-0 pl-2 pr-2"
         >
           <img
             src="@/assets/icons/folder-symlink.svg"
             alt="Folder icon"
             width="16"
             height="16"
-            class
+            class="opacity-05"
           />
         </a>
       </div>
@@ -110,5 +110,9 @@ export default {
 }
 .project-name {
   font-size: 1rem;
+}
+
+.opacity-05 {
+  opacity: 0.5;
 }
 </style>
