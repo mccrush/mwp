@@ -33,7 +33,7 @@
               role="button"
               data-toggle="dropdown"
               aria-expanded="false"
-            >Проекты</a>
+            >Projects</a>
             <ul class="dropdown-menu shadow-sm border-0" aria-labelledby="navbarDropdown">
               <li
                 v-for="(proj, index) in projects"
@@ -73,6 +73,7 @@
           />
         </a>
       </div>
+      <button v-if="user" class="btn btn-sm btn-light mr-0" @click="logOut">Logout</button>
     </div>
   </nav>
 </template>
@@ -89,12 +90,20 @@ export default {
       projectName: localStorage.getItem('projectName') || 'ATIOP'
     }
   },
-  // computed: {
-  //   projectName() {
-  //     return localStorage.getItem('projectName') || 'ATIOP'
-  //   }
-  // },
+  mounted() {
+    auth.onAuthStateChanged(user => {
+      this.user = user
+    })
+  },
   methods: {
+    async logOut() {
+      try {
+        await this.$store.dispatch('logOut')
+        this.$router.push('login')
+      } catch (err) {
+        consile.log('Ошибка при выходе из системы')
+      }
+    },
     setProject(name, alias) {
       this.projectName = name
       localStorage.setItem('projectName', name)
