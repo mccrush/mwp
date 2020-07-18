@@ -88,6 +88,29 @@
               ref="pass"
               @blur="update($event, login.id)"
             />
+            <!-- <button
+              @click="type = !type"
+              class="btn btn-light rounded-0 p-0"
+              type="button"
+              title="Show/hide pass"
+            >
+              <img
+                v-if="type"
+                src="@/assets/icons/eye-slash.svg"
+                class="m-0 opacity-05"
+                width="14"
+                height="14"
+                alt="Show pass"
+              />
+              <img
+                v-else
+                src="@/assets/icons/eye.svg"
+                class="m-0 opacity-05"
+                width="14"
+                height="14"
+                alt="Hide pass"
+              />
+            </button>-->
             <button
               @click="copy($refs.pass)"
               class="btn btn-light rounded-0 p-0"
@@ -114,10 +137,14 @@ export default {
   props: ['login', 'logins'],
   data() {
     return {
-      nocopy: true
+      nocopy: true,
+      type: true
     }
   },
   methods: {
+    changeType() {
+      this.type = this.type === 'password' ? 'text' : 'password'
+    },
     copy(elem) {
       elem.select()
       document.execCommand('copy')
@@ -145,7 +172,7 @@ export default {
 
 <style scoped>
 .btn {
-  width: 31px;
+  width: 32px;
 }
 
 .opacity-05 {
