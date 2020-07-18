@@ -70,18 +70,20 @@ export default {
   methods: {
     remove(id) {},
     update(id) {
-      const log = {
-        id,
+      const login = {
+        id: this.login.id,
         name: this.login.name,
         host: this.login.host,
         login: this.login.login,
         pass: this.login.pass
       }
 
-      const index = this.logins.findIndex(item => item.id === id)
-      this.logins[index] = log
+      // const index = this.logins.findIndex(item => item.id === id)
+      // this.logins[index] = log
 
-      localStorage.setItem('logins', JSON.stringify(this.logins))
+      // localStorage.setItem('logins', JSON.stringify(this.logins))
+
+      this.$store.dispatch('updateLogin', { doc: login })
     }
   }
 }

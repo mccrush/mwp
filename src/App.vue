@@ -13,6 +13,11 @@ import Navbar from '@/components/Navbar'
 export default {
   components: {
     Navbar
+  },
+  async beforeMount() {
+    try {
+      this.$store.dispatch('getLogins')
+    } catch (error) {}
   }
 }
 </script>

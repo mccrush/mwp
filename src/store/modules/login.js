@@ -9,14 +9,14 @@ export default {
       let tempDoc = state[collection].filter(doc => doc.id != id)
       state[collection] = tempDoc
     },
-    updateDoc(state, { collection, doc }) {
-      const index = state[collection].findIndex(col => col.id === doc.id)
-      state[collection][index] = doc
+    updateLogin(state, { doc }) {
+      const index = state.logins.findIndex(col => col.id === doc.id)
+      state.logins[index] = doc
     },
     addDoc(state, { doc }) {
       state.logins.push(doc)
     },
-    getData(state, { logins }) {
+    getLogins(state, { logins }) {
       state.logins = logins
     }
   },
@@ -32,11 +32,11 @@ export default {
       } finally {
       }
     },
-    async updateDoc({ commit, dispatch }, { collection, doc }) {
+    async updateLogin({ commit, dispatch }, { doc }) {
       try {
-        await db.collection(collection).doc(doc.id).update(doc)
+        await db.collection('logins').doc(doc.id).update(doc)
         console.log('Документ успешно обновлен')
-        commit('updateDoc', { collection, doc })
+        commit('updateLogin', { doc })
       } catch (err) {
         //throw err
         console.log('Ошибка при обновлении документа:', err)
@@ -46,15 +46,15 @@ export default {
     async addDoc({ commit }, { doc }) {
       try {
         await db.collection('logins').doc(doc.id).set(doc, { merge: true })
-        console.log('Документ успешно создан')
+        console.log('Документ успешно создан login')
         commit('addDoc', { doc })
       } catch (err) {
         //throw err
-        console.log('Ошибка при создании документа:', err)
+        console.log('Ошибка при создании документа login:', err)
       } finally {
       }
     },
-    async getData({ commit }) {
+    async getLogins({ commit }) {
       let logins = []
       try {
         const ref = db.collection('logins')
@@ -62,7 +62,7 @@ export default {
         snapshot.forEach(doc => {
           logins.push(doc.data())
         });
-        commit('getData', { logins })
+        commit('getLogins', { logins })
       } catch (err) {
         throw err
       } finally {
