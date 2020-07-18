@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <vue-headful title="Авторизация" description="Авторизация" />
     <div class="col-12 col-sm-8 col-md-6 text-left">
-      <form @submit.prevent="login" class="mt-5 mb-3 p-3 shadow-sm ml-auto mr-auto max-width">
+      <form @submit.prevent="login" class="mt-5 mb-3 p-3 border ml-auto mr-auto max-width">
         <h4 class="text-center mt-2 mb-4">Авторизация</h4>
         <label for="email">Почта</label>
         <br />
