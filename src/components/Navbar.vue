@@ -33,14 +33,27 @@
               role="button"
               data-toggle="dropdown"
               aria-expanded="false"
-            >Projects</a>
+              @click="$refs.filter.focus()"
+            >{{projectName}}</a>
             <ul class="dropdown-menu shadow-sm border-0" aria-labelledby="navbarDropdown">
+              <li class="pl-1 pr-1">
+                <input
+                  type="search"
+                  class="form-control form-control-sm border"
+                  autofocus
+                  ref="filter"
+                  v-model="filter"
+                />
+              </li>
+              <li>
+                <hr class="dropdown-divider m-2" />
+              </li>
               <li
-                v-for="(proj, index) in projects"
+                v-for="(proj, index) in filteringProjects"
                 :key="'pr'+index"
-                @click="setProject(proj.name, proj.alias)"
+                @click="setProject(proj.title, proj.alias)"
               >
-                <span class="dropdown-item" href>{{proj.name}}</span>
+                <span class="dropdown-item">{{proj.title}}</span>
               </li>
             </ul>
           </li>
@@ -53,10 +66,10 @@
           height="12"
           class="ml-2"
         />
-        <span
+        <!-- <span
           v-if="projectName"
           class="navbar-brand bg-light p-0 pl-3 pr-3 rounded-lg ml-2 mr-2 project-name"
-        >{{projectName}}</span>
+        >{{projectName}}</span>-->
         <a
           v-if="projectName"
           href="https://drive.google.com/drive/folders/18xYc_spl0XP5Rx-4kmvhZTvP2IgCStQp"
@@ -80,14 +93,32 @@
 
 <script>
 import { auth } from '@/main.js'
-import projects from '@/data/projects'
+//import projects from '@/data/projects'
 
 export default {
   data() {
     return {
       user: auth.currentUser,
-      projects,
-      projectName: localStorage.getItem('projectName') || 'ATIOP'
+      projectName: localStorage.getItem('projectName') || 'Select proj',
+      filter: ''
+    }
+  },
+  computed: {
+    projects() {
+      return this.$store.getters.projects
+    },
+    filteringProjects() {
+      if (!this.filter) {
+        return this.projects
+      }
+      if (this.filter) {
+        return this.$store.getters.projects.filter(
+          project =>
+            project.title.toUpperCase().indexOf(this.filter.toUpperCase()) !=
+              -1 ||
+            project.alias.toUpperCase().indexOf(this.filter.toUpperCase()) != -1
+        )
+      }
     }
   },
   mounted() {

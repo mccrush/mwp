@@ -16,7 +16,7 @@ export default {
   },
   async beforeMount() {
     try {
-      this.$store.dispatch('getLogins')
+      this.$store.dispatch('getProjects')
     } catch (error) {}
   }
 }

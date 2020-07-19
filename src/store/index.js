@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import login from './modules/login'
+import project from './modules/project'
 import user from './modules/user'
 import message from './modules/message'
 
@@ -14,7 +14,7 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
-    login,
+    project,
     user,
     message
   }
