@@ -47,8 +47,10 @@ export default {
     async addProject({ commit }, title) {
       try {
         const doc = {
+          id: Date.now().toString(),
           title,
-          id: Date.now().toString()
+          position: 0,
+          logins: []
         }
         await db.collection("users").doc(auth.currentUser.uid).collection('projects').doc(doc.id).set(doc, { merge: true })
         console.log('Документ успешно создан projects')
@@ -63,7 +65,7 @@ export default {
       let projects = []
       try {
         const ref = db.collection("users").doc(auth.currentUser.uid).collection('projects')
-        const snapshot = await ref.get()
+        const snapshot = await ref.orderBy('title').get()
         snapshot.forEach(doc => {
           projects.push(doc.data())
         });
