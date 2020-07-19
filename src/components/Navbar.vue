@@ -7,7 +7,7 @@
           width="30"
           height="30"
           class="d-inline-block align-top"
-          alt
+          alt="Logo MWP"
           loading="lazy"
         />
         MWP
@@ -33,8 +33,7 @@
               role="button"
               data-toggle="dropdown"
               aria-expanded="false"
-              @click="$refs.filter.focus()"
-            >{{projectName}}</a>
+            >{{projectTitle}}</a>
             <ul class="dropdown-menu shadow-sm border-0" aria-labelledby="navbarDropdown">
               <li class="pl-1 pr-1">
                 <input
@@ -58,24 +57,25 @@
             </ul>
           </li>
         </ul>
-        <img
+        <!-- <img
           v-if="projectName"
           src="@/assets/icons/chevron-right.svg"
           alt="Row right"
           width="12"
           height="12"
           class="ml-2"
-        />
+        />-->
         <!-- <span
           v-if="projectName"
           class="navbar-brand bg-light p-0 pl-3 pr-3 rounded-lg ml-2 mr-2 project-name"
         >{{projectName}}</span>-->
+
         <a
-          v-if="projectName"
+          v-if="projectTitle"
           href="https://drive.google.com/drive/folders/18xYc_spl0XP5Rx-4kmvhZTvP2IgCStQp"
           target="_blank"
           title="Open project folder"
-          class="btn btn-sm btn-light p-0 pl-2 pr-2"
+          class="btn btn-sm btn-light ml-2"
         >
           <img
             src="@/assets/icons/folder-symlink.svg"
@@ -85,6 +85,14 @@
             class="opacity-05"
           />
         </a>
+        <input
+          type="text"
+          class="form-control form-control-sm ml-2 w-25"
+          placeholder="Add new project"
+          v-model.trim="newProjectTitle"
+          @keypress.enter="addProject"
+        />
+        <!-- <button class="btn btn-sm btn-light ml-2 text-muted">Add</button> -->
       </div>
       <button v-if="user" class="btn btn-sm btn-light text-muted mr-0" @click="logOut">Logout</button>
     </div>
@@ -99,8 +107,9 @@ export default {
   data() {
     return {
       user: auth.currentUser,
-      projectName: localStorage.getItem('projectName') || 'Select proj',
-      filter: ''
+      projectTitle: localStorage.getItem('projectTitle') || 'Select proj',
+      filter: '',
+      newProjectTitle: ''
     }
   },
   computed: {
@@ -127,6 +136,9 @@ export default {
     })
   },
   methods: {
+    meven() {
+      alert('ms')
+    },
     async logOut() {
       try {
         await this.$store.dispatch('logOut')
@@ -135,10 +147,13 @@ export default {
         consile.log('Ошибка при выходе из системы')
       }
     },
-    setProject(name, alias) {
-      this.projectName = name
-      localStorage.setItem('projectName', name)
-      localStorage.setItem('projectAlias', alias)
+    setProject(title, alias) {
+      this.projectTitle = title
+      localStorage.setItem('projectTitle', title)
+    },
+    async addProject() {
+      await this.$store.dispatch('addProject', this.newProjectTitle)
+      this.newProjectTitle = ''
     }
   }
 }

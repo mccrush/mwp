@@ -44,8 +44,12 @@ export default {
       } finally {
       }
     },
-    async addProject({ commit }, { doc }) {
+    async addProject({ commit }, title) {
       try {
+        const doc = {
+          title,
+          id: Date.now().toString()
+        }
         await db.collection("users").doc(auth.currentUser.uid).collection('projects').doc(doc.id).set(doc, { merge: true })
         console.log('Документ успешно создан projects')
         commit('addProject', { doc })
