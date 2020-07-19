@@ -54,6 +54,7 @@ export default {
           id: Date.now().toString(),
           title,
           position: 0,
+          folder: '',
           logins: []
         }
         await db.collection("users").doc(auth.currentUser.uid).collection('projects').doc(doc.id).set(doc, { merge: true })

@@ -110,9 +110,7 @@ export default {
       if (this.filter) {
         return this.$store.getters.projects.filter(
           project =>
-            project.title.toUpperCase().indexOf(this.filter.toUpperCase()) !=
-              -1 ||
-            project.alias.toUpperCase().indexOf(this.filter.toUpperCase()) != -1
+            project.title.toUpperCase().indexOf(this.filter.toUpperCase()) != -1
         )
       }
     }
