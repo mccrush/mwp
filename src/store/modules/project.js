@@ -3,14 +3,18 @@ import { db } from '@/main.js'
 
 export default {
   state: {
-    projects: []
+    projects: [],
+    projectId: ''
   },
   mutations: {
+    setProjectId(state, id) {
+      state.projectId = id
+    },
     removeDoc(state, { collection, id }) {
       let tempDoc = state[collection].filter(doc => doc.id != id)
       state[collection] = tempDoc
     },
-    updateLogin(state, { doc }) {
+    updateProject(state, { doc }) {
       const index = state.logins.findIndex(col => col.id === doc.id)
       state.logins[index] = doc
     },
@@ -33,11 +37,11 @@ export default {
       } finally {
       }
     },
-    async updateLogin({ commit, dispatch }, { doc }) {
+    async updateProject({ commit, dispatch }, { doc }) {
       try {
         await db.collection('logins').doc(doc.id).update(doc)
         console.log('Документ успешно обновлен projects')
-        commit('updateLogin', { doc })
+        commit('updateProject', { doc })
       } catch (err) {
         //throw err
         console.log('Ошибка при обновлении документа projects:', err)
@@ -78,5 +82,7 @@ export default {
   },
   getters: {
     projects: state => state.projects,
+    project: state => state.projects.find(item => item.id === state.projectId) || { title: '' },
+    projectId: state => state.projectId
   }
 }

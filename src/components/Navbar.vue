@@ -50,26 +50,13 @@
               <li
                 v-for="(proj, index) in filteringProjects"
                 :key="'pr'+index"
-                @click="setProject(proj.title, proj.alias)"
+                @click="setProject(proj.title, proj.id)"
               >
                 <span class="dropdown-item">{{proj.title}}</span>
               </li>
             </ul>
           </li>
         </ul>
-        <!-- <img
-          v-if="projectName"
-          src="@/assets/icons/chevron-right.svg"
-          alt="Row right"
-          width="12"
-          height="12"
-          class="ml-2"
-        />-->
-        <!-- <span
-          v-if="projectName"
-          class="navbar-brand bg-light p-0 pl-3 pr-3 rounded-lg ml-2 mr-2 project-name"
-        >{{projectName}}</span>-->
-
         <a
           v-if="projectTitle"
           href="https://drive.google.com/drive/folders/18xYc_spl0XP5Rx-4kmvhZTvP2IgCStQp"
@@ -92,7 +79,6 @@
           v-model.trim="newProjectTitle"
           @keypress.enter="addProject"
         />
-        <!-- <button class="btn btn-sm btn-light ml-2 text-muted">Add</button> -->
       </div>
       <button v-if="user" class="btn btn-sm btn-light text-muted mr-0" @click="logOut">Logout</button>
     </div>
@@ -101,13 +87,11 @@
 
 <script>
 import { auth } from '@/main.js'
-//import projects from '@/data/projects'
 
 export default {
   data() {
     return {
       user: auth.currentUser,
-      projectTitle: localStorage.getItem('projectTitle') || 'Select proj',
       filter: '',
       newProjectTitle: ''
     }
@@ -115,6 +99,9 @@ export default {
   computed: {
     projects() {
       return this.$store.getters.projects
+    },
+    projectTitle() {
+      return this.$store.getters.project.title || 'Select proj'
     },
     filteringProjects() {
       if (!this.filter) {
@@ -147,13 +134,12 @@ export default {
         consile.log('Ошибка при выходе из системы')
       }
     },
-    setProject(title, alias) {
-      this.projectTitle = title
-      localStorage.setItem('projectTitle', title)
+    setProject(title, id) {
+      this.$store.commit('setProjectId', id)
     },
     async addProject() {
-      await this.$store.dispatch('addProject', this.newProjectTitle)
       this.newProjectTitle = ''
+      await this.$store.dispatch('addProject', this.newProjectTitle)
     }
   }
 }

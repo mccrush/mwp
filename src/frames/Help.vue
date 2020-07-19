@@ -12,14 +12,12 @@ import LoginForm from '@/components/LoginForm'
 
 export default {
   components: { LoginForm },
-  // data() {
-  //   return {
-  //     logins: JSON.parse(localStorage.getItem('logins')) || []
-  //   }
-  // },
   computed: {
+    projects() {
+      return this.$store.getters.projects
+    },
     logins() {
-      return this.$store.getters.logins
+      return projects.logins
     }
   },
   methods: {

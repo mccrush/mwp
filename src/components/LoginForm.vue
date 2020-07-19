@@ -142,9 +142,6 @@ export default {
     }
   },
   methods: {
-    changeType() {
-      this.type = this.type === 'password' ? 'text' : 'password'
-    },
     copy(elem) {
       elem.select()
       document.execCommand('copy')
@@ -163,7 +160,7 @@ export default {
           pass: this.login.pass
         }
 
-        await this.$store.dispatch('updateLogin', { doc: login })
+        await this.$store.dispatch('updateProject', { login })
       }
     }
   }
