@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex flex-row align-items-stretch">
     <vue-headful title="MWP v0.1" description="Manager of Web Projects" />
-    <div class="flex-shrink-1 align-self-stretch p-3 pl-0 menu border-right">
+    <div class="flex-shrink-1 align-self-stretch p-3 menu border-right bg-light">
       <button
         v-for="(but, index) in buttons"
         type="button"
@@ -10,7 +10,7 @@
         :style="'background:'+ but.color"
         @click="comp = but.comp"
       >
-        <span class="badge bg-light text-dark mr-2">{{index+1}}</span>
+        <span class="badge bg-light text-muted mr-2">{{index+1}}</span>
         <small>{{but.title}}</small>
       </button>
     </div>
@@ -58,6 +58,7 @@ export default {
 .menu {
   position: relative;
   width: 260px;
+  height: calc(100vh - 57px);
 }
 
 .b-yellow {
