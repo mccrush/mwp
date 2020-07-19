@@ -51,8 +51,21 @@
                 v-for="(proj, index) in filteringProjects"
                 :key="'pr'+index"
                 @click="setProject(proj.title, proj.id)"
+                class="d-flex"
               >
                 <span class="dropdown-item">{{proj.title}}</span>
+                <button
+                  class="btn btn-sm btn-outline-light p-0 pl-2 pr-2 mr-2"
+                  @click.stop="settings(proj.id)"
+                >
+                  <img
+                    src="@/assets/icons/gear.svg"
+                    alt="Settings"
+                    width="16"
+                    height="16"
+                    class="opacity-05"
+                  />
+                </button>
               </li>
             </ul>
           </li>
@@ -121,8 +134,8 @@ export default {
     })
   },
   methods: {
-    meven() {
-      alert('ms')
+    settings(id) {
+      console.log(id)
     },
     async logOut() {
       try {
