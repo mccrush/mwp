@@ -23,7 +23,11 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div v-if="user" class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div
+        v-if="user"
+        class="collapse navbar-collapse"
+        id="navbarSupportedContent"
+      >
         <ul class="navbar-nav mb-2 mb-md-0">
           <li class="nav-item dropdown">
             <a
@@ -33,8 +37,12 @@
               role="button"
               data-toggle="dropdown"
               aria-expanded="false"
-            >{{projectTitle}}</a>
-            <ul class="dropdown-menu shadow-sm border-0" aria-labelledby="navbarDropdown">
+              >{{ projectTitle }}</a
+            >
+            <ul
+              class="dropdown-menu shadow-sm border-0"
+              aria-labelledby="navbarDropdown"
+            >
               <li class="pl-1 pr-1">
                 <input
                   type="search"
@@ -49,11 +57,11 @@
               </li>
               <li
                 v-for="(proj, index) in filteringProjects"
-                :key="'pr'+index"
+                :key="'pr' + index"
                 @click="setProject(proj.title, proj.id)"
                 class="d-flex"
               >
-                <span class="dropdown-item">{{proj.title}}</span>
+                <span class="dropdown-item">{{ proj.title }}</span>
                 <button
                   class="btn btn-sm btn-outline-light p-0 pl-2 pr-2 mr-2"
                   @click.stop="settings(proj.id)"
@@ -93,20 +101,26 @@
           @keypress.enter="addProject"
         />
       </div>
-      <button v-if="user" class="btn btn-sm btn-light text-muted mr-0" @click="logOut">Logout</button>
+      <button
+        v-if="user"
+        class="btn btn-sm btn-light text-muted mr-0"
+        @click="logOut"
+      >
+        Logout
+      </button>
     </div>
   </nav>
 </template>
 
 <script>
-import { auth } from '@/main.js'
+import { auth } from '@/firebase.js'
 
 export default {
   data() {
     return {
       user: auth.currentUser,
       filter: '',
-      newProjectTitle: ''
+      newProjectTitle: '',
     }
   },
   computed: {
@@ -122,14 +136,14 @@ export default {
       }
       if (this.filter) {
         return this.$store.getters.projects.filter(
-          project =>
+          (project) =>
             project.title.toUpperCase().indexOf(this.filter.toUpperCase()) != -1
         )
       }
-    }
+    },
   },
   mounted() {
-    auth.onAuthStateChanged(user => {
+    auth.onAuthStateChanged((user) => {
       this.user = user
     })
   },
@@ -151,8 +165,8 @@ export default {
     async addProject() {
       this.newProjectTitle = ''
       await this.$store.dispatch('addProject', this.newProjectTitle)
-    }
-  }
+    },
+  },
 }
 </script>
 
