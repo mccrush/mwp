@@ -75,7 +75,8 @@ export default {
         });
         commit('getProjects', { projects })
       } catch (err) {
-        throw err
+        console.error('In store project.js:', err)
+        //throw err
       } finally {
       }
     }
