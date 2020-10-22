@@ -29,7 +29,7 @@
         id="navbarSupportedContent"
       >
         <ul class="navbar-nav mb-2 mb-md-0">
-          <li class="nav-item dropdown">
+          <li class="my-width-120 nav-item dropdown">
             <a
               class="nav-link dropdown-toggle p-1 pl-2 pr-2 rounded-sm border"
               href="#"
@@ -172,6 +172,10 @@ export default {
 </script>
 
 <style scoped>
+.my-width-120 {
+  width: 120px;
+}
+
 .dropdown-item {
   cursor: pointer;
 }
