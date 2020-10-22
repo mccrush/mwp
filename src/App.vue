@@ -8,17 +8,18 @@
 </template>
 
 <script>
+import 'bootstrap/dist/css/bootstrap.min.css'
 import Navbar from '@/components/Navbar'
 
 export default {
   components: {
-    Navbar
+    Navbar,
   },
   async beforeMount() {
     try {
       this.$store.dispatch('getProjects')
     } catch (error) {}
-  }
+  },
 }
 </script>
 

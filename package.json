@@ -7,24 +7,22 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "bootstrap": "^5.0.0-alpha1",
-    "bootstrap-icons": "^1.0.0-alpha5",
-    "core-js": "^3.6.5",
-    "firebase": "^7.16.1",
+    "bootstrap": "^5.0.0-alpha2",
+    "bootstrap-icons": "^1.0.0",
+    "firebase": "^7.19.1",
     "popper.js": "^1.16.1",
     "register-service-worker": "^1.7.1",
-    "vue": "^2.6.11",
+    "vue": "^3.0.0-0",
     "vue-headful": "^2.1.0",
-    "vue-router": "^3.2.0",
-    "vuex": "^3.4.0"
+    "vue-router": "^4.0.0-0",
+    "vuex": "^4.0.0-0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.4.0",
-    "@vue/cli-plugin-pwa": "~4.4.0",
-    "@vue/cli-plugin-router": "~4.4.0",
-    "@vue/cli-plugin-vuex": "~4.4.0",
-    "@vue/cli-service": "~4.4.0",
-    "vue-template-compiler": "^2.6.11"
+    "@vue/cli-plugin-pwa": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0-0"
   },
   "prettier": {
     "singleQuote": true,
