@@ -1,4 +1,4 @@
-import { auth } from "@/main.js";
+import { auth } from '@/firebase.js'
 
 export default {
   actions: {

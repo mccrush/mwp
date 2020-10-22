@@ -1,4 +1,4 @@
-import { db } from '@/main.js'
+import { db } from '@/firebase.js'
 
 export default {
   state: {
