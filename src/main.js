@@ -1,4 +1,5 @@
-import Vue from 'vue'
+//import Vue from 'vue'
+import { createApp } from 'vue'
 import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
@@ -10,10 +11,6 @@ let app
 
 firebase.auth().onAuthStateChanged(() => {
   if (!app) {
-    app = new Vue({
-      router,
-      store,
-      render: h => h(App)
-    }).$mount('#app')
+    app = createApp(App).use(store).use(router).mount('#app')
   }
 })
