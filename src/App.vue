@@ -15,11 +15,11 @@ export default {
   components: {
     Navbar,
   },
-  async beforeMount() {
-    try {
-      this.$store.dispatch('getProjects')
-    } catch (error) {}
-  },
+  // async beforeMount() {
+  //   try {
+  //     this.$store.dispatch('getProjects')
+  //   } catch (error) {}
+  // },
 }
 </script>
 

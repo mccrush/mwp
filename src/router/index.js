@@ -1,10 +1,5 @@
-// import Vue from 'vue'
-// import VueRouter from 'vue-router'
-
 import { createRouter, createWebHistory } from 'vue-router'
 import { auth } from '@/firebase.js'
-
-//Vue.use(VueRouter)
 
 const routes = [
   {
@@ -21,7 +16,7 @@ const routes = [
     component: () => import('../views/Login.vue')
   },
   {
-    path: '*',
+    path: '/:catchAll(.*)',
     component: () => import('../views/NotFound.vue')
   }
 ]
