@@ -55,10 +55,12 @@ export default {
     }
   },
   methods: {
-    addProject() {
+    async addProject() {
       const project = createProject(this.projectName)
       //console.log('new project', project)
       this.$store.commit('addProject', project)
+      const res = await this.$store.dispatch('addProject', project)
+      console.log('res from index:', res)
       this.projectName = ''
     }
   }
@@ -67,7 +69,7 @@ export default {
 
 <style scoped>
 .menu {
-  height: calc(100vh - 35px); /* Точное число после настройки навбара */
+  height: calc(100vh - 48px); /* Точное число после настройки навбара */
 }
 
 .b-yellow {

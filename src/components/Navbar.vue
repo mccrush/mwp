@@ -1,6 +1,6 @@
 <template>
-  <div class="row border">
-    <div class="col-2 border">
+  <div class="row border-bottom pt-2 pb-2">
+    <div class="col-2">
       <img
         src="/img/logo.png"
         width="30"
@@ -10,8 +10,8 @@
       />
       <span class="d-inline-block ms-2 pt-1"><strong>MWP</strong></span>
     </div>
-    <div class="col-9 border"></div>
-    <div class="col-1 border">
+    <div class="col-8"></div>
+    <div class="col-2 d-flex justify-content-between">
       <button
         v-if="user"
         class="btn btn-sm btn-light text-muted"
@@ -19,15 +19,20 @@
       >
         Logout
       </button>
+      <Loading v-if="loading" />
     </div>
   </div>
 </template>
 
 <script>
 import { auth } from '@/firebase.js'
+import Loading from '@/components/Loading'
 //import { Collapse } from 'bootstrap'
 
 export default {
+  components: {
+    Loading
+  },
   data() {
     return {
       user: auth.currentUser,
@@ -36,6 +41,9 @@ export default {
     }
   },
   computed: {
+    loading() {
+      return this.$store.getters.loading
+    },
     projects() {
       return this.$store.getters.projects
     },
