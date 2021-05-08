@@ -1,7 +1,7 @@
 <template>
-  <div class="col-9">
+  <div class="col-12 col-sm-8 col-md-9 col-lg-10 col-xl-10 col-xxl-11">
     <div class="row pt-2">
-      <div class="col-6">
+      <div class="col-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3">
         <div class="input-group">
           <input
             type="text"
@@ -18,7 +18,7 @@
           </button>
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3">
         <div class="input-group">
           <input
             type="text"

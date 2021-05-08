@@ -1,5 +1,7 @@
 <template>
-  <div class="menu col-3 border-end">
+  <div
+    class="menu col-12 col-sm-4 col-md-3 col-lg-2 col-xl-2 col-xxl-1 border-end"
+  >
     <button
       v-for="project in projects"
       :key="project.id"
