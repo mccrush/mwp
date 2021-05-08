@@ -6,26 +6,50 @@
           <input
             type="text"
             class="form-control form-control-sm"
+            placeholder="Project Name"
             v-model.trim="project.title"
+            @keyup.enter="updateProject('title')"
           />
-          <button class="btn btn-sm btn-light border">
-            <Loading v-if="false" />
+          <button
+            class="btn btn-sm btn-light border"
+            @click="updateProject('title')"
+          >
             <span v-if="true">Save</span>
           </button>
         </div>
       </div>
-      <div class="col-6"></div>
+      <div class="col-6">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            placeholder="Url"
+            v-model.trim="project.url"
+            @keyup.enter="updateProject('url')"
+          />
+          <button
+            class="btn btn-sm btn-light border"
+            @click="updateProject('url')"
+          >
+            <span v-if="true">Save</span>
+          </button>
+          <a
+            class="btn btn-sm btn-light border"
+            :href="project.url"
+            target="_blank"
+            title="Открыть проект"
+          >
+            <span v-if="true">Go</span>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import Loading from '@/components/Loading'
-
 export default {
-  components: {
-    Loading
-  },
+  components: {},
   props: {
     project: {
       type: Object,
@@ -35,7 +59,16 @@ export default {
   data() {
     return {}
   },
-  computed: {}
+  computed: {},
+  methods: {
+    async updateProject(field) {
+      const res = await this.$store.dispatch('updateProject', {
+        id: this.project.id,
+        field,
+        value: this.project[field]
+      })
+    }
+  }
 }
 </script>
 <style scoped>
