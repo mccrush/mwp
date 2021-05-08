@@ -1,8 +1,10 @@
 <template>
-  <div id="app">
+  <div>
     <Navbar />
     <div class="container-fluid pl-0">
-      <router-view />
+      <transition name="fade" mode="out-in">
+        <component :is="myComponent" />
+      </transition>
     </div>
   </div>
 </template>
@@ -10,16 +12,23 @@
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Navbar from '@/components/Navbar'
+import Login from '@/views/Login'
 
 export default {
   components: {
     Navbar,
+    Login
   },
-  // async beforeMount() {
-  //   try {
-  //     this.$store.dispatch('getProjects')
-  //   } catch (error) {}
-  // },
+  data() {
+    return {
+      myComponent: 'Login' // localStorage.getItem('info-page') || 'Login'
+    }
+  },
+  methods: {
+    getComponent(comp) {
+      this.myComponent = comp
+    }
+  }
 }
 </script>
 

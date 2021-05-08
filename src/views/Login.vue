@@ -1,7 +1,7 @@
 <template>
   <div class="row justify-content-center">
-    <vue-headful title="Authorization" description="Authorization" />
     <div class="col-12 col-sm-8 col-md-6 text-left">
+      <p>Пользователь авторизовван {{ authIs }}</p>
       <form
         @submit.prevent="login"
         class="mt-5 mb-3 p-3 border ml-auto mr-auto max-width"
@@ -65,13 +65,11 @@
 
 <script>
 import { auth } from '@/firebase.js'
-import vueHeadful from 'vue-headful'
 import Message from '@/components/Message'
 
 export default {
   components: {
-    vueHeadful,
-    Message,
+    Message
   },
   data() {
     return {
@@ -79,11 +77,13 @@ export default {
       password: '',
       passType: true,
       error: false,
+      authIs: 'Нет'
     }
   },
   beforeMount() {
     if (auth.currentUser) {
-      this.$router.push('/admin')
+      this.authIs = 'Да'
+      // this.$router.push('/admin')
     }
   },
   methods: {
@@ -96,7 +96,7 @@ export default {
     async login() {
       const formData = {
         email: this.email,
-        password: this.password,
+        password: this.password
       }
 
       if (this.email && this.password) {
@@ -108,27 +108,27 @@ export default {
           if (err.code === 'auth/invalid-email') {
             this.$store.commit('addMessage', {
               text: 'Некорректный адрес почты!',
-              type: 'bg-danger',
+              type: 'bg-danger'
             })
           } else if (err.code === 'auth/invalid-password') {
             this.$store.commit('addMessage', {
               text: 'Некорректный пароль!',
-              type: 'bg-danger',
+              type: 'bg-danger'
             })
           } else if (err.code === 'auth/wrong-password') {
             this.$store.commit('addMessage', {
               text: 'Неверный пароль!',
-              type: 'bg-danger',
+              type: 'bg-danger'
             })
           } else if (err.code === 'auth/user-not-found') {
             this.$store.commit('addMessage', {
               text: 'Пользователь с такой почтой не найден',
-              type: 'bg-danger',
+              type: 'bg-danger'
             })
           } else {
             this.$store.commit('addMessage', {
               text: 'Ошибка: ' + err.code,
-              type: 'bg-danger',
+              type: 'bg-danger'
             })
           }
         } finally {
@@ -136,11 +136,11 @@ export default {
       } else {
         this.$store.commit('addMessage', {
           text: 'Ошибка: поля не заполнены',
-          type: 'bg-danger',
+          type: 'bg-danger'
         })
       }
-    },
-  },
+    }
+  }
 }
 </script>
 
