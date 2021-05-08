@@ -1,7 +1,13 @@
 <template>
   <div class="row">
-    <div class="menu col-2 border">
-      Menu
+    <div class="menu col-3 border">
+      <button
+        v-for="project in projects"
+        :key="project.id"
+        class="btn btn-warning w-100 mt-2"
+      >
+        {{ project.title }}
+      </button>
       <hr />
       <input
         type="text"
@@ -14,7 +20,7 @@
         Add Project
       </button>
     </div>
-    <div class="col-10 border"></div>
+    <div class="col-9 border"></div>
   </div>
 </template>
 
@@ -43,10 +49,16 @@ export default {
       comp: 'devel'
     }
   },
+  computed: {
+    projects() {
+      return this.$store.getters.projects
+    }
+  },
   methods: {
     addProject() {
       const project = createProject(this.projectName)
-      console.log('new project', project)
+      //console.log('new project', project)
+      this.$store.commit('addProject', project)
       this.projectName = ''
     }
   }
