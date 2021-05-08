@@ -50,7 +50,7 @@ export default {
 .accordion-button:focus,
 .navbar-toggler:focus {
   outline: 0 !important;
-  border-color: #6c757d !important;
+  /* border-color: #6c757d !important; */
   box-shadow: none !important;
 }
 

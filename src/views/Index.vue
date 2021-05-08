@@ -56,12 +56,14 @@ export default {
   },
   methods: {
     async addProject() {
-      const project = createProject(this.projectName)
-      //console.log('new project', project)
-      this.$store.commit('addProject', project)
-      const res = await this.$store.dispatch('addProject', project)
-      console.log('res from index:', res)
-      this.projectName = ''
+      if (this.projectName) {
+        const project = createProject(this.projectName)
+        //console.log('new project', project)
+        this.$store.commit('addProject', project)
+        const res = await this.$store.dispatch('addProject', project)
+        console.log('res from index:', res)
+        this.projectName = ''
+      }
     }
   }
 }
