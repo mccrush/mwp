@@ -37,7 +37,7 @@
           >
             <img
               v-if="passType"
-              src="@/assets/icons/eye-slash.svg"
+              src="img/work_icons/eye-slash.svg"
               width="24"
               height="24"
               alt="Show password"
@@ -45,7 +45,7 @@
             />
             <img
               v-else
-              src="@/assets/icons/eye.svg"
+              src="img/work_icons/eye.svg"
               width="24"
               height="24"
               alt="Hide password"
@@ -64,7 +64,6 @@
 </template>
 
 <script>
-import { auth } from '@/firebase.js'
 import Message from '@/components/Message'
 
 export default {
