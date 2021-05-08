@@ -34,12 +34,17 @@
             <span v-if="true">Save</span>
           </button>
           <a
-            class="btn btn-sm btn-light border"
+            class="btn btn-sm btn-light border p-0 ps-3 pe-3"
             :href="project.url"
             target="_blank"
             title="Открыть проект"
           >
-            <span v-if="true">Go</span>
+            <img
+              src="img/work_icons/arrow-up-right-square.svg"
+              width="16"
+              height="16"
+              class="opacity-06 mt-1"
+            />
           </a>
         </div>
       </div>

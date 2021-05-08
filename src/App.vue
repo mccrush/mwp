@@ -43,6 +43,10 @@ export default {
 </script>
 
 <style>
+.opacity-06 {
+  opacity: 0.6;
+}
+
 .btn:focus,
 .btn-check:focus + .btn-outline-dark,
 .form-control:focus,
