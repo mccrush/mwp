@@ -80,12 +80,6 @@ export default {
       authIs: 'Нет'
     }
   },
-  beforeMount() {
-    if (auth.currentUser) {
-      this.authIs = 'Да'
-      // this.$router.push('/admin')
-    }
-  },
   methods: {
     showError() {
       this.error = true
@@ -102,7 +96,7 @@ export default {
       if (this.email && this.password) {
         try {
           await this.$store.dispatch('logIn', formData)
-          this.$router.push('/')
+          // Эмитеть событие на смену имени Компонента
         } catch (err) {
           this.showError()
           if (err.code === 'auth/invalid-email') {

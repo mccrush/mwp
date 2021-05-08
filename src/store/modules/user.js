@@ -6,13 +6,17 @@ export default {
       try {
         await auth.signInWithEmailAndPassword(email, password)
         console.log('Авторизация прошла успешно');
+        // Ниже неправильно. Переделать
+        localStorage.setItem('mwp-page', 'Index')
       } catch (err) {
         throw err
-      } finally {
       }
     },
     async logOut() {
       await auth.signOut()
+      console.log('Пользователь вышел из системы');
+      // Ниже неправильно. Переделать
+      localStorage.setItem('mwp-page', 'Login')
     }
   }
 }

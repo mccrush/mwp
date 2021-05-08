@@ -1,17 +1,18 @@
 <template>
   <div class="d-flex flex-row align-items-stretch">
-    <vue-headful title="MWP v0.1" description="Manager of Web Projects" />
-    <div class="flex-shrink-1 align-self-stretch p-3 menu border-right bg-light">
+    <div
+      class="flex-shrink-1 align-self-stretch p-3 menu border-right bg-light"
+    >
       <button
         v-for="(but, index) in buttons"
         type="button"
-        :key="'bt'+index"
+        :key="'bt' + index"
         class="btn btn-block text-left pl-2"
-        :style="'background:'+ but.color"
+        :style="'background:' + but.color"
         @click="comp = but.comp"
       >
-        <span class="badge bg-light text-muted mr-2">{{index+1}}</span>
-        <small>{{but.title}}</small>
+        <span class="badge bg-light text-muted mr-2">{{ index + 1 }}</span>
+        <small>{{ but.title }}</small>
       </button>
     </div>
     <div class="container-fluid w-100">
@@ -21,7 +22,6 @@
 </template>
 
 <script>
-import vueHeadful from 'vue-headful'
 import buttons from '@/data/buttons'
 import devel from '@/frames/Devel'
 import tz from '@/frames/Tz'
@@ -32,7 +32,6 @@ import help from '@/frames/Help'
 export default {
   name: 'index',
   components: {
-    vueHeadful,
     devel,
     tz,
     project,

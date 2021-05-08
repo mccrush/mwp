@@ -1,127 +1,37 @@
 <template>
-  <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom">
-    <div class="container-fluid">
-      <router-link tag="a" class="navbar-brand" to="/">
-        <img
-          src="/img/logo.png"
-          width="30"
-          height="30"
-          class="d-inline-block align-top"
-          alt="Logo MWP"
-          loading="lazy"
-        />
-        MWP
-      </router-link>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div
-        v-if="user"
-        class="collapse navbar-collapse"
-        id="navbarSupportedContent"
-      >
-        <ul class="navbar-nav mb-2 mb-md-0">
-          <li class="my-width-120 nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle p-1 pl-2 pr-2 rounded-sm border"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-expanded="false"
-              >{{ projectTitle }}</a
-            >
-            <ul
-              class="dropdown-menu shadow-sm border-0"
-              aria-labelledby="navbarDropdown"
-            >
-              <li class="pl-1 pr-1">
-                <input
-                  type="search"
-                  class="form-control form-control-sm border"
-                  autofocus
-                  ref="filter"
-                  v-model="filter"
-                />
-              </li>
-              <li>
-                <hr class="dropdown-divider m-2" />
-              </li>
-              <li
-                v-for="(proj, index) in filteringProjects"
-                :key="'pr' + index"
-                @click="setProject(proj.title, proj.id)"
-                class="d-flex"
-              >
-                <span class="dropdown-item">{{ proj.title }}</span>
-                <button
-                  class="btn btn-sm btn-outline-light p-0 pl-2 pr-2 mr-2"
-                  @click.stop="settings(proj.id)"
-                >
-                  <img
-                    src="@/assets/icons/gear.svg"
-                    alt="Settings"
-                    width="16"
-                    height="16"
-                    class="opacity-05"
-                  />
-                </button>
-              </li>
-            </ul>
-          </li>
-        </ul>
-        <a
-          v-if="projectTitle"
-          href="https://drive.google.com/drive/folders/18xYc_spl0XP5Rx-4kmvhZTvP2IgCStQp"
-          target="_blank"
-          title="Open project folder"
-          class="btn btn-sm btn-light ml-2"
-        >
-          <img
-            src="@/assets/icons/folder-symlink.svg"
-            alt="Folder icon"
-            width="16"
-            height="16"
-            class="opacity-05"
-          />
-        </a>
-        <input
-          type="text"
-          class="form-control form-control-sm ml-2 w-25"
-          placeholder="Add new project"
-          v-model.trim="newProjectTitle"
-          @keypress.enter="addProject"
-        />
-      </div>
+  <div class="row border ps-3 pe-4 pt-3 pb-3">
+    <div class="col-2 border">
+      <img
+        src="/img/logo.png"
+        width="30"
+        height="30"
+        class="d-inline-block align-top"
+        alt="Logo MWP"
+      />
+    </div>
+    <div class="col-9 border"></div>
+    <div class="col-1 border">
       <button
         v-if="user"
-        class="btn btn-sm btn-light text-muted mr-0"
+        class="btn btn-sm btn-light text-muted"
         @click="logOut"
       >
         Logout
       </button>
     </div>
-  </nav>
+  </div>
 </template>
 
 <script>
 import { auth } from '@/firebase.js'
-import { Collapse } from 'bootstrap'
+//import { Collapse } from 'bootstrap'
 
 export default {
   data() {
     return {
       user: auth.currentUser,
       filter: '',
-      newProjectTitle: '',
+      newProjectTitle: ''
     }
   },
   computed: {
@@ -137,14 +47,14 @@ export default {
       }
       if (this.filter) {
         return this.$store.getters.projects.filter(
-          (project) =>
+          project =>
             project.title.toUpperCase().indexOf(this.filter.toUpperCase()) != -1
         )
       }
-    },
+    }
   },
   mounted() {
-    auth.onAuthStateChanged((user) => {
+    auth.onAuthStateChanged(user => {
       this.user = user
     })
   },
@@ -155,7 +65,6 @@ export default {
     async logOut() {
       try {
         await this.$store.dispatch('logOut')
-        this.$router.push('login')
       } catch (err) {
         consile.log('Ошибка при выходе из системы')
       }
@@ -166,24 +75,13 @@ export default {
     async addProject() {
       this.newProjectTitle = ''
       await this.$store.dispatch('addProject', this.newProjectTitle)
-    },
-  },
+    }
+  }
 }
 </script>
 
 <style scoped>
-.my-width-120 {
-  width: 120px;
-}
-
 .dropdown-item {
   cursor: pointer;
-}
-.project-name {
-  font-size: 1rem;
-}
-
-.opacity-05 {
-  opacity: 0.5;
 }
 </style>
