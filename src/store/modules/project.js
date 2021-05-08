@@ -4,12 +4,17 @@ export default {
   state: {
     projects: [],
     projectId: localStorage.getItem('projectId') || '',
+    frameName: localStorage.getItem('frameName') || '',
     loading: false,
   },
   mutations: {
     setProjectId(state, id) {
       state.projectId = id
       localStorage.setItem('projectId', id)
+    },
+    setFrameName(state, frame) {
+      state.frameName = frame
+      localStorage.setItem('frameName', frame)
     },
     getProjects(state, projects) {
       state.projects = projects
@@ -44,6 +49,7 @@ export default {
   getters: {
     projects: state => state.projects,
     projectId: state => state.projectId,
+    frameName: state => state.frameName,
     loading: state => state.loading
   }
 }

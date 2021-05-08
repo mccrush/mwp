@@ -13,9 +13,16 @@
     <div
       class="col-2 pt-2 pb-2 pe-0"
       v-for="btn in buttons"
-      :key="'bt' + btn.comp"
+      :key="'bt' + btn.frame"
     >
-      <button class="btn btn-light w-100">
+      <button
+        class="btn w-100"
+        @click="setFrameName(btn.frame)"
+        :class="{
+          'btn-light': btn.frame != frameName,
+          'btn-dark': btn.frame === frameName
+        }"
+      >
         {{ btn.title }}
       </button>
     </div>
@@ -43,6 +50,9 @@ export default {
     }
   },
   computed: {
+    frameName() {
+      return this.$store.getters.frameName
+    },
     loading() {
       return this.$store.getters.loading
     },
@@ -65,17 +75,17 @@ export default {
     }
   },
   methods: {
-    settings(id) {
-      console.log(id)
-    },
-
-    setProject(title, id) {
-      this.$store.commit('setProjectId', id)
-    },
-    async addProject() {
-      this.newProjectTitle = ''
-      await this.$store.dispatch('addProject', this.newProjectTitle)
+    setFrameName(frame) {
+      this.$store.commit('setFrameName', frame)
     }
+
+    // setProject(title, id) {
+    //   this.$store.commit('setProjectId', id)
+    // },
+    // async addProject() {
+    //   this.newProjectTitle = ''
+    //   await this.$store.dispatch('addProject', this.newProjectTitle)
+    // }
   }
 }
 </script>
