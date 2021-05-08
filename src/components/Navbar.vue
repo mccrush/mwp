@@ -55,37 +55,12 @@ export default {
     },
     loading() {
       return this.$store.getters.loading
-    },
-    projects() {
-      return this.$store.getters.projects
-    },
-    projectTitle() {
-      return this.$store.getters.project.title || 'Select proj'
-    },
-    filteringProjects() {
-      if (!this.filter) {
-        return this.projects
-      }
-      if (this.filter) {
-        return this.$store.getters.projects.filter(
-          project =>
-            project.title.toUpperCase().indexOf(this.filter.toUpperCase()) != -1
-        )
-      }
     }
   },
   methods: {
     setFrameName(frame) {
       this.$store.commit('setFrameName', frame)
     }
-
-    // setProject(title, id) {
-    //   this.$store.commit('setProjectId', id)
-    // },
-    // async addProject() {
-    //   this.newProjectTitle = ''
-    //   await this.$store.dispatch('addProject', this.newProjectTitle)
-    // }
   }
 }
 </script>
