@@ -4,7 +4,12 @@
       <button
         v-for="project in projects"
         :key="project.id"
-        class="btn btn-warning w-100 mt-2"
+        class="btn w-100 mt-2"
+        @click="setProjectId(project.id)"
+        :class="{
+          'btn-light': project.id != projectId,
+          'btn-warning': project.id === projectId
+        }"
       >
         {{ project.title }}
       </button>
@@ -56,16 +61,20 @@ export default {
   computed: {
     projects() {
       return this.$store.getters.projects
+    },
+    projectId() {
+      return this.$store.getters.projectId
     }
   },
   methods: {
+    setProjectId(id) {
+      this.$store.commit('setProjectId', id)
+    },
     async addProject() {
       if (this.projectName) {
         const project = createProject(this.projectName)
-        //console.log('new project', project)
         this.$store.commit('addProject', project)
         const res = await this.$store.dispatch('addProject', project)
-        console.log('res from index:', res)
         this.projectName = ''
       }
     }

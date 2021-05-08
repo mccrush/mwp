@@ -3,9 +3,14 @@ import { db } from '@/firebase'
 export default {
   state: {
     projects: [],
+    projectId: localStorage.getItem('projectId') || '',
     loading: false,
   },
   mutations: {
+    setProjectId(state, id) {
+      state.projectId = id
+      localStorage.setItem('projectId', id)
+    },
     getProjects(state, projects) {
       state.projects = projects
     },
@@ -38,6 +43,7 @@ export default {
   },
   getters: {
     projects: state => state.projects,
+    projectId: state => state.projectId,
     loading: state => state.loading
   }
 }
