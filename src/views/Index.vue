@@ -1,11 +1,25 @@
 <template>
   <div class="row">
-    <div class="menu col-2 border">Menu</div>
+    <div class="menu col-2 border">
+      Menu
+      <hr />
+      <input
+        type="text"
+        class="form-control form-control-sm"
+        placeholder="Project Name"
+        v-model.trim="projectName"
+        @keyup.enter="addProject"
+      />
+      <button class="btn btn-success btn-sm w-100 mt-1" @click="addProject">
+        Add Project
+      </button>
+    </div>
     <div class="col-10 border"></div>
   </div>
 </template>
 
 <script>
+import createProject from '@/scripts/createProject'
 // import buttons from '@/data/buttons'
 // import devel from '@/frames/Devel'
 // import tz from '@/frames/Tz'
@@ -24,8 +38,16 @@ export default {
   },
   data() {
     return {
+      projectName: '',
       showMenu: true,
       comp: 'devel'
+    }
+  },
+  methods: {
+    addProject() {
+      const project = createProject(this.projectName)
+      console.log('new project', project)
+      this.projectName = ''
     }
   }
 }
