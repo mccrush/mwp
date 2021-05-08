@@ -6,6 +6,9 @@ export default {
     loading: false,
   },
   mutations: {
+    getProjects(state, projects) {
+      state.projects = projects
+    },
     addProject(state, project) {
       state.projects.push(project)
     },
@@ -14,6 +17,17 @@ export default {
     },
   },
   actions: {
+    async getProjects({ commit }) {
+      commit('changeLoading', true)
+      let projects = []
+      const ref = db.collection('projects')
+      const snapshot = await ref.get()
+      snapshot.forEach(doc => {
+        projects.push(doc.data())
+      })
+      commit('getProjects', projects)
+      commit('changeLoading', false)
+    },
     async addProject({ commit }, project) {
       commit('changeLoading', true)
       const ref = db.collection('projects').doc(project.id)

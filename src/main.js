@@ -11,6 +11,6 @@ auth.onAuthStateChanged((user) => {
     app = createApp(App).use(store).mount('#app')
   }
   if (user) {
-    //store.dispatch('getProjects')
+    store.dispatch('getProjects')
   }
 })
