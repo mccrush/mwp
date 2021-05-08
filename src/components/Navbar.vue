@@ -1,5 +1,5 @@
 <template>
-  <div class="row border ps-3 pe-4 pt-3 pb-3">
+  <div class="row border">
     <div class="col-2 border">
       <img
         src="/img/logo.png"
@@ -8,6 +8,7 @@
         class="d-inline-block align-top"
         alt="Logo MWP"
       />
+      <span class="d-inline-block ms-2 pt-1"><strong>MWP</strong></span>
     </div>
     <div class="col-9 border"></div>
     <div class="col-1 border">

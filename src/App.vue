@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Navbar />
     <div class="container-fluid pl-0">
+      <Navbar />
       <transition name="fade" mode="out-in">
         <component :is="myComponent" />
       </transition>
