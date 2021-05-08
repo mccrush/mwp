@@ -6,7 +6,7 @@
           <input
             type="text"
             class="form-control form-control-sm"
-            placeholder="Project Name"
+            placeholder="project name"
             v-model.trim="project.title"
             @keyup.enter="updateProject('title')"
           />
@@ -23,7 +23,7 @@
           <input
             type="text"
             class="form-control form-control-sm"
-            placeholder="Url"
+            placeholder="url"
             v-model.trim="project.url"
             @keyup.enter="updateProject('url')"
           />
