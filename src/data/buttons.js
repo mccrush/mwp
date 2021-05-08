@@ -1,27 +1,17 @@
 export default [
   {
-    title: 'Требования',
+    title: 'Инфо',
     color: '#faedcb',
-    comp: 'tz'
+    comp: 'info'
   },
   {
-    title: 'Проектирование',
+    title: 'Пароли',
     color: '#c9e4de',
-    comp: 'project'
+    comp: 'pass'
   },
   {
-    title: 'Разработка',
+    title: 'Контакты',
     color: '#c6def1',
-    comp: 'devel'
-  },
-  {
-    title: 'Тестирование',
-    color: '#dbcdf0',
-    comp: 'test'
-  },
-  {
-    title: 'Сопровождение',
-    color: '#f2c6de',
-    comp: 'help'
+    comp: 'contacts'
   }
 ]

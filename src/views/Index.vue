@@ -19,6 +19,8 @@
       <button class="btn btn-success btn-sm w-100 mt-1" @click="addProject">
         Add Project
       </button>
+      <hr />
+      <LogOut />
     </div>
     <div class="col-9 border"></div>
   </div>
@@ -26,6 +28,7 @@
 
 <script>
 import createProject from '@/scripts/createProject'
+import LogOut from '@/components/LogOut'
 // import buttons from '@/data/buttons'
 // import devel from '@/frames/Devel'
 // import tz from '@/frames/Tz'
@@ -36,6 +39,7 @@ import createProject from '@/scripts/createProject'
 export default {
   name: 'index',
   components: {
+    LogOut
     // devel,
     // tz,
     // project,

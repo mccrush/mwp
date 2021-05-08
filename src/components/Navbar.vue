@@ -1,32 +1,34 @@
 <template>
-  <div class="row border-bottom pt-2 pb-2">
-    <div class="col-2">
+  <div class="row border-bottom">
+    <div class="col-3 border-end pt-2">
       <img
         src="/img/logo.png"
         width="30"
         height="30"
-        class="d-inline-block align-top"
+        class="d-inline-block align-top mt-1"
         alt="Logo MWP"
       />
-      <span class="d-inline-block ms-2 pt-1"><strong>MWP</strong></span>
+      <span class="d-inline-block ms-2 pt-2"><strong>MWP</strong></span>
     </div>
-    <div class="col-8"></div>
-    <div class="col-2 d-flex justify-content-between">
-      <button
-        v-if="user"
-        class="btn btn-sm btn-light text-muted"
-        @click="logOut"
-      >
-        Logout
+    <div
+      class="col-2 pt-2 pb-2 pe-0"
+      v-for="btn in buttons"
+      :key="'bt' + btn.comp"
+    >
+      <button class="btn btn-info w-100">
+        {{ btn.title }}
       </button>
+    </div>
+    <div class="col-3 d-flex justify-content-between">
+      <div></div>
       <Loading v-if="loading" />
     </div>
   </div>
 </template>
 
 <script>
-import { auth } from '@/firebase.js'
 import Loading from '@/components/Loading'
+import buttons from '@/data/buttons'
 //import { Collapse } from 'bootstrap'
 
 export default {
@@ -35,7 +37,7 @@ export default {
   },
   data() {
     return {
-      user: auth.currentUser,
+      buttons,
       filter: '',
       newProjectTitle: ''
     }
@@ -62,22 +64,11 @@ export default {
       }
     }
   },
-  mounted() {
-    auth.onAuthStateChanged(user => {
-      this.user = user
-    })
-  },
   methods: {
     settings(id) {
       console.log(id)
     },
-    async logOut() {
-      try {
-        await this.$store.dispatch('logOut')
-      } catch (err) {
-        consile.log('Ошибка при выходе из системы')
-      }
-    },
+
     setProject(title, id) {
       this.$store.commit('setProjectId', id)
     },
