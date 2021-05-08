@@ -1,31 +1,34 @@
 <template>
   <div class="row">
     <MenuBar />
-    <div class="col-9"></div>
+    <transition name="fade" mode="out-in">
+      <component :is="frameName" />
+    </transition>
   </div>
 </template>
 
 <script>
 import MenuBar from '@/components/MenuBar'
-// import buttons from '@/data/buttons'
-// import devel from '@/frames/Devel'
-// import tz from '@/frames/Tz'
-// import project from '@/frames/Project'
-// import test from '@/frames/Test'
-// import help from '@/frames/Help'
+
+import Info from '@/frames/Info'
+import Pass from '@/frames/Pass'
+import Contacts from '@/frames/Contacts'
 
 export default {
   name: 'index',
   components: {
-    MenuBar
-    // devel,
-    // tz,
-    // project,
-    // test,
-    // help
+    MenuBar,
+    Info,
+    Pass,
+    Contacts
   },
   data() {
     return {}
+  },
+  computed: {
+    frameName() {
+      return this.$store.getters.frameName
+    }
   }
 }
 </script>
