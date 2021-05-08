@@ -2,7 +2,7 @@
   <div class="row">
     <MenuBar />
     <transition name="fade" mode="out-in">
-      <component :is="frameName" />
+      <component v-if="project" :is="frameName" :project="project" />
     </transition>
   </div>
 </template>
@@ -28,6 +28,15 @@ export default {
   computed: {
     frameName() {
       return this.$store.getters.frameName
+    },
+    projectId() {
+      return this.$store.getters.projectId
+    },
+    projects() {
+      return this.$store.getters.projects
+    },
+    project() {
+      return this.projects.find(item => item.id == this.projectId)
     }
   }
 }

@@ -28,7 +28,9 @@
     </div>
     <div class="col-3 d-flex justify-content-between">
       <div></div>
-      <Loading v-if="loading" />
+      <div class="pt-3">
+        <Loading v-if="loading" />
+      </div>
     </div>
   </div>
 </template>

@@ -3,13 +3,6 @@
 </template>
 
 <style scoped>
-.lds-dual-ring {
-  /* display: inline-block;
-  width: 16px;
-  height: 16px; */
-  /* margin-right: 18px; */
-  margin-top: 4px;
-}
 .lds-dual-ring:after {
   content: ' ';
   display: block;

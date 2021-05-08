@@ -4,7 +4,7 @@ export default {
   state: {
     projects: [],
     projectId: localStorage.getItem('projectId') || '',
-    frameName: localStorage.getItem('frameName') || '',
+    frameName: localStorage.getItem('frameName') || 'Info',
     loading: false,
   },
   mutations: {
