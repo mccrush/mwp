@@ -15,7 +15,7 @@
       v-for="btn in buttons"
       :key="'bt' + btn.comp"
     >
-      <button class="btn btn-info w-100">
+      <button class="btn btn-light w-100">
         {{ btn.title }}
       </button>
     </div>

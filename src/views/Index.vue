@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="menu col-3 border">
+    <div class="menu col-3 border-end">
       <button
         v-for="project in projects"
         :key="project.id"
@@ -22,7 +22,7 @@
       <hr />
       <LogOut />
     </div>
-    <div class="col-9 border"></div>
+    <div class="col-9"></div>
   </div>
 </template>
 
