@@ -7,8 +7,13 @@
         height="30"
         class="d-inline-block align-top mt-1"
         alt="Logo MWP"
+        title="Manager of Web Projects"
       />
-      <span class="d-inline-block ms-2 pt-2"><strong>MWP</strong></span>
+      <span
+        class="cursor-def d-inline-block ms-2 pt-2"
+        title="Manager of Web Projects"
+        ><strong>MWP</strong></span
+      >
     </div>
     <div
       class="col-6 col-sm-2 col-md-2 col-xl-2 pt-2 pb-2 pe-0"

@@ -40,7 +40,7 @@
             class="btn btn-sm btn-light border p-0 ps-3 pe-3"
             :href="project.url"
             target="_blank"
-            title="Открыть проект"
+            title="Open project"
           >
             <img
               src="img/work_icons/arrow-up-right-square.svg"
@@ -73,7 +73,7 @@
             class="btn btn-sm btn-light border p-0 ps-3 pe-3"
             :href="project.disk"
             target="_blank"
-            title="Открыть папку проекта"
+            title="Open folder of project"
           >
             <img
               src="img/work_icons/arrow-up-right-square.svg"
@@ -105,7 +105,7 @@
             class="btn btn-sm btn-light border p-0 ps-3 pe-3"
             :href="project.admin"
             target="_blank"
-            title="Открыть админку"
+            title="Open admin panel"
           >
             <img
               src="img/work_icons/arrow-up-right-square.svg"
@@ -138,7 +138,7 @@
             class="btn btn-sm btn-light border p-0 ps-3 pe-3"
             :href="project.hosting"
             target="_blank"
-            title="Открыть хостинг"
+            title="Open hosting"
           >
             <img
               src="img/work_icons/arrow-up-right-square.svg"
@@ -170,7 +170,7 @@
             class="btn btn-sm btn-light border p-0 ps-3 pe-3"
             :href="project.domen"
             target="_blank"
-            title="Открыть домен"
+            title="Open domen"
           >
             <img
               src="img/work_icons/arrow-up-right-square.svg"
@@ -189,6 +189,7 @@
           rows="5"
           class="form-control"
           placeholder="Description"
+          v-model="project.description"
           v-html="project.description"
         ></textarea>
         <div class="d-flex justify-content-between">
@@ -196,13 +197,13 @@
             class="btn btn-sm btn-outline-danger mt-2"
             @click="removeProject"
           >
-            Удалить проект
+            Remove project
           </button>
           <button
             class="btn btn-sm btn-light border mt-2"
             @click="updateProject('description')"
           >
-            Save Description
+            Save description
           </button>
         </div>
       </div>
@@ -226,7 +227,7 @@ export default {
   computed: {},
   methods: {
     async removeProject() {
-      if (confirm('Действительно удалить?')) {
+      if (confirm('Are you sure?')) {
         console.log('Удаление проекта ', this.project.id)
       }
     },

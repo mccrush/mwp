@@ -1,16 +1,16 @@
 export default [
   {
-    title: 'Инфо',
+    title: 'Info',
     color: '#faedcb',
     frame: 'Info'
   },
   {
-    title: 'Пароли',
+    title: 'Passwords',
     color: '#c9e4de',
     frame: 'Pass'
   },
   {
-    title: 'Контакты',
+    title: 'Contacts',
     color: '#c6def1',
     frame: 'Contacts'
   }

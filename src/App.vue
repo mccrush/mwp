@@ -47,6 +47,10 @@ export default {
   opacity: 0.6;
 }
 
+.cursor-def {
+  cursor: default;
+}
+
 .btn:focus,
 .btn-check:focus + .btn-outline-dark,
 .form-control:focus,
