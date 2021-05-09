@@ -188,9 +188,9 @@
         <textarea
           rows="5"
           class="form-control"
+          style="white-space: pre-line"
           placeholder="Description"
           v-model="project.description"
-          v-html="project.description"
         ></textarea>
         <div class="d-flex justify-content-between">
           <button
