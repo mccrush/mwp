@@ -1,6 +1,6 @@
 <template>
   <div class="row border-bottom">
-    <div class="col-12 col-sm-4 col-md-3 col-lg-2 col-xxl-1 border-end pt-2">
+    <div class="col-12 col-sm-4 col-md-3 col-lg-2 col-xxl-2 border-end pt-2">
       <img
         src="/img/logo.png"
         width="30"
@@ -11,7 +11,7 @@
       <span class="d-inline-block ms-2 pt-2"><strong>MWP</strong></span>
     </div>
     <div
-      class="col-6 col-sm-2 col-md-2 col-xl-1 pt-2 pb-2 pe-0"
+      class="col-6 col-sm-2 col-md-2 col-xl-2 pt-2 pb-2 pe-0"
       v-for="btn in buttons"
       :key="'bt' + btn.frame"
     >
@@ -27,11 +27,11 @@
       </button>
     </div>
     <div
-      class="col-6 col-sm-2 col-md-3 col-lg-4 col-xl-7 col-xxl-8 d-flex justify-content-between border"
+      class="col-6 col-sm-2 col-md-3 col-lg-4 col-xl-4 col-xxl-4 d-flex justify-content-between"
     >
       <div></div>
       <div class="pt-3">
-        <Loading v-if="!loading" />
+        <Loading v-if="loading" />
       </div>
     </div>
   </div>

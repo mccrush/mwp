@@ -1,8 +1,8 @@
 <template>
-  <div class="col-12 col-sm-8 col-md-9 col-lg-10 col-xl-10 col-xxl-11">
+  <div class="col-12 col-sm-8 col-md-9 col-lg-10 col-xl-10 col-xxl-10">
     <div class="row pt-2">
       <!-- Название проекта -->
-      <div class="col-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3">
+      <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4">
         <div class="input-group">
           <input
             type="text"
@@ -21,7 +21,7 @@
       </div>
       <!-- Конец Название проекта -->
       <!-- Url проекта -->
-      <div class="col-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3">
+      <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2 mt-md-0">
         <div class="input-group">
           <input
             type="text"
@@ -52,8 +52,9 @@
         </div>
       </div>
       <!-- Конец Url проекта -->
+      <div class="d-none d-md-block col-12"></div>
       <!-- Диск -->
-      <div class="col-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3 mt-2">
+      <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2">
         <div class="input-group">
           <input
             type="text"
@@ -85,7 +86,7 @@
       </div>
       <!-- Конец Диск-->
       <!-- Админка -->
-      <div class="col-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3 mt-2">
+      <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2">
         <div class="input-group">
           <input
             type="text"
@@ -116,8 +117,9 @@
         </div>
       </div>
       <!-- Конец Админка -->
+      <div class="d-none d-md-block col-12"></div>
       <!-- Хостинг -->
-      <div class="col-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3 mt-2">
+      <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2">
         <div class="input-group">
           <input
             type="text"
@@ -149,7 +151,7 @@
       </div>
       <!-- Конец Хостинг -->
       <!-- Домен -->
-      <div class="col-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3 mt-2">
+      <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2">
         <div class="input-group">
           <input
             type="text"
@@ -180,8 +182,9 @@
         </div>
       </div>
       <!-- Конец Домен -->
+      <div class="d-none d-md-block col-12"></div>
       <!-- Описание проекта -->
-      <div class="col-12 col-xxl-8 mt-2">
+      <div class="col-12 col-lg-10 col-xl-8 col-xxl-8 mt-2">
         <textarea
           rows="5"
           class="form-control"

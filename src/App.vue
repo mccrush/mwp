@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container-fluid pl-0">
+    <div class="container-xl shadow pl-0">
       <Navbar />
       <transition name="fade" mode="out-in">
         <component :is="myComponent" />
