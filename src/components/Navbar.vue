@@ -26,10 +26,12 @@
         {{ btn.title }}
       </button>
     </div>
-    <div class="col-2 d-flex justify-content-between">
+    <div
+      class="col-6 col-sm-2 col-md-3 col-lg-4 col-xl-7 col-xxl-8 d-flex justify-content-between border"
+    >
       <div></div>
       <div class="pt-3">
-        <Loading v-if="loading" />
+        <Loading v-if="!loading" />
       </div>
     </div>
   </div>
