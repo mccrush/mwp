@@ -21,7 +21,7 @@
       :key="'bt' + btn.frame"
     >
       <button
-        class="btn w-100"
+        class="btn shadow-sm w-100"
         @click="setFrameName(btn.frame)"
         :class="{
           'btn-light': btn.frame != frameName,

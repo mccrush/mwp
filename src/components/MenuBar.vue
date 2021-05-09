@@ -5,7 +5,7 @@
     <button
       v-for="project in projects"
       :key="project.id"
-      class="btn w-100 mt-2"
+      class="btn shadow-sm w-100 mt-2"
       @click="setProjectId(project.id)"
       :class="{
         'btn-light': project.id != projectId,
@@ -22,7 +22,10 @@
       v-model.trim="projectName"
       @keyup.enter="addProject"
     />
-    <button class="btn btn-success btn-sm w-100 mt-1" @click="addProject">
+    <button
+      class="btn btn-success shadow-sm btn-sm w-100 mt-1"
+      @click="addProject"
+    >
       Add Project
     </button>
     <hr />

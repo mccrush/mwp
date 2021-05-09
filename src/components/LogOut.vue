@@ -1,5 +1,9 @@
 <template>
-  <button v-if="user" class="btn btn-sm btn-light w-100" @click="logOut">
+  <button
+    v-if="user"
+    class="btn btn-sm shadow-sm btn-light w-100"
+    @click="logOut"
+  >
     Logout
   </button>
 </template>
