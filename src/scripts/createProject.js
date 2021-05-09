@@ -9,8 +9,8 @@ export default (title) => {
     admin: '',
     hosting: '',
     domen: '',
-    contacts: {},
-    logins: {},
+    contacts: [],
+    logins: [],
     runs: 1
   }
 }
