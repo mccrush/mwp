@@ -6,7 +6,7 @@
           <input
             type="text"
             class="form-control form-control-sm"
-            placeholder="project name"
+            placeholder="Project name"
             v-model.trim="project.title"
             @keyup.enter="updateProject('title')"
           />
@@ -23,7 +23,7 @@
           <input
             type="text"
             class="form-control form-control-sm"
-            placeholder="url"
+            placeholder="Url"
             v-model.trim="project.url"
             @keyup.enter="updateProject('url')"
           />
@@ -48,6 +48,134 @@
           </a>
         </div>
       </div>
+      <!-- Диск -->
+      <div class="col-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3 mt-2">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            placeholder="Disk folder"
+            v-model.trim="project.disk"
+            @keyup.enter="updateProject('disk')"
+          />
+          <button
+            class="btn btn-sm btn-light border"
+            @click="updateProject('disk')"
+          >
+            <span v-if="true">Save</span>
+          </button>
+          <a
+            class="btn btn-sm btn-light border p-0 ps-3 pe-3"
+            :href="project.disk"
+            target="_blank"
+            title="Открыть папку проекта"
+          >
+            <img
+              src="img/work_icons/arrow-up-right-square.svg"
+              width="16"
+              height="16"
+              class="opacity-06 mt-1"
+            />
+          </a>
+        </div>
+      </div>
+      <!-- Конец Диск-->
+      <!-- Админка -->
+      <div class="col-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3 mt-2">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            placeholder="Admin url"
+            v-model.trim="project.admin"
+            @keyup.enter="updateProject('admin')"
+          />
+          <button
+            class="btn btn-sm btn-light border"
+            @click="updateProject('admin')"
+          >
+            <span v-if="true">Save</span>
+          </button>
+          <a
+            class="btn btn-sm btn-light border p-0 ps-3 pe-3"
+            :href="project.admin"
+            target="_blank"
+            title="Открыть админку"
+          >
+            <img
+              src="img/work_icons/arrow-up-right-square.svg"
+              width="16"
+              height="16"
+              class="opacity-06 mt-1"
+            />
+          </a>
+        </div>
+      </div>
+      <!-- Конец Админка -->
+      <!-- Хостинг -->
+      <div class="col-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3 mt-2">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            placeholder="Hosting url"
+            v-model.trim="project.hosting"
+            @keyup.enter="updateProject('hosting')"
+          />
+          <button
+            class="btn btn-sm btn-light border"
+            @click="updateProject('hosting')"
+          >
+            <span v-if="true">Save</span>
+          </button>
+          <a
+            class="btn btn-sm btn-light border p-0 ps-3 pe-3"
+            :href="project.hosting"
+            target="_blank"
+            title="Открыть хостинг"
+          >
+            <img
+              src="img/work_icons/arrow-up-right-square.svg"
+              width="16"
+              height="16"
+              class="opacity-06 mt-1"
+            />
+          </a>
+        </div>
+      </div>
+      <!-- Конец Хостинг -->
+      <!-- Домен -->
+      <div class="col-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3 mt-2">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            placeholder="Domen url"
+            v-model.trim="project.domen"
+            @keyup.enter="updateProject('domen')"
+          />
+          <button
+            class="btn btn-sm btn-light border"
+            @click="updateProject('domen')"
+          >
+            <span v-if="true">Save</span>
+          </button>
+          <a
+            class="btn btn-sm btn-light border p-0 ps-3 pe-3"
+            :href="project.domen"
+            target="_blank"
+            title="Открыть домен"
+          >
+            <img
+              src="img/work_icons/arrow-up-right-square.svg"
+              width="16"
+              height="16"
+              class="opacity-06 mt-1"
+            />
+          </a>
+        </div>
+      </div>
+      <!-- Конец Домен -->
     </div>
   </div>
 </template>

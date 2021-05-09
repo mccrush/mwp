@@ -18,7 +18,7 @@
     <input
       type="text"
       class="form-control form-control-sm"
-      placeholder="project pame"
+      placeholder="Project pame"
       v-model.trim="projectName"
       @keyup.enter="addProject"
     />
