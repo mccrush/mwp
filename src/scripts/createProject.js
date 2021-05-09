@@ -3,7 +3,7 @@ export default (title) => {
   return {
     id: Date.now().toString(),
     title,
-    desc: '',
+    description: '',
     url: '',
     disc: '',
     admin: '',

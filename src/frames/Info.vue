@@ -1,6 +1,7 @@
 <template>
   <div class="col-12 col-sm-8 col-md-9 col-lg-10 col-xl-10 col-xxl-11">
     <div class="row pt-2">
+      <!-- Название проекта -->
       <div class="col-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3">
         <div class="input-group">
           <input
@@ -18,6 +19,8 @@
           </button>
         </div>
       </div>
+      <!-- Конец Название проекта -->
+      <!-- Url проекта -->
       <div class="col-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3">
         <div class="input-group">
           <input
@@ -48,6 +51,7 @@
           </a>
         </div>
       </div>
+      <!-- Конец Url проекта -->
       <!-- Диск -->
       <div class="col-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3 mt-2">
         <div class="input-group">
@@ -126,7 +130,7 @@
             class="btn btn-sm btn-light border"
             @click="updateProject('hosting')"
           >
-            <span v-if="true">Save</span>
+            Save
           </button>
           <a
             class="btn btn-sm btn-light border p-0 ps-3 pe-3"
@@ -158,7 +162,7 @@
             class="btn btn-sm btn-light border"
             @click="updateProject('domen')"
           >
-            <span v-if="true">Save</span>
+            Save
           </button>
           <a
             class="btn btn-sm btn-light border p-0 ps-3 pe-3"
@@ -176,6 +180,30 @@
         </div>
       </div>
       <!-- Конец Домен -->
+      <!-- Описание проекта -->
+      <div class="col-12 col-xxl-8 mt-2">
+        <textarea
+          rows="5"
+          class="form-control"
+          placeholder="Description"
+          v-html="project.description"
+        ></textarea>
+        <div class="d-flex justify-content-between">
+          <button
+            class="btn btn-sm btn-outline-danger mt-2"
+            @click="removeProject"
+          >
+            Удалить проект
+          </button>
+          <button
+            class="btn btn-sm btn-light border mt-2"
+            @click="updateProject('description')"
+          >
+            Save Description
+          </button>
+        </div>
+      </div>
+      <!-- Конец Описание проекта -->
     </div>
   </div>
 </template>
@@ -194,6 +222,11 @@ export default {
   },
   computed: {},
   methods: {
+    async removeProject() {
+      if (confirm('Действительно удалить?')) {
+        console.log('Удаление проекта ', this.project.id)
+      }
+    },
     async updateProject(field) {
       const res = await this.$store.dispatch('updateProject', {
         id: this.project.id,
