@@ -1,6 +1,6 @@
 <template>
   <div
-    class="menu col-12 col-sm-4 col-md-3 col-lg-2 col-xl-2 col-xxl-2 border-end"
+    class="my-vh100 col-12 col-sm-4 col-md-3 col-lg-2 col-xl-2 col-xxl-2 border-end"
   >
     <button
       v-for="project in projects"
@@ -68,9 +68,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.menu {
-  height: calc(100vh - 55px); /* Точное число после настройки навбара */
-}
-</style>

@@ -1,10 +1,10 @@
 <template>
   <div class="row justify-content-center">
-    <div class="col-12 col-sm-8 col-md-6 text-left">
+    <div class="my-vh100 col-12">
       <p>Пользователь авторизовван {{ authIs }}</p>
       <form
         @submit.prevent="login"
-        class="mt-5 mb-3 p-3 border ml-auto mr-auto max-width"
+        class="max-width border rounded shadow-sm text-left mt-5 mb-3 p-3 m-auto"
       >
         <h4 class="text-center mt-2 mb-4">Authorization</h4>
         <label for="email">Email</label>
@@ -31,7 +31,7 @@
           />
 
           <button
-            class="btn btn-light p-0 pl-2 pr-2 border"
+            class="btn btn-light p-0 ps-2 pe-2 border"
             type="button"
             @click="passType = !passType"
           >
@@ -53,8 +53,7 @@
             />
           </button>
         </div>
-        <br />
-        <button class="btn btn-success btn-block" type="submit">Login</button>
+        <button class="btn btn-success w-100 mt-3" type="submit">Login</button>
       </form>
     </div>
     <transition name="fade" mode="out-in">

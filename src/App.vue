@@ -51,6 +51,10 @@ export default {
   cursor: default;
 }
 
+.my-vh100 {
+  height: calc(100vh - 55px); /* Точное число после настройки навбара */
+}
+
 .btn:focus,
 .btn-check:focus + .btn-outline-dark,
 .form-control:focus,
