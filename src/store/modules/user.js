@@ -1,22 +1,35 @@
-import { auth } from '@/firebase.js'
+import { auth } from '@/firebase'
 
 export default {
+  state: {
+    user: false
+  },
+  mutations: {
+    setUser(state, value) {
+      state.user = value
+    }
+  },
   actions: {
-    async logIn({ commit, dispatch }, { email, password }) {
+    async logIn({ commit }, { email, password }) {
       try {
         await auth.signInWithEmailAndPassword(email, password)
-        console.log('Авторизация прошла успешно');
-        // Ниже неправильно. Переделать
-        localStorage.setItem('mwp-page', 'Index')
+        console.log('store: Авторизация прошла успешно');
+        commit('setUser', true)
       } catch (err) {
         throw err
       }
     },
-    async logOut() {
-      await auth.signOut()
-      console.log('Пользователь вышел из системы');
-      // Ниже неправильно. Переделать
-      localStorage.setItem('mwp-page', 'Login')
+    async logOut({ commit }) {
+      try {
+        await auth.signOut()
+        console.log('store: Пользователь вышел из системы');
+        commit('setUser', false)
+      } catch (error) {
+        console.log('store: Ошибка при выходе из системы, err:', error)
+      }
     }
+  },
+  getters: {
+    user: state => state.user
   }
 }

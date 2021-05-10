@@ -11,7 +11,6 @@
 
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { auth } from '@/firebase.js'
 import Navbar from '@/components/Navbar'
 import Login from '@/views/Login'
 import Index from '@/views/Index'
@@ -22,23 +21,14 @@ export default {
     Login,
     Index
   },
-  data() {
-    return {
-      myComponent: localStorage.getItem('mwp-page') || 'Login'
-    }
-  },
-  beforeMount() {
-    if (auth.currentUser) {
-      localStorage.setItem('mwp-page', 'Index')
-    } else {
-      localStorage.setItem('mwp-page', 'Login')
+  computed: {
+    user() {
+      return this.$store.getters.user
+    },
+    myComponent() {
+      return this.user ? 'Index' : 'Login'
     }
   }
-  // methods: {
-  //   getComponent(comp) {
-  //     this.myComponent = comp
-  //   }
-  // }
 }
 </script>
 

@@ -27,10 +27,12 @@
           'btn-light': btn.frame != frameName,
           'btn-dark': btn.frame === frameName
         }"
+        :disabled="!user"
       >
         {{ btn.title }}
       </button>
     </div>
+
     <div
       class="col-6 col-sm-2 col-md-3 col-lg-4 col-xl-4 col-xxl-4 d-flex justify-content-between"
     >
@@ -59,6 +61,9 @@ export default {
     }
   },
   computed: {
+    user() {
+      return this.$store.getters.user
+    },
     frameName() {
       return this.$store.getters.frameName
     },

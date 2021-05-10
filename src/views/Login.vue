@@ -1,7 +1,6 @@
 <template>
   <div class="row justify-content-center">
     <div class="my-vh100 col-12">
-      <p>Пользователь авторизовван {{ authIs }}</p>
       <form
         @submit.prevent="login"
         class="max-width border rounded shadow-sm text-left mt-5 mb-3 p-3 m-auto"
@@ -74,8 +73,7 @@ export default {
       email: '',
       password: '',
       passType: true,
-      error: false,
-      authIs: 'Нет'
+      error: false
     }
   },
   methods: {
@@ -94,7 +92,7 @@ export default {
       if (this.email && this.password) {
         try {
           await this.$store.dispatch('logIn', formData)
-          // Эмитеть событие на смену имени Компонента
+          this.$emit('log-in')
         } catch (err) {
           this.showError()
           if (err.code === 'auth/invalid-email') {

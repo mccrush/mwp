@@ -36,6 +36,7 @@
 <script>
 import createProject from '@/scripts/createProject'
 import LogOut from '@/components/LogOut'
+
 export default {
   components: {
     LogOut

@@ -11,6 +11,7 @@ auth.onAuthStateChanged((user) => {
     app = createApp(App).use(store).mount('#app')
   }
   if (user) {
+    store.commit('setUser', true)
     store.dispatch('getProjects')
   }
 })
