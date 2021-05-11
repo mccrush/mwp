@@ -216,17 +216,12 @@
 
 <script>
 export default {
-  components: {},
   props: {
     project: {
       type: Object,
       default: null
     }
   },
-  data() {
-    return {}
-  },
-  computed: {},
   methods: {
     async removeProject() {
       if (confirm('Are you sure?')) {

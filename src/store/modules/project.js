@@ -8,6 +8,11 @@ export default {
     loading: false,
   },
   mutations: {
+    addPass(state) {
+      const id = state.projectId
+      const index = state.projects.findIndex(item => item.id === id)
+      state.projects[index].passwords.unshift({ title: '', login: '', password: '', comment: '' })
+    },
     removeProject(state, id) {
       state.projects = state.projects.filter(item => item.id !== id)
     },
@@ -30,6 +35,14 @@ export default {
     },
   },
   actions: {
+    async addPass({ commit, state }) {
+      commit('changeLoading', true)
+      const id = state.projectId
+      const index = state.projects.findIndex(item => item.id === id)
+      const ref = db.collection('projects').doc(id)
+      await ref.update({ passwords: state.projects[index].passwords })
+      commit('changeLoading', false)
+    },
     async removeProject({ commit }, id) {
       commit('changeLoading', true)
       const ref = db.collection('projects').doc(id)

@@ -40,7 +40,11 @@
       </button>
     </div>
     <div class="col-6 col-sm-2 col-md-2 col-xl-2 pt-2 pb-2 pe-0">
-      <button class="btn btn-success shadow-sm w-100">
+      <button
+        v-if="frameName === 'Pass'"
+        class="btn btn-success shadow-sm w-100"
+        @click="createPass"
+      >
         <small>Add pass</small>
       </button>
     </div>
@@ -58,9 +62,7 @@ export default {
   },
   data() {
     return {
-      buttons,
-      filter: '',
-      newProjectTitle: ''
+      buttons
     }
   },
   computed: {
@@ -77,6 +79,10 @@ export default {
   methods: {
     setFrameName(frame) {
       this.$store.commit('setFrameName', frame)
+    },
+    createPass() {
+      this.$store.commit('addPass')
+      this.$store.dispatch('addPass')
     }
   }
 }
