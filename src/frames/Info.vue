@@ -21,7 +21,9 @@
       </div>
       <!-- Конец Название проекта -->
       <!-- Url проекта -->
-      <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2 mt-md-0">
+      <div
+        class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2 mt-md-0 ps-md-0"
+      >
         <div class="input-group">
           <input
             type="text"
@@ -86,7 +88,7 @@
       </div>
       <!-- Конец Диск-->
       <!-- Админка -->
-      <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2">
+      <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2 ps-md-0">
         <div class="input-group">
           <input
             type="text"
@@ -151,7 +153,7 @@
       </div>
       <!-- Конец Хостинг -->
       <!-- Домен -->
-      <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2">
+      <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2 ps-md-0">
         <div class="input-group">
           <input
             type="text"
