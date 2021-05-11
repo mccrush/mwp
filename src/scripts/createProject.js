@@ -10,7 +10,7 @@ export default (title) => {
     hosting: '',
     domen: '',
     contacts: [],
-    logins: [],
+    passwords: [],
     runs: 1
   }
 }
