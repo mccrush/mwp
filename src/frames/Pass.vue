@@ -23,13 +23,6 @@ export default {
       type: Object,
       default: null
     }
-  },
-  methods: {
-    addForm() {},
-    updateForm() {},
-    removeForm() {}
   }
 }
 </script>
-<style scoped>
-</style>
