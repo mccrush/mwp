@@ -1,7 +1,7 @@
 <template>
-  <div class="col-9">
+  <div class="col-12 col-sm-8 col-md-9 col-lg-10 col-xl-10 col-xxl-10">
     <div class="row p-2">
-      <div class="col-6 border rounded p-2">
+      <div class="col-12 col-md-6 border rounded p-2">
         <input
           type="text"
           class="form-control form-control-sm"
