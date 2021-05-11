@@ -82,7 +82,7 @@ export default {
     },
     createPass() {
       this.$store.commit('addPass')
-      this.$store.dispatch('addPass')
+      this.$store.dispatch('updatePass')
     }
   }
 }

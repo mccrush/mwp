@@ -59,7 +59,9 @@
         v-model="password.comment"
       ></textarea>
       <div class="d-flex justify-content-between">
-        <button class="btn btn-sm btn-outline-danger mt-1">Remove pass</button>
+        <button class="btn btn-sm btn-outline-danger mt-1" @click="removePass">
+          Remove pass
+        </button>
         <button class="btn btn-sm btn-light border mt-1" @click="updatePass">
           Save pass
         </button>
@@ -74,11 +76,19 @@ export default {
     password: {
       type: Object,
       default: null
+    },
+    index: {
+      type: Number,
+      default: 0
     }
   },
   methods: {
+    removePass() {
+      this.$store.commit('removePass', this.index)
+      this.$store.dispatch('updatePass')
+    },
     updatePass() {
-      this.$store.dispatch('addPass')
+      this.$store.dispatch('updatePass')
     }
   }
 }

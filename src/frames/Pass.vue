@@ -4,6 +4,7 @@
       <PassForm
         v-for="(password, index) in project.passwords"
         :password="password"
+        :index="index"
         :key="'id' + index"
       />
     </div>

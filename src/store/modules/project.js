@@ -8,6 +8,11 @@ export default {
     loading: false,
   },
   mutations: {
+    removePass(state, indexPass) {
+      const id = state.projectId
+      const index = state.projects.findIndex(item => item.id === id)
+      state.projects[index].passwords.splice(indexPass, 1)
+    },
     addPass(state) {
       const id = state.projectId
       const index = state.projects.findIndex(item => item.id === id)
@@ -35,7 +40,7 @@ export default {
     },
   },
   actions: {
-    async addPass({ commit, state }) {
+    async updatePass({ commit, state }) {
       commit('changeLoading', true)
       const id = state.projectId
       const index = state.projects.findIndex(item => item.id === id)
