@@ -26,7 +26,7 @@
       >
         <div class="input-group">
           <input
-            type="text"
+            type="url"
             class="form-control form-control-sm"
             placeholder="Url"
             v-model.trim="project.url"
@@ -59,7 +59,7 @@
       <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2">
         <div class="input-group">
           <input
-            type="text"
+            type="url"
             class="form-control form-control-sm"
             placeholder="Disk folder"
             v-model.trim="project.disk"
@@ -91,7 +91,7 @@
       <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2 ps-md-0">
         <div class="input-group">
           <input
-            type="text"
+            type="url"
             class="form-control form-control-sm"
             placeholder="Admin url"
             v-model.trim="project.admin"
@@ -124,7 +124,7 @@
       <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2">
         <div class="input-group">
           <input
-            type="text"
+            type="url"
             class="form-control form-control-sm"
             placeholder="Hosting url"
             v-model.trim="project.hosting"
@@ -156,7 +156,7 @@
       <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2 ps-md-0">
         <div class="input-group">
           <input
-            type="text"
+            type="url"
             class="form-control form-control-sm"
             placeholder="Domen url"
             v-model.trim="project.domen"

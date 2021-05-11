@@ -26,7 +26,8 @@
         <!-- -->
         <div class="input-group mt-1">
           <input
-            type="text"
+            type="password"
+            autocomplete="new-password"
             class="form-control form-control-sm"
             placeholder="Password"
           />
@@ -56,9 +57,9 @@
         ></textarea>
         <div class="d-flex justify-content-between">
           <button class="btn btn-sm btn-outline-danger mt-1">
-            Remove Fields
+            Remove form
           </button>
-          <button class="btn btn-sm btn-light border mt-1">Save Fields</button>
+          <button class="btn btn-sm btn-light border mt-1">Save form</button>
         </div>
       </div>
     </div>
