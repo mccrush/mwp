@@ -62,8 +62,8 @@ export default {
       if (this.projectName) {
         const project = createProject(this.projectName)
         this.$store.commit('addProject', project)
-        const res = await this.$store.dispatch('addProject', project)
         this.projectName = ''
+        await this.$store.dispatch('addProject', project)
       }
     }
   }
