@@ -26,7 +26,7 @@
       class="btn btn-success shadow-sm btn-sm w-100 mt-1"
       @click="addProject"
     >
-      Add Project
+      Add project
     </button>
     <hr />
     <LogOut />

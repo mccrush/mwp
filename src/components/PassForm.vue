@@ -54,8 +54,8 @@
       placeholder="Comment"
     ></textarea>
     <div class="d-flex justify-content-between">
-      <button class="btn btn-sm btn-outline-danger mt-1">Remove form</button>
-      <button class="btn btn-sm btn-light border mt-1">Save form</button>
+      <button class="btn btn-sm btn-outline-danger mt-1">Remove pass</button>
+      <button class="btn btn-sm btn-light border mt-1">Save pass</button>
     </div>
   </div>
 </template>
