@@ -8,6 +8,9 @@ export default {
     loading: false,
   },
   mutations: {
+    removeProject(state, id) {
+      state.projects = state.projects.filter(item => item.id !== id)
+    },
     setProjectId(state, id) {
       state.projectId = id
       localStorage.setItem('projectId', id)
@@ -27,11 +30,17 @@ export default {
     },
   },
   actions: {
-    async updateProject({ commit }, { id, field, value }) {
-      console.log('in upd:', id, field, value);
+    async removeProject({ commit }, id) {
       commit('changeLoading', true)
       const ref = db.collection('projects').doc(id)
-      const res = await ref.update({ [field]: value })
+      await ref.delete()
+      commit('changeLoading', false)
+    },
+    async updateProject({ commit }, { id, field, value }) {
+      //console.log('in upd:', id, field, value);
+      commit('changeLoading', true)
+      const ref = db.collection('projects').doc(id)
+      await ref.update({ [field]: value })
       commit('changeLoading', false)
     },
     async getProjects({ commit }) {

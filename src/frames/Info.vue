@@ -229,10 +229,12 @@ export default {
     async removeProject() {
       if (confirm('Are you sure?')) {
         console.log('Удаление проекта ', this.project.id)
+        this.$store.commit('removeProject', this.project.id)
+        await this.$store.dispatch('removeProject', this.project.id)
       }
     },
     async updateProject(field) {
-      const res = await this.$store.dispatch('updateProject', {
+      await this.$store.dispatch('updateProject', {
         id: this.project.id,
         field,
         value: this.project[field]
@@ -241,5 +243,3 @@ export default {
   }
 }
 </script>
-<style scoped>
-</style>
