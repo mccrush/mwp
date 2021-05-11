@@ -13,5 +13,7 @@ auth.onAuthStateChanged((user) => {
   if (user) {
     store.commit('setUser', true)
     store.dispatch('getProjects')
+  } else {
+    store.commit('setUser', false)
   }
 })

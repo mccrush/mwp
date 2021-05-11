@@ -13,12 +13,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Navbar from '@/components/Navbar'
 import Login from '@/views/Login'
+import Logo from '@/views/Logo'
 import Index from '@/views/Index'
 
 export default {
   components: {
     Navbar,
     Login,
+    Logo,
     Index
   },
   computed: {
@@ -26,7 +28,7 @@ export default {
       return this.$store.getters.user
     },
     myComponent() {
-      return this.user ? 'Index' : 'Login'
+      return this.user ? 'Index' : this.user === false ? 'Login' : 'Logo'
     }
   }
 }

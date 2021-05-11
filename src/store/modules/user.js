@@ -2,7 +2,7 @@ import { auth } from '@/firebase'
 
 export default {
   state: {
-    user: false
+    user: null
   },
   mutations: {
     setUser(state, value) {
