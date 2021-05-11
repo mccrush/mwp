@@ -27,8 +27,22 @@ export default {
     user() {
       return this.$store.getters.user
     },
+    projects() {
+      return this.$store.getters.projects
+    },
     myComponent() {
-      return this.user ? 'Index' : this.user === false ? 'Login' : 'Logo'
+      //return this.user ? 'Index' : this.user === false ? 'Login' : 'Logo'
+      if (this.user) {
+        if (this.projects.length) {
+          return 'Index'
+        } else {
+          return 'Logo'
+        }
+      } else if (this.user === false) {
+        return 'Login'
+      } else {
+        return 'Logo'
+      }
     }
   }
 }
