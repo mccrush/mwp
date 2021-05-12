@@ -51,6 +51,14 @@
             <span class="d-none d-md-inline">Add&nbsp;pass</span>
             <small class="d-md-none">Add&nbsp;pass</small>
           </button>
+          <button
+            v-if="frameName === 'Contacts'"
+            class="btn btn-success shadow-sm w-100"
+            @click="createCont"
+          >
+            <span class="d-none d-md-inline">Add&nbsp;conts</span>
+            <small class="d-md-none">Add&nbsp;conts</small>
+          </button>
         </div>
       </div>
     </div>
@@ -95,6 +103,10 @@ export default {
     createPass() {
       this.$store.commit('addPass')
       this.$store.dispatch('updatePass')
+    },
+    createCont() {
+      this.$store.commit('addCont')
+      this.$store.dispatch('updateCont')
     }
   }
 }
