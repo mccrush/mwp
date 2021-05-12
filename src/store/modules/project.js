@@ -8,6 +8,16 @@ export default {
     loading: false,
   },
   mutations: {
+    removeCont(state, indexCont) {
+      const id = state.projectId
+      const index = state.projects.findIndex(item => item.id === id)
+      state.projects[index].contacts.splice(indexCont, 1)
+    },
+    addCont(state) {
+      const id = state.projectId
+      const index = state.projects.findIndex(item => item.id === id)
+      state.projects[index].contacts.unshift({ name: '', phone: '', email: '', comment: '' })
+    },
     removePass(state, indexPass) {
       const id = state.projectId
       const index = state.projects.findIndex(item => item.id === id)
@@ -41,6 +51,14 @@ export default {
   },
   actions: {
     async updatePass({ commit, state }) {
+      commit('changeLoading', true)
+      const id = state.projectId
+      const index = state.projects.findIndex(item => item.id === id)
+      const ref = db.collection('projects').doc(id)
+      await ref.update({ contacts: state.projects[index].contacts })
+      commit('changeLoading', false)
+    },
+    async updateCont({ commit, state }) {
       commit('changeLoading', true)
       const id = state.projectId
       const index = state.projects.findIndex(item => item.id === id)
