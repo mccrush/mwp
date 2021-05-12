@@ -1,7 +1,7 @@
 <template>
   <div class="row border-bottom">
     <div
-      class="col-12 col-sm-4 col-md-3 col-lg-2 col-xxl-2 d-flex justify-content-between border-end pt-2 pb-2"
+      class="col-12 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-between border-end pt-2 pb-2"
     >
       <div class="">
         <img
@@ -22,10 +22,10 @@
         <Loading v-if="loading" />
       </div>
     </div>
-    <div class="col-12 col-sm-8 col-md-9 col-lg-10 col-xxl-10">
+    <div class="col-12 col-sm-8 col-md-9 col-lg-10">
       <div class="row">
         <div
-          class="col-6 col-sm-3 col-md-3 col-xl-3 pt-2 pb-2 pe-sm-0"
+          class="col-6 col-sm-3 col-xl-2 pt-2 pb-2 pe-sm-0"
           v-for="btn in buttons"
           :key="'bt' + btn.frame"
         >
@@ -42,7 +42,7 @@
             <small class="d-md-none">{{ btn.title }}</small>
           </button>
         </div>
-        <div class="col-6 col-sm-3 col-md-3 col-xl-3 pt-2 pb-2">
+        <div class="col-6 col-sm-3 col-xl-2 pt-2 pb-2">
           <button
             v-if="frameName === 'Pass'"
             class="btn btn-success shadow-sm w-100"
