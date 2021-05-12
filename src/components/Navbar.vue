@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="col-12 col-sm-8 col-md-9 col-lg-10">
-      <div class="row">
+      <div v-if="projLength" class="row">
         <div
           class="col-6 col-sm-3 col-xl-2 pt-2 pb-2 pe-sm-0"
           v-for="btn in buttons"
@@ -65,6 +65,12 @@ import buttons from '@/data/buttons'
 export default {
   components: {
     Loading
+  },
+  props: {
+    projLength: {
+      type: Number,
+      default: 0
+    }
   },
   data() {
     return {
