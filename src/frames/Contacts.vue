@@ -1,17 +1,28 @@
 <template>
-  <div class="col-9">
-    <h4>{{ frameName }}</h4>
+  <div class="col-12 col-sm-8 col-md-9 col-lg-10 col-xl-10 col-xxl-10">
+    <div class="row p-2">
+      <ContForm
+        v-for="(contact, index) in project.contacts"
+        :contact="contact"
+        :index="index"
+        :key="'id' + index"
+      />
+    </div>
   </div>
 </template>
 
 <script>
+import ContForm from '@/components/ContForm'
+
 export default {
-  computed: {
-    frameName() {
-      return this.$store.getters.frameName
+  components: {
+    ContForm
+  },
+  props: {
+    project: {
+      type: Object,
+      default: null
     }
   }
 }
 </script>
-<style scoped>
-</style>
