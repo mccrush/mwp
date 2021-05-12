@@ -15,7 +15,10 @@
           placeholder="Login"
           v-model="password.login"
         />
-        <button class="btn btn-sm btn-light border p-0 ps-3 pe-3">
+        <button
+          class="btn btn-sm btn-light border p-0 ps-3 pe-3"
+          @click="copyInBuffer($event)"
+        >
           <img
             src="img/work_icons/files.svg"
             width="16"
@@ -41,7 +44,10 @@
             class="opacity-06 mt-1 mb-1"
           />
         </button>
-        <button class="btn btn-sm btn-light border p-0 ps-3 pe-3">
+        <button
+          class="btn btn-sm btn-light border p-0 ps-3 pe-3"
+          @click="copyInBuffer($event)"
+        >
           <img
             src="img/work_icons/files.svg"
             width="16"
@@ -89,6 +95,19 @@ export default {
     },
     updatePass() {
       this.$store.dispatch('updatePass')
+    },
+    copyInBuffer(e) {
+      //const el = e.target.previousSibling
+      // Подумать как лучше добираться до текстового содержимого: Родитель - первый ребенок!
+
+      const el = e.target.parentNode.firstChild
+      console.log('el:', el)
+      return
+      el.focus()
+      el.select()
+      if (document.execCommand('copy')) {
+        console.log('Результат скопирован в буфер')
+      }
     }
   }
 }
