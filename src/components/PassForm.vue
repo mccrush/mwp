@@ -1,5 +1,5 @@
 <template>
-  <div class="col-12 col-md-6 p-2">
+  <div class="col-12 col-md-6 col-lg-4 p-2">
     <div class="border rounded p-1">
       <input
         type="text"
