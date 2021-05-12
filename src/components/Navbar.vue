@@ -1,7 +1,7 @@
 <template>
   <div class="row border-bottom">
     <div
-      class="col-12 col-sm-4 col-md-3 col-lg-2 col-xxl-2 d-flex justify-content-between border-end pt-2"
+      class="col-12 col-sm-4 col-md-3 col-lg-2 col-xxl-2 d-flex justify-content-between border-end pt-2 pb-2"
     >
       <div class="">
         <img
@@ -22,31 +22,37 @@
         <Loading v-if="loading" />
       </div>
     </div>
-    <div
-      class="col-6 col-sm-2 col-md-2 col-xl-2 pt-2 pb-2 pe-0"
-      v-for="btn in buttons"
-      :key="'bt' + btn.frame"
-    >
-      <button
-        class="btn shadow-sm w-100"
-        @click="setFrameName(btn.frame)"
-        :class="{
-          'btn-light': btn.frame != frameName,
-          'btn-dark': btn.frame === frameName
-        }"
-        :disabled="!user"
-      >
-        {{ btn.title }}
-      </button>
-    </div>
-    <div class="col-6 col-sm-2 col-md-2 col-xl-2 pt-2 pb-2 pe-0">
-      <button
-        v-if="frameName === 'Pass'"
-        class="btn btn-success shadow-sm w-100"
-        @click="createPass"
-      >
-        <small>Add pass</small>
-      </button>
+    <div class="col-12 col-sm-8 col-md-9 col-lg-10 col-xxl-10">
+      <div class="row">
+        <div
+          class="col-6 col-sm-3 col-md-3 col-xl-3 pt-2 pb-2 pe-sm-0"
+          v-for="btn in buttons"
+          :key="'bt' + btn.frame"
+        >
+          <button
+            class="btn shadow-sm w-100"
+            @click="setFrameName(btn.frame)"
+            :class="{
+              'btn-light': btn.frame != frameName,
+              'btn-dark': btn.frame === frameName
+            }"
+            :disabled="!user"
+          >
+            <span class="d-none d-md-inline">{{ btn.title }}</span>
+            <small class="d-md-none">{{ btn.title }}</small>
+          </button>
+        </div>
+        <div class="col-6 col-sm-3 col-md-3 col-xl-3 pt-2 pb-2">
+          <button
+            v-if="frameName === 'Pass'"
+            class="btn btn-success shadow-sm w-100"
+            @click="createPass"
+          >
+            <span class="d-none d-md-inline">Add&nbsp;pass</span>
+            <small class="d-md-none">Add&nbsp;pass</small>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
