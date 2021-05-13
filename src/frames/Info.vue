@@ -152,8 +152,41 @@
         </div>
       </div>
       <!-- Конец Хостинг -->
-      <!-- Домен -->
+      <!-- Github -->
       <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2 ps-md-0">
+        <div class="input-group">
+          <input
+            type="url"
+            class="form-control form-control-sm"
+            placeholder="Github url"
+            v-model.trim="project.github"
+            @keyup.enter="updateProject('github')"
+          />
+          <button
+            class="btn btn-sm btn-light border"
+            @click="updateProject('github')"
+          >
+            Save
+          </button>
+          <a
+            class="btn btn-sm btn-light border p-0 ps-3 pe-3"
+            :href="project.github"
+            target="_blank"
+            title="Open Github"
+          >
+            <img
+              src="img/work_icons/arrow-up-right-square.svg"
+              width="16"
+              height="16"
+              class="opacity-06 mt-1"
+            />
+          </a>
+        </div>
+      </div>
+      <!-- Конец Github -->
+      <div class="d-none d-md-block col-12"></div>
+      <!-- Домен -->
+      <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2">
         <div class="input-group">
           <input
             type="url"
