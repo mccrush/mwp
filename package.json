@@ -2,6 +2,8 @@
   "name": "mwp",
   "version": "1.0.0",
   "private": true,
+  "description": "MWP - Менеджер веб-проектов",
+  "author": "mccrush.ru",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
@@ -31,5 +33,20 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "bugs": {
+    "url": "https://github.com/mccrush/mwp/issues"
+  },
+  "homepage": "https://github.com/mccrush/mwp",
+  "keywords": [
+    "mwp",
+    "проект",
+    "manager",
+    "web app"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mccrush/mwp.git"
+  }
 }
