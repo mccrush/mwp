@@ -55,7 +55,7 @@ export default {
       const id = state.projectId
       const index = state.projects.findIndex(item => item.id === id)
       const ref = db.collection('projects').doc(id)
-      await ref.update({ contacts: state.projects[index].contacts })
+      await ref.update({ passwords: state.projects[index].passwords })
       commit('changeLoading', false)
     },
     async updateCont({ commit, state }) {
@@ -63,7 +63,7 @@ export default {
       const id = state.projectId
       const index = state.projects.findIndex(item => item.id === id)
       const ref = db.collection('projects').doc(id)
-      await ref.update({ passwords: state.projects[index].passwords })
+      await ref.update({ contacts: state.projects[index].contacts })
       commit('changeLoading', false)
     },
     async removeProject({ commit }, id) {
