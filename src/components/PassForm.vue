@@ -16,21 +16,16 @@
           v-model="password.login"
         />
         <button
-          class="btn btn-sm btn-light border p-0 ps-3 pe-3"
+          class="btn btn-sm btn-light border"
           @click="copyInBuffer($event)"
         >
-          <img
-            src="img/work_icons/files.svg"
-            width="16"
-            height="16"
-            class="opacity-06 mt-1 mb-1"
-          />
+          Copy
         </button>
       </div>
       <!-- -->
       <div class="input-group mt-1">
         <input
-          type="password"
+          type="text"
           autocomplete="new-password"
           class="form-control form-control-sm"
           placeholder="Password"
@@ -45,15 +40,10 @@
           />
         </button>
         <button
-          class="btn btn-sm btn-light border p-0 ps-3 pe-3"
+          class="btn btn-sm btn-light border"
           @click="copyInBuffer($event)"
         >
-          <img
-            src="img/work_icons/files.svg"
-            width="16"
-            height="16"
-            class="opacity-06 mt-1 mb-1"
-          />
+          Copy
         </button>
       </div>
       <!-- -->
@@ -97,12 +87,8 @@ export default {
       this.$store.dispatch('updatePass')
     },
     copyInBuffer(e) {
-      //const el = e.target.previousSibling
-      // Подумать как лучше добираться до текстового содержимого: Родитель - первый ребенок!
-
       const el = e.target.parentNode.firstChild
       console.log('el:', el)
-      return
       el.focus()
       el.select()
       if (document.execCommand('copy')) {
