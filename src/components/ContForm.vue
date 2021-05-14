@@ -82,8 +82,6 @@ export default {
     },
     copyInBuffer(e) {
       const el = e.target.parentNode.firstChild
-      console.log('el:', el)
-      el.focus()
       el.select()
       if (document.execCommand('copy')) {
         console.log('Результат скопирован в буфер')

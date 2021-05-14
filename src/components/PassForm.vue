@@ -25,13 +25,16 @@
       <!-- -->
       <div class="input-group mt-1">
         <input
-          type="text"
+          :type="passType ? 'password' : 'text'"
           autocomplete="new-password"
           class="form-control form-control-sm"
           placeholder="Password"
           v-model="password.password"
         />
-        <button class="btn btn-sm btn-light border p-0 ps-3 pe-3">
+        <button
+          class="btn btn-sm btn-light border p-0 ps-3 pe-3"
+          @click="passType = !passType"
+        >
           <img
             src="img/work_icons/eye-slash.svg"
             width="16"
@@ -78,6 +81,11 @@ export default {
       default: 0
     }
   },
+  data() {
+    return {
+      passType: true
+    }
+  },
   methods: {
     removePass() {
       this.$store.commit('removePass', this.index)
@@ -88,8 +96,6 @@ export default {
     },
     copyInBuffer(e) {
       const el = e.target.parentNode.firstChild
-      console.log('el:', el)
-      el.focus()
       el.select()
       if (document.execCommand('copy')) {
         console.log('Результат скопирован в буфер')
