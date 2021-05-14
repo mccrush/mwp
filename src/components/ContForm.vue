@@ -3,6 +3,7 @@
     <div class="border rounded p-1">
       <input
         type="text"
+        autocomplete="new-text"
         class="form-control form-control-sm"
         placeholder="Name"
         v-model="contact.name"
@@ -11,36 +12,32 @@
       <div class="input-group mt-1">
         <input
           type="tel"
-          autocomplete="off"
+          autocomplete="new-tel"
           class="form-control form-control-sm"
           placeholder="Phone"
           v-model="contact.phone"
         />
-        <button class="btn btn-sm btn-light border p-0 ps-3 pe-3">
-          <img
-            src="img/work_icons/files.svg"
-            width="16"
-            height="16"
-            class="opacity-06 mt-1 mb-1"
-          />
+        <button
+          class="btn btn-sm btn-light border"
+          @click="copyInBuffer($event)"
+        >
+          Copy
         </button>
       </div>
       <!-- -->
       <div class="input-group mt-1">
         <input
           type="email"
-          autocomplete="off"
+          autocomplete="new-email"
           class="form-control form-control-sm"
           placeholder="Email"
           v-model="contact.email"
         />
-        <button class="btn btn-sm btn-light border p-0 ps-3 pe-3">
-          <img
-            src="img/work_icons/files.svg"
-            width="16"
-            height="16"
-            class="opacity-06 mt-1 mb-1"
-          />
+        <button
+          class="btn btn-sm btn-light border"
+          @click="copyInBuffer($event)"
+        >
+          Copy
         </button>
       </div>
       <!-- -->
@@ -82,6 +79,15 @@ export default {
     },
     updateCont() {
       this.$store.dispatch('updateCont')
+    },
+    copyInBuffer(e) {
+      const el = e.target.parentNode.firstChild
+      console.log('el:', el)
+      el.focus()
+      el.select()
+      if (document.execCommand('copy')) {
+        console.log('Результат скопирован в буфер')
+      }
     }
   }
 }
