@@ -120,27 +120,27 @@
       </div>
       <!-- Конец Админка -->
       <div class="d-none d-md-block col-12"></div>
-      <!-- Хостинг -->
+      <!-- Дизайн -->
       <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2">
         <div class="input-group">
           <input
             type="url"
             class="form-control form-control-sm"
-            placeholder="Hosting url"
-            v-model.trim="project.hosting"
-            @keyup.enter="updateProject('hosting')"
+            placeholder="Design prototype url"
+            v-model.trim="project.design"
+            @keyup.enter="updateProject('design')"
           />
           <button
             class="btn btn-sm btn-light border"
-            @click="updateProject('hosting')"
+            @click="updateProject('design')"
           >
             Save
           </button>
           <a
             class="btn btn-sm btn-light border p-0 ps-3 pe-3"
-            :href="project.hosting"
+            :href="project.design"
             target="_blank"
-            title="Open hosting"
+            title="Open design"
           >
             <img
               src="img/work_icons/arrow-up-right-square.svg"
@@ -151,7 +151,7 @@
           </a>
         </div>
       </div>
-      <!-- Конец Хостинг -->
+      <!-- Конец Дизайн -->
       <!-- Github -->
       <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2 ps-md-0">
         <div class="input-group">
@@ -185,8 +185,40 @@
       </div>
       <!-- Конец Github -->
       <div class="d-none d-md-block col-12"></div>
-      <!-- Домен -->
+      <!-- Хостинг -->
       <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2">
+        <div class="input-group">
+          <input
+            type="url"
+            class="form-control form-control-sm"
+            placeholder="Hosting url"
+            v-model.trim="project.hosting"
+            @keyup.enter="updateProject('hosting')"
+          />
+          <button
+            class="btn btn-sm btn-light border"
+            @click="updateProject('hosting')"
+          >
+            Save
+          </button>
+          <a
+            class="btn btn-sm btn-light border p-0 ps-3 pe-3"
+            :href="project.hosting"
+            target="_blank"
+            title="Open hosting"
+          >
+            <img
+              src="img/work_icons/arrow-up-right-square.svg"
+              width="16"
+              height="16"
+              class="opacity-06 mt-1"
+            />
+          </a>
+        </div>
+      </div>
+      <!-- Конец Хостинг -->
+      <!-- Домен -->
+      <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2 ps-md-0">
         <div class="input-group">
           <input
             type="url"

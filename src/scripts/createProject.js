@@ -7,6 +7,7 @@ export default (title) => {
     url: '',
     disc: '',
     admin: '',
+    design: '',
     guthub: '',
     hosting: '',
     domen: '',
