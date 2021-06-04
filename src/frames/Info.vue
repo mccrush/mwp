@@ -20,15 +20,23 @@
         </div>
       </div>
       <!-- Конец Название проекта -->
-      <!-- Url проекта -->
+      <!-- URL проекта -->
       <div
         class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2 mt-md-0 ps-md-0"
       >
-        <div class="input-group">
+        <div class="input-group input-group-sm">
+          <span class="input-group-text">
+            <img
+              src="img/work_icons/link-45deg.svg"
+              width="16"
+              height="16"
+              class="opacity-06"
+            />
+          </span>
           <input
             type="url"
             class="form-control form-control-sm"
-            placeholder="Url"
+            placeholder="URL"
             v-model.trim="project.url"
             @keyup.enter="updateProject('url')"
           />
@@ -53,11 +61,19 @@
           </a>
         </div>
       </div>
-      <!-- Конец Url проекта -->
+      <!-- Конец URL проекта -->
       <div class="d-none d-md-block col-12"></div>
       <!-- Диск -->
       <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2">
-        <div class="input-group">
+        <div class="input-group input-group-sm">
+          <span class="input-group-text">
+            <img
+              src="img/work_icons/folder.svg"
+              width="16"
+              height="16"
+              class="opacity-06"
+            />
+          </span>
           <input
             type="url"
             class="form-control form-control-sm"
@@ -89,11 +105,19 @@
       <!-- Конец Диск-->
       <!-- Админка -->
       <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2 ps-md-0">
-        <div class="input-group">
+        <div class="input-group input-group-sm">
+          <span class="input-group-text">
+            <img
+              src="img/work_icons/person-circle.svg"
+              width="16"
+              height="16"
+              class="opacity-06"
+            />
+          </span>
           <input
             type="url"
             class="form-control form-control-sm"
-            placeholder="Admin url"
+            placeholder="Admin URL"
             v-model.trim="project.admin"
             @keyup.enter="updateProject('admin')"
           />
@@ -122,11 +146,19 @@
       <div class="d-none d-md-block col-12"></div>
       <!-- Дизайн -->
       <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2">
-        <div class="input-group">
+        <div class="input-group input-group-sm">
+          <span class="input-group-text">
+            <img
+              src="img/work_icons/stack.svg"
+              width="16"
+              height="16"
+              class="opacity-06"
+            />
+          </span>
           <input
             type="url"
             class="form-control form-control-sm"
-            placeholder="Design prototype url"
+            placeholder="Design prototype"
             v-model.trim="project.design"
             @keyup.enter="updateProject('design')"
           />
@@ -154,11 +186,19 @@
       <!-- Конец Дизайн -->
       <!-- Github -->
       <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2 ps-md-0">
-        <div class="input-group">
+        <div class="input-group input-group-sm">
+          <span class="input-group-text">
+            <img
+              src="img/work_icons/github.svg"
+              width="16"
+              height="16"
+              class="opacity-06"
+            />
+          </span>
           <input
             type="url"
             class="form-control form-control-sm"
-            placeholder="Github url"
+            placeholder="Github URL"
             v-model.trim="project.github"
             @keyup.enter="updateProject('github')"
           />
@@ -187,11 +227,19 @@
       <div class="d-none d-md-block col-12"></div>
       <!-- Хостинг -->
       <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2">
-        <div class="input-group">
+        <div class="input-group input-group-sm">
+          <span class="input-group-text">
+            <img
+              src="img/work_icons/server.svg"
+              width="16"
+              height="16"
+              class="opacity-06"
+            />
+          </span>
           <input
             type="url"
             class="form-control form-control-sm"
-            placeholder="Hosting url"
+            placeholder="Hosting URL"
             v-model.trim="project.hosting"
             @keyup.enter="updateProject('hosting')"
           />
@@ -219,11 +267,19 @@
       <!-- Конец Хостинг -->
       <!-- Домен -->
       <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4 mt-2 ps-md-0">
-        <div class="input-group">
+        <div class="input-group input-group-sm">
+          <span class="input-group-text">
+            <img
+              src="img/work_icons/globe.svg"
+              width="16"
+              height="16"
+              class="opacity-06"
+            />
+          </span>
           <input
             type="url"
             class="form-control form-control-sm"
-            placeholder="Domen url"
+            placeholder="Domen URL"
             v-model.trim="project.domen"
             @keyup.enter="updateProject('domen')"
           />
