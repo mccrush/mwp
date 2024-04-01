@@ -15,7 +15,10 @@
         <span
           class="cursor-def d-inline-block ms-2 pt-2"
           title="Manager of Web Projects"
-          ><strong>MWP</strong></span
+          ><strong>MWP</strong
+          ><code class="text-muted ms-2"
+            ><small>v{{ version }}</small></code
+          ></span
         >
       </div>
       <div class="pt-2">
@@ -66,6 +69,7 @@
 </template>
 
 <script>
+import { version } from './../../package.json'
 import Loading from './Loading.vue'
 import buttons from './../data/buttons'
 
@@ -75,6 +79,7 @@ export default {
   },
   data() {
     return {
+      version,
       buttons
     }
   },
