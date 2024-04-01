@@ -11,7 +11,7 @@
           @change="saveItem"
         />
       </div>
-      <div class="col-12 col-md-5 ps-md-0">
+      <div class="col-12 col-md-5 ps-md-2">
         <input
           type="number"
           class="form-control form-control-sm"
@@ -34,16 +34,17 @@
         :item="link"
         :index="index"
         :key="'id' + index"
+        @save-item="saveItem"
         @remove-item="removeItem"
       />
     </div>
 
     <div class="row pt-2">
-      <div class="col-12 mt-2">
+      <div class="col-12">
         <textarea
           rows="3"
           class="form-control"
-          placeholder="Описание"
+          placeholder="Описание проекта"
           v-model="item.description"
           @change="saveItem"
         ></textarea>
@@ -61,7 +62,7 @@ export default {
     BtnTrash,
     LinksForm
   },
-  emits: ['remove-item'],
+  emits: ['save-item', 'remove-item'],
   props: {
     item: {
       type: Object,
@@ -86,10 +87,12 @@ export default {
     },
 
     saveItem() {
-      this.$store.dispatch('updateItemRT', {
-        item: this.item,
-        currentUserId: this.currentUserId
-      })
+      this.$emit('save-item')
+      // this.$store.commit('setCurrentProject', { currentProject: this.item })
+      // this.$store.dispatch('updateItemRT', {
+      //   item: this.item,
+      //   currentUserId: this.currentUserId
+      // })
     },
 
     removeItem({ type, index }) {

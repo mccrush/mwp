@@ -7,6 +7,7 @@
           class="form-control form-control-sm"
           placeholder="Название"
           v-model="item.title"
+          @change="$emit('save-item')"
         />
         <BtnTrash
           class="ms-2"
@@ -22,6 +23,7 @@
           class="form-control form-control-sm"
           placeholder="Ссылка"
           v-model="item.link"
+          @change="$emit('save-item')"
         />
         <BtnCopy class="border" @click="copyInBuffer($event)" />
         <BtnLink
@@ -47,7 +49,7 @@ export default {
     BtnCopy,
     BtnLink
   },
-  emits: ['remove-item'],
+  emits: ['save-item', 'remove-item'],
   props: {
     item: {
       type: Object,

@@ -7,6 +7,7 @@
           class="form-control form-control-sm"
           placeholder="Название"
           v-model="item.title"
+          @change="$emit('save-item')"
         />
         <BtnTrash
           class="ms-2"
@@ -22,6 +23,7 @@
           class="form-control form-control-sm"
           placeholder="Логин"
           v-model="item.login"
+          @change="$emit('save-item')"
         />
         <BtnCopy class="border" @click="copyInBuffer($event)" />
       </div>
@@ -33,6 +35,7 @@
           class="form-control form-control-sm"
           placeholder="Пароль"
           v-model="item.password"
+          @change="$emit('save-item')"
         />
         <BtnEyeHide
           v-if="passType"
@@ -48,6 +51,7 @@
         class="form-control mt-1"
         placeholder="Комментарий"
         v-model="item.description"
+        @change="$emit('save-item')"
       ></textarea>
     </div>
   </div>
@@ -66,7 +70,7 @@ export default {
     BtnEyeShow,
     BtnCopy
   },
-  emits: ['remove-item'],
+  emits: ['save-item', 'remove-item'],
   props: {
     item: {
       type: Object,

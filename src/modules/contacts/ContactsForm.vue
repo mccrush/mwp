@@ -7,6 +7,7 @@
           class="form-control form-control-sm"
           placeholder="Название"
           v-model="item.title"
+          @change="$emit('save-item')"
         />
         <BtnTrash
           class="ms-2"
@@ -22,6 +23,7 @@
           class="form-control form-control-sm"
           placeholder="Телефон"
           v-model="item.phone"
+          @change="$emit('save-item')"
         />
         <BtnCopy class="border" @click="copyInBuffer($event)" />
       </div>
@@ -32,6 +34,7 @@
           class="form-control form-control-sm"
           placeholder="Email"
           v-model="item.email"
+          @change="$emit('save-item')"
         />
         <BtnCopy class="border" @click="copyInBuffer($event)" />
       </div>
@@ -41,6 +44,7 @@
         class="form-control mt-1"
         placeholder="Комментарий"
         v-model="item.description"
+        @change="$emit('save-item')"
       ></textarea>
     </div>
   </div>
@@ -55,7 +59,7 @@ export default {
     BtnTrash,
     BtnCopy
   },
-  emits: ['remove-item'],
+  emits: ['save-item', 'remove-item'],
   props: {
     item: {
       type: Object,

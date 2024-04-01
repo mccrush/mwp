@@ -6,6 +6,7 @@
         :item="password"
         :index="index"
         :key="'id' + index"
+        @save-item="saveItem"
         @remove-item="removeItem"
       />
     </div>
@@ -19,7 +20,7 @@ export default {
   components: {
     PasswordsForm
   },
-  emits: ['remove-item'],
+  emits: ['save-item', 'remove-item'],
   props: {
     item: {
       type: Object,
@@ -27,6 +28,9 @@ export default {
     }
   },
   methods: {
+    saveItem() {
+      this.$emit('save-item')
+    },
     removeItem({ type, index }) {
       this.$emit('remove-item', { type, index })
     }
