@@ -28,6 +28,7 @@
         <BtnCopy class="border" @click="copyInBuffer($event)" />
         <BtnLink
           class="border"
+          :class="{ disabled: !item.link }"
           :href="item.link"
           target="_blank"
           title="Открыть ссылку"

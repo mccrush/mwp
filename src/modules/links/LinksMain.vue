@@ -62,7 +62,7 @@ export default {
     BtnTrash,
     LinksForm
   },
-  emits: ['save-item', 'remove-item'],
+  emits: ['save-item', 'remove-item-project', 'remove-item'],
   props: {
     item: {
       type: Object,
@@ -77,22 +77,12 @@ export default {
   methods: {
     removeItemProject() {
       if (confirm('Точно удалить?')) {
-        this.$store.commit('setProjectId', id)
-
-        this.$store.dispatch('removeItemRT', {
-          item: this.item,
-          currentUserId: this.currentUserId
-        })
+        this.$emit('remove-item-project')
       }
     },
 
     saveItem() {
       this.$emit('save-item')
-      // this.$store.commit('setCurrentProject', { currentProject: this.item })
-      // this.$store.dispatch('updateItemRT', {
-      //   item: this.item,
-      //   currentUserId: this.currentUserId
-      // })
     },
 
     removeItem({ type, index }) {

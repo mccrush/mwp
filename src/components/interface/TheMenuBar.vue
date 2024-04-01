@@ -65,11 +65,12 @@ export default {
       if (this.projectName) {
         let project = modelsFactory({ type: 'projects' })
         project.title = this.projectName
-        this.$store.commit('setCurrentProject', { currentProject: project })
+
         await this.$store.dispatch('addItemRT', {
           item: project,
           currentUserId: this.currentUserId
         })
+        this.$store.commit('setCurrentProject', { currentProject: project })
         this.projectName = ''
       }
     },

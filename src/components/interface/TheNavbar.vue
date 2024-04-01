@@ -107,11 +107,12 @@ export default {
         currentProject[type] = []
       }
       currentProject[type].push(item)
-      this.$store.commit('setCurrentProject', { currentProject })
+
       this.$store.dispatch('updateItemRT', {
         item: currentProject,
         currentUserId: this.currentUserId
       })
+      this.$store.commit('setCurrentProject', { currentProject })
     }
   }
 }
