@@ -8,8 +8,8 @@
       class="mt-2"
       @click="setCurrentProject(project)"
       :class="{
-        'btn-light': project.id != currentProject.id,
-        'btn-warning': project.id === currentProject.id
+        'btn-light': !currentProject || project.id != currentProject.id,
+        'btn-warning': currentProject && project.id === currentProject.id
       }"
     >
       {{ project.title }}
@@ -30,6 +30,7 @@
 
 <script>
 import { modelsFactory } from './../../helpers/modelsFactory'
+
 import BtnProjectTitle from './../buttons/BtnProjectTitle.vue'
 import BtnAddProject from './../buttons/BtnAddProject.vue'
 import BtnLogOut from './../buttons/BtnLogOut.vue'
@@ -52,17 +53,11 @@ export default {
     projects() {
       return this.$store.getters.projects
     },
-    // projectId() {
-    //   return this.$store.getters.projectId
-    // }
     currentProject() {
       return this.$store.getters.currentProject
     }
   },
   methods: {
-    // setProjectId(id) {
-    //   this.$store.commit('setProjectId', id)
-    // },
     setCurrentProject(currentProject) {
       this.$store.commit('setCurrentProject', { currentProject })
     },
