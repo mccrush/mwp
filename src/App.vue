@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container-xl shadow pl-0">
+    <div class="my-container-960 container-xl shadow pl-0">
       <TheNavbar />
       <transition name="fade" mode="out-in">
         <component :is="myComponent" />
@@ -56,6 +56,10 @@ export default {
 
 .my-vh100 {
   height: calc(100vh - 55px); /* Точное число после настройки навбара */
+}
+
+.my-container-960 {
+  max-width: 960px;
 }
 
 .btn:focus,

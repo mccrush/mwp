@@ -2,7 +2,7 @@
   <div class="col-12 col-sm-8 col-md-9 col-lg-10 col-xl-10 col-xxl-10">
     <div class="row p-2">
       <PassForm
-        v-for="(password, index) in project.passwords"
+        v-for="(password, index) in item.passwords"
         :password="password"
         :index="index"
         :key="'id' + index"
@@ -19,7 +19,7 @@ export default {
     PassForm
   },
   props: {
-    project: {
+    item: {
       type: Object,
       default: null
     }

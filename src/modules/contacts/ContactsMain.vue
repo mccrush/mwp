@@ -2,7 +2,7 @@
   <div class="col-12 col-sm-8 col-md-9 col-lg-10 col-xl-10 col-xxl-10">
     <div class="row p-2">
       <ContForm
-        v-for="(contact, index) in project.contacts"
+        v-for="(contact, index) in item.contacts"
         :contact="contact"
         :index="index"
         :key="'id' + index"
@@ -19,7 +19,7 @@ export default {
     ContForm
   },
   props: {
-    project: {
+    item: {
       type: Object,
       default: null
     }

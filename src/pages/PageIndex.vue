@@ -2,7 +2,7 @@
   <div class="row">
     <TheMenuBar />
     <transition name="fade" mode="out-in">
-      <component v-if="project" :is="frameName" :project="project" />
+      <component v-if="project" :is="frameName" :item="project" />
     </transition>
   </div>
 </template>
