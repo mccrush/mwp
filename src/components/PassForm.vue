@@ -36,7 +36,7 @@
           @click="passType = !passType"
         >
           <img
-            src="img/work_icons/eye-slash.svg"
+            src="/img/work_icons/eye-slash.svg"
             width="16"
             height="16"
             class="opacity-06 mt-1 mb-1"

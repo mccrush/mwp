@@ -17,7 +17,7 @@
               title="Remove"
             >
               <img
-                src="@/assets/icons/trash.svg"
+                src="./assets/icons/trash.svg"
                 class="m-0 opacity-05"
                 width="16"
                 height="16"
@@ -42,7 +42,7 @@
               :href="login.host"
             >
               <img
-                src="@/assets/icons/box-arrow-up-right.svg"
+                src="./assets/icons/box-arrow-up-right.svg"
                 class="m-0 opacity-05"
                 width="14"
                 height="14"
@@ -69,7 +69,7 @@
               title="Copy"
             >
               <img
-                src="@/assets/icons/files.svg"
+                src="./assets/icons/files.svg"
                 class="m-0 opacity-05"
                 width="16"
                 height="16"
@@ -117,7 +117,7 @@
               title="Copy"
             >
               <img
-                src="@/assets/icons/files.svg"
+                src="./assets/icons/files.svg"
                 class="m-0 opacity-05"
                 width="16"
                 height="16"
@@ -137,7 +137,7 @@ export default {
   data() {
     return {
       nocopy: true,
-      type: true,
+      type: true
     }
   },
   methods: {
@@ -156,13 +156,13 @@ export default {
           name: this.login.name,
           host: this.login.host,
           login: this.login.login,
-          pass: this.login.pass,
+          pass: this.login.pass
         }
 
         await this.$store.dispatch('updateProject', { login })
       }
-    },
-  },
+    }
+  }
 }
 </script>
 

@@ -27,7 +27,7 @@
         <div class="input-group input-group-sm">
           <span class="input-group-text">
             <img
-              src="img/work_icons/link-45deg.svg"
+              src="/img/work_icons/link-45deg.svg"
               width="16"
               height="16"
               class="opacity-06"
@@ -53,7 +53,7 @@
             title="Open project"
           >
             <img
-              src="img/work_icons/arrow-up-right-square.svg"
+              src="/img/work_icons/arrow-up-right-square.svg"
               width="16"
               height="16"
               class="opacity-06 mt-1"
@@ -68,7 +68,7 @@
         <div class="input-group input-group-sm">
           <span class="input-group-text">
             <img
-              src="img/work_icons/folder.svg"
+              src="/img/work_icons/folder.svg"
               width="16"
               height="16"
               class="opacity-06"
@@ -94,7 +94,7 @@
             title="Open folder of project"
           >
             <img
-              src="img/work_icons/arrow-up-right-square.svg"
+              src="/img/work_icons/arrow-up-right-square.svg"
               width="16"
               height="16"
               class="opacity-06 mt-1"
@@ -108,7 +108,7 @@
         <div class="input-group input-group-sm">
           <span class="input-group-text">
             <img
-              src="img/work_icons/person-circle.svg"
+              src="/img/work_icons/person-circle.svg"
               width="16"
               height="16"
               class="opacity-06"
@@ -134,7 +134,7 @@
             title="Open admin panel"
           >
             <img
-              src="img/work_icons/arrow-up-right-square.svg"
+              src="/img/work_icons/arrow-up-right-square.svg"
               width="16"
               height="16"
               class="opacity-06 mt-1"
@@ -149,7 +149,7 @@
         <div class="input-group input-group-sm">
           <span class="input-group-text">
             <img
-              src="img/work_icons/stack.svg"
+              src="/img/work_icons/stack.svg"
               width="16"
               height="16"
               class="opacity-06"
@@ -175,7 +175,7 @@
             title="Open design"
           >
             <img
-              src="img/work_icons/arrow-up-right-square.svg"
+              src="/img/work_icons/arrow-up-right-square.svg"
               width="16"
               height="16"
               class="opacity-06 mt-1"
@@ -189,7 +189,7 @@
         <div class="input-group input-group-sm">
           <span class="input-group-text">
             <img
-              src="img/work_icons/github.svg"
+              src="/img/work_icons/github.svg"
               width="16"
               height="16"
               class="opacity-06"
@@ -215,7 +215,7 @@
             title="Open Github"
           >
             <img
-              src="img/work_icons/arrow-up-right-square.svg"
+              src="/img/work_icons/arrow-up-right-square.svg"
               width="16"
               height="16"
               class="opacity-06 mt-1"
@@ -230,7 +230,7 @@
         <div class="input-group input-group-sm">
           <span class="input-group-text">
             <img
-              src="img/work_icons/server.svg"
+              src="/img/work_icons/server.svg"
               width="16"
               height="16"
               class="opacity-06"
@@ -256,7 +256,7 @@
             title="Open hosting"
           >
             <img
-              src="img/work_icons/arrow-up-right-square.svg"
+              src="/img/work_icons/arrow-up-right-square.svg"
               width="16"
               height="16"
               class="opacity-06 mt-1"
@@ -270,7 +270,7 @@
         <div class="input-group input-group-sm">
           <span class="input-group-text">
             <img
-              src="img/work_icons/globe.svg"
+              src="/img/work_icons/globe.svg"
               width="16"
               height="16"
               class="opacity-06"
@@ -296,7 +296,7 @@
             title="Open domen"
           >
             <img
-              src="img/work_icons/arrow-up-right-square.svg"
+              src="/img/work_icons/arrow-up-right-square.svg"
               width="16"
               height="16"
               class="opacity-06 mt-1"

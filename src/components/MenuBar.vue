@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import createProject from './../scripts/createProject'
+//import createProject from './../scripts/createProject'
 import { modelsFactory } from './../helpers/modelsFactory'
 import LogOut from './LogOut.vue'
 

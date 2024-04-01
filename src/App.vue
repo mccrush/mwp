@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container-xl shadow pl-0">
-      <Navbar :projLength="projects.length" />
+      <Navbar />
       <transition name="fade" mode="out-in">
         <component :is="myComponent" />
       </transition>
