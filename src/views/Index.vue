@@ -36,7 +36,10 @@ export default {
       return this.$store.getters.projects
     },
     project() {
-      return this.projects.find(item => item.id == this.projectId)
+      if (this.projects.length && this.projectId) {
+        return this.projects.find(item => item.id == this.projectId)
+      }
+      return null
     }
   }
 }

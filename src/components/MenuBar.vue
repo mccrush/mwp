@@ -18,7 +18,7 @@
     <input
       type="text"
       class="form-control form-control-sm"
-      placeholder="Project name"
+      placeholder="Название проекта"
       v-model.trim="projectName"
       @keyup.enter="addProject"
     />
@@ -26,7 +26,7 @@
       class="btn btn-success shadow-sm btn-sm w-100 mt-1"
       @click="addProject"
     >
-      Add project
+      Создать проект
     </button>
     <hr />
     <LogOut />
@@ -34,7 +34,6 @@
 </template>
 
 <script>
-//import createProject from './../scripts/createProject'
 import { modelsFactory } from './../helpers/modelsFactory'
 import LogOut from './LogOut.vue'
 
@@ -48,6 +47,9 @@ export default {
     }
   },
   computed: {
+    currentUserId() {
+      return this.$store.getters.currentUserId
+    },
     projects() {
       return this.$store.getters.projects
     },
@@ -61,14 +63,13 @@ export default {
     },
     async addProject() {
       if (this.projectName) {
-        //const project = createProject(this.projectName)
         let project = modelsFactory({ type: 'projects' })
         project.title = this.projectName
-        //this.$store.commit('addProject', project)
-
-        await this.$store.dispatch('addItemRT', { item: project })
+        await this.$store.dispatch('addItemRT', {
+          item: project,
+          currentUserId: this.currentUserId
+        })
         this.projectName = ''
-        //await this.$store.dispatch('addProject', project)
       }
     }
   }

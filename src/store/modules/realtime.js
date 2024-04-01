@@ -63,10 +63,8 @@ export default {
 
     async addItemRT({ commit }, { item, currentUserId }) {
       try {
-        console.log('state.user.currentUserId =', state.user.currentUserId);
-        //currentUserId = state.user.currentUserId
         commit('updateLoadingStatusRT', true)
-        //await set(ref(db, currentUserId + '/' + item.type + '/' + item.id), item)
+        await set(ref(db, currentUserId + '/' + item.type + '/' + item.id), item)
         console.log('addItemRT() add item.id', item.id)
         commit('updateLoadingStatusRT', false)
       } catch (error) {
@@ -75,6 +73,6 @@ export default {
     }
   },
   getters: {
-    projects: state => state.project
+    projects: state => state.projects
   }
 }
