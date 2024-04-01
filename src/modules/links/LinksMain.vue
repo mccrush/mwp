@@ -1,5 +1,33 @@
 <template>
   <div class="col-12 col-sm-8 col-md-9 col-lg-10 col-xl-10 col-xxl-10">
+    <!-- Общая информация о проекте -->
+    <div class="row pt-2">
+      <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4">
+        <input
+          type="text"
+          class="form-control form-control-sm"
+          placeholder="Название проекта"
+          v-model.trim="project.title"
+          @change="saveItem"
+        />
+      </div>
+      <div class="col-12 col-md-5 col-lg-3 mt-md-0 ps-md-0">
+        <input
+          type="number"
+          class="form-control form-control-sm"
+          v-model.number="project.position"
+          @change="saveItem"
+        />
+      </div>
+      <div class="col-12 col-md-1 mt-md-0 ps-md-0">
+        <BtnTrash
+          class="text-muted"
+          title="Удалить проект"
+          @click="removeItem"
+        />
+      </div>
+    </div>
+
     <div class="row pt-2">
       <!-- Название проекта -->
       <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-4">
@@ -315,7 +343,7 @@
           placeholder="Description"
           v-model="project.description"
         ></textarea>
-        <div class="d-flex justify-content-between">
+        <!-- <div class="d-flex justify-content-between">
           <button
             class="btn btn-sm btn-outline-danger mt-2"
             @click="removeProject"
@@ -328,7 +356,7 @@
           >
             Save description
           </button>
-        </div>
+        </div> -->
       </div>
       <!-- Конец Описание проекта -->
     </div>
@@ -336,26 +364,39 @@
 </template>
 
 <script>
+import BtnTrash from './../../components/buttons/BtnTrash.vue'
+
 export default {
+  components: {
+    BtnTrash
+  },
   props: {
     project: {
       type: Object,
       default: null
     }
   },
+  computed: {
+    currentUserId() {
+      return this.$store.getters.currentUserId
+    }
+  },
   methods: {
-    async removeProject() {
-      if (confirm('Are you sure?')) {
-        console.log('Удаление проекта ', this.project.id)
-        this.$store.commit('removeProject', this.project.id)
-        await this.$store.dispatch('removeProject', this.project.id)
+    removeItem() {
+      if (confirm('Точно удалить?')) {
+        this.$store.commit('setProjectId', id)
+
+        this.$store.dispatch('removeItemRT', {
+          item: this.project,
+          currentUserId: this.currentUserId
+        })
       }
     },
-    async updateProject(field) {
-      await this.$store.dispatch('updateProject', {
-        id: this.project.id,
-        field,
-        value: this.project[field]
+
+    saveItem() {
+      this.$store.dispatch('updateItemRT', {
+        item: this.project,
+        currentUserId: this.currentUserId
       })
     }
   }

@@ -5,7 +5,7 @@
     <BtnProjectTitle
       v-for="project in projects"
       :key="project.id"
-      class="btn shadow-sm w-100 mt-2"
+      class="mt-2"
       @click="setProjectId(project.id)"
       :class="{
         'btn-light': project.id != projectId,

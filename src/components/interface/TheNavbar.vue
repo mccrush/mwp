@@ -33,7 +33,7 @@
           :key="'bt' + btn.frame"
         >
           <button
-            class="btn btn-sm shadow-sm w-100"
+            class="btn btn-sm w-100"
             @click="setFrameName(btn.frame)"
             :class="{
               'btn-light': btn.frame != frameName,
@@ -47,16 +47,16 @@
         </div>
         <div class="col-6 col-sm-3 col-xl-2 pt-2 pb-2">
           <button
-            v-if="frameName === 'Pass'"
-            class="btn btn-sm btn-success shadow-sm w-100"
+            v-if="frameName === 'PasswordsMain'"
+            class="btn btn-sm btn-success w-100"
             @click="createPass"
           >
             <span class="d-none d-md-inline">Add&nbsp;pass</span>
             <small class="d-md-none">Add&nbsp;pass</small>
           </button>
           <button
-            v-if="frameName === 'Contacts'"
-            class="btn btn-sm btn-success shadow-sm w-100"
+            v-if="frameName === 'ContactsMain'"
+            class="btn btn-sm btn-success w-100"
             @click="createCont"
           >
             <span class="d-none d-md-inline">Add&nbsp;conts</span>

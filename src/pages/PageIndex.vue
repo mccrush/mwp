@@ -15,7 +15,6 @@ import PasswordsMain from './../modules/passwords/PasswordsMain.vue'
 import ContactsMain from './../modules/contacts/ContactsMain.vue'
 
 export default {
-  name: 'index',
   components: {
     TheMenuBar,
     LinksMain,
@@ -36,8 +35,9 @@ export default {
       return this.$store.getters.projects
     },
     project() {
-      if (this.projects.length && this.projectId) {
-        return this.projects.find(item => item.id == this.projectId)
+      const project = this.projects.find(item => item.id === this.projectId)
+      if (project) {
+        return project
       }
       return null
     }

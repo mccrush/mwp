@@ -1,7 +1,7 @@
 export default {
   state: {
     projectId: localStorage.getItem('projectId') || '',
-    frameName: localStorage.getItem('frameName') || 'Info',
+    frameName: localStorage.getItem('frameName') || 'LinksMain',
   },
   mutations: {
     // removeCont(state, indexCont) {
