@@ -1,9 +1,9 @@
 <template>
   <div class="col-12 col-sm-8 col-md-9 col-lg-10 col-xl-10 col-xxl-10">
     <div class="row p-2">
-      <ContForm
-        v-for="(contact, index) in project.contacts"
-        :contact="contact"
+      <PassForm
+        v-for="(password, index) in project.passwords"
+        :password="password"
         :index="index"
         :key="'id' + index"
       />
@@ -12,11 +12,11 @@
 </template>
 
 <script>
-import ContForm from './../components/ContForm.vue'
+import PassForm from './../../components/PassForm.vue'
 
 export default {
   components: {
-    ContForm
+    PassForm
   },
   props: {
     project: {

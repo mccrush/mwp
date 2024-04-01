@@ -10,18 +10,17 @@
 </template>
 
 <script>
-//import 'bootstrap/dist/css/bootstrap.min.css'
 import TheNavbar from './components/interface/TheNavbar.vue'
-import Login from './views/Login.vue'
-import Logo from './views/Logo.vue'
-import Index from './views/Index.vue'
+import PageLogin from './pages/PageLogin.vue'
+import PageLogo from './pages/PageLogo.vue'
+import PageIndex from './pages/PageIndex.vue'
 
 export default {
   components: {
-    Navbar,
-    Login,
-    Logo,
-    Index
+    TheNavbar,
+    PageLogin,
+    PageLogo,
+    PageIndex
   },
   computed: {
     currentUserId() {
@@ -32,9 +31,9 @@ export default {
     },
     myComponent() {
       if (this.currentUserId) {
-        return 'Index'
+        return 'PageIndex'
       } else {
-        return 'Login'
+        return 'PageLogin'
       }
     }
   }

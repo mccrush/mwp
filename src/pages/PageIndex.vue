@@ -10,17 +10,17 @@
 <script>
 import TheMenuBar from './../components/interface/TheMenuBar.vue'
 
-import Info from './../frames/Info.vue'
-import Pass from './../frames/Pass.vue'
-import Contacts from './../frames/Contacts.vue'
+import LinksMain from './../modules/links/LinksMain.vue'
+import PasswordsMain from './../modules/passwords/PasswordsMain.vue'
+import ContactsMain from './../modules/contacts/ContactsMain.vue'
 
 export default {
   name: 'index',
   components: {
     TheMenuBar,
-    Info,
-    Pass,
-    Contacts
+    LinksMain,
+    PasswordsMain,
+    ContactsMain
   },
   data() {
     return {}
