@@ -2,7 +2,7 @@
   <div class="row">
     <TheMenuBar />
     <transition name="fade" mode="out-in">
-      <component v-if="project" :is="frameName" :item="project" />
+      <component v-if="currentProject" :is="frameName" :item="currentProject" />
     </transition>
   </div>
 </template>
@@ -28,19 +28,22 @@ export default {
     frameName() {
       return this.$store.getters.frameName
     },
-    projectId() {
-      return this.$store.getters.projectId
-    },
-    projects() {
-      return this.$store.getters.projects
-    },
-    project() {
-      const project = this.projects.find(item => item.id === this.projectId)
-      if (project) {
-        return project
-      }
-      return null
+    // projectId() {
+    //   return this.$store.getters.projectId
+    // },
+    // projects() {
+    //   return this.$store.getters.projects
+    // },
+    currentProject() {
+      return this.$store.getters.currentProject
     }
+    // project() {
+    //   const project = this.projects.find(item => item.id === this.projectId)
+    //   if (project) {
+    //     return project
+    //   }
+    //   return null
+    // }
   }
 }
 </script>

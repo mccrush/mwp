@@ -6,10 +6,10 @@
       v-for="project in projects"
       :key="project.id"
       class="mt-2"
-      @click="setProjectId(project.id)"
+      @click="setCurrentProject(project)"
       :class="{
-        'btn-light': project.id != projectId,
-        'btn-warning': project.id === projectId
+        'btn-light': project.id != currentProject.id,
+        'btn-warning': project.id === currentProject.id
       }"
     >
       {{ project.title }}
@@ -52,18 +52,25 @@ export default {
     projects() {
       return this.$store.getters.projects
     },
-    projectId() {
-      return this.$store.getters.projectId
+    // projectId() {
+    //   return this.$store.getters.projectId
+    // }
+    currentProject() {
+      return this.$store.getters.currentProject
     }
   },
   methods: {
-    setProjectId(id) {
-      this.$store.commit('setProjectId', id)
+    // setProjectId(id) {
+    //   this.$store.commit('setProjectId', id)
+    // },
+    setCurrentProject(currentProject) {
+      this.$store.commit('setCurrentProject', { currentProject })
     },
     async addProject() {
       if (this.projectName) {
         let project = modelsFactory({ type: 'projects' })
         project.title = this.projectName
+        this.$store.commit('setCurrentProject', { currentProject: project })
         await this.$store.dispatch('addItemRT', {
           item: project,
           currentUserId: this.currentUserId

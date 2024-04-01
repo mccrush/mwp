@@ -1,7 +1,8 @@
 export default {
   state: {
-    projectId: localStorage.getItem('projectId') || '',
-    frameName: localStorage.getItem('frameName') || 'LinksMain',
+    currentProject: JSON.parse(localStorage.getItem('mw-currentProject')) || null,
+    //projectId: localStorage.getItem('projectId') || '',
+    frameName: localStorage.getItem('mw-frameName') || 'LinksMain',
   },
   mutations: {
     // removeCont(state, indexCont) {
@@ -27,13 +28,17 @@ export default {
     // removeProject(state, id) {
     //   state.projects = state.projects.filter(item => item.id !== id)
     // },
-    setProjectId(state, id) {
-      state.projectId = id
-      localStorage.setItem('projectId', id)
+    setCurrentProject(state, { currentProject }) {
+      state.currentProject = currentProject
+      localStorage.setItem('mw-currentProject', JSON.stringify(currentProject))
     },
+    // setProjectId(state, id) {
+    //   state.projectId = id
+    //   localStorage.setItem('projectId', id)
+    // },
     setFrameName(state, frame) {
       state.frameName = frame
-      localStorage.setItem('frameName', frame)
+      localStorage.setItem('mw-frameName', frame)
     },
     // getProjects(state, projects) {
     //   state.projects = projects
@@ -47,7 +52,8 @@ export default {
   },
 
   getters: {
-    projectId: state => state.projectId,
+    //projectId: state => state.projectId,
+    currentProject: state => state.currentProject,
     frameName: state => state.frameName
   }
 }

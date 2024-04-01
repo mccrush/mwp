@@ -25,6 +25,7 @@
         <Loading v-if="loading" />
       </div>
     </div>
+
     <div class="col-12 col-sm-8 col-md-9 col-lg-10">
       <div class="row">
         <div
@@ -32,36 +33,27 @@
           v-for="btn in buttons"
           :key="'bt' + btn.frame"
         >
-          <button
-            class="btn btn-sm w-100"
-            @click="setFrameName(btn.frame)"
-            :class="{
-              'btn-light': btn.frame != frameName,
-              'btn-dark': btn.frame === frameName
-            }"
-            :disabled="!currentUserId"
-          >
-            <span class="d-none d-md-inline">{{ btn.title }}</span>
-            <small class="d-md-none">{{ btn.title }}</small>
-          </button>
-        </div>
-        <div class="col-6 col-sm-3 col-xl-2 pt-2 pb-2">
-          <button
-            v-if="frameName === 'PasswordsMain'"
-            class="btn btn-sm btn-success w-100"
-            @click="createPass"
-          >
-            <span class="d-none d-md-inline">Add&nbsp;pass</span>
-            <small class="d-md-none">Add&nbsp;pass</small>
-          </button>
-          <button
-            v-if="frameName === 'ContactsMain'"
-            class="btn btn-sm btn-success w-100"
-            @click="createCont"
-          >
-            <span class="d-none d-md-inline">Add&nbsp;conts</span>
-            <small class="d-md-none">Add&nbsp;conts</small>
-          </button>
+          <div class="btn-group w-100" role="group">
+            <BtnFrameTitle
+              class="w-75"
+              @click="setFrameName(btn.frame)"
+              :class="{
+                'btn-light': btn.frame != frameName,
+                'btn-dark': btn.frame === frameName
+              }"
+              :disabled="!currentUserId"
+            >
+              {{ btn.title }}
+            </BtnFrameTitle>
+            <BtnAdd
+              class="d-flex justify-content-center align-items-center w-25"
+              :class="{
+                'btn-light': btn.frame != frameName,
+                'btn-dark': btn.frame === frameName
+              }"
+              @click="createItem(btn.type)"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -70,12 +62,18 @@
 
 <script>
 import { version } from './../../../package.json'
-import Loading from './../Loading.vue'
+import { modelsFactory } from './../../helpers/modelsFactory'
 import buttons from './../../data/buttons'
+
+import Loading from './../Loading.vue'
+import BtnFrameTitle from './../buttons/BtnFrameTitle.vue'
+import BtnAdd from './../buttons/BtnAdd.vue'
 
 export default {
   components: {
-    Loading
+    Loading,
+    BtnFrameTitle,
+    BtnAdd
   },
   data() {
     return {
@@ -87,6 +85,10 @@ export default {
     currentUserId() {
       return this.$store.getters.currentUserId
     },
+    currentProject() {
+      return this.$store.getters.currentProject
+    },
+
     frameName() {
       return this.$store.getters.frameName
     },
@@ -98,20 +100,19 @@ export default {
     setFrameName(frame) {
       this.$store.commit('setFrameName', frame)
     },
-    createPass() {
-      this.$store.commit('addPass')
-      this.$store.dispatch('updatePass')
-    },
-    createCont() {
-      this.$store.commit('addCont')
-      this.$store.dispatch('updateCont')
+    createItem(type) {
+      let item = modelsFactory({ type })
+      let currentProject = this.currentProject
+      if (!currentProject[type]) {
+        currentProject[type] = []
+      }
+      currentProject[type].push(item)
+      this.$store.commit('setCurrentProject', { currentProject })
+      this.$store.dispatch('updateItemRT', {
+        item: currentProject,
+        currentUserId: this.currentUserId
+      })
     }
   }
 }
 </script>
-
-<style scoped>
-.dropdown-item {
-  cursor: pointer;
-}
-</style>
