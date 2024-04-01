@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import Message from '@/components/Message'
+import Message from './../components/Message.vue'
 
 export default {
   components: {
@@ -92,7 +92,7 @@ export default {
       if (this.email && this.password) {
         try {
           await this.$store.dispatch('logIn', formData)
-          this.$emit('log-in')
+          //this.$emit('log-in')
         } catch (err) {
           this.showError()
           if (err.code === 'auth/invalid-email') {

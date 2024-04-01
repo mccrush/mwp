@@ -1,8 +1,8 @@
 import { createStore } from 'vuex'
-import project from './modules/project'
+import admin from './modules/admin'
 import user from './modules/user'
 import message from './modules/message'
-import login from './modules/login'
+import realtime from './modules/lrealtimeogin'
 
 export default createStore({
   state: {
@@ -12,9 +12,9 @@ export default createStore({
   actions: {
   },
   modules: {
-    project,
+    admin,
     user,
     message,
-    login
+    realtime
   }
 })

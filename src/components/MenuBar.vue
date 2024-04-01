@@ -34,8 +34,9 @@
 </template>
 
 <script>
-import createProject from '@/scripts/createProject'
-import LogOut from '@/components/LogOut'
+import createProject from './../scripts/createProject'
+import { modelsFactory } from './../helpers/modelsFactory'
+import LogOut from './LogOut.vue'
 
 export default {
   components: {
@@ -60,10 +61,14 @@ export default {
     },
     async addProject() {
       if (this.projectName) {
-        const project = createProject(this.projectName)
-        this.$store.commit('addProject', project)
+        //const project = createProject(this.projectName)
+        let project = modelsFactory({ type: 'projects' })
+        project.title = this.projectName
+        //this.$store.commit('addProject', project)
+
+        await this.$store.dispatch('addItemRT', { item: project })
         this.projectName = ''
-        await this.$store.dispatch('addProject', project)
+        //await this.$store.dispatch('addProject', project)
       }
     }
   }

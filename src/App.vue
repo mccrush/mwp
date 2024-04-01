@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import 'bootstrap/dist/css/bootstrap.min.css'
-import Navbar from '@/components/Navbar'
-import Login from '@/views/Login'
-import Logo from '@/views/Logo'
-import Index from '@/views/Index'
+//import 'bootstrap/dist/css/bootstrap.min.css'
+import Navbar from './components/Navbar.vue'
+import Login from './views/Login.vue'
+import Logo from './views/Logo.vue'
+import Index from './views/Index.vue'
 
 export default {
   components: {
@@ -24,24 +24,17 @@ export default {
     Index
   },
   computed: {
-    user() {
-      return this.$store.getters.user
+    currentUserId() {
+      return this.$store.getters.currentUserId
     },
     projects() {
       return this.$store.getters.projects
     },
     myComponent() {
-      //return this.user ? 'Index' : this.user === false ? 'Login' : 'Logo'
-      if (this.user) {
-        if (this.projects.length) {
-          return 'Index'
-        } else {
-          return 'Logo'
-        }
-      } else if (this.user === false) {
-        return 'Login'
+      if (this.currentUserId) {
+        return 'Index'
       } else {
-        return 'Logo'
+        return 'Login'
       }
     }
   }
@@ -53,7 +46,12 @@ export default {
   opacity: 0.6;
 }
 
-.cursor-def {
+.cursor-pointer,
+.dropdown-item {
+  cursor: pointer;
+}
+
+.cursor-default {
   cursor: default;
 }
 
@@ -62,9 +60,11 @@ export default {
 }
 
 .btn:focus,
+.btn-close:focus,
 .btn-check:focus + .btn-outline-dark,
 .form-control:focus,
 .form-select:focus,
+.form-select:active,
 .accordion-button:focus,
 .navbar-toggler:focus {
   outline: 0 !important;

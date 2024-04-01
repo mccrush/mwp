@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="col-12 col-sm-8 col-md-9 col-lg-10">
-      <div v-if="projLength" class="row">
+      <div class="row">
         <div
           class="col-6 col-sm-3 col-xl-2 pt-2 pb-2 pe-sm-0"
           v-for="btn in buttons"
@@ -36,7 +36,7 @@
               'btn-light': btn.frame != frameName,
               'btn-dark': btn.frame === frameName
             }"
-            :disabled="!user"
+            :disabled="!currentUserId"
           >
             <span class="d-none d-md-inline">{{ btn.title }}</span>
             <small class="d-md-none">{{ btn.title }}</small>
@@ -66,19 +66,12 @@
 </template>
 
 <script>
-import Loading from '@/components/Loading'
-import buttons from '@/data/buttons'
-//import { Collapse } from 'bootstrap'
+import Loading from './Loading.vue'
+import buttons from './../data/buttons'
 
 export default {
   components: {
     Loading
-  },
-  props: {
-    projLength: {
-      type: Number,
-      default: 0
-    }
   },
   data() {
     return {
@@ -86,8 +79,8 @@ export default {
     }
   },
   computed: {
-    user() {
-      return this.$store.getters.user
+    currentUserId() {
+      return this.$store.getters.currentUserId
     },
     frameName() {
       return this.$store.getters.frameName

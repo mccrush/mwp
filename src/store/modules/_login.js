@@ -1,4 +1,8 @@
-import { db } from '@/firebase.js'
+// import { db } from '@/firebase.js'
+
+import fireApp from './../../firebase'
+import { getFirestore, doc, setDoc, updateDoc, deleteDoc, collection, query, getDocs } from "firebase/firestore"
+const db = getFirestore(fireApp)
 
 export default {
   state: {

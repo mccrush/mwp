@@ -1,4 +1,6 @@
-import { db } from '@/firebase.js'
+import fireApp from './../../firebase'
+import { getFirestore, doc, setDoc, updateDoc, deleteDoc, collection, query, getDocs } from "firebase/firestore"
+const db = getFirestore(fireApp)
 
 export default {
   state: {
@@ -23,7 +25,8 @@ export default {
   actions: {
     async removeDoc({ commit, dispatch }, { collection, id }) {
       try {
-        await db.collection(collection).doc(id).delete()
+        //await db.collection(collection).doc(id).delete()
+        await deleteDoc(doc(db, collection, id))
         console.log('Документ успешно удален')
         commit('removeDoc', { collection, id })
       } catch (err) {
@@ -34,7 +37,9 @@ export default {
     },
     async updateDoc({ commit, dispatch }, { collection, doc }) {
       try {
-        await db.collection(collection).doc(doc.id).update(doc)
+        //await db.collection(collection).doc(doc.id).update(doc)
+        const itemRef = doc(db, collection, doc.id)
+        await updateDoc(itemRef, doc)
         console.log('Документ успешно обновлен')
         commit('updateDoc', { collection, doc })
       } catch (err) {
@@ -45,7 +50,8 @@ export default {
     },
     async addDoc({ commit }, { doc }) {
       try {
-        await db.collection('logins').doc(doc.id).set(doc, { merge: true })
+        //await db.collection('logins').doc(doc.id).set(doc, { merge: true })
+        await setDoc(doc(db, 'logins', doc.id), doc)
         console.log('Документ успешно создан')
         commit('addDoc', { doc })
       } catch (err) {
@@ -55,14 +61,21 @@ export default {
       }
     },
     async getData({ commit }) {
-      let logins = []
       try {
-        const ref = db.collection('logins')
-        const snapshot = await ref.get()
-        snapshot.forEach(doc => {
-          logins.push(doc.data())
-        });
-        commit('getData', { logins })
+        // const ref = db.collection('logins')
+        // const snapshot = await ref.get()
+        // snapshot.forEach(doc => {
+        //   logins.push(doc.data())
+        // });
+
+        let tempArray = []
+        const q = query(collection(db, 'logins'))
+        const querySnapshot = await getDocs(q)
+        querySnapshot.forEach((doc) => {
+          tempArray.push(doc.data())
+        })
+
+        commit('getData', { tempArray })
       } catch (err) {
         throw err
       } finally {

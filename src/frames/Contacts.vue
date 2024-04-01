@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import ContForm from '@/components/ContForm'
+import ContForm from './../components/ContForm.vue'
 
 export default {
   components: {

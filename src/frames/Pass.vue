@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import PassForm from '@/components/PassForm'
+import PassForm from './../components/PassForm.vue'
 
 export default {
   components: {

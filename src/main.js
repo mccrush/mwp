@@ -1,19 +1,32 @@
+// import { createApp } from 'vue'
+// import App from './App.vue'
+// import './registerServiceWorker'
+// import store from './store'
+// import { auth } from './firebase'
+
+import './scss/styles.scss'
 import { createApp } from 'vue'
 import App from './App.vue'
-import './registerServiceWorker'
 import store from './store'
-import { auth } from './firebase'
+
+import fireApp from './firebase'
+import { getAuth, onAuthStateChanged } from "firebase/auth"
+const auth = getAuth(fireApp)
 
 let app
 
-auth.onAuthStateChanged((user) => {
+onAuthStateChanged(auth, (user) => {
   if (!app) {
     app = createApp(App).use(store).mount('#app')
   }
   if (user) {
+    console.log('main.js : Пользователь авторизован')
     store.commit('setUser', true)
-    store.dispatch('getProjects')
+    store.commit('setCurrentUserId', user.uid)
+    store.commit('setCurrentUserEmail', user.email)
+    store.dispatch('getItemsRT', { type: 'projects', currentUserId: user.uid })
   } else {
+    console.log('main.js: Пользователь не авторизован. user = ', user)
     store.commit('setUser', false)
   }
 })

@@ -1,8 +1,11 @@
 .DS_Store
 node_modules
 /dist
+/dist_vite
 apiKey.js
 .firebase
+package-lock.json
+pnpm-lock.yaml
 
 # local env files
 .env.local

@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import MenuBar from '@/components/MenuBar'
+import MenuBar from './../components/MenuBar.vue'
 
-import Info from '@/frames/Info'
-import Pass from '@/frames/Pass'
-import Contacts from '@/frames/Contacts'
+import Info from './../frames/Info.vue'
+import Pass from './../frames/Pass.vue'
+import Contacts from './../frames/Contacts.vue'
 
 export default {
   name: 'index',

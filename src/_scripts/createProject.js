@@ -4,6 +4,7 @@ export default (title) => {
     id: Date.now().toString(),
     title,
     description: '',
+    position: 1,
     url: '',
     disc: '',
     admin: '',
