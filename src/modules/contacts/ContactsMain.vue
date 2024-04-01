@@ -1,27 +1,34 @@
 <template>
   <div class="col-12 col-sm-8 col-md-9 col-lg-10 col-xl-10 col-xxl-10">
     <div class="row p-2">
-      <ContForm
+      <ContactsForm
         v-for="(contact, index) in item.contacts"
-        :contact="contact"
+        :item="contact"
         :index="index"
         :key="'id' + index"
+        @remove-item="removeItem"
       />
     </div>
   </div>
 </template>
 
 <script>
-import ContForm from './../../components/ContForm.vue'
+import ContactsForm from './ContactsForm.vue'
 
 export default {
   components: {
-    ContForm
+    ContactsForm
   },
+  emits: ['remove-item'],
   props: {
     item: {
       type: Object,
       default: null
+    }
+  },
+  methods: {
+    removeItem({ type, index }) {
+      this.$emit('remove-item', { type, index })
     }
   }
 }
