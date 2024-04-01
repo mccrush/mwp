@@ -69,9 +69,9 @@
 </template>
 
 <script>
-import { version } from './../../package.json'
-import Loading from './Loading.vue'
-import buttons from './../data/buttons'
+import { version } from './../../../package.json'
+import Loading from './../Loading.vue'
+import buttons from './../../data/buttons'
 
 export default {
   components: {

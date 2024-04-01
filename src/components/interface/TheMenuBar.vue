@@ -2,7 +2,7 @@
   <div
     class="my-vh100 col-12 col-sm-4 col-md-3 col-lg-2 col-xl-2 col-xxl-2 border-end"
   >
-    <button
+    <BtnProjectTitle
       v-for="project in projects"
       :key="project.id"
       class="btn shadow-sm w-100 mt-2"
@@ -13,7 +13,7 @@
       }"
     >
       {{ project.title }}
-    </button>
+    </BtnProjectTitle>
     <hr />
     <input
       type="text"
@@ -22,24 +22,23 @@
       v-model.trim="projectName"
       @keyup.enter="addProject"
     />
-    <button
-      class="btn btn-success shadow-sm btn-sm w-100 mt-1"
-      @click="addProject"
-    >
-      Создать проект
-    </button>
+    <BtnAddProject class="mt-1" @click="addProject" />
     <hr />
-    <LogOut />
+    <BtnLogOut @click="logOut" />
   </div>
 </template>
 
 <script>
-import { modelsFactory } from './../helpers/modelsFactory'
-import LogOut from './LogOut.vue'
+import { modelsFactory } from './../../helpers/modelsFactory'
+import BtnProjectTitle from './../buttons/BtnProjectTitle.vue'
+import BtnAddProject from './../buttons/BtnAddProject.vue'
+import BtnLogOut from './../buttons/BtnLogOut.vue'
 
 export default {
   components: {
-    LogOut
+    BtnProjectTitle,
+    BtnAddProject,
+    BtnLogOut
   },
   data() {
     return {
@@ -71,6 +70,9 @@ export default {
         })
         this.projectName = ''
       }
+    },
+    async logOut() {
+      await this.$store.dispatch('logOut')
     }
   }
 }

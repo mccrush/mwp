@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container-xl shadow pl-0">
-      <Navbar />
+      <TheNavbar />
       <transition name="fade" mode="out-in">
         <component :is="myComponent" />
       </transition>
@@ -11,7 +11,7 @@
 
 <script>
 //import 'bootstrap/dist/css/bootstrap.min.css'
-import Navbar from './components/Navbar.vue'
+import TheNavbar from './components/interface/TheNavbar.vue'
 import Login from './views/Login.vue'
 import Logo from './views/Logo.vue'
 import Index from './views/Index.vue'
