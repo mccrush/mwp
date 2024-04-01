@@ -10,7 +10,7 @@
         />
         <BtnTrash
           class="ms-2"
-          title="Удалить контакт"
+          title="Удалить ссылку"
           @click="$emit('remove-item', { type: item.type, index })"
         />
       </div>
@@ -20,28 +20,18 @@
         <input
           type="text"
           class="form-control form-control-sm"
-          placeholder="Телефон"
-          v-model="item.phone"
+          placeholder="Ссылка"
+          v-model="item.link"
         />
         <BtnCopy class="border" @click="copyInBuffer($event)" />
-      </div>
-      <!-- -->
-      <div class="input-group mt-1">
-        <input
-          type="text"
-          class="form-control form-control-sm"
-          placeholder="Email"
-          v-model="item.email"
+        <BtnLink
+          class="border"
+          :href="item.link"
+          target="_blank"
+          title="Открыть ссылку"
         />
-        <BtnCopy class="border" @click="copyInBuffer($event)" />
       </div>
       <!-- -->
-      <textarea
-        rows="2"
-        class="form-control mt-1"
-        placeholder="Комментарий"
-        v-model="item.description"
-      ></textarea>
     </div>
   </div>
 </template>
@@ -49,11 +39,13 @@
 <script>
 import BtnTrash from './../../components/buttons/BtnTrash.vue'
 import BtnCopy from './../../components/buttons/BtnCopy.vue'
+import BtnLink from './../../components/buttons/BtnLink.vue'
 
 export default {
   components: {
     BtnTrash,
-    BtnCopy
+    BtnCopy,
+    BtnLink
   },
   emits: ['remove-item'],
   props: {

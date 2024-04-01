@@ -23,9 +23,22 @@
         <BtnTrash
           class="text-muted"
           title="Удалить проект"
-          @click="removeItem"
+          @click="removeItemProject"
         />
       </div>
+    </div>
+
+    <div class="row p-2">
+      <LinksForm
+        v-for="(link, index) in item.links"
+        :item="link"
+        :index="index"
+        :key="'id' + index"
+        @remove-item="removeItem"
+      />
+    </div>
+
+    <div class="row pt-2">
       <div class="col-12 mt-2">
         <textarea
           rows="3"
@@ -36,18 +49,19 @@
         ></textarea>
       </div>
     </div>
-
-    <div class="row pt-2"></div>
   </div>
 </template>
 
 <script>
 import BtnTrash from './../../components/buttons/BtnTrash.vue'
+import LinksForm from './LinksForm.vue'
 
 export default {
   components: {
-    BtnTrash
+    BtnTrash,
+    LinksForm
   },
+  emits: ['remove-item'],
   props: {
     item: {
       type: Object,
@@ -60,7 +74,7 @@ export default {
     }
   },
   methods: {
-    removeItem() {
+    removeItemProject() {
       if (confirm('Точно удалить?')) {
         this.$store.commit('setProjectId', id)
 
@@ -76,6 +90,10 @@ export default {
         item: this.item,
         currentUserId: this.currentUserId
       })
+    },
+
+    removeItem({ type, index }) {
+      this.$emit('remove-item', { type, index })
     }
   }
 }
