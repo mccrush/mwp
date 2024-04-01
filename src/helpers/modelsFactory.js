@@ -1,4 +1,7 @@
 import ClassProject from './../classes/ClassProject'
+import ClassLink from './../classes/ClassLink'
+import ClassPassword from './../classes/ClassPassword'
+import ClassContact from './../classes/ClassContact'
 
 
 export const modelsFactory = ({ type }) => {
@@ -9,13 +12,13 @@ export const modelsFactory = ({ type }) => {
       newObject = new ClassProject()
       break
     case 'links':
-      newObject = {}
+      newObject = new ClassLink()
       break
     case 'passwords':
-      newObject = {}
+      newObject = new ClassPassword()
       break
     case 'contacts':
-      newObject = {}
+      newObject = new ClassContact()
       break
   }
 
