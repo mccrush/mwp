@@ -2,7 +2,12 @@
   <div class="row">
     <TheMenuBar />
     <transition name="fade" mode="out-in">
-      <component v-if="currentProject" :is="frameName" :item="currentProject" />
+      <component
+        v-if="currentProject"
+        :is="frameName"
+        :item="currentProject"
+        @remove-item="removeItem"
+      />
     </transition>
   </div>
 </template>
@@ -25,25 +30,29 @@ export default {
     return {}
   },
   computed: {
+    currentUserId() {
+      return this.$store.getters.currentUserId
+    },
     frameName() {
       return this.$store.getters.frameName
     },
-    // projectId() {
-    //   return this.$store.getters.projectId
-    // },
-    // projects() {
-    //   return this.$store.getters.projects
-    // },
     currentProject() {
       return this.$store.getters.currentProject
     }
-    // project() {
-    //   const project = this.projects.find(item => item.id === this.projectId)
-    //   if (project) {
-    //     return project
-    //   }
-    //   return null
-    // }
+  },
+  methods: {
+    removeItem({ type, index }) {
+      let currentProject = this.currentProject
+      console.log('currentProject[type]=', currentProject[type])
+      currentProject[type].splice(index, 1)
+      this.$store.commit('setCurrentProject', {
+        currentProject
+      })
+      this.$store.dispatch('updateItemRT', {
+        item: currentProject,
+        currentUserId: this.currentUserId
+      })
+    }
   }
 }
 </script>

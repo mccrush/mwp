@@ -1,7 +1,7 @@
 import ClassBasic from './ClassBasic'
 
 export default class ClassContact extends ClassBasic {
-  type = 'links'
+  type = 'contacts'
   phone = ''
   email = ''
 }

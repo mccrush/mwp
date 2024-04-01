@@ -1,0 +1,92 @@
+<template>
+  <div class="col-12 col-md-6 col-lg-4 p-2">
+    <div class="border rounded p-1">
+      <div class="d-flex">
+        <input
+          type="text"
+          class="form-control form-control-sm"
+          placeholder="Название"
+          v-model="item.title"
+        />
+        <BtnTrash
+          class="ms-2"
+          title="Удалить пароль"
+          @click="$emit('remove-item', { type: item.type, index })"
+        />
+      </div>
+
+      <!-- -->
+      <div class="input-group mt-1">
+        <input
+          type="text"
+          class="form-control form-control-sm"
+          placeholder="Логин"
+          v-model="item.login"
+        />
+        <BtnCopy class="border" @click="copyInBuffer($event)" />
+      </div>
+      <!-- -->
+      <div class="input-group mt-1">
+        <input
+          :type="passType ? 'password' : 'text'"
+          autocomplete="new-password"
+          class="form-control form-control-sm"
+          placeholder="Пароль"
+          v-model="item.password"
+        />
+        <BtnEyeHide
+          v-if="passType"
+          class="border"
+          @click="passType = !passType"
+        />
+        <BtnEyeShow v-else class="border" @click="passType = !passType" />
+        <BtnCopy class="border" @click="copyInBuffer($event)" />
+      </div>
+      <!-- -->
+      <textarea
+        rows="2"
+        class="form-control mt-1"
+        placeholder="Комментарий"
+        v-model="item.description"
+      ></textarea>
+    </div>
+  </div>
+</template>
+
+<script>
+import BtnTrash from './../../components/buttons/BtnTrash.vue'
+import BtnEyeHide from './../../components/buttons/BtnEyeHide.vue'
+import BtnEyeShow from './../../components/buttons/BtnEyeShow.vue'
+import BtnCopy from './../../components/buttons/BtnCopy.vue'
+
+export default {
+  components: {
+    BtnTrash,
+    BtnEyeHide,
+    BtnEyeShow,
+    BtnCopy
+  },
+  emits: ['remove-item'],
+  props: {
+    item: {
+      type: Object,
+      default: null
+    },
+    index: {
+      type: Number,
+      default: 0
+    }
+  },
+  data() {
+    return {
+      passType: true
+    }
+  },
+  methods: {
+    copyInBuffer(e) {
+      const el = e.target.parentNode.parentNode.firstChild
+      navigator.clipboard.writeText(el.value)
+    }
+  }
+}
+</script>

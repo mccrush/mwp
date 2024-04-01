@@ -1,7 +1,7 @@
 import ClassBasic from './ClassBasic'
 
 export default class ClassPassword extends ClassBasic {
-  type = 'links'
+  type = 'passwords'
   login = ''
   password = ''
 }
