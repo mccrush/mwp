@@ -13,41 +13,26 @@
       {{ project.title }}
     </BtnProjectTitle>
     <hr />
-    <input
-      type="text"
-      class="form-control form-control-sm"
-      placeholder="Название проекта"
-      v-model.trim="projectName"
-      @keyup.enter="addProject"
-    />
-    <BtnAddProject class="mt-1" @click="addProject" />
+    <FormCreateProject />
     <hr />
     <BtnLogOut @click="logOut" />
   </div>
 </template>
 
 <script>
-import { modelsFactory } from './../../helpers/modelsFactory'
-
+import FormCreateProject from './../forms/FormCreateProject.vue'
 import BtnProjectTitle from './../buttons/BtnProjectTitle.vue'
-import BtnAddProject from './../buttons/BtnAddProject.vue'
+
 import BtnLogOut from './../buttons/BtnLogOut.vue'
 
 export default {
   components: {
+    FormCreateProject,
     BtnProjectTitle,
-    BtnAddProject,
     BtnLogOut
   },
-  data() {
-    return {
-      projectName: ''
-    }
-  },
+
   computed: {
-    currentUserId() {
-      return this.$store.getters.currentUserId
-    },
     projects() {
       return this.$store.getters.projects
     },
@@ -59,19 +44,7 @@ export default {
     setCurrentProject(currentProject) {
       this.$store.commit('setCurrentProject', { currentProject })
     },
-    async addProject() {
-      if (this.projectName) {
-        let project = modelsFactory({ type: 'projects' })
-        project.title = this.projectName
 
-        await this.$store.dispatch('addItemRT', {
-          item: project,
-          currentUserId: this.currentUserId
-        })
-        this.$store.commit('setCurrentProject', { currentProject: project })
-        this.projectName = ''
-      }
-    },
     async logOut() {
       await this.$store.dispatch('logOut')
     }

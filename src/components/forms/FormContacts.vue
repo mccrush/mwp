@@ -5,7 +5,7 @@
         <input
           type="text"
           class="form-control form-control-sm"
-          placeholder="Название"
+          placeholder="Имя"
           v-model="item.title"
           @change="$emit('save-item')"
         />
