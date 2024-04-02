@@ -1,19 +1,37 @@
 <template>
   <div class="my-vh100 col-12 col-sm-4 col-md-2 border-end">
-    <BtnProjectTitle
+    <div
       v-for="project in projects"
       :key="project.id"
-      class="mt-2"
-      @click="setCurrentProject(project)"
-      :class="{
-        'btn-light': !currentProject || project.id != currentProject.id,
-        'btn-warning': currentProject && project.id === currentProject.id
-      }"
+      class="btn-group w-100 mt-2"
+      role="group"
     >
-      {{ project.title }}
-    </BtnProjectTitle>
+      <BtnProjectTitle
+        class=""
+        @click="setCurrentProject(project)"
+        :class="{
+          'btn-light': !currentProject || project.id != currentProject.id,
+          'btn-warning': currentProject && project.id === currentProject.id
+        }"
+      >
+        {{ project.title }}
+      </BtnProjectTitle>
+      <BtnEdit
+        :class="{
+          'btn-light disabled':
+            !currentProject || project.id != currentProject.id,
+          'btn-warning': currentProject && project.id === currentProject.id
+        }"
+        @click="mod = 'edit'"
+      />
+    </div>
     <hr />
-    <FormCreateProject />
+    <FormCreateProject v-if="mod === 'create'" />
+    <FormEditProject
+      v-if="mod === 'edit'"
+      :item="currentProject"
+      @close-form="mod = 'create'"
+    />
     <hr />
     <BtnLogOut @click="logOut" />
   </div>
@@ -21,17 +39,25 @@
 
 <script>
 import FormCreateProject from './../forms/FormCreateProject.vue'
+import FormEditProject from './../forms/FormEditProject.vue'
 import BtnProjectTitle from './../buttons/BtnProjectTitle.vue'
 
+import BtnEdit from './../buttons/BtnEdit.vue'
 import BtnLogOut from './../buttons/BtnLogOut.vue'
 
 export default {
   components: {
     FormCreateProject,
+    FormEditProject,
     BtnProjectTitle,
+    BtnEdit,
     BtnLogOut
   },
-
+  data() {
+    return {
+      mod: 'create'
+    }
+  },
   computed: {
     projects() {
       return this.$store.getters.projects
