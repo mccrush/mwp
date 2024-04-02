@@ -27,7 +27,7 @@
     </div>
 
     <div class="col-12 col-sm-8 col-md-10">
-      <div class="row">
+      <div v-if="currentProject" class="row">
         <div
           class="col-6 col-sm-4 pt-2 pb-2"
           v-for="btn in buttons"

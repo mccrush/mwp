@@ -47,9 +47,8 @@
       </div>
       <!-- -->
       <textarea
-        rows="2"
+        rows="1"
         class="form-control mt-1"
-        placeholder="Комментарий"
         v-model="item.description"
         @change="$emit('save-item')"
       ></textarea>

@@ -17,9 +17,9 @@
         {{ project.title }}
       </BtnProjectTitle>
       <BtnEdit
+        v-if="currentProject && project.id === currentProject.id"
         :class="{
-          'btn-light disabled':
-            !currentProject || project.id != currentProject.id,
+          'btn-light': !currentProject || project.id != currentProject.id,
           'btn-warning': currentProject && project.id === currentProject.id
         }"
         @click="mod = 'edit'"
