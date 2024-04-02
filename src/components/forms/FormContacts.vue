@@ -1,6 +1,6 @@
 <template>
-  <div class="col-12 col-md-6 col-lg-4 p-2">
-    <div class="border rounded p-1">
+  <div class="col-12 col-md-6 p-1">
+    <div class="border rounded bg-light p-1">
       <div class="d-flex">
         <input
           type="text"
@@ -11,7 +11,7 @@
         />
         <BtnTrash
           class="ms-2"
-          title="Удалить пароль"
+          title="Удалить контакт"
           @click="$emit('remove-item', { type: item.type, index })"
         />
       </div>
@@ -21,8 +21,8 @@
         <input
           type="text"
           class="form-control form-control-sm"
-          placeholder="Логин"
-          v-model="item.login"
+          placeholder="Телефон"
+          v-model="item.phone"
           @change="$emit('save-item')"
         />
         <BtnCopy class="border" @click="copyInBuffer($event)" />
@@ -30,19 +30,12 @@
       <!-- -->
       <div class="input-group mt-1">
         <input
-          :type="passType ? 'password' : 'text'"
-          autocomplete="new-password"
+          type="text"
           class="form-control form-control-sm"
-          placeholder="Пароль"
-          v-model="item.password"
+          placeholder="Email"
+          v-model="item.email"
           @change="$emit('save-item')"
         />
-        <BtnEyeHide
-          v-if="passType"
-          class="border"
-          @click="passType = !passType"
-        />
-        <BtnEyeShow v-else class="border" @click="passType = !passType" />
         <BtnCopy class="border" @click="copyInBuffer($event)" />
       </div>
       <!-- -->
@@ -59,15 +52,11 @@
 
 <script>
 import BtnTrash from './../../components/buttons/BtnTrash.vue'
-import BtnEyeHide from './../../components/buttons/BtnEyeHide.vue'
-import BtnEyeShow from './../../components/buttons/BtnEyeShow.vue'
 import BtnCopy from './../../components/buttons/BtnCopy.vue'
 
 export default {
   components: {
     BtnTrash,
-    BtnEyeHide,
-    BtnEyeShow,
     BtnCopy
   },
   emits: ['save-item', 'remove-item'],

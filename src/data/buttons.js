@@ -3,18 +3,18 @@ export default [
     title: 'Ссылки',
     type: 'links',
     color: '#faedcb',
-    frame: 'LinksMain'
+    frame: 'FormLinks'
   },
   {
     title: 'Пароли',
     type: 'passwords',
     color: '#c9e4de',
-    frame: 'PasswordsMain'
+    frame: 'FormPasswords'
   },
   {
     title: 'Контакты',
     type: 'contacts',
     color: '#c6def1',
-    frame: 'ContactsMain'
+    frame: 'FormContacts'
   }
 ]

@@ -1,6 +1,6 @@
 <template>
-  <div class="col-12 col-md-6 col-lg-4 p-2">
-    <div class="border rounded p-1">
+  <div class="col-12 col-md-6 p-1">
+    <div class="border rounded bg-light p-1">
       <div class="d-flex">
         <input
           type="text"
@@ -11,7 +11,7 @@
         />
         <BtnTrash
           class="ms-2"
-          title="Удалить ссылку"
+          title="Удалить пароль"
           @click="$emit('remove-item', { type: item.type, index })"
         />
       </div>
@@ -21,34 +21,54 @@
         <input
           type="text"
           class="form-control form-control-sm"
-          placeholder="Ссылка"
-          v-model="item.link"
+          placeholder="Логин"
+          v-model="item.login"
           @change="$emit('save-item')"
         />
         <BtnCopy class="border" @click="copyInBuffer($event)" />
-        <BtnLink
-          class="border"
-          :class="{ disabled: !item.link }"
-          :href="item.link"
-          target="_blank"
-          title="Открыть ссылку"
-        />
       </div>
       <!-- -->
+      <div class="input-group mt-1">
+        <input
+          :type="passType ? 'password' : 'text'"
+          autocomplete="new-password"
+          class="form-control form-control-sm"
+          placeholder="Пароль"
+          v-model="item.password"
+          @change="$emit('save-item')"
+        />
+        <BtnEyeHide
+          v-if="passType"
+          class="border"
+          @click="passType = !passType"
+        />
+        <BtnEyeShow v-else class="border" @click="passType = !passType" />
+        <BtnCopy class="border" @click="copyInBuffer($event)" />
+      </div>
+      <!-- -->
+      <textarea
+        rows="2"
+        class="form-control mt-1"
+        placeholder="Комментарий"
+        v-model="item.description"
+        @change="$emit('save-item')"
+      ></textarea>
     </div>
   </div>
 </template>
 
 <script>
 import BtnTrash from './../../components/buttons/BtnTrash.vue'
+import BtnEyeHide from './../../components/buttons/BtnEyeHide.vue'
+import BtnEyeShow from './../../components/buttons/BtnEyeShow.vue'
 import BtnCopy from './../../components/buttons/BtnCopy.vue'
-import BtnLink from './../../components/buttons/BtnLink.vue'
 
 export default {
   components: {
     BtnTrash,
-    BtnCopy,
-    BtnLink
+    BtnEyeHide,
+    BtnEyeShow,
+    BtnCopy
   },
   emits: ['save-item', 'remove-item'],
   props: {

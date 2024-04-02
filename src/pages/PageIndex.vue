@@ -1,32 +1,36 @@
 <template>
   <div class="row">
     <TheMenuBar />
-    <transition name="fade" mode="out-in">
-      <component
-        v-if="currentProject"
-        :is="frameName"
-        :item="currentProject"
-        @save-item="saveItem"
-        @remove-item-project="removeItemProject"
-        @remove-item="removeItem"
-      />
-    </transition>
+
+    <div class="col-10">
+      <div class="row p-1">
+        <component
+          :is="frameName"
+          v-for="(item, index) in currentProject[frameType]"
+          :item="item"
+          :index="index"
+          :key="'id' + index"
+          @save-item="saveItem"
+          @remove-item="removeItem"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import TheMenuBar from './../components/interface/TheMenuBar.vue'
 
-import LinksMain from './../modules/links/LinksMain.vue'
-import PasswordsMain from './../modules/passwords/PasswordsMain.vue'
-import ContactsMain from './../modules/contacts/ContactsMain.vue'
+import FormLinks from './../components/forms/FormLinks.vue'
+import FormPasswords from './../components/forms/FormPasswords.vue'
+import FormContacts from './../components/forms/FormContacts.vue'
 
 export default {
   components: {
     TheMenuBar,
-    LinksMain,
-    PasswordsMain,
-    ContactsMain
+    FormLinks,
+    FormPasswords,
+    FormContacts
   },
   data() {
     return {}
@@ -37,6 +41,9 @@ export default {
     },
     frameName() {
       return this.$store.getters.frameName
+    },
+    frameType() {
+      return this.$store.getters.frameType
     },
     currentProject() {
       return this.$store.getters.currentProject

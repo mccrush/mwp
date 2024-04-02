@@ -1,7 +1,7 @@
 <template>
   <div class="row border-bottom">
     <div
-      class="col-12 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-between border-end pt-2 pb-2"
+      class="col-12 col-sm-4 col-md-2 d-flex justify-content-between border-end pt-2 pb-2"
     >
       <div class="">
         <img
@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <div class="col-12 col-sm-8 col-md-9 col-lg-10">
+    <div class="col-12 col-sm-8 col-md-10">
       <div class="row">
         <div
           class="col-6 col-sm-3 col-xl-2 pt-2 pb-2 pe-sm-0"
@@ -36,7 +36,7 @@
           <div class="btn-group w-100" role="group">
             <BtnFrameTitle
               class="w-75"
-              @click="setFrameName(btn.frame)"
+              @click="setFrameName(btn)"
               :class="{
                 'btn-light': btn.frame != frameName,
                 'btn-dark': btn.frame === frameName
@@ -97,8 +97,9 @@ export default {
     }
   },
   methods: {
-    setFrameName(frame) {
-      this.$store.commit('setFrameName', frame)
+    setFrameName(btn) {
+      this.$store.commit('setFrameName', btn.frame)
+      this.$store.commit('setFrameType', btn.type)
     },
     createItem(type) {
       let item = modelsFactory({ type })

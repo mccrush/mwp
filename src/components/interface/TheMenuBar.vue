@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="my-vh100 col-12 col-sm-4 col-md-3 col-lg-2 col-xl-2 col-xxl-2 border-end"
-  >
+  <div class="my-vh100 col-12 col-sm-4 col-md-2 border-end">
     <BtnProjectTitle
       v-for="project in projects"
       :key="project.id"
