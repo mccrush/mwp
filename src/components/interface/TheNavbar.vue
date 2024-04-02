@@ -113,7 +113,6 @@ export default {
         item: currentProject,
         currentUserId: this.currentUserId
       })
-      this.$store.commit('setCurrentProject', { currentProject })
     }
   }
 }

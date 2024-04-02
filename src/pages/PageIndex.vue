@@ -3,7 +3,7 @@
     <TheMenuBar />
 
     <div class="col-10">
-      <div class="row p-1">
+      <div v-if="currentProject" class="row p-1">
         <component
           :is="frameName"
           v-for="(item, index) in currentProject[frameType]"
@@ -56,9 +56,6 @@ export default {
         item: this.currentProject,
         currentUserId: this.currentUserId
       })
-      this.$store.commit('setCurrentProject', {
-        currentProject: this.currentProject
-      })
     },
 
     // Удаление самого проекта
@@ -67,9 +64,6 @@ export default {
         item: this.currentProject,
         currentUserId: this.currentUserId
       })
-      this.$store.commit('setCurrentProject', {
-        currentProject: null
-      })
     },
 
     // Удаление детей проекта
@@ -77,14 +71,7 @@ export default {
       let currentProject = this.currentProject
       currentProject[type].splice(index, 1)
 
-      this.$store.dispatch('updateItemRT', {
-        item: currentProject,
-        currentUserId: this.currentUserId
-      })
-
-      this.$store.commit('setCurrentProject', {
-        currentProject
-      })
+      this.saveItem()
     }
   }
 }

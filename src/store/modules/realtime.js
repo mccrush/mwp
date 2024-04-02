@@ -5,7 +5,8 @@ const db = getDatabase(fireApp)
 export default {
   state: {
     loadingRT: false,
-    projects: []
+    projects: [],
+    currentProject: JSON.parse(localStorage.getItem('mw-currentProject')) || null,
   },
   mutations: {
     setItemsRT(state, { type, items }) {
@@ -14,12 +15,17 @@ export default {
     updateLoadingStatusRT(state, value) {
       state.loadingRT = value
     },
+    setCurrentProject(state, { currentProject }) {
+      state.currentProject = currentProject
+      localStorage.setItem('mw-currentProject', JSON.stringify(currentProject))
+    },
   },
   actions: {
     async removeItemRT({ commit, dispatch }, { item, currentUserId }) {
       try {
         commit('updateLoadingStatusRT', true)
         await remove(ref(db, currentUserId + '/' + item.type + '/' + item.id))
+        commit('setCurrentProject', { currentProject: null })
         dispatch('getItemsRT', { type: item.type, currentUserId })
         commit('updateLoadingStatusRT', false)
       } catch (error) {
@@ -31,6 +37,7 @@ export default {
       try {
         commit('updateLoadingStatusRT', true)
         await update(ref(db, currentUserId + '/' + item.type + '/' + item.id), item)
+        commit('setCurrentProject', { currentProject: item })
         console.log('updateItemRT() item.id', item.id)
         commit('updateLoadingStatusRT', false)
       } catch (error) {
@@ -65,6 +72,7 @@ export default {
       try {
         commit('updateLoadingStatusRT', true)
         await set(ref(db, currentUserId + '/' + item.type + '/' + item.id), item)
+        commit('setCurrentProject', { currentProject: item })
         console.log('addItemRT() add item.id', item.id)
         commit('updateLoadingStatusRT', false)
       } catch (error) {
@@ -73,6 +81,8 @@ export default {
     }
   },
   getters: {
-    projects: state => state.projects
+    projects: state => state.projects,
+    currentProject: state => state.currentProject,
+    loadingRT: state => state.loadingRT,
   }
 }
