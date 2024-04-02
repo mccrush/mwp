@@ -5,7 +5,7 @@
         @submit.prevent="login"
         class="max-width border rounded shadow-sm text-left mt-5 mb-3 p-3 m-auto"
       >
-        <h4 class="text-center mt-2 mb-4">Authorization</h4>
+        <h4 class="text-center mt-2 mb-4">Авторизация</h4>
         <label for="email">Email</label>
         <br />
         <input
@@ -17,7 +17,7 @@
           placeholder="example@mail.ru"
         />
         <br />
-        <label for="password">Password</label>
+        <label for="password">Пароль</label>
         <div class="input-group">
           <input
             :type="passType ? 'password' : 'text'"
@@ -52,7 +52,7 @@
             />
           </button>
         </div>
-        <button class="btn btn-success w-100 mt-3" type="submit">Login</button>
+        <button class="btn btn-success w-100 mt-3" type="submit">Войти</button>
       </form>
     </div>
     <transition name="fade" mode="out-in">

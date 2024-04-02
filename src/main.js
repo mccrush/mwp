@@ -1,9 +1,3 @@
-// import { createApp } from 'vue'
-// import App from './App.vue'
-// import './registerServiceWorker'
-// import store from './store'
-// import { auth } from './firebase'
-
 import './scss/styles.scss'
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -21,12 +15,12 @@ onAuthStateChanged(auth, (user) => {
   }
   if (user) {
     console.log('main.js : Пользователь авторизован')
-    //store.commit('setUser', true)
     store.commit('setCurrentUserId', user.uid)
     store.commit('setCurrentUserEmail', user.email)
     store.dispatch('getItemsRT', { type: 'projects', currentUserId: user.uid })
   } else {
     console.log('main.js: Пользователь не авторизован. user = ', user)
-    store.commit('setUser', false)
+    store.commit('setCurrentUserId', '')
+    store.commit('setCurrentUserEmail', '')
   }
 })
