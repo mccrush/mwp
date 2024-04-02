@@ -28,7 +28,7 @@
     <hr />
     <FormCreateProject v-if="mod === 'create'" />
     <FormEditProject
-      v-if="mod === 'edit'"
+      v-if="currentProject && mod === 'edit'"
       :item="currentProject"
       @close-form="mod = 'create'"
     />
@@ -68,7 +68,7 @@ export default {
       return this.$store.getters.currentProject
     },
     sortProjects() {
-      return sortMethod(this.projects, 'asc', 'position')
+      return sortMethod(this.projects, 'desc', 'position')
     }
   },
   methods: {
