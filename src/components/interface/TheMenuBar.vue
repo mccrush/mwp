@@ -1,7 +1,7 @@
 <template>
   <div class="my-vh100 col-12 col-sm-4 col-md-2 border-end">
     <div
-      v-for="project in projects"
+      v-for="project in sortProjects"
       :key="project.id"
       class="btn-group w-100 mt-2"
       role="group"
@@ -38,6 +38,8 @@
 </template>
 
 <script>
+import { sortMethod } from './../../helpers/sortMethod'
+
 import FormCreateProject from './../forms/FormCreateProject.vue'
 import FormEditProject from './../forms/FormEditProject.vue'
 import BtnProjectTitle from './../buttons/BtnProjectTitle.vue'
@@ -64,6 +66,9 @@ export default {
     },
     currentProject() {
       return this.$store.getters.currentProject
+    },
+    sortProjects() {
+      return sortMethod(this.projects, 'asc', 'position')
     }
   },
   methods: {

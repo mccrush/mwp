@@ -6,7 +6,7 @@
       <div v-if="currentProject" class="row p-1">
         <component
           :is="frameName"
-          v-for="(item, index) in currentProject[frameType]"
+          v-for="(item, index) in projectArray"
           :item="item"
           :index="index"
           :key="'id' + index"
@@ -20,7 +20,6 @@
 
 <script>
 import TheMenuBar from './../components/interface/TheMenuBar.vue'
-
 import FormLinks from './../components/forms/FormLinks.vue'
 import FormPasswords from './../components/forms/FormPasswords.vue'
 import FormContacts from './../components/forms/FormContacts.vue'
@@ -47,6 +46,12 @@ export default {
     },
     currentProject() {
       return this.$store.getters.currentProject
+    },
+    projectArray() {
+      if (this.currentProject) {
+        return this.currentProject[this.frameType]
+      }
+      return []
     }
   },
   methods: {
