@@ -13,7 +13,7 @@
           title="Manager of Web Projects"
         />
         <span
-          class="cursor-def d-inline-block ms-2 pt-2"
+          class="cursor-def d-inline-block text-body-secondary ms-2 pt-2"
           title="Manager of Web Projects"
           ><strong>MWP</strong
           ><code class="text-body-secondary ms-2"
