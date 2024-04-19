@@ -1,6 +1,6 @@
 <template>
   <div class="col-12 col-md-6 p-1">
-    <div class="border rounded bg-light p-1">
+    <div class="border rounded p-1">
       <div class="d-flex">
         <input
           type="text"
@@ -10,7 +10,7 @@
           @change="$emit('save-item')"
         />
         <BtnTrash
-          class="ms-2"
+          class="d-flex align-items-center ms-2"
           title="Удалить пароль"
           @click="$emit('remove-item', { type: item.type, index })"
         />
