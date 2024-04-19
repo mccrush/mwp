@@ -1,7 +1,7 @@
 <template>
-  <div class="row border-bottom">
+  <div class="row border-bottom border-black">
     <div
-      class="col-12 col-sm-4 col-md-2 d-flex justify-content-between border-end pt-2 pb-2"
+      class="col-12 col-sm-4 col-md-2 d-flex justify-content-between border-end border-dark-subtle pt-2 pb-2"
     >
       <div class="">
         <img

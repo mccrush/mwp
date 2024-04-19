@@ -2,7 +2,7 @@
   <div class="row">
     <TheMenuBar />
 
-    <div class="col-10">
+    <div class="col-10 border-top border-dark-subtle">
       <div v-if="currentProject" class="row p-1">
         <component
           :is="frameName"

@@ -55,7 +55,7 @@ export default {
 }
 
 .my-vh100 {
-  height: calc(100vh - 55px); /* Точное число после настройки навбара */
+  height: calc(100vh - 51px); /* Точное число после настройки навбара */
 }
 
 .my-container-960 {
@@ -73,6 +73,10 @@ export default {
   outline: 0 !important;
   /* border-color: #6c757d !important; */
   box-shadow: none !important;
+}
+
+textarea {
+  font-size: 0.875rem !important;
 }
 
 .fade-enter-active,

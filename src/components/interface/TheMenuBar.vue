@@ -1,5 +1,7 @@
 <template>
-  <div class="my-vh100 col-12 col-sm-4 col-md-2 border-end">
+  <div
+    class="my-vh100 col-12 col-sm-4 col-md-2 border-top border-dark-subtle border-end border-black"
+  >
     <div
       v-for="project in sortProjects"
       :key="project.id"
@@ -25,14 +27,17 @@
         @click="mod = 'edit'"
       />
     </div>
-    <hr />
+    <!-- <hr /> -->
+    <div class="border-bottom border-black mt-3"></div>
+    <div class="border-top border-dark-subtle mb-3"></div>
     <FormCreateProject v-if="mod === 'create'" />
     <FormEditProject
       v-if="currentProject && mod === 'edit'"
       :item="currentProject"
       @close-form="mod = 'create'"
     />
-    <hr />
+    <div class="border-bottom border-black mt-3"></div>
+    <div class="border-top border-dark-subtle mb-3"></div>
     <BtnLogOut @click="logOut" />
   </div>
 </template>
