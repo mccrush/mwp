@@ -9,21 +9,15 @@
       role="group"
     >
       <BtnProjectTitle
-        class=""
         @click="setCurrentProject(project)"
         :class="{
-          'btn-light': !currentProject || project.id != currentProject.id,
-          'btn-warning': currentProject && project.id === currentProject.id
+          active: currentProject && project.id === currentProject.id
         }"
       >
         {{ project.title }}
       </BtnProjectTitle>
       <BtnEdit
         v-if="currentProject && project.id === currentProject.id"
-        :class="{
-          'btn-light': !currentProject || project.id != currentProject.id,
-          'btn-warning': currentProject && project.id === currentProject.id
-        }"
         @click="mod = 'edit'"
       />
     </div>
