@@ -1,9 +1,9 @@
 <template>
   <div class="row justify-content-center">
-    <div class="my-vh100 col-12">
+    <div class="my-vh100 col-12 pt-4">
       <form
         @submit.prevent="login"
-        class="max-width border rounded shadow-sm text-left mt-5 mb-3 p-3 m-auto"
+        class="max-width border rounded text-left mt-5 mb-3 p-3 m-auto"
       >
         <h4 class="text-center mt-2 mb-4">Авторизация</h4>
         <label for="email">Email</label>
@@ -28,31 +28,14 @@
             ref="pass"
             maxlength="20"
           />
-
-          <button
-            class="btn btn-light p-0 ps-2 pe-2 border"
-            type="button"
+          <BtnEyeHide
+            v-if="passType"
+            class="border"
             @click="passType = !passType"
-          >
-            <img
-              v-if="passType"
-              src="/img/work_icons/eye-slash.svg"
-              width="24"
-              height="24"
-              alt="Show password"
-              class="opacity-06"
-            />
-            <img
-              v-else
-              src="/img/work_icons/eye.svg"
-              width="24"
-              height="24"
-              alt="Hide password"
-              class="opacity-06"
-            />
-          </button>
+          />
+          <BtnEyeShow v-else class="border" @click="passType = !passType" />
         </div>
-        <button class="btn btn-success w-100 mt-3" type="submit">Войти</button>
+        <BtnLogIn class="w-100 mt-3" />
       </form>
     </div>
     <transition name="fade" mode="out-in">
@@ -62,10 +45,17 @@
 </template>
 
 <script>
+import BtnEyeHide from './../components/buttons/BtnEyeHide.vue'
+import BtnEyeShow from './../components/buttons/BtnEyeShow.vue'
+import BtnLogIn from './../components/buttons/BtnLogIn.vue'
+
 import Message from './../components/Message.vue'
 
 export default {
   components: {
+    BtnEyeHide,
+    BtnEyeShow,
+    BtnLogIn,
     Message
   },
   data() {
