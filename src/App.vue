@@ -75,6 +75,11 @@ export default {
   box-shadow: none !important;
 }
 
+.form-control {
+  border-color: #495057;
+  /* border-color: rgba(0, 0, 0, 0) !important; */
+}
+
 textarea {
   font-size: 0.875rem !important;
 }

@@ -1,6 +1,8 @@
 <template>
   <div class="col-12 col-md-6 p-2">
-    <div class="rounded shadow-sm bg-body-tertiary p-3">
+    <div
+      class="border-top border-dark-subtle rounded shadow-sm bg-body-tertiary p-3"
+    >
       <div class="d-flex">
         <input
           type="text"
