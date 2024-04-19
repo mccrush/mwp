@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import { copyInBuffer } from './../../helpers/copyInBuffer'
+
 import BtnTrash from './../../components/buttons/BtnTrash.vue'
 import BtnCopy from './../../components/buttons/BtnCopy.vue'
 import BtnLink from './../../components/buttons/BtnLink.vue'
@@ -69,10 +71,7 @@ export default {
     }
   },
   methods: {
-    copyInBuffer(e) {
-      const el = e.target.parentNode.parentNode.firstChild
-      navigator.clipboard.writeText(el.value)
-    }
+    copyInBuffer
   }
 }
 </script>

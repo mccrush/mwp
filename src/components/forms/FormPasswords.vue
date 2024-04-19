@@ -59,6 +59,8 @@
 </template>
 
 <script>
+import { copyInBuffer } from './../../helpers/copyInBuffer'
+
 import BtnTrash from './../../components/buttons/BtnTrash.vue'
 import BtnEyeHide from './../../components/buttons/BtnEyeHide.vue'
 import BtnEyeShow from './../../components/buttons/BtnEyeShow.vue'
@@ -88,10 +90,7 @@ export default {
     }
   },
   methods: {
-    copyInBuffer(e) {
-      const el = e.target.parentNode.parentNode.firstChild
-      navigator.clipboard.writeText(el.value)
-    }
+    copyInBuffer
   }
 }
 </script>
