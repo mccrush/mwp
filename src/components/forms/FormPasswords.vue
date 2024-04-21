@@ -8,7 +8,7 @@
           type="text"
           class="form-control form-control-sm"
           placeholder="Название"
-          v-model="item.title"
+          v-model.trim="item.title"
           @change="$emit('save-item')"
         />
         <BtnTrash
@@ -24,8 +24,8 @@
           type="text"
           class="form-control form-control-sm"
           placeholder="Логин"
-          v-model="item.login"
-          @change="$emit('save-item')"
+          v-model.trim="login"
+          @change="saveItem"
         />
         <BtnCopy class="border" @click="copyInBuffer($event)" />
       </div>
@@ -36,8 +36,8 @@
           autocomplete="new-password"
           class="form-control form-control-sm"
           placeholder="Пароль"
-          v-model="item.password"
-          @change="$emit('save-item')"
+          v-model.trim="password"
+          @change="saveItem"
         />
         <BtnEyeHide
           v-if="passType"
@@ -51,7 +51,7 @@
       <textarea
         rows="1"
         class="form-control mt-1"
-        v-model="item.description"
+        v-model.trim="item.description"
         @change="$emit('save-item')"
       ></textarea>
     </div>
@@ -59,6 +59,7 @@
 </template>
 
 <script>
+import { encryption, decryption } from './../../helpers/encryption'
 import { copyInBuffer } from './../../helpers/copyInBuffer'
 
 import BtnTrash from './../../components/buttons/BtnTrash.vue'
@@ -86,10 +87,17 @@ export default {
   },
   data() {
     return {
+      login: decryption(this.item.login),
+      password: decryption(this.item.password),
       passType: true
     }
   },
   methods: {
+    saveItem() {
+      if (this.login.length) this.item.login = encryption(this.login)
+      if (this.password.length) this.item.password = encryption(this.password)
+      this.$emit('save-item')
+    },
     copyInBuffer
   }
 }

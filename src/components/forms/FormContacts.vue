@@ -24,8 +24,8 @@
           type="text"
           class="form-control form-control-sm"
           placeholder="Телефон"
-          v-model="item.phone"
-          @change="$emit('save-item')"
+          v-model="phone"
+          @change="saveItem"
         />
         <BtnCopy class="border" @click="copyInBuffer($event)" />
       </div>
@@ -35,8 +35,8 @@
           type="text"
           class="form-control form-control-sm"
           placeholder="Email"
-          v-model="item.email"
-          @change="$emit('save-item')"
+          v-model="email"
+          @change="saveItem"
         />
         <BtnCopy class="border" @click="copyInBuffer($event)" />
       </div>
@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import { encryption, decryption } from './../../helpers/encryption'
 import { copyInBuffer } from './../../helpers/copyInBuffer'
 
 import BtnTrash from './../../components/buttons/BtnTrash.vue'
@@ -75,10 +76,17 @@ export default {
   },
   data() {
     return {
+      phone: decryption(this.item.phone),
+      email: decryption(this.item.email),
       passType: true
     }
   },
   methods: {
+    saveItem() {
+      if (this.phone.length) this.item.phone = encryption(this.phone)
+      if (this.email.length) this.item.email = encryption(this.email)
+      this.$emit('save-item')
+    },
     copyInBuffer
   }
 }

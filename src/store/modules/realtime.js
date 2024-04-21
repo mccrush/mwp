@@ -1,5 +1,5 @@
 import fireApp from './../../firebase'
-import { getDatabase, ref, set, onValue, update, remove, query, orderByChild, equalTo, limitToLast } from 'firebase/database'
+import { getDatabase, ref, set, onValue, update, remove, query, orderByChild } from 'firebase/database'
 const db = getDatabase(fireApp)
 
 export default {
