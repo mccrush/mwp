@@ -30,7 +30,7 @@ export default {
     BtnSave,
     BtnTrash
   },
-  emits: ['close-form'],
+  emits: ['close-form', 'set-mod-create'],
   props: {
     item: {
       type: Object
@@ -50,6 +50,7 @@ export default {
     },
     removeItem() {
       if (confirm('Точно удалить?')) {
+        this.$emit('set-mod-create')
         this.$store.dispatch('removeItemRT', {
           item: this.item,
           currentUserId: this.currentUserId

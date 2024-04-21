@@ -1,38 +1,49 @@
 <template>
   <div
-    class="my-vh100 col-12 col-sm-4 col-md-2 border-top border-dark-subtle border-end border-black"
+    class="my-vh100 col-12 col-sm-4 col-md-2 d-flex flex-column border-top border-dark-subtle border-end border-black p-0 pb-2"
   >
-    <div
-      v-for="project in sortProjects"
-      :key="project.id"
-      class="btn-group w-100 mt-2"
-      role="group"
-    >
-      <BtnProjectTitle
-        @click="setCurrentProject(project)"
-        :class="{
-          active: currentProject && project.id === currentProject.id
-        }"
+    <div class="overflow-y-auto p-2">
+      <div
+        v-for="project in sortProjects"
+        :key="project.id"
+        class="btn-group w-100 mt-2"
+        role="group"
       >
-        {{ project.title }}
-      </BtnProjectTitle>
-      <BtnEdit
-        v-if="currentProject && project.id === currentProject.id"
-        @click="mod = 'edit'"
-      />
+        <BtnProjectTitle
+          @click="setCurrentProject(project)"
+          class="text-truncate"
+          :class="{
+            active: currentProject && project.id === currentProject.id
+          }"
+        >
+          {{ project.title }}
+        </BtnProjectTitle>
+        <BtnEdit
+          v-if="currentProject && project.id === currentProject.id"
+          @click="mod = 'edit'"
+        />
+      </div>
     </div>
-    <!-- <hr /> -->
-    <div class="border-bottom border-black mt-3"></div>
-    <div class="border-top border-dark-subtle mb-3"></div>
-    <FormCreateProject v-if="mod === 'create'" />
-    <FormEditProject
-      v-if="currentProject && mod === 'edit'"
-      :item="currentProject"
-      @close-form="mod = 'create'"
-    />
-    <div class="border-bottom border-black mt-3"></div>
-    <div class="border-top border-dark-subtle mb-3"></div>
-    <BtnLogOut @click="logOut" />
+
+    <div>
+      <div class="border-bottom border-black mt-0"></div>
+      <div class="border-top border-dark-subtle mb-3"></div>
+      <div class="ps-2 pe-2">
+        <FormCreateProject v-if="mod === 'create'" />
+        <FormEditProject
+          v-if="currentProject && mod === 'edit'"
+          :item="currentProject"
+          @close-form="mod = 'create'"
+          @set-mod-create="mod = 'create'"
+        />
+      </div>
+
+      <div class="border-bottom border-black mt-3"></div>
+      <div class="border-top border-dark-subtle mb-3"></div>
+      <div class="ps-2 pe-2">
+        <BtnLogOut @click="logOut" />
+      </div>
+    </div>
   </div>
 </template>
 
