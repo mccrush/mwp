@@ -49,7 +49,7 @@
       </div>
       <!-- -->
       <textarea
-        rows="1"
+        rows="2"
         class="form-control mt-1"
         v-model.trim="item.description"
         @change="$emit('save-item')"

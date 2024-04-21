@@ -38,18 +38,13 @@
               class="w-75"
               @click="setFrameName(btn)"
               :class="{
-                'btn-light': btn.frame != frameName,
-                'btn-dark': btn.frame === frameName
+                active: btn.frame === frameName
               }"
             >
               {{ btn.title }}
             </BtnFrameTitle>
             <BtnAdd
               class="d-flex justify-content-center align-items-center w-25"
-              :class="{
-                'btn-light': btn.frame != frameName,
-                'btn-dark': btn.frame === frameName
-              }"
               @click="createItem(btn.type)"
             />
           </div>
