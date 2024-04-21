@@ -6,7 +6,7 @@
       <div v-if="currentProject" class="row p-1">
         <component
           :is="frameName"
-          v-for="(item, index) in projectArray"
+          v-for="(item, index) in projectArraySort"
           :item="item"
           :index="index"
           :key="'id' + index"
@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import { sortMethod } from './../helpers/sortMethod'
+
 import TheMenuBar from './../components/interface/TheMenuBar.vue'
 import FormLinks from './../components/forms/FormLinks.vue'
 import FormPasswords from './../components/forms/FormPasswords.vue'
@@ -52,6 +54,9 @@ export default {
         return this.currentProject[this.frameType]
       }
       return []
+    },
+    projectArraySort() {
+      return sortMethod(this.projectArray, 'asc', 'position')
     }
   },
   methods: {

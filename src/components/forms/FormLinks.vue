@@ -11,8 +11,12 @@
           v-model="item.title"
           @change="$emit('save-item')"
         />
+        <!-- <div class="btn-group ms-1" role="group">
+          <BtnArrUp @click="updatePositionUp" />
+          <BtnArrDown @click="updatePositionDown" />
+        </div> -->
         <BtnTrash
-          class="d-flex align-items-center ms-2"
+          class="d-flex align-items-center ms-1"
           title="Удалить ссылку"
           @click="$emit('remove-item', { type: item.type, index })"
         />
@@ -44,12 +48,16 @@
 <script>
 import { copyInBuffer } from './../../helpers/copyInBuffer'
 
+import BtnArrUp from './../../components/buttons/BtnArrUp.vue'
+import BtnArrDown from './../../components/buttons/BtnArrDown.vue'
 import BtnTrash from './../../components/buttons/BtnTrash.vue'
 import BtnCopy from './../../components/buttons/BtnCopy.vue'
 import BtnLink from './../../components/buttons/BtnLink.vue'
 
 export default {
   components: {
+    BtnArrUp,
+    BtnArrDown,
     BtnTrash,
     BtnCopy,
     BtnLink
@@ -71,6 +79,14 @@ export default {
     }
   },
   methods: {
+    // updatePositionUp() {
+    //   this.item.position--
+    //   this.$emit('save-item')
+    // },
+    // updatePositionDown() {
+    //   this.item.position++
+    //   this.$emit('save-item')
+    // },
     copyInBuffer
   }
 }
