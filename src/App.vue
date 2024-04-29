@@ -11,7 +11,7 @@
 
 <script>
 import TheNavbar from './components/interface/TheNavbar.vue'
-import PageLogin from './pages/PageLogin.vue'
+import PageLogin from './pages/PageLogin2.vue'
 import PageLogo from './pages/PageLogo.vue'
 import PageIndex from './pages/PageIndex.vue'
 
@@ -30,6 +30,7 @@ export default {
       return this.$store.getters.projects
     },
     myComponent() {
+      return 'PageLogin'
       if (this.currentUserId) {
         return 'PageIndex'
       } else {
