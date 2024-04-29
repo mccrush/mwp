@@ -3,7 +3,7 @@ export default {
     currentPage: localStorage.getItem('mw-currentPage') || 'app'
   },
   mutations: {
-    setCurrentPage(state, page) {
+    setCurrentPage(state, { page }) {
       state.currentPage = page
       localStorage.setItem('mw-currentPage', page)
     },

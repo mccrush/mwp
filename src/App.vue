@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="my-container-992 container-xl shadow pl-0">
+    <div class="my-container-992 container-xl shadow text-body-secondary pl-0">
       <TheNavbar />
       <transition name="fade" mode="out-in">
         <component :is="myComponent" />
@@ -14,14 +14,13 @@ import TheNavbar from './components/interface/TheNavbar.vue'
 import PageLogin from './pages/PageLogin.vue'
 //import PageLogo from './pages/PageLogo.vue'
 import PageIndex from './pages/PageIndex.vue'
-import PageSettings from './pages/PageSettings.vue'
+//import PageSettings from './pages/PageSettings.vue'
 
 export default {
   components: {
     TheNavbar,
     PageLogin,
-    PageIndex,
-    PageSettings
+    PageIndex
   },
   computed: {
     currentUserId() {
@@ -35,10 +34,8 @@ export default {
     },
     myComponent() {
       //return 'PageLogin'
-      if (this.currentUserId && this.currentPage === 'app') {
+      if (this.currentUserId) {
         return 'PageIndex'
-      } else if (this.currentUserId && this.currentPage === 'settings') {
-        return 'PageSettings'
       } else {
         return 'PageLogin'
       }

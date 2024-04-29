@@ -25,13 +25,15 @@ import TheMenuBar from './../components/interface/TheMenuBar.vue'
 import FormLinks from './../components/forms/FormLinks.vue'
 import FormPasswords from './../components/forms/FormPasswords.vue'
 import FormContacts from './../components/forms/FormContacts.vue'
+import FormSettings from './../components/forms/FormSettings.vue'
 
 export default {
   components: {
     TheMenuBar,
     FormLinks,
     FormPasswords,
-    FormContacts
+    FormContacts,
+    FormSettings
   },
   data() {
     return {}

@@ -41,6 +41,9 @@
       <div class="border-bottom border-black mt-3"></div>
       <div class="border-top border-dark-subtle mb-3"></div>
       <div class="ps-2 pe-2">
+        <BtnSettings />
+      </div>
+      <div class="mt-2 ps-2 pe-2">
         <BtnLogOut @click="logOut" />
       </div>
     </div>
@@ -56,6 +59,7 @@ import BtnProjectTitle from './../buttons/BtnProjectTitle.vue'
 
 import BtnEdit from './../buttons/BtnEdit.vue'
 import BtnLogOut from './../buttons/BtnLogOut.vue'
+import BtnSettings from './../buttons/BtnSettings.vue'
 
 export default {
   components: {
@@ -63,7 +67,8 @@ export default {
     FormEditProject,
     BtnProjectTitle,
     BtnEdit,
-    BtnLogOut
+    BtnLogOut,
+    BtnSettings
   },
   data() {
     return {
@@ -86,9 +91,17 @@ export default {
       this.$store.commit('setCurrentProject', { currentProject })
     },
 
-    async logOut() {
-      await this.$store.dispatch('logOut')
+    logOut() {
+      this.$store.dispatch('logOut')
     }
+
+    // setPage(page) {
+    //   this.$store.commit('setCurrentPage', { page })
+    // }
+
+    // setFrameName(btn) {
+    //   this.$store.commit('setFrameName', 'settings')
+    // }
   }
 }
 </script>
