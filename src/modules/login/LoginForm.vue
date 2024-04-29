@@ -130,6 +130,11 @@ export default {
     },
     logIn() {
       if (this.email && this.password) {
+        const loginData = {
+          email: this.email,
+          password: this.password
+        }
+        this.$store.dispatch('logIn', loginData)
       } else if (!this.email) {
         this.error = { type: 'email', text: 'Введите Email' }
       } else if (!this.password) {
@@ -143,7 +148,12 @@ export default {
           this.password.match(this.regexpPassword)
         ) {
           this.error = null
-          console.log('Хороший пароль')
+
+          const loginData = {
+            email: this.email,
+            password: this.password
+          }
+          this.$store.dispatch('registerUser', loginData)
         } else {
           this.error = {
             type: 'password',
@@ -158,6 +168,7 @@ export default {
     },
     restorePassword() {
       if (this.email) {
+        this.$store.dispatch('resetPass', { email: this.email })
       } else {
         this.error = { type: 'email', text: 'Введите Email' }
       }
