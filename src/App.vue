@@ -12,27 +12,33 @@
 <script>
 import TheNavbar from './components/interface/TheNavbar.vue'
 import PageLogin from './pages/PageLogin.vue'
-import PageLogo from './pages/PageLogo.vue'
+//import PageLogo from './pages/PageLogo.vue'
 import PageIndex from './pages/PageIndex.vue'
+import PageSettings from './pages/PageSettings.vue'
 
 export default {
   components: {
     TheNavbar,
     PageLogin,
-    PageLogo,
-    PageIndex
+    PageIndex,
+    PageSettings
   },
   computed: {
     currentUserId() {
       return this.$store.getters.currentUserId
+    },
+    currentPage() {
+      return this.$store.getters.currentPage
     },
     projects() {
       return this.$store.getters.projects
     },
     myComponent() {
       //return 'PageLogin'
-      if (this.currentUserId) {
+      if (this.currentUserId && this.currentPage === 'app') {
         return 'PageIndex'
+      } else if (this.currentUserId && this.currentPage === 'settings') {
+        return 'PageSettings'
       } else {
         return 'PageLogin'
       }

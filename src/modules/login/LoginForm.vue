@@ -153,7 +153,8 @@ export default {
             email: this.email,
             password: this.password
           }
-          this.$store.dispatch('registerUser', loginData)
+          const newUser = this.$store.dispatch('registerUser', loginData)
+          console.log('newUser=', newUser)
         } else {
           this.error = {
             type: 'password',

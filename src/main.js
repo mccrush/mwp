@@ -15,6 +15,7 @@ onAuthStateChanged(auth, (user) => {
   }
   if (user) {
     console.log('main.js : Пользователь авторизован')
+    store.commit('setCurrentUser', user)
     store.commit('setCurrentUserId', user.uid)
     store.commit('setCurrentUserEmail', user.email)
     store.dispatch('getItemsRT', { type: 'projects', currentUserId: user.uid })
