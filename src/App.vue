@@ -5,22 +5,26 @@
       <transition name="fade" mode="out-in">
         <component :is="myComponent" />
       </transition>
+      <ModalMain id="modalMain" data-bs-title="User" />
     </div>
   </div>
 </template>
 
 <script>
+import { Modal } from 'bootstrap'
 import TheNavbar from './components/interface/TheNavbar.vue'
 import PageLogin from './pages/PageLogin.vue'
 //import PageLogo from './pages/PageLogo.vue'
 import PageIndex from './pages/PageIndex.vue'
 //import PageSettings from './pages/PageSettings.vue'
+import ModalMain from './components/modals/ModalMain.vue'
 
 export default {
   components: {
     TheNavbar,
     PageLogin,
-    PageIndex
+    PageIndex,
+    ModalMain
   },
   computed: {
     currentUserId() {

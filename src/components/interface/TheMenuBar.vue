@@ -44,15 +44,24 @@
         <BtnSettings />
       </div> -->
       <div class="ps-2 pe-2">
-        <BtnUserSettings class="text-truncate" title="Настройки аккаунта">
+        <BtnUserSettings
+          class="text-truncate"
+          title="Настройки аккаунта"
+          data-bs-toggle="modal"
+          data-bs-target="#modalMain"
+        >
           {{ userName }}
         </BtnUserSettings>
       </div>
       <div class="mt-2 ps-2 pe-2">
-        <BtnLogOut @click="logOut" title="Выйти из приложения" />
+        <BtnLogOut @click="logOut" />
       </div>
       <div class="mt-2 ps-2 pe-2">
-        <BtnPremium title="Оформить Premium подписку" />
+        <BtnPremium
+          title="Оформить Premium подписку"
+          data-bs-toggle="modal"
+          data-bs-target="#modalMain"
+        />
       </div>
     </div>
   </div>
