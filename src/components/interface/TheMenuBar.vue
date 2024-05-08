@@ -40,11 +40,19 @@
 
       <div class="border-bottom border-black mt-3"></div>
       <div class="border-top border-dark-subtle mb-3"></div>
-      <div class="ps-2 pe-2">
+      <!-- <div class="ps-2 pe-2">
         <BtnSettings />
+      </div> -->
+      <div class="ps-2 pe-2">
+        <BtnUserSettings class="text-truncate" title="Настройки аккаунта">
+          {{ userName }}
+        </BtnUserSettings>
       </div>
       <div class="mt-2 ps-2 pe-2">
-        <BtnLogOut @click="logOut" />
+        <BtnLogOut @click="logOut" title="Выйти из приложения" />
+      </div>
+      <div class="mt-2 ps-2 pe-2">
+        <BtnPremium title="Оформить Premium подписку" />
       </div>
     </div>
   </div>
@@ -59,7 +67,8 @@ import BtnProjectTitle from './../buttons/BtnProjectTitle.vue'
 
 import BtnEdit from './../buttons/BtnEdit.vue'
 import BtnLogOut from './../buttons/BtnLogOut.vue'
-import BtnSettings from './../buttons/BtnSettings.vue'
+import BtnUserSettings from './../buttons/BtnUserSettings.vue'
+import BtnPremium from './../buttons/BtnPremium.vue'
 
 export default {
   components: {
@@ -68,7 +77,8 @@ export default {
     BtnProjectTitle,
     BtnEdit,
     BtnLogOut,
-    BtnSettings
+    BtnUserSettings,
+    BtnPremium
   },
   data() {
     return {
@@ -76,6 +86,12 @@ export default {
     }
   },
   computed: {
+    currentUser() {
+      return this.$store.getters.currentUser
+    },
+    userName() {
+      return this.currentUser.email.split('@')[0]
+    },
     projects() {
       return this.$store.getters.projects
     },
