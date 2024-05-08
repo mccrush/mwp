@@ -58,12 +58,15 @@
         <BtnLogOut @click="logOut" />
       </div>
       <div class="mt-2 ps-2 pe-2">
-        <BtnPremium
-          title="Оформить Premium подписку"
-          data-bs-toggle="modal"
-          data-bs-target="#modalMain"
-          @click="$store.commit('setModalType', 'ModalPremium')"
-        />
+        <transition name="fade" mode="out-in">
+          <BtnPremium
+            v-if="userApp && userApp.premium === false"
+            title="Оформить Premium подписку"
+            data-bs-toggle="modal"
+            data-bs-target="#modalMain"
+            @click="$store.commit('setModalType', 'ModalPremium')"
+          />
+        </transition>
       </div>
     </div>
   </div>
@@ -102,6 +105,9 @@ export default {
     },
     userName() {
       return this.currentUser.email.split('@')[0]
+    },
+    userApp() {
+      return this.$store.getters.userApp
     },
     projects() {
       return this.$store.getters.projects

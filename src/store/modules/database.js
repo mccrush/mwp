@@ -35,7 +35,7 @@ export default {
       try {
         const docSnap = await getDoc(doc(db, type, currentUserId))
         if (docSnap.exists()) {
-          console.log("Document data:", docSnap.data());
+          //console.log("Document data:", docSnap.data());
           commit('setUserApp', docSnap.data())
         } else {
           console.log("database.js getItem() No such document!");
