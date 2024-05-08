@@ -8,7 +8,8 @@
           src="/img/logo.png"
           width="30"
           height="30"
-          class="d-inline-block align-top mt-1"
+          class="logo-image d-inline-block align-top mt-1"
+          :class="{ rotate: loadingRT || loading }"
           alt="Logo MWP"
           title="Manager of Web Projects"
         />
@@ -21,9 +22,9 @@
           ></span
         >
       </div>
-      <div class="pt-2">
+      <!-- <div class="pt-2">
         <Loading v-if="loading" />
-      </div>
+      </div> -->
     </div>
 
     <div class="col-12 col-sm-8 col-md-10">
@@ -59,13 +60,12 @@ import { version } from './../../../package.json'
 import { modelsFactory } from './../../helpers/modelsFactory'
 import buttons from './../../data/buttons'
 
-import Loading from './../Loading.vue'
+//import Loading from './../Loading.vue'
 import BtnFrameTitle from './../buttons/BtnFrameTitle.vue'
 import BtnAdd from './../buttons/BtnAdd.vue'
 
 export default {
   components: {
-    Loading,
     BtnFrameTitle,
     BtnAdd
   },
@@ -88,6 +88,9 @@ export default {
     },
     loading() {
       return this.$store.getters.loading
+    },
+    loadingRT() {
+      return this.$store.getters.loadingRT
     }
   },
   methods: {
@@ -111,3 +114,18 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.rotate {
+  animation: rotation 2s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+</style>

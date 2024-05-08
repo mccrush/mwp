@@ -5,7 +5,7 @@
       <transition name="fade" mode="out-in">
         <component :is="myComponent" />
       </transition>
-      <ModalMain id="modalMain" data-bs-title="User" />
+      <ModalMain id="modalMain" />
     </div>
   </div>
 </template>

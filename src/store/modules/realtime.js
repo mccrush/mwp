@@ -22,35 +22,36 @@ export default {
   },
   actions: {
     async removeItemRT({ commit, dispatch }, { item, currentUserId }) {
+      commit('updateLoadingStatusRT', true)
       try {
-        commit('updateLoadingStatusRT', true)
         await remove(ref(db, currentUserId + '/' + item.type + '/' + item.id))
         commit('setCurrentProject', { currentProject: null })
         dispatch('getItemsRT', { type: item.type, currentUserId })
-        commit('updateLoadingStatusRT', false)
       } catch (error) {
         console.error('error realtime.js removeItemRT()', error)
+      } finally {
+        commit('updateLoadingStatusRT', false)
       }
     },
 
     async updateItemRT({ commit }, { item, currentUserId }) {
+      commit('updateLoadingStatusRT', true)
       try {
-        commit('updateLoadingStatusRT', true)
         await update(ref(db, currentUserId + '/' + item.type + '/' + item.id), item)
         commit('setCurrentProject', { currentProject: item })
         console.log('updateItemRT() item.id', item.id)
-        commit('updateLoadingStatusRT', false)
       } catch (error) {
         console.error('error realtime.js updateItemRT()', error)
+      } finally {
+        commit('updateLoadingStatusRT', false)
       }
     },
 
     // Получение Универсальное
     getItemsRT({ commit }, { type, currentUserId }) {
+      commit('updateLoadingStatusRT', true)
       try {
-        commit('updateLoadingStatusRT', true)
         let itemsRef
-
         itemsRef = query(ref(db, currentUserId + '/' + type), orderByChild('dateCreate'))
 
         onValue(itemsRef, (snapshot) => {
@@ -61,22 +62,24 @@ export default {
             tempArray.push(data[item])
           }
           commit('setItemsRT', { type, items: tempArray })
-          commit('updateLoadingStatusRT', false)
         })
       } catch (error) {
         console.error('error getItemsRT()', error)
+      } finally {
+        commit('updateLoadingStatusRT', false)
       }
     },
 
     async addItemRT({ commit }, { item, currentUserId }) {
+      commit('updateLoadingStatusRT', true)
       try {
-        commit('updateLoadingStatusRT', true)
         await set(ref(db, currentUserId + '/' + item.type + '/' + item.id), item)
         commit('setCurrentProject', { currentProject: item })
         console.log('addItemRT() add item.id', item.id)
-        commit('updateLoadingStatusRT', false)
       } catch (error) {
         console.error('error realtime.js addItemRT()', error)
+      } finally {
+        commit('updateLoadingStatusRT', false)
       }
     }
   },

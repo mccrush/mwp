@@ -49,6 +49,7 @@
           title="Настройки аккаунта"
           data-bs-toggle="modal"
           data-bs-target="#modalMain"
+          @click="$store.commit('setModalType', 'ModalUser')"
         >
           {{ userName }}
         </BtnUserSettings>
@@ -61,6 +62,7 @@
           title="Оформить Premium подписку"
           data-bs-toggle="modal"
           data-bs-target="#modalMain"
+          @click="$store.commit('setModalType', 'ModalPremium')"
         />
       </div>
     </div>
