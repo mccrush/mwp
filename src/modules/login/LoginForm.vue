@@ -89,6 +89,8 @@
 </template>
 
 <script>
+import { factoryUserApp } from './helpers/factoryUserApp'
+
 import BtnEyeHide from './buttons/BtnEyeHide.vue'
 import BtnEyeShow from './buttons/BtnEyeShow.vue'
 import BtnLogin from './buttons/BtnLogin.vue'
@@ -112,6 +114,11 @@ export default {
       error: null,
       regexpEmail: '^\\S+@\\S+\\.\\S+$',
       regexpPassword: '^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$'
+    }
+  },
+  computed: {
+    currentUser() {
+      return this.$store.getters.currentUser
     }
   },
   methods: {
@@ -141,10 +148,10 @@ export default {
         this.error = { type: 'password', text: 'Введите пароль' }
       }
     },
-    createAccaunt() {
+    async createAccaunt() {
       if (this.email && this.password) {
         if (
-          this.password.length > 8 &&
+          this.password.length >= 8 &&
           this.password.match(this.regexpPassword)
         ) {
           this.error = null
@@ -153,8 +160,10 @@ export default {
             email: this.email,
             password: this.password
           }
-          const newUser = this.$store.dispatch('registerUser', loginData)
-          console.log('newUser=', newUser)
+
+          await this.$store.dispatch('registerUser', loginData)
+          const newUser = factoryUserApp(this.currentUser.uid)
+          this.$store.dispatch('addItem', { item: newUser })
         } else {
           this.error = {
             type: 'password',

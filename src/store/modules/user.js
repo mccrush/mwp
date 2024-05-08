@@ -8,8 +8,7 @@ export default {
   state: {
     currentUser: null,
     currentUserId: '',
-    currentUserEmail: '',
-    countLogoClick: 0
+    currentUserEmail: ''
   },
   mutations: {
     setCurrentUser(state, value) {
@@ -20,10 +19,7 @@ export default {
     },
     setCurrentUserEmail(state, value) {
       state.currentUserEmail = value
-    },
-    setCountLogoClick(state) {
-      state.countLogoClick++
-    },
+    }
   },
   actions: {
     async logIn({ commit }, { email, password }) {
@@ -68,8 +64,7 @@ export default {
   getters: {
     currentUser: state => state.currentUser,
     currentUserId: state => state.currentUserId,
-    currentUserEmail: state => state.currentUserEmail,
-    countLogoClick: state => state.countLogoClick
+    currentUserEmail: state => state.currentUserEmail
   }
 
 }

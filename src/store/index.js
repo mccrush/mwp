@@ -4,6 +4,7 @@ import admin from './modules/admin'
 import user from './modules/user'
 import message from './modules/message'
 import realtime from './modules/realtime'
+import database from './modules/database'
 
 export default createStore({
   modules: {
@@ -11,6 +12,7 @@ export default createStore({
     admin,
     user,
     message,
-    realtime
+    realtime,
+    database
   }
 })
