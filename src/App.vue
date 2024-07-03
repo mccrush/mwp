@@ -70,24 +70,6 @@ export default {
   max-width: 992px;
 }
 
-.btn:focus,
-.btn-close:focus,
-.btn-check:focus + .btn-outline-dark,
-.form-control:focus,
-.form-select:focus,
-.form-select:active,
-.accordion-button:focus,
-.navbar-toggler:focus {
-  outline: 0 !important;
-  /* border-color: #6c757d !important; */
-  box-shadow: none !important;
-}
-
-.form-control {
-  border-color: #495057;
-  /* border-color: rgba(0, 0, 0, 0) !important; */
-}
-
 textarea {
   font-size: 0.875rem !important;
 }
