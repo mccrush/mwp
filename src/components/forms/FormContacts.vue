@@ -8,7 +8,7 @@
           type="text"
           class="form-control form-control-sm"
           placeholder="Имя"
-          v-model="item.title"
+          v-model.trim="item.title"
           @change="$emit('save-item')"
         />
         <BtnTrash
@@ -24,7 +24,7 @@
           type="text"
           class="form-control form-control-sm"
           placeholder="Телефон"
-          v-model="phone"
+          v-model.trim="phone"
           @change="saveItem"
         />
         <BtnCopy class="border" @click="copyInBuffer($event)" />
@@ -35,7 +35,7 @@
           type="text"
           class="form-control form-control-sm"
           placeholder="Email"
-          v-model="email"
+          v-model.trim="email"
           @change="saveItem"
         />
         <BtnCopy class="border" @click="copyInBuffer($event)" />
