@@ -19,7 +19,7 @@
       </div>
 
       <!-- -->
-      <div class="input-group mt-1">
+      <!-- <div class="input-group mt-1">
         <input
           type="text"
           class="form-control form-control-sm"
@@ -35,14 +35,14 @@
           target="_blank"
           title="Открыть ссылку"
         />
-      </div>
+      </div> -->
       <!-- -->
       <div class="input-group mt-1">
         <input
           type="text"
           class="form-control form-control-sm"
           placeholder="Логин"
-          v-model.trim="login"
+          v-model="login"
           @change="saveItem"
         />
         <BtnCopy class="border" @click="copyInBuffer($event)" />
@@ -54,7 +54,7 @@
           autocomplete="new-password"
           class="form-control form-control-sm"
           placeholder="Пароль"
-          v-model.trim="password"
+          v-model="password"
           @change="saveItem"
         />
         <BtnEyeHide
@@ -108,7 +108,9 @@ export default {
   data() {
     return {
       login: decryption(this.item.login),
+      //login: this.item.login,
       password: decryption(this.item.password),
+      //password: this.item.password,
       passType: true
     }
   },
@@ -120,5 +122,11 @@ export default {
     },
     copyInBuffer
   }
+  // watch: {
+  //   item(n) {
+  //     this.login = decryption(n.login)
+  //     this.password = decryption(n.password)
+  //   }
+  // }
 }
 </script>

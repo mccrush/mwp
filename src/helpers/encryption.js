@@ -1,5 +1,18 @@
 import CryptoJS from 'crypto-js'
-import { apiKey as secret } from './../../apiKey'
+import { secret } from './../../apiKey'
+
+console.log('decryption secret = ', secret);
 
 export const encryption = (string) => CryptoJS.AES.encrypt(string, secret).toString()
-export const decryption = (string) => CryptoJS.AES.decrypt(string, secret).toString(CryptoJS.enc.Utf8)
+
+
+
+
+export const decryption = (string) => {
+  console.log('decryption string = ', string);
+  const decSTR = CryptoJS.AES.decrypt(string, secret)
+  console.log('decryption decSTR = ', decSTR);
+
+  const decSTRtoString = decSTR.toString(CryptoJS.enc.Utf8)
+  console.log('decryption decSTRtoString = ', decSTRtoString);
+}
