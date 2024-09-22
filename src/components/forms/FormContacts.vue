@@ -41,12 +41,12 @@
         <BtnCopy class="border" @click="copyInBuffer($event)" />
       </div>
       <!-- -->
-      <textarea
+      <!-- <textarea
         rows="2"
         class="form-control mt-1"
         v-model="item.description"
         @change="$emit('save-item')"
-      ></textarea>
+      ></textarea> -->
     </div>
   </div>
 </template>
