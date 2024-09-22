@@ -8,7 +8,7 @@
           type="text"
           class="form-control form-control-sm"
           placeholder="Название"
-          v-model="item.title"
+          v-model.trim="item.title"
           @change="$emit('save-item')"
         />
         <!-- <div class="btn-group ms-1" role="group">
@@ -28,7 +28,7 @@
           type="text"
           class="form-control form-control-sm"
           placeholder="Ссылка"
-          v-model="item.link"
+          v-model.trim="item.link"
           @change="$emit('save-item')"
         />
         <BtnCopy class="border" @click="copyInBuffer($event)" />

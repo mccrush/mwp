@@ -23,6 +23,24 @@
         <input
           type="text"
           class="form-control form-control-sm"
+          placeholder="Ссылка"
+          v-model.trim="item.link"
+          @change="$emit('save-item')"
+        />
+        <BtnCopy class="border" @click="copyInBuffer($event)" />
+        <BtnLink
+          class="border"
+          :class="{ disabled: !item.link }"
+          :href="item.link"
+          target="_blank"
+          title="Открыть ссылку"
+        />
+      </div>
+      <!-- -->
+      <div class="input-group mt-1">
+        <input
+          type="text"
+          class="form-control form-control-sm"
           placeholder="Логин"
           v-model.trim="login"
           @change="saveItem"
@@ -66,13 +84,15 @@ import BtnTrash from './../../components/buttons/BtnTrash.vue'
 import BtnEyeHide from './../../components/buttons/BtnEyeHide.vue'
 import BtnEyeShow from './../../components/buttons/BtnEyeShow.vue'
 import BtnCopy from './../../components/buttons/BtnCopy.vue'
+import BtnLink from './../../components/buttons/BtnLink.vue'
 
 export default {
   components: {
     BtnTrash,
     BtnEyeHide,
     BtnEyeShow,
-    BtnCopy
+    BtnCopy,
+    BtnLink
   },
   emits: ['save-item', 'remove-item'],
   props: {
