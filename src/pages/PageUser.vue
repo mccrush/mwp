@@ -1,6 +1,5 @@
 <template>
-  <div class="p-2">
-    <h4>Настройки аккаунта</h4>
+  <div>
     <UserMain />
   </div>
 </template>
@@ -9,6 +8,8 @@
 import UserMain from './../modules/user/UserMain.vue'
 
 export default {
-  components: { UserMain }
+  components: {
+    UserMain
+  }
 }
 </script>

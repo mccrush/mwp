@@ -1,6 +1,7 @@
 <template>
   <div class="p-2">
     <!-- <div>Отображаемое имя: {{ currentUser.providerData[0].displayName }}</div> -->
+    <h4>Настройки аккаунта</h4>
     <div>Email: {{ currentUser.providerData[0].email }}</div>
     <div>
       <button

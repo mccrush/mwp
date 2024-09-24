@@ -91,9 +91,9 @@
 <script>
 import { factoryUserApp } from './helpers/factoryUserApp'
 
-import BtnEyeHide from './buttons/BtnEyeHide.vue'
-import BtnEyeShow from './buttons/BtnEyeShow.vue'
-import BtnLogin from './buttons/BtnLogin.vue'
+import BtnEyeHide from './components/buttons/BtnEyeHide.vue'
+import BtnEyeShow from './components/buttons/BtnEyeShow.vue'
+import BtnLogin from './components/buttons/BtnLogin.vue'
 
 export default {
   components: { BtnEyeHide, BtnEyeShow, BtnLogin },
