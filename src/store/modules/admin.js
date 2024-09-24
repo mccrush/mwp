@@ -1,5 +1,6 @@
 export default {
   state: {
+    viewPage: localStorage.getItem('mw-viewPage') || 'PageProjects',
     frameName: localStorage.getItem('mw-frameName') || 'FormLinks',
     frameType: localStorage.getItem('mw-frameType') || 'links',
     modalType: 'ModalUser'
@@ -19,6 +20,7 @@ export default {
   },
 
   getters: {
+    viewPage: state => state.viewPage,
     frameName: state => state.frameName,
     frameType: state => state.frameType,
     modalType: state => state.modalType

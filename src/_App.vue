@@ -5,33 +5,44 @@
       <transition name="fade" mode="out-in">
         <component :is="myComponent" />
       </transition>
+      <ModalMain id="modalMain" />
     </div>
   </div>
 </template>
 
 <script>
-import { router } from './router'
+import { Modal } from 'bootstrap'
 import TheNavbar from './components/interface/TheNavbar.vue'
-
 import PageLogin from './pages/PageLogin.vue'
-import PageUser from './pages/PageUser.vue'
-import PagePrice from './pages/PagePrice.vue'
-import PageProjects from './pages/PageProjects.vue'
+//import PageLogo from './pages/PageLogo.vue'
+import PageIndex from './pages/PageIndex.vue'
+//import PageSettings from './pages/PageSettings.vue'
+import ModalMain from './components/modals/ModalMain.vue'
 
 export default {
   components: {
     TheNavbar,
     PageLogin,
-    PageUser,
-    PagePrice,
-    PageProjects
+    PageIndex,
+    ModalMain
   },
   computed: {
-    viewPage() {
-      return this.$store.getters.viewPage
+    currentUserId() {
+      return this.$store.getters.currentUserId
+    },
+    currentPage() {
+      return this.$store.getters.currentPage
+    },
+    projects() {
+      return this.$store.getters.projects
     },
     myComponent() {
-      return router(this.viewPage)
+      //return 'PageLogin'
+      if (this.currentUserId) {
+        return 'PageIndex'
+      } else {
+        return 'PageLogin'
+      }
     }
   }
 }
