@@ -1,22 +1,22 @@
 export const dataPages = [
   {
     title: 'Логин',
-    name: 'PageLogin',
-    viewPage: 'login'
+    viewPage: 'PageLogin',
+    name: 'login'
   },
   {
     title: 'Пользователь',
-    name: 'PageUser',
-    viewPage: 'user'
+    viewPage: 'PageUser',
+    name: 'user'
   },
   {
     title: 'Премиум',
-    name: 'PagePrice',
-    viewPage: 'price'
+    viewPage: 'PagePrice',
+    name: 'price'
   },
   {
     title: 'Проекты',
-    name: 'PageProjects',
-    viewPage: 'projects'
+    viewPage: 'PageProjects',
+    name: 'projects'
   },
 ]

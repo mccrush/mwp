@@ -3,7 +3,7 @@ export default {
     viewPage: localStorage.getItem('mw-viewPage') || 'PageProjects',
   },
   mutations: {
-    setViewPage(state, { viewPage }) {
+    setViewPage(state, viewPage) {
       state.viewPage = viewPage
       localStorage.setItem('mw-viewPage', viewPage)
     },

@@ -76,8 +76,10 @@ export default {
   },
   data() {
     return {
-      phone: decryption(this.item.phone),
-      email: decryption(this.item.email),
+      phone: this.item.phone,
+      //phone: decryption(this.item.phone),
+      email: this.item.email,
+      //email: decryption(this.item.email),
       passType: true
     }
   },

@@ -107,10 +107,10 @@ export default {
   },
   data() {
     return {
-      login: decryption(this.item.login),
-      //login: this.item.login,
-      password: decryption(this.item.password),
-      //password: this.item.password,
+      //login: decryption(this.item.login),
+      login: this.item.login,
+      //password: decryption(this.item.password),
+      password: this.item.password,
       passType: true
     }
   },
