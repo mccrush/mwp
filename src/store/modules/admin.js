@@ -1,9 +1,7 @@
 export default {
   state: {
-    viewPage: localStorage.getItem('mw-viewPage') || 'PageProjects',
     frameName: localStorage.getItem('mw-frameName') || 'FormLinks',
-    frameType: localStorage.getItem('mw-frameType') || 'links',
-    modalType: 'ModalUser'
+    frameType: localStorage.getItem('mw-frameType') || 'links'
   },
   mutations: {
     setFrameName(state, name) {
@@ -13,16 +11,11 @@ export default {
     setFrameType(state, type) {
       state.frameType = type
       localStorage.setItem('mw-frameType', type)
-    },
-    setModalType(state, type) {
-      state.modalType = type
-    },
+    }
   },
 
   getters: {
-    viewPage: state => state.viewPage,
     frameName: state => state.frameName,
-    frameType: state => state.frameType,
-    modalType: state => state.modalType
+    frameType: state => state.frameType
   }
 }

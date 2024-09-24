@@ -1,15 +1,15 @@
 export default {
   state: {
-    currentPage: localStorage.getItem('mw-currentPage') || 'app'
+    viewPage: localStorage.getItem('mw-viewPage') || 'PageProjects',
   },
   mutations: {
-    setCurrentPage(state, { page }) {
-      state.currentPage = page
-      localStorage.setItem('mw-currentPage', page)
+    setViewPage(state, { viewPage }) {
+      state.viewPage = viewPage
+      localStorage.setItem('mw-viewPage', viewPage)
     },
   },
 
   getters: {
-    currentPage: state => state.currentPage
+    viewPage: state => state.viewPage
   }
 }
