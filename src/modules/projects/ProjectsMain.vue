@@ -1,9 +1,8 @@
 <template>
   <div>
     <div class="row">
-      <div class="col-2">
-        <ProjectsList />
-      </div>
+      <ProjectsList />
+
       <div class="col-10 border-top border-dark-subtle">
         <ProjectsTabButtons />
         <transition name="fade" mode="out-in">

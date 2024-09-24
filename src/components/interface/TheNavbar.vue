@@ -25,6 +25,7 @@
     </div>
 
     <div
+      v-if="userApp"
       class="col-12 col-sm-8 col-md-10 d-flex justify-content-end align-items-center"
     >
       <BtnPageProjects
@@ -63,14 +64,12 @@ import { modelsFactory } from './../../helpers/modelsFactory'
 
 import BtnPageProjects from './../buttons/BtnPageProjects.vue'
 import BtnPagePremium from './../buttons/BtnPagePremium.vue'
-import BtnPagePremiumActive from './../buttons/BtnPagePremiumActive.vue'
 import BtnPageUser from './../buttons/BtnPageUser.vue'
 
 export default {
   components: {
     BtnPageProjects,
     BtnPagePremium,
-    BtnPagePremiumActive,
     BtnPageUser
   },
   data() {

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { modelsFactory } from './../../helpers/modelsFactory'
+import { modelsFactory } from './../../../../helpers/modelsFactory'
 
 import BtnAddProject from './../buttons/BtnAddProject.vue'
 

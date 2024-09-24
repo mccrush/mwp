@@ -22,8 +22,8 @@
 </template>
 
 <script>
-import BtnSave from './../buttons/BtnSave.vue'
-import BtnTrash from './../buttons/BtnTrash.vue'
+import BtnSave from './../../../../components/buttons/BtnSave.vue'
+import BtnTrash from './../../../../components/buttons/BtnTrash.vue'
 
 export default {
   components: {
