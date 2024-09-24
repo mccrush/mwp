@@ -1,3 +1,44 @@
 <template>
-  <div>ProjectsMain.vue</div>
+  <div>
+    <div class="row">
+      <div class="col-2">
+        <ProjectsList />
+      </div>
+      <div class="col-10 border-top border-dark-subtle">
+        <ProjectsTabButtons />
+        <transition name="fade" mode="out-in">
+          <component :is="tabComponent" />
+        </transition>
+      </div>
+    </div>
+  </div>
 </template>
+
+<script>
+import { dataTabs } from './data/dataTabs'
+
+import ProjectsList from './components/interface/ProjectsList.vue'
+import ProjectsTabButtons from './components/interface/ProjectsTabButtons.vue'
+
+import TabLinks from './components/tabs/TabLinks.vue'
+import TabPasswords from './components/tabs/TabPasswords.vue'
+import TabContacts from './components/tabs/TabContacts.vue'
+
+export default {
+  components: {
+    ProjectsList,
+    ProjectsTabButtons,
+    TabLinks,
+    TabPasswords,
+    TabContacts
+  },
+  computed: {
+    viewTab() {
+      return this.$store.getters.viewTab
+    },
+    tabComponent() {
+      return dataTabs.find(item => item.viewTab === this.viewTab).viewTab
+    }
+  }
+}
+</script>

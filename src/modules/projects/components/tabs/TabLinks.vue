@@ -1,3 +1,3 @@
 <template>
-  <div>TabLinks</div>
+  <div class="border p-2">TabLinks</div>
 </template>

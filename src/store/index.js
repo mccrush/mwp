@@ -5,6 +5,7 @@ import user from './modules/user'
 import message from './modules/message'
 import realtime from './modules/realtime'
 import database from './modules/database'
+import projects from './modules/projects'
 
 export default createStore({
   modules: {
@@ -13,6 +14,7 @@ export default createStore({
     user,
     message,
     realtime,
-    database
+    database,
+    projects
   }
 })

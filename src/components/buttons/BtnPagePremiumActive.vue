@@ -1,7 +1,5 @@
 <template>
-  <button
-    class="btn btn-sm btn-outline-primary d-flex align-items-center justify-content-center w-100"
-  >
+  <button class="btn btn-sm d-flex align-items-center">
     <span class="me-1">Premium</span>
     <svg
       xmlns="http://www.w3.org/2000/svg"

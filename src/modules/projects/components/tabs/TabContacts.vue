@@ -1,3 +1,3 @@
 <template>
-  <div>TabContacts.vue</div>
+  <div class="border p-2">TabContacts.vue</div>
 </template>
