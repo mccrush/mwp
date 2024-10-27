@@ -108,8 +108,8 @@ export default {
         }
       },
       mod: 'login',
-      email: '',
-      password: '',
+      email: 'mccrush2027@gmail.com',
+      password: 'm[pass]29081988',
       passType: true,
       error: null,
       regexpEmail: '^\\S+@\\S+\\.\\S+$',
