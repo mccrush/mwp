@@ -8,6 +8,9 @@
         <transition name="fade" mode="out-in">
           <component :is="tabComponent" />
         </transition>
+        <div class="border code p-3">
+          <pre>{{ userData }}</pre>
+        </div>
       </div>
     </div>
   </div>
@@ -32,6 +35,9 @@ export default {
     TabContacts
   },
   computed: {
+    userData() {
+      return this.$store.getters.userData
+    },
     viewTab() {
       return this.$store.getters.viewTab
     },

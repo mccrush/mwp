@@ -2,13 +2,13 @@ import { supabase } from './../../supabase/supabaseClient'
 
 export default {
   state: {
-    users: [],
-    userData: null
+    userData: null,
+    projects: []
   },
 
   mutations: {
     setUserData(state, { data }) {
-      state.setUserData = data
+      state.userData = data
     },
     setItems(state, { type, items }) {
       state[type] = items
@@ -63,7 +63,8 @@ export default {
         const { data, error } = await supabase.from(type).select().eq('id', userId)
         if (error) throw error
         if (data) {
-          commit('setUserData', { data: data })
+          console.log('database.js getItem() data[0] =', data[0])
+          commit('setUserData', { data: data[0] })
         }
       } catch (error) {
         console.error('database.js getItem()', error)
@@ -86,9 +87,6 @@ export default {
 
   getters: {
     userData: state => state.userData,
-    projects: state => state.getters.userData.projects,
-    links: state => state.getters.projects.links,
-    passwords: state => state.getters.projects.passwords,
-    contacts: state => state.getters.projects.contacts,
+    projects: state => state.userData?.projects || []
   }
 }
