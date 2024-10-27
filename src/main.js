@@ -1,6 +1,9 @@
 import './scss/styles.scss'
 import 'bs-dark-theme'
 import { Dropdown } from 'bootstrap'
+
+import { supabase } from './supabase/supabaseClient'
+
 import { createApp } from 'vue'
 import App from './App.vue'
 import store from './store'
