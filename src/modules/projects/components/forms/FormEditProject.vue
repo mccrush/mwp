@@ -37,15 +37,15 @@ export default {
     }
   },
   computed: {
-    currentUserId() {
-      return this.$store.getters.currentUserId
+    userId() {
+      return this.$store.getters.userId
     }
   },
   methods: {
     saveItem() {
       this.$store.dispatch('updateItemRT', {
         item: this.item,
-        currentUserId: this.currentUserId
+        userId: this.userId
       })
     },
     removeItem() {
@@ -53,7 +53,7 @@ export default {
         this.$emit('set-mod-create')
         this.$store.dispatch('removeItemRT', {
           item: this.item,
-          currentUserId: this.currentUserId
+          userId: this.userId
         })
       }
     }

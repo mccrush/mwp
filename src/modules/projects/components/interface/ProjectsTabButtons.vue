@@ -1,6 +1,6 @@
 <template>
   <div class="border p-2">
-    <div v-if="currentUserId" class="row">
+    <div v-if="userId" class="row">
       <div
         class="col-6 col-sm-4 pt-2 pb-2"
         v-for="tabButton in dataTabs"
@@ -46,8 +46,8 @@ export default {
     viewTab() {
       return this.$store.getters.viewTab
     },
-    currentUserId() {
-      return this.$store.getters.currentUserId
+    userId() {
+      return this.$store.getters.userId
     }
     // currentProject() {
     //   return this.$store.getters.currentProject

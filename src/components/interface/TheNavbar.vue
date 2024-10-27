@@ -60,7 +60,7 @@
 
 <script>
 import { version } from './../../../package.json'
-import { modelsFactory } from './../../helpers/modelsFactory'
+import { factoryModels } from './../../factories/factoryModels'
 
 import BtnPageProjects from './../buttons/BtnPageProjects.vue'
 import BtnPagePremium from './../buttons/BtnPagePremium.vue'
@@ -78,17 +78,17 @@ export default {
     }
   },
   computed: {
+    userId() {
+      return this.$store.getters.userId
+    },
+    userEmail() {
+      return this.$store.getters.userEmail
+    },
     userApp() {
       return this.$store.getters.userApp
     },
-    currentUserId() {
-      return this.$store.getters.currentUserId
-    },
-    currentUserEmail() {
-      return this.$store.getters.currentUserEmail
-    },
     currentUserEmailFormated() {
-      return this.currentUserEmail.split('@')[0].substring(0, 16)
+      return this.userEmail.split('@')[0].substring(0, 16)
     },
     currentProject() {
       return this.$store.getters.currentProject
@@ -102,7 +102,7 @@ export default {
   },
   methods: {
     createItem(type) {
-      let item = modelsFactory({ type })
+      let item = factoryModels({ type })
       let currentProject = this.currentProject
       if (!currentProject[type]) {
         currentProject[type] = []
@@ -111,7 +111,7 @@ export default {
 
       this.$store.dispatch('updateItemRT', {
         item: currentProject,
-        currentUserId: this.currentUserId
+        userId: this.userId
       })
     }
   }

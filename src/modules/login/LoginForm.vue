@@ -89,7 +89,7 @@
 </template>
 
 <script>
-import { factoryUserApp } from './helpers/factoryUserApp'
+import { factoryUsers } from './../../factories/factoryUsers'
 
 import BtnEyeHide from './components/buttons/BtnEyeHide.vue'
 import BtnEyeShow from './components/buttons/BtnEyeShow.vue'
@@ -117,8 +117,8 @@ export default {
     }
   },
   computed: {
-    currentUser() {
-      return this.$store.getters.currentUser
+    userId() {
+      return this.$store.getters.userId
     }
   },
   methods: {
@@ -162,7 +162,7 @@ export default {
           }
 
           await this.$store.dispatch('registerUser', loginData)
-          const newUser = factoryUserApp(this.currentUser.uid)
+          const newUser = factoryUsers(this.userId)
           this.$store.dispatch('addItem', { item: newUser })
         } else {
           this.error = {

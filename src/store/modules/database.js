@@ -1,76 +1,94 @@
-import fireApp from './../../firebase'
-import { getFirestore, doc, setDoc, updateDoc, getDoc, deleteDoc } from 'firebase/firestore'
-const db = getFirestore(fireApp)
+import { supabase } from './../../supabase/supabaseClient'
 
 export default {
   state: {
-    loading: false,
-    userApp: null
+    users: [],
+    userData: null
   },
 
   mutations: {
-    updateLoadingStatus(state, value) {
-      state.loading = value
+    setUserData(state, { data }) {
+      state.setUserData = data
     },
-    setUserApp(state, item) {
-      state.userApp = item
-    }
+    setItems(state, { type, items }) {
+      state[type] = items
+    },
   },
 
   actions: {
-    async addItem({ commit }, { item }) {
-      commit('updateLoadingStatus', true)
+    async removeItem({ commit }, { item }) {
       try {
-        await setDoc(doc(db, item.type, item.id), item)
-        return true
-      } catch (error) {
-        console.error('error database.js setItem()', error)
-      } finally {
-        commit('updateLoadingStatus', false)
-      }
-    },
+        const { error } = await supabase
+          .from(item.type)
+          .delete()
+          .eq('id', item.id)
 
-    async getItem({ commit }, { type, currentUserId }) {
-      commit('updateLoadingStatus', true)
-      try {
-        const docSnap = await getDoc(doc(db, type, currentUserId))
-        if (docSnap.exists()) {
-          //console.log("Document data:", docSnap.data());
-          commit('setUserApp', docSnap.data())
-        } else {
-          console.log("database.js getItem() No such document!");
-        }
+        if (error) throw error
       } catch (error) {
-        console.error('error database.js getItem()', error)
-      } finally {
-        commit('updateLoadingStatus', false)
+        console.error('database.js removeItem()', error)
       }
     },
 
     async updateItem({ commit }, { item }) {
-      commit('updateLoadingStatus', true)
       try {
-        await updateDoc(doc(db, item.type, item.id), item)
+        console.log('database.js updateItem() item =', item)
+
+        const { error } = await supabase
+          .from(item.type)
+          .update(item)
+          .eq('id', item.id)
+
+        if (error) throw error
       } catch (error) {
-        console.error('error database.js updateItem()', error)
-      } finally {
-        commit('updateLoadingStatus', false)
+        console.error('database.js updateItem()', error)
       }
     },
 
-    async deleteItem({ commit }, { item }) {
-      commit('updateLoadingStatus', true)
+    async addItem({ commit }, { item }) {
       try {
-        await deleteDoc(doc(db, item.type, item.id))
+        const { error } = await supabase
+          .from(item.type)
+          .insert(item)
+
+        if (error) throw error
       } catch (error) {
-        console.error('error database.js deleteItem()', error)
-      } finally {
-        commit('updateLoadingStatus', false)
+        console.error('database.js addItem()', error)
+      }
+    },
+
+    async getItem({ commit }, { type, userId }) {
+      try {
+        console.log('database.js getItem() type =', type)
+        console.log('database.js getItem() userId =', userId)
+        const { data, error } = await supabase.from(type).select().eq('id', userId)
+        if (error) throw error
+        if (data) {
+          commit('setUserData', { data: data })
+        }
+      } catch (error) {
+        console.error('database.js getItem()', error)
+      }
+    },
+
+    async getItems({ commit }, { type }) {
+      try {
+        //console.log('database.js getItems() type =', type)
+        const { data, error } = await supabase.from(type).select()
+        if (error) throw error
+        if (data) {
+          commit('setItems', { type, items: data })
+        }
+      } catch (error) {
+        console.error('database.js getItems()', error)
       }
     }
   },
 
   getters: {
-    userApp: state => state.userApp
+    userData: state => state.userData,
+    projects: state => state.getters.userData.projects,
+    links: state => state.getters.projects.links,
+    passwords: state => state.getters.projects.passwords,
+    contacts: state => state.getters.projects.contacts,
   }
 }

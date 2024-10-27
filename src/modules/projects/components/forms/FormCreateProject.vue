@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { modelsFactory } from './../../../../helpers/modelsFactory'
+import { factoryModels } from './../../../../factories/factoryModels'
 
 import BtnAddProject from './../buttons/BtnAddProject.vue'
 
@@ -26,19 +26,19 @@ export default {
     }
   },
   computed: {
-    currentUserId() {
-      return this.$store.getters.currentUserId
+    userId() {
+      return this.$store.getters.userId
     }
   },
   methods: {
     async addProject() {
       if (this.projectName) {
-        let project = modelsFactory({ type: 'projects' })
+        let project = factoryModels({ type: 'projects' })
         project.title = this.projectName
 
         await this.$store.dispatch('addItemRT', {
           item: project,
-          currentUserId: this.currentUserId
+          userId: this.userId
         })
         this.projectName = ''
       }
