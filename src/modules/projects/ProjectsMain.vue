@@ -43,6 +43,12 @@ export default {
     },
     tabComponent() {
       return dataTabs.find(item => item.viewTab === this.viewTab).viewTab
+    },
+    projects() {
+      return this.$store.getters.projects
+    },
+    project() {
+      return {}
     }
   }
 }
