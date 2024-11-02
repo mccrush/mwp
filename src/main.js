@@ -29,6 +29,7 @@ const { data } = supabase.auth.onAuthStateChange((event, session) => {
     store.commit('setAuthData', { type: 'userId', data: session.user.id })
     store.commit('setAuthData', { type: 'userEmail', data: session.user.email })
     store.dispatch('getItem', { type: 'users', userId: session.user.id })
+    store.dispatch('getProjects', { type: 'projects', userId: session.user.id })
     // store.dispatch('getProjectsFromUserData', { type: 'projects' })
     // store.commit('setViewPage', 'PageProjects')
 

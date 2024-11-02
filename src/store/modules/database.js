@@ -3,7 +3,7 @@ import { supabase } from './../../supabase/supabaseClient'
 export default {
   state: {
     userData: null,
-    projectsTable: []
+    projects: []
   },
 
   mutations: {
@@ -110,8 +110,9 @@ export default {
 
         if (error) throw error
         if (data) {
+          const projects = data[0].projects
           console.log('database.js getProjects() data =', data)
-          commit('setItems', { type: 'projectsTable', items: data })
+          commit('setItems', { type, items: projects })
         }
       } catch (error) {
         console.error('database.js getProjects()', error)
@@ -127,6 +128,6 @@ export default {
 
   getters: {
     userData: state => state.userData,
-    projects: state => state.projectsTable.length ? state.projectsTable : state.userData?.projects || []
+    projects: state => state.projects
   }
 }
