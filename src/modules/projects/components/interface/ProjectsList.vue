@@ -36,8 +36,8 @@
         <FormEditProject
           v-if="currentProject && mod === 'edit'"
           :item="currentProject"
-          @close-form="mod = 'create'"
-          @set-mod-create="mod = 'create'"
+          @update-project="updateProject"
+          @remove-project="removeProject"
         />
       </div>
     </div>
@@ -89,6 +89,25 @@ export default {
 
       this.$store.dispatch('updateProjectData', {
         projects: this.projects,
+        userId: this.userId
+      })
+    },
+
+    updateProject() {
+      this.mod = 'create'
+
+      this.$store.dispatch('updateProjectData', {
+        projects: this.projects,
+        userId: this.userId
+      })
+    },
+
+    removeProject({ projectId }) {
+      this.mod = 'create'
+      const projects = this.projects.filter(item => item.id !== projectId)
+
+      this.$store.dispatch('updateProjectData', {
+        projects: projects,
         userId: this.userId
       })
     }

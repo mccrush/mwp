@@ -3,7 +3,7 @@ import { supabase } from './../../supabase/supabaseClient'
 export default {
   state: {
     userData: null,
-    projects: []
+    projectsTable: []
   },
 
   mutations: {
@@ -102,22 +102,31 @@ export default {
       }
     },
 
-    // Нужен ли этот метод ниже? Если итак данные обновляются
-    // async getProjects({ commit }, { userId }) {
-    //   try {
-    //     const { data, error } = await supabase.from('users').select('projects').eq('id', userId)
-    //     if (error) throw error
-    //     if (data) {
-    //       commit('setItems', { type, items: data })
-    //     }
-    //   } catch (error) {
-    //     console.error('database.js getProjects()', error)
-    //   }
+    // Получение проектов после обновление в таблице
+    async getProjects({ commit }, { type, userId }) {
+      try {
+        console.log('database.js getProjects() type =', type)
+        const { data, error } = await supabase.from('users').select(type).eq('id', userId)
+
+        if (error) throw error
+        if (data) {
+          console.log('database.js getProjects() data =', data)
+          commit('setItems', { type: 'projectsTable', items: data })
+        }
+      } catch (error) {
+        console.error('database.js getProjects()', error)
+      }
+    },
+
+    // getProjectsFromUserData({ commit, state }, { type }) {
+    //   const data = state.userData?.projects || []
+    //   console.log('database.js getProjectsFromUserData() data =', data)
+    //   commit('setItems', { type, items: data })
     // }
   },
 
   getters: {
     userData: state => state.userData,
-    projects: state => state.userData?.projects || []
+    projects: state => state.projectsTable.length ? state.projectsTable : state.userData?.projects || []
   }
 }

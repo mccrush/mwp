@@ -29,7 +29,22 @@ const { data } = supabase.auth.onAuthStateChange((event, session) => {
     store.commit('setAuthData', { type: 'userId', data: session.user.id })
     store.commit('setAuthData', { type: 'userEmail', data: session.user.email })
     store.dispatch('getItem', { type: 'users', userId: session.user.id })
-    store.commit('setViewPage', 'PageProjects')
+    // store.dispatch('getProjectsFromUserData', { type: 'projects' })
+    // store.commit('setViewPage', 'PageProjects')
+
+
+    const channels = supabase.channel('custom-update-channel')
+      .on(
+        'postgres_changes',
+        { event: 'UPDATE', schema: 'public', table: 'users', filter: 'id=eq.' + session.user.id },
+        (payload) => {
+          console.log('Change received!', payload)
+          store.dispatch('getProjects', { type: 'projects', userId: session.user.id })
+        }
+      )
+      .subscribe()
+
+
   } else if (event === 'SIGNED_OUT') {
     // handle sign out event
     store.commit('setAuthData', { type: 'userId', data: null })
@@ -44,3 +59,6 @@ const { data } = supabase.auth.onAuthStateChange((event, session) => {
     // handle user updated event
   }
 })
+
+// Подписка на обновление в табилце пользователей
+//const userId = store.getters.userId

@@ -52,10 +52,8 @@ export default {
     },
     projects() {
       return this.$store.getters.projects
-    },
-    project() {
-      return {}
     }
-  }
+  },
+  methods: {}
 }
 </script>
