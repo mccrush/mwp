@@ -29,14 +29,14 @@ export default {
       }
     },
 
-    async updateItem({ commit }, { item }) {
+    async updateItem({ commit }, { item, userId }) {
       try {
         console.log('database.js updateItem() item =', item)
 
         const { error } = await supabase
           .from(item.type)
           .update(item)
-          .eq('id', item.id)
+          .eq('id', userId)
 
         if (error) throw error
       } catch (error) {
@@ -44,11 +44,12 @@ export default {
       }
     },
 
-    async addItem({ commit }, { item }) {
+    async addItem({ commit }, { item, userId }) {
       try {
         const { error } = await supabase
           .from(item.type)
           .insert(item)
+          .eq('id', item.id)
 
         if (error) throw error
       } catch (error) {
@@ -58,12 +59,14 @@ export default {
 
     async getItem({ commit }, { type, userId }) {
       try {
-        console.log('database.js getItem() type =', type)
-        console.log('database.js getItem() userId =', userId)
+        //console.log('database.js getItem() type =', type)
+        //console.log('database.js getItem() userId =', userId)
         const { data, error } = await supabase.from(type).select().eq('id', userId)
+
         if (error) throw error
+
         if (data) {
-          console.log('database.js getItem() data[0] =', data[0])
+          //console.log('database.js getItem() data[0] =', data[0])
           commit('setUserData', { data: data[0] })
         }
       } catch (error) {
@@ -82,7 +85,35 @@ export default {
       } catch (error) {
         console.error('database.js getItems()', error)
       }
-    }
+    },
+
+    ////////////////////////////////////////////////
+    // Методы для работы с Проектами
+    async updateProjectData({ commit }, { projects, userId }) {
+      try {
+        const { error } = await supabase
+          .from('users')
+          .update({ projects })
+          .eq('id', userId)
+
+        if (error) throw error
+      } catch (error) {
+        console.error('project.js updateProjectData()', error)
+      }
+    },
+
+    // Нужен ли этот метод ниже? Если итак данные обновляются
+    // async getProjects({ commit }, { userId }) {
+    //   try {
+    //     const { data, error } = await supabase.from('users').select('projects').eq('id', userId)
+    //     if (error) throw error
+    //     if (data) {
+    //       commit('setItems', { type, items: data })
+    //     }
+    //   } catch (error) {
+    //     console.error('database.js getProjects()', error)
+    //   }
+    // }
   },
 
   getters: {

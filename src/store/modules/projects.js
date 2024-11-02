@@ -1,3 +1,5 @@
+//import { supabase } from './../../supabase/supabaseClient'
+
 export default {
   state: {
     viewTab: localStorage.getItem('mw-viewTab') || 'TabLinks',

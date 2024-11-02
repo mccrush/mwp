@@ -7,7 +7,7 @@
       v-model.trim="projectName"
       @keyup.enter="addProject"
     />
-    <BtnAddProject class="mt-1" @click="addProject" />
+    <BtnAddProject class="mt-1" @click="createProject" />
   </div>
 </template>
 
@@ -20,26 +20,19 @@ export default {
   components: {
     BtnAddProject
   },
+  emits: ['add-project'],
   data() {
     return {
       projectName: ''
     }
   },
-  computed: {
-    userId() {
-      return this.$store.getters.userId
-    }
-  },
+  computed: {},
   methods: {
-    async addProject() {
+    createProject() {
       if (this.projectName) {
         let project = factoryModels({ type: 'projects' })
         project.title = this.projectName
-
-        await this.$store.dispatch('addItemRT', {
-          item: project,
-          userId: this.userId
-        })
+        this.$emit('add-project', { project })
         this.projectName = ''
       }
     }

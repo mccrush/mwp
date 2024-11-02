@@ -8,8 +8,14 @@
         <transition name="fade" mode="out-in">
           <component :is="tabComponent" />
         </transition>
-        <div class="border code p-3">
-          <pre>{{ userData }}</pre>
+
+        <div class="row">
+          <div class="col-6 border code p-3">
+            <pre>{{ userData }}</pre>
+          </div>
+          <div class="col-6 border code p-3">
+            <pre>{{ projects }}</pre>
+          </div>
         </div>
       </div>
     </div>

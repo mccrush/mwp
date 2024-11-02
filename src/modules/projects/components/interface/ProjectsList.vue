@@ -31,7 +31,8 @@
       <div class="border-bottom border-black mt-0"></div>
       <div class="border-top border-dark-subtle mb-3"></div>
       <div class="ps-2 pe-2">
-        <FormCreateProject v-if="mod === 'create'" />
+        <FormCreateProject v-if="mod === 'create'" @add-project="addProject" />
+
         <FormEditProject
           v-if="currentProject && mod === 'edit'"
           :item="currentProject"
@@ -65,6 +66,9 @@ export default {
     }
   },
   computed: {
+    userId() {
+      return this.$store.getters.userId
+    },
     projects() {
       return this.$store.getters.projects
     },
@@ -78,6 +82,15 @@ export default {
   methods: {
     setCurrentProject(currentProject) {
       this.$store.commit('setCurrentProject', { currentProject })
+    },
+
+    addProject({ project }) {
+      this.projects.push(project)
+
+      this.$store.dispatch('updateProjectData', {
+        projects: this.projects,
+        userId: this.userId
+      })
     }
   }
 }
