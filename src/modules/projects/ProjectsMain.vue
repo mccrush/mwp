@@ -4,17 +4,20 @@
       <ProjectsList />
 
       <div class="col-10 border-top border-dark-subtle">
-        <ProjectsTabButtons />
+        <ProjectsTabButtons @create-form-item="createFormItem" />
         <transition name="fade" mode="out-in">
-          <component :is="tabComponent" />
+          <component :is="tabComponent" :project="currentProject" />
         </transition>
 
         <div class="row">
-          <div class="col-6 border code p-3">
+          <!-- <div class="col-6 border code p-3">
             <pre>{{ userData }}</pre>
-          </div>
+          </div> -->
           <div class="col-6 border code p-3">
             <pre>{{ projects }}</pre>
+          </div>
+          <div class="col-6 border code p-3">
+            <pre>{{ currentProject }}</pre>
           </div>
         </div>
       </div>
@@ -24,6 +27,7 @@
 
 <script>
 import { dataTabs } from './data/dataTabs'
+import { factoryModels } from './../../factories/factoryModels'
 
 import ProjectsList from './components/interface/ProjectsList.vue'
 import ProjectsTabButtons from './components/interface/ProjectsTabButtons.vue'
@@ -41,8 +45,8 @@ export default {
     TabContacts
   },
   computed: {
-    userData() {
-      return this.$store.getters.userData
+    userId() {
+      return this.$store.getters.userId
     },
     viewTab() {
       return this.$store.getters.viewTab
@@ -52,8 +56,30 @@ export default {
     },
     projects() {
       return this.$store.getters.projects
+    },
+    currentProject() {
+      return this.$store.getters.currentProject
     }
   },
-  methods: {}
+  methods: {
+    createFormItem({ type }) {
+      const form = factoryModels({ type })
+      console.log('form = ', form)
+
+      let project = this.currentProject
+      project[type].push(form)
+
+      let projects = this.projects
+      const index = projects.findIndex(item => item.id === project.id)
+      projects[index] = project
+
+      console.log('new projects = ', projects)
+
+      this.$store.dispatch('updateProjectData', {
+        projects: projects,
+        userId: this.userId
+      })
+    }
+  }
 }
 </script>

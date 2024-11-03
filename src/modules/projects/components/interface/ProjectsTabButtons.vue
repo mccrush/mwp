@@ -18,7 +18,7 @@
           </BtnTabTitle>
           <BtnAddTabForm
             class="d-flex justify-content-center align-items-center w-25"
-            @click="createItem(tabButton.type)"
+            @click="$emit('create-form-item', { type: tabButton.type })"
           />
         </div>
       </div>
@@ -37,6 +37,7 @@ export default {
     BtnTabTitle,
     BtnAddTabForm
   },
+  emits: ['create-form-item'],
   data() {
     return {
       dataTabs

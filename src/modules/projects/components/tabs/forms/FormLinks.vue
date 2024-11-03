@@ -46,13 +46,13 @@
 </template>
 
 <script>
-import { copyInBuffer } from './../../helpers/copyInBuffer'
+import { copyInBuffer } from './../../../../../helpers/copyInBuffer'
 
-import BtnArrUp from './../../components/buttons/BtnArrUp.vue'
-import BtnArrDown from './../../components/buttons/BtnArrDown.vue'
-import BtnTrash from './../../components/buttons/BtnTrash.vue'
-import BtnCopy from './../../components/buttons/BtnCopy.vue'
-import BtnLink from './../../components/buttons/BtnLink.vue'
+import BtnArrUp from './../../../../../components/buttons/BtnArrUp.vue'
+import BtnArrDown from './../../../../../components/buttons/BtnArrDown.vue'
+import BtnTrash from './../../../../../components/buttons/BtnTrash.vue'
+import BtnCopy from './../../../../../components/buttons/BtnCopy.vue'
+import BtnLink from './../../../../../components/buttons/BtnLink.vue'
 
 export default {
   components: {

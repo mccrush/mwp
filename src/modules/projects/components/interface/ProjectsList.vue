@@ -103,13 +103,17 @@ export default {
     },
 
     removeProject({ projectId }) {
-      this.mod = 'create'
-      const projects = this.projects.filter(item => item.id !== projectId)
+      if (confirm('Точно удалить?')) {
+        this.mod = 'create'
+        const projects = this.projects.filter(item => item.id !== projectId)
 
-      this.$store.dispatch('updateProjectData', {
-        projects: projects,
-        userId: this.userId
-      })
+        this.$store.dispatch('updateProjectData', {
+          projects: projects,
+          userId: this.userId
+        })
+
+        this.$store.commit('setCurrentProject', { currentProject: null })
+      }
     }
   }
 }

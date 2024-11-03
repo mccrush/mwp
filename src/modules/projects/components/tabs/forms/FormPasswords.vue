@@ -77,14 +77,14 @@
 </template>
 
 <script>
-import { encryption, decryption } from './../../helpers/encryption'
-import { copyInBuffer } from './../../helpers/copyInBuffer'
+import { encryption, decryption } from './../../../../../helpers/encryption'
+import { copyInBuffer } from './../../../../../helpers/copyInBuffer'
 
-import BtnTrash from './../../components/buttons/BtnTrash.vue'
-import BtnEyeHide from './../../components/buttons/BtnEyeHide.vue'
-import BtnEyeShow from './../../components/buttons/BtnEyeShow.vue'
-import BtnCopy from './../../components/buttons/BtnCopy.vue'
-import BtnLink from './../../components/buttons/BtnLink.vue'
+import BtnTrash from './../../../../../components/buttons/BtnTrash.vue'
+import BtnEyeHide from './../../../../../components/buttons/BtnEyeHide.vue'
+import BtnEyeShow from './../../../../../components/buttons/BtnEyeShow.vue'
+import BtnCopy from './../../../../../components/buttons/BtnCopy.vue'
+import BtnLink from './../../../../../components/buttons/BtnLink.vue'
 
 export default {
   components: {
