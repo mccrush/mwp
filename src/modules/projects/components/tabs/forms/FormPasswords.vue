@@ -4,13 +4,20 @@
       class="border-top border-dark-subtle rounded shadow-sm bg-body-tertiary p-3"
     >
       <div class="d-flex">
-        <input
-          type="text"
-          class="form-control form-control-sm"
-          placeholder="Название"
-          v-model.trim="item.title"
-          @change="$emit('save-item')"
-        />
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            placeholder="Название"
+            v-model.trim="item.title"
+            @change="$emit('save-item')"
+          />
+          <BtnCopy
+            v-if="item.title"
+            class="border"
+            @click="copyInBuffer($event)"
+          />
+        </div>
         <BtnTrash
           class="d-flex align-items-center ms-2"
           title="Удалить пароль"
@@ -45,7 +52,11 @@
           v-model="login"
           @change="saveItem"
         />
-        <BtnCopy class="border" @click="copyInBuffer($event)" />
+        <BtnCopy
+          v-if="item.login"
+          class="border"
+          @click="copyInBuffer($event)"
+        />
       </div>
       <!-- -->
       <div class="input-group mt-1">
@@ -58,12 +69,20 @@
           @change="saveItem"
         />
         <BtnEyeHide
-          v-if="passType"
+          v-if="item.password && passType"
           class="border"
           @click="passType = !passType"
         />
-        <BtnEyeShow v-else class="border" @click="passType = !passType" />
-        <BtnCopy class="border" @click="copyInBuffer($event)" />
+        <BtnEyeShow
+          v-else-if="item.password && !passType"
+          class="border"
+          @click="passType = !passType"
+        />
+        <BtnCopy
+          v-if="item.password"
+          class="border"
+          @click="copyInBuffer($event)"
+        />
       </div>
       <!-- -->
       <!-- <textarea
