@@ -3,7 +3,10 @@
     <div class="row">
       <ProjectsList />
 
-      <div class="col-10 border-top border-dark-subtle">
+      <div
+        v-if="currentProject"
+        class="col-9 col-lg-10 border-top border-dark-subtle"
+      >
         <ProjectsTabButtons @create-form-item="createFormItem" />
         <transition name="fade" mode="out-in">
           <component :is="tabComponent" :project="currentProject" />
@@ -20,6 +23,9 @@
             <pre>{{ currentProject }}</pre>
           </div>
         </div>
+      </div>
+      <div v-else class="col-10 border-top border-dark-subtle">
+        <p>Выберите проект из списка слева</p>
       </div>
     </div>
   </div>

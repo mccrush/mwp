@@ -1,7 +1,7 @@
 <template>
   <div class="row border-bottom border-black">
     <div
-      class="col-12 col-sm-4 col-md-2 d-flex justify-content-between border-end border-dark-subtle pt-2 pb-2"
+      class="col-3 col-lg-2 d-flex justify-content-between border-end border-dark-subtle pt-2 pb-2"
     >
       <div class="">
         <img
@@ -26,7 +26,7 @@
 
     <div
       v-if="userApp"
-      class="col-12 col-sm-8 col-md-10 d-flex justify-content-end align-items-center"
+      class="col-9 col-lg-10 d-flex justify-content-end align-items-center"
     >
       <BtnPageProjects
         class="me-2"

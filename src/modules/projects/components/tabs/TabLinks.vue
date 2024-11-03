@@ -1,7 +1,7 @@
 <template>
   <div class="row border p-2">
     TabLinks
-    <p v-if="!project.links.length">Создайте первую ссылку</p>
+    <p v-if="!project.links || !project.links.length">Создайте первую ссылку</p>
     <div v-else class="row">
       <TabLinks v-for="item in project.links" :key="item.id" :item="item" />
     </div>
