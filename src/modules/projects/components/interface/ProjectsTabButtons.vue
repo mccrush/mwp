@@ -1,5 +1,5 @@
 <template>
-  <div class="border p-2">
+  <div class="p-2">
     <div v-if="userId" class="row">
       <div
         class="col-6 col-sm-4 pt-2 pb-2"
@@ -9,9 +9,9 @@
         <div class="btn-group w-100" role="group">
           <BtnTabTitle
             class="w-75"
-            @click="$store.commit('setViewTab', tabButton.viewTab)"
+            @click="$store.commit('setViewTab', tabButton.type)"
             :class="{
-              active: tabButton.viewTab === viewTab
+              active: tabButton.type === viewTab
             }"
           >
             {{ tabButton.title }}

@@ -1,6 +1,6 @@
 import CryptoJS from 'crypto-js'
-import { secret } from './../../apiKey'
-
+//import { secret } from './../../apiKey'
+const secret = '123'
 console.log('decryption secret = ', secret);
 
 export const encryption = (string) => CryptoJS.AES.encrypt(string, secret).toString()

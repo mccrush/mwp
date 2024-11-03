@@ -4,13 +4,20 @@
       class="border-top border-dark-subtle rounded shadow-sm bg-body-tertiary p-3"
     >
       <div class="d-flex">
-        <input
-          type="text"
-          class="form-control form-control-sm"
-          placeholder="Название"
-          v-model.trim="item.title"
-          @change="$emit('save-item')"
-        />
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            placeholder="Название"
+            v-model.trim="item.title"
+            @change="$emit('save-item')"
+          />
+          <BtnCopy
+            v-if="item.title"
+            class="border"
+            @click="copyInBuffer($event)"
+          />
+        </div>
         <!-- <div class="btn-group ms-1" role="group">
           <BtnArrUp @click="updatePositionUp" />
           <BtnArrDown @click="updatePositionDown" />
@@ -27,14 +34,18 @@
         <input
           type="text"
           class="form-control form-control-sm"
-          placeholder="Ссылка"
+          placeholder="URL ссылка"
           v-model.trim="item.link"
           @change="$emit('save-item')"
         />
-        <BtnCopy class="border" @click="copyInBuffer($event)" />
-        <BtnLink
+        <BtnCopy
+          v-if="item.link"
           class="border"
-          :class="{ disabled: !item.link }"
+          @click="copyInBuffer($event)"
+        />
+        <BtnLink
+          v-if="item.link"
+          class="border"
           :href="item.link"
           target="_blank"
           title="Открыть ссылку"

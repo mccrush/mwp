@@ -9,7 +9,7 @@
       >
         <ProjectsTabButtons @create-form-item="createFormItem" />
         <transition name="fade" mode="out-in">
-          <component :is="tabComponent" :project="currentProject" />
+          <TabForms :project="currentProject" :type="viewTab" />
         </transition>
 
         <div class="row">
@@ -38,17 +38,13 @@ import { factoryModels } from './../../factories/factoryModels'
 import ProjectsList from './components/interface/ProjectsList.vue'
 import ProjectsTabButtons from './components/interface/ProjectsTabButtons.vue'
 
-import TabLinks from './components/tabs/TabLinks.vue'
-import TabPasswords from './components/tabs/TabPasswords.vue'
-import TabContacts from './components/tabs/TabContacts.vue'
+import TabForms from './components/tabs/TabForms.vue'
 
 export default {
   components: {
     ProjectsList,
     ProjectsTabButtons,
-    TabLinks,
-    TabPasswords,
-    TabContacts
+    TabForms
   },
   computed: {
     userId() {

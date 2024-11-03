@@ -1,5 +1,5 @@
 <template>
-  <button class="btn lh-1 text-body-secondary">
+  <button class="btn btn-dark lh-1 text-body-secondary">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="16"
