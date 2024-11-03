@@ -9,7 +9,12 @@
       >
         <ProjectsTabButtons @create-form-item="createFormItem" />
         <transition name="fade" mode="out-in">
-          <TabForms :project="currentProject" :type="viewTab" />
+          <TabForms
+            :project="currentProject"
+            :type="viewTab"
+            @save-item="saveItem"
+            @remove-item="removeItem"
+          />
         </transition>
 
         <div class="row">
@@ -76,6 +81,32 @@ export default {
       projects[index] = project
 
       console.log('new projects = ', projects)
+
+      this.$store.dispatch('updateProjectData', {
+        projects: projects,
+        userId: this.userId
+      })
+    },
+
+    saveItem() {
+      this.$store.dispatch('updateProjectData', {
+        projects: this.projects,
+        userId: this.userId
+      })
+    },
+
+    removeItem({ type, id }) {
+      console.log('remove type = ', type)
+      console.log('remove id = ', id)
+
+      let project = this.currentProject
+      const items = project[type].filter(item => item.id !== id)
+
+      project[type] = items
+
+      let projects = this.projects
+      const index = projects.findIndex(item => item.id === project.id)
+      projects[index] = project
 
       this.$store.dispatch('updateProjectData', {
         projects: projects,

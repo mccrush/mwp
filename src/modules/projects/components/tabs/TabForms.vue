@@ -10,6 +10,8 @@
           :key="item.id"
           :item="item"
           :index="index"
+          @save-item="saveItem"
+          @remove-item="removeItem"
         />
         <!-- <FormLinks v-for="item in project[type]" :key="item.id" :item="item" /> -->
       </div>
@@ -32,6 +34,7 @@ import FormContacts from './forms/FormContacts.vue'
 
 export default {
   components: { FormLinks, FormPasswords, FormContacts },
+  emits: ['save-item', 'remove-item'],
   props: {
     project: Object,
     type: String
@@ -42,6 +45,16 @@ export default {
         'Form' + this.type[0].toUpperCase() + this.type.substring(1)
       console.log('component = ', component)
       return component
+    }
+  },
+  methods: {
+    saveItem() {
+      this.$emit('save-item')
+    },
+    removeItem({ type, id }) {
+      if (confirm('Точно удалить?')) {
+        this.$emit('remove-item', { type, id })
+      }
     }
   }
 }

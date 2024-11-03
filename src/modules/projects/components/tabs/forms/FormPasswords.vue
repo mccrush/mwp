@@ -21,7 +21,6 @@
         <BtnTrash
           class="d-flex align-items-center ms-2"
           title="Удалить пароль"
-          @click="$emit('remove-item', { type: item.type, index })"
         />
       </div>
 
@@ -137,7 +136,7 @@ export default {
     saveItem() {
       if (this.login.length) this.item.login = encryption(this.login)
       if (this.password.length) this.item.password = encryption(this.password)
-      this.$emit('save-item')
+      //this.$emit('save-item')
     },
     copyInBuffer
   }
