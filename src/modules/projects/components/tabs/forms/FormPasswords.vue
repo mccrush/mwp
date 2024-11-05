@@ -19,7 +19,7 @@
           />
         </div>
         <BtnTrash
-          class="d-flex align-items-center ms-2"
+          class="d-flex align-items-center ms-1"
           title="Удалить пароль"
         />
       </div>

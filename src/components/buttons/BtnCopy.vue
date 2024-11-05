@@ -1,6 +1,7 @@
 <template>
   <button
     class="btn btn-sm btn-dark text-body-secondary d-flex align-items-center shadow-none"
+    title="Копировать"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"

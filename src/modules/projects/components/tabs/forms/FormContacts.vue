@@ -12,7 +12,7 @@
           @change="$emit('save-item')"
         />
         <BtnTrash
-          class="d-flex align-items-center ms-2"
+          class="d-flex align-items-center ms-1"
           title="Удалить контакт"
           @click="$emit('remove-item', { type: item.type, index })"
         />

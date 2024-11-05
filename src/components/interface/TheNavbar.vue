@@ -13,28 +13,35 @@
           alt="Logo MWP"
           title="Manager of Web Projects"
         />
-        <span
-          class="cursor-def d-inline-block text-body-secondary ms-2 pt-2"
-          title="Manager of Web Projects"
-          ><strong>MWP</strong
-          ><code class="text-body-secondary ms-2"
-            ><small>v{{ version }}</small></code
-          ></span
-        >
+        <span class="cursor-def d-inline-block text-body-secondary ms-2 pt-2"
+          ><strong>MWP</strong>
+          <a
+            href="https://github.com/mccrush/mwp"
+            target="_blank"
+            title="Go to GitHub"
+            class="text-decoration-none"
+          >
+            <code class="text-body-secondary ms-2">
+              <small>v{{ version }}</small>
+            </code></a
+          >
+        </span>
       </div>
     </div>
 
     <div
-      v-if="userApp"
+      v-if="userData"
       class="col-9 col-lg-10 d-flex justify-content-end align-items-center"
     >
       <BtnPageProjects
+        v-if="viewPage !== 'PageProjects'"
         class="me-2"
         @click="$store.commit('setViewPage', 'PageProjects')"
       />
       <BtnPagePremium
+        v-if="!userData.premium"
         class="me-2"
-        :class="{ 'text-body-secondary': userApp.premium }"
+        :class="{ 'text-body-secondary': userData.premium }"
         @click="$store.commit('setViewPage', 'PagePrice')"
       />
 
@@ -84,35 +91,20 @@ export default {
     userEmail() {
       return this.$store.getters.userEmail
     },
-    userApp() {
-      return this.$store.getters.userApp
+    userData() {
+      return this.$store.getters.userData
     },
     currentUserEmailFormated() {
       return this.userEmail.split('@')[0].substring(0, 16)
     },
-    currentProject() {
-      return this.$store.getters.currentProject
+    viewPage() {
+      return this.$store.getters.viewPage
     },
     loading() {
       return this.$store.getters.loading
     },
     loadingRT() {
       return this.$store.getters.loadingRT
-    }
-  },
-  methods: {
-    createItem(type) {
-      let item = factoryModels({ type })
-      let currentProject = this.currentProject
-      if (!currentProject[type]) {
-        currentProject[type] = []
-      }
-      currentProject[type].push(item)
-
-      this.$store.dispatch('updateItemRT', {
-        item: currentProject,
-        userId: this.userId
-      })
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
-  <button class="btn btn-sm text-warning d-flex align-items-center">
-    <span class="me-1">Premium</span>
+  <button class="btn btn-sm text-primary text-p d-flex align-items-center">
+    <span class="me-1">Pro</span>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="16"
