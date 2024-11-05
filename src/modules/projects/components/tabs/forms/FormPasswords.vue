@@ -21,27 +21,26 @@
         <BtnTrash
           class="d-flex align-items-center ms-1"
           title="Удалить пароль"
+          @click="$emit('remove-item', { type: item.type, id: item.id })"
         />
       </div>
 
       <!-- -->
-      <!-- <div class="input-group mt-1">
+      <div class="input-group mt-1">
         <input
           type="text"
           class="form-control form-control-sm"
-          placeholder="Ссылка"
+          placeholder="Ссылка авторизации"
           v-model.trim="item.link"
           @change="$emit('save-item')"
         />
-        <BtnCopy class="border" @click="copyInBuffer($event)" />
-        <BtnLink
+        <BtnCopy
+          v-if="item.link"
           class="border"
-          :class="{ disabled: !item.link }"
-          :href="item.link"
-          target="_blank"
-          title="Открыть ссылку"
+          @click="copyInBuffer($event)"
         />
-      </div> -->
+      </div>
+
       <!-- -->
       <div class="input-group mt-1">
         <input
@@ -51,11 +50,7 @@
           v-model="login"
           @change="saveItem"
         />
-        <BtnCopy
-          v-if="item.login"
-          class="border"
-          @click="copyInBuffer($event)"
-        />
+        <BtnCopy v-if="login" class="border" @click="copyInBuffer($event)" />
       </div>
       <!-- -->
       <div class="input-group mt-1">
@@ -68,20 +63,16 @@
           @change="saveItem"
         />
         <BtnEyeHide
-          v-if="item.password && passType"
+          v-if="password && passType"
           class="border"
           @click="passType = !passType"
         />
         <BtnEyeShow
-          v-else-if="item.password && !passType"
+          v-else-if="password && !passType"
           class="border"
           @click="passType = !passType"
         />
-        <BtnCopy
-          v-if="item.password"
-          class="border"
-          @click="copyInBuffer($event)"
-        />
+        <BtnCopy v-if="password" class="border" @click="copyInBuffer($event)" />
       </div>
       <!-- -->
       <!-- <textarea
@@ -125,10 +116,11 @@ export default {
   },
   data() {
     return {
-      //login: decryption(this.item.login),
-      login: this.item.login,
-      //password: decryption(this.item.password),
-      password: this.item.password,
+      login: decryption(this.item.login) || '',
+      password: decryption(this.item.password) || '',
+      link: this.item.link,
+      //login: this.item.login,
+      //password: this.item.password,
       passType: true
     }
   },
@@ -136,7 +128,7 @@ export default {
     saveItem() {
       if (this.login.length) this.item.login = encryption(this.login)
       if (this.password.length) this.item.password = encryption(this.password)
-      //this.$emit('save-item')
+      this.$emit('save-item')
     },
     copyInBuffer
   }

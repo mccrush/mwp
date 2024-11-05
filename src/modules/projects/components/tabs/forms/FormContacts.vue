@@ -10,6 +10,7 @@
             class="form-control form-control-sm"
             placeholder="Имя"
             v-model.trim="item.title"
+            @change="$emit('save-item')"
           />
           <BtnCopy
             v-if="item.title"
@@ -32,6 +33,7 @@
           class="form-control form-control-sm"
           placeholder="Email"
           :value="field"
+          @change="$emit('save-item')"
         />
 
         <BtnCopy v-if="field" class="border" @click="copyInBuffer($event)" />
