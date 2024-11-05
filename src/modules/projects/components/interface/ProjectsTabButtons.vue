@@ -19,6 +19,7 @@
           <BtnAddTabForm
             class="d-flex justify-content-center align-items-center w-25"
             @click="$emit('create-form-item', { type: tabButton.type })"
+            v-if="tabButton.type === viewTab"
           />
         </div>
       </div>
