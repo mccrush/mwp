@@ -20,7 +20,6 @@
           />
         </div>
         <BtnTrash
-          v-if="item.title"
           class="d-flex align-items-center ms-1"
           title="Удалить контакт"
           @click="$emit('remove-item', { type: item.type, index })"
