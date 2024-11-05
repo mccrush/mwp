@@ -7,6 +7,7 @@
         <div class="input-group">
           <input
             type="text"
+            :id="'inputTitle' + item.id"
             class="form-control form-control-sm"
             placeholder="Название"
             v-model.trim="item.title"
@@ -33,6 +34,7 @@
       <div class="input-group mt-1">
         <input
           type="text"
+          :id="'inputLink' + item.id"
           class="form-control form-control-sm"
           placeholder="URL ссылка"
           v-model.trim="item.link"

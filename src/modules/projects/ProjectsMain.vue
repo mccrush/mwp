@@ -92,7 +92,8 @@ export default {
 
     saveItem() {
       console.log('Проект будет обновлен в БД')
-      return
+      console.log('this.projects = ', this.projects)
+      //return
       this.$store.dispatch('updateProjectData', {
         projects: this.projects,
         userId: this.userId

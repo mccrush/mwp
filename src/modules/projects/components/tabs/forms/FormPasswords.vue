@@ -7,6 +7,7 @@
         <div class="input-group">
           <input
             type="text"
+            :id="'inputTitle' + item.id"
             class="form-control form-control-sm"
             placeholder="Название"
             v-model.trim="item.title"
@@ -29,6 +30,7 @@
       <div class="input-group mt-1">
         <input
           type="text"
+          :id="'inputLink' + item.id"
           class="form-control form-control-sm"
           placeholder="Ссылка на авторизацию"
           v-model.trim="item.link"
@@ -52,6 +54,7 @@
       <div class="input-group mt-1">
         <input
           type="text"
+          :id="'inputLogin' + item.id"
           class="form-control form-control-sm"
           placeholder="Логин"
           v-model="login"
@@ -64,6 +67,7 @@
         <input
           :type="passType ? 'password' : 'text'"
           autocomplete="new-password"
+          :id="'inputPass' + item.id"
           class="form-control form-control-sm"
           placeholder="Пароль"
           v-model="password"
@@ -135,15 +139,18 @@ export default {
     saveItem() {
       if (this.login.length) this.item.login = encryption(this.login)
       if (this.password.length) this.item.password = encryption(this.password)
+      console.log('before save this.item.login = ', this.item.login)
+      console.log('before save this.item.password = ', this.item.password)
       this.$emit('save-item')
     },
     copyInBuffer
+  },
+  watch: {
+    item(n) {
+      this.login = decryption(n.login)
+      this.password = decryption(n.password)
+      this.link = n.link
+    }
   }
-  // watch: {
-  //   item(n) {
-  //     this.login = decryption(n.login)
-  //     this.password = decryption(n.password)
-  //   }
-  // }
 }
 </script>

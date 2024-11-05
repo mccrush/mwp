@@ -7,6 +7,7 @@
         <div class="input-group">
           <input
             type="text"
+            :id="'inputTitle' + item.id"
             class="form-control form-control-sm"
             placeholder="Имя"
             v-model.trim="item.title"
@@ -30,6 +31,7 @@
       <div v-for="field in item.fields" :key="field" class="input-group mt-1">
         <input
           type="text"
+          :id="'inputField' + field.id"
           class="form-control form-control-sm"
           placeholder="Email"
           :value="field"
@@ -110,11 +112,11 @@ export default {
     addContactFiled() {
       this.item.fields.push(this.newField)
       this.newField = ''
-      //   this.$emit('save-item')
+      this.$emit('save-item')
     },
     removeContactFiled(field) {
       this.item.fields = this.item.fields.filter(item => item !== field)
-      //   this.$emit('save-item')
+      this.$emit('save-item')
     }
   }
 }
