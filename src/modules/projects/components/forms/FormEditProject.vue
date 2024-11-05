@@ -14,7 +14,7 @@
     />
     <div class="btn-group w-100 mt-1" role="group">
       <BtnSave title="Сохранить изменения" @click="$emit('update-project')" />
-      <BtnTrashRed
+      <BtnTrash
         title="Удалить проект"
         @click="$emit('remove-project', { projectId: item.id })"
       />
@@ -24,12 +24,12 @@
 
 <script>
 import BtnSave from './../../../../components/buttons/BtnSave.vue'
-import BtnTrashRed from './../../../../components/buttons/BtnTrashRed.vue'
+import BtnTrash from './../../../../components/buttons/BtnTrash.vue'
 
 export default {
   components: {
     BtnSave,
-    BtnTrashRed
+    BtnTrash
   },
   emits: ['remove-project', 'update-project'],
   props: {
