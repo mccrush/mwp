@@ -30,7 +30,7 @@
         <input
           type="text"
           class="form-control form-control-sm"
-          placeholder="Ссылка авторизации"
+          placeholder="Ссылка на авторизацию"
           v-model.trim="item.link"
           @change="$emit('save-item')"
         />
@@ -38,6 +38,13 @@
           v-if="item.link"
           class="border"
           @click="copyInBuffer($event)"
+        />
+        <BtnLink
+          v-if="item.link"
+          class="border"
+          :href="item.link"
+          target="_blank"
+          title="Открыть ссылку"
         />
       </div>
 

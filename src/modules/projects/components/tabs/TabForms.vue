@@ -2,8 +2,7 @@
   <div class="row border p-2">
     TabLinks type = {{ type }}
     <div class="col-12">
-      <p v-if="!project[type].length">Создайте первую форму</p>
-      <div v-else class="row">
+      <div v-if="project && project[type]?.length" class="row">
         <component
           :is="formComponent"
           v-for="(item, index) in project[type]"
@@ -15,12 +14,16 @@
         />
         <!-- <FormLinks v-for="item in project[type]" :key="item.id" :item="item" /> -->
       </div>
+      <p v-else>Создайте первую форму</p>
     </div>
 
     <div>
       <div class="row">
         <div class="col-6 border code p-3">
-          <pre>{{ project[type] }}</pre>
+          <pre> project {{ project }}</pre>
+        </div>
+        <div class="col-6 border code p-3">
+          <pre> project[type] {{ project[type] }}</pre>
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@
       class="form-control form-control-sm"
       placeholder="Название проекта"
       v-model.trim="projectName"
-      @keyup.enter="addProject"
+      @keyup.enter="createProject"
     />
     <BtnAddProject class="mt-1" @click="createProject" />
   </div>

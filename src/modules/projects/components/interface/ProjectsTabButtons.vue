@@ -51,12 +51,6 @@ export default {
     userId() {
       return this.$store.getters.userId
     }
-    // currentProject() {
-    //   return this.$store.getters.currentProject
-    // },
-  },
-  methods: {
-    createItem() {}
   }
 }
 </script>

@@ -73,7 +73,10 @@ export default {
       return this.$store.getters.projects
     },
     sortProjects() {
-      return sortMethod(this.projects, 'desc', 'position')
+      if (this.projects?.length) {
+        return sortMethod(this.projects, 'desc', 'position')
+      }
+      return []
     },
     currentProject() {
       return this.$store.getters.currentProject

@@ -86,6 +86,8 @@ export default {
         projects: projects,
         userId: this.userId
       })
+
+      this.$store.commit('setCurrentProject', { currentProject: project })
     },
 
     saveItem() {
