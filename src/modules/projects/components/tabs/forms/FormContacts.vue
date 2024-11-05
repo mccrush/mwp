@@ -4,42 +4,61 @@
       class="border-top border-dark-subtle rounded shadow-sm bg-body-tertiary p-3"
     >
       <div class="d-flex">
-        <input
-          type="text"
-          class="form-control form-control-sm"
-          placeholder="Имя"
-          v-model.trim="item.title"
-          @change="$emit('save-item')"
-        />
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            placeholder="Имя"
+            v-model.trim="item.title"
+          />
+          <BtnCopy
+            v-if="item.title"
+            class="border"
+            @click="copyInBuffer($event)"
+          />
+        </div>
         <BtnTrash
+          v-if="item.title"
           class="d-flex align-items-center ms-1"
           title="Удалить контакт"
           @click="$emit('remove-item', { type: item.type, index })"
         />
       </div>
 
-      <!-- -->
-      <div class="input-group mt-1">
-        <input
-          type="text"
-          class="form-control form-control-sm"
-          placeholder="Телефон"
-          v-model.trim="phone"
-          @change="saveItem"
-        />
-        <BtnCopy class="border" @click="copyInBuffer($event)" />
-      </div>
-      <!-- -->
-      <div class="input-group mt-1">
+      <!-- Цикл свободных полей -->
+      <div v-for="field in item.fields" :key="field" class="input-group mt-1">
         <input
           type="text"
           class="form-control form-control-sm"
           placeholder="Email"
-          v-model.trim="email"
-          @change="saveItem"
+          :value="field"
         />
-        <BtnCopy class="border" @click="copyInBuffer($event)" />
+
+        <BtnCopy v-if="field" class="border" @click="copyInBuffer($event)" />
+        <BtnTrashFlat
+          v-if="field"
+          class="border"
+          title="Удалить поле"
+          @click="removeContactFiled(field)"
+        />
       </div>
+
+      <!-- Добавление нового свободного пля -->
+      <div class="input-group mt-1">
+        <input
+          type="text"
+          class="form-control form-control-sm"
+          placeholder="Добавить поле"
+          v-model.trim="newField"
+        />
+
+        <BtnAddContactField
+          v-if="newField"
+          class="border"
+          @click="addContactFiled"
+        />
+      </div>
+
       <!-- -->
       <!-- <textarea
         rows="2"
@@ -57,11 +76,15 @@ import { copyInBuffer } from './../../../../../helpers/copyInBuffer'
 
 import BtnTrash from './../../../../../components/buttons/BtnTrash.vue'
 import BtnCopy from './../../../../../components/buttons/BtnCopy.vue'
+import BtnAddContactField from './../../../../../components/buttons/BtnAddContactField.vue'
+import BtnTrashFlat from './../../../../../components/buttons/BtnTrashFlat.vue'
 
 export default {
   components: {
     BtnTrash,
-    BtnCopy
+    BtnCopy,
+    BtnAddContactField,
+    BtnTrashFlat
   },
   emits: ['save-item', 'remove-item'],
   props: {
@@ -76,20 +99,21 @@ export default {
   },
   data() {
     return {
-      phone: this.item.phone,
-      //phone: decryption(this.item.phone),
-      email: this.item.email,
-      //email: decryption(this.item.email),
-      passType: true
+      passType: true,
+      newField: ''
     }
   },
   methods: {
-    saveItem() {
-      if (this.phone.length) this.item.phone = encryption(this.phone)
-      if (this.email.length) this.item.email = encryption(this.email)
-      this.$emit('save-item')
+    copyInBuffer,
+    addContactFiled() {
+      this.item.fields.push(this.newField)
+      this.newField = ''
+      //   this.$emit('save-item')
     },
-    copyInBuffer
+    removeContactFiled(field) {
+      this.item.fields = this.item.fields.filter(item => item !== field)
+      //   this.$emit('save-item')
+    }
   }
 }
 </script>

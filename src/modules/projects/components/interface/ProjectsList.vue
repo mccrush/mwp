@@ -81,6 +81,7 @@ export default {
   },
   methods: {
     setCurrentProject(currentProject) {
+      this.mod = 'create'
       this.$store.commit('setCurrentProject', { currentProject })
     },
 
