@@ -30,7 +30,7 @@
     </div>
 
     <div
-      v-if="userData"
+      v-if="isLoggedIn"
       class="col-9 col-lg-10 d-flex justify-content-end align-items-center"
     >
       <BtnPageProjects
@@ -39,9 +39,8 @@
         @click="$store.commit('setViewPage', 'PageProjects')"
       />
       <BtnPagePremium
-        v-if="!userData.premium"
+        v-if="userData && !userData.premium"
         class="me-2"
-        :class="{ 'text-body-secondary': userData.premium }"
         @click="$store.commit('setViewPage', 'PagePrice')"
       />
 
@@ -58,7 +57,7 @@
           <li @click="$store.commit('setViewPage', 'PageUser')">
             <a class="dropdown-item">Настройки</a>
           </li>
-          <li><a class="dropdown-item" href="#">Выйти</a></li>
+          <li><a class="dropdown-item" href="#" @click="logOut">Выйти</a></li>
         </ul>
       </div>
     </div>
@@ -67,7 +66,6 @@
 
 <script>
 import { version } from './../../../package.json'
-import { factoryModels } from './../../factories/factoryModels'
 
 import BtnPageProjects from './../buttons/BtnPageProjects.vue'
 import BtnPagePremium from './../buttons/BtnPagePremium.vue'
@@ -85,8 +83,8 @@ export default {
     }
   },
   computed: {
-    userId() {
-      return this.$store.getters.userId
+    isLoggedIn() {
+      return this.$store.getters.isLoggedIn
     },
     userEmail() {
       return this.$store.getters.userEmail
@@ -95,7 +93,10 @@ export default {
       return this.$store.getters.userData
     },
     currentUserEmailFormated() {
-      return this.userEmail.split('@')[0].substring(0, 16)
+      if (this.userEmail) {
+        return this.userEmail.split('@')[0].substring(0, 16)
+      }
+      return ''
     },
     viewPage() {
       return this.$store.getters.viewPage
@@ -105,6 +106,11 @@ export default {
     },
     loadingRT() {
       return this.$store.getters.loadingRT
+    }
+  },
+  methods: {
+    logOut() {
+      this.$store.dispatch('logOut')
     }
   }
 }

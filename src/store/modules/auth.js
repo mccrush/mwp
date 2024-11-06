@@ -7,9 +7,6 @@ export default {
   },
 
   mutations: {
-    // setUserData(state, { data }) {
-    //   state.userData = data
-    // },
     setAuthData(state, { type, data }) {
       state[type] = data
     }
@@ -18,13 +15,6 @@ export default {
   actions: {
     async logIn({ commit }, { email, password }) {
       try {
-        console.log(
-          'auth.js logIn() email = ',
-          email,
-          ' password = ',
-          password
-        )
-
         const { data, error } = await supabase.auth.signInWithPassword({
           email,
           password,

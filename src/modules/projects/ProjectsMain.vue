@@ -55,9 +55,13 @@ export default {
       return this.$store.getters.currentProjectId
     },
     project() {
-      return (
-        this.projects.find(item => item.id === this.currentProjectId) || null
-      )
+      if (this.projects.length) {
+        const findDroject = this.projects.find(
+          item => item.id === this.currentProjectId
+        )
+        return findDroject || null
+      }
+      return null
     }
   },
   methods: {
