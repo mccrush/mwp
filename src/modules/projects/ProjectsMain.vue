@@ -16,6 +16,7 @@
             :type="viewTab"
             @save-item="saveItem"
             @remove-item="removeItem"
+            @create-form-item="createFormItem"
           />
         </transition>
       </div>

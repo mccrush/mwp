@@ -2,12 +2,14 @@
   <div>
     <input
       type="text"
+      id="titleProject"
       class="form-control form-control-sm"
       placeholder="Название проекта"
       v-model.trim="item.title"
     />
     <input
       type="number"
+      id="positionProject"
       class="form-control form-control-sm mt-1"
       placeholder="Позиция"
       v-model.number="item.position"

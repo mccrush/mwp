@@ -2,6 +2,7 @@
   <div>
     <input
       type="text"
+      id="createNewProject"
       class="form-control form-control-sm"
       placeholder="Название проекта"
       v-model.trim="projectName"

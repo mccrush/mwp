@@ -66,7 +66,7 @@
       <div class="input-group mt-1">
         <input
           :type="passType ? 'password' : 'text'"
-          autocomplete="new-password"
+          autocomplete="off"
           :id="'inputPass' + item.id"
           class="form-control form-control-sm"
           placeholder="Пароль"

@@ -54,6 +54,7 @@
       <div class="input-group mt-1">
         <input
           type="text"
+          id="addFirstField"
           class="form-control form-control-sm"
           placeholder="Добавить поле"
           v-model.trim="newField"

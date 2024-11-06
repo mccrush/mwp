@@ -13,7 +13,9 @@
           @remove-item="removeItem"
         />
       </div>
-      <p v-else>Создайте первую форму</p>
+      <div v-else class="row">
+        <FormCreateFirstForm @create-form-item="createFormItem" />
+      </div>
     </div>
   </div>
 </template>
@@ -22,10 +24,11 @@
 import FormLinks from './forms/FormLinks.vue'
 import FormPasswords from './forms/FormPasswords.vue'
 import FormContacts from './forms/FormContacts.vue'
+import FormCreateFirstForm from './forms/FormCreateFirstForm.vue'
 
 export default {
-  components: { FormLinks, FormPasswords, FormContacts },
-  emits: ['save-item', 'remove-item'],
+  components: { FormLinks, FormPasswords, FormContacts, FormCreateFirstForm },
+  emits: ['save-item', 'remove-item', 'create-form-item'],
   props: {
     project: Object,
     type: String
@@ -46,6 +49,10 @@ export default {
       if (confirm('Точно удалить?')) {
         this.$emit('remove-item', { type, id })
       }
+    },
+
+    createFormItem() {
+      this.$emit('create-form-item', { type: this.type })
     }
   }
 }
