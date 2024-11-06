@@ -1,11 +1,7 @@
 import CryptoJS from 'crypto-js'
 const secret = import.meta.env.VITE_anonKey
-//const secret = '123'
-console.log('decryption secret = ', secret);
 
 export const encryption = (string) => CryptoJS.AES.encrypt(string, secret).toString()
-
-
 
 
 export const decryption = (string) => {

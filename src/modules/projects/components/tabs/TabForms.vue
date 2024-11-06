@@ -1,6 +1,5 @@
 <template>
-  <div class="row border p-2">
-    TabForms type = {{ type }}
+  <div class="row border-top p-2">
     <div class="col-12">
       <div v-if="project[type].length" class="row">
         <component
@@ -12,21 +11,9 @@
           :project="project"
           @save-item="saveItem"
           @remove-item="removeItem"
-          @update-contact-form-fields="updateContactFormFields"
         />
       </div>
       <p v-else>Создайте первую форму</p>
-    </div>
-
-    <div>
-      <div class="row">
-        <div class="col-6 border code p-3">
-          <pre> project {{ project }}</pre>
-        </div>
-        <div class="col-6 border code p-3">
-          <pre> project[type] {{ project[type] }}</pre>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -60,16 +47,6 @@ export default {
       if (confirm('Точно удалить?')) {
         this.$emit('remove-item', { type, id })
       }
-    },
-
-    updateContactFormFields({ index, item }) {
-      this.project[item.type][index] = item
-      this.$emit('save-item')
-    }
-  },
-  watch: {
-    project() {
-      console.log('project in TabForm изменился')
     }
   }
 }

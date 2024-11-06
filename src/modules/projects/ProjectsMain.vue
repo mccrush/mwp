@@ -13,17 +13,6 @@
             @remove-item="removeItem"
           />
         </transition>
-
-        <div class="row">
-          <div class="col-6 border code p-3">
-            projects =
-            <pre>{{ projects }}</pre>
-          </div>
-          <div class="col-6 border code p-3">
-            project =
-            <pre>{{ project }}</pre>
-          </div>
-        </div>
       </div>
       <div v-else class="col-10 border-top border-dark-subtle">
         <p>Выберите проект из списка слева</p>
@@ -68,7 +57,6 @@ export default {
   methods: {
     createFormItem({ type }) {
       const form = factoryModels({ type })
-      console.log('ProjectsMain.vue form = ', form)
 
       let project = this.project
       project[type].push(form)
@@ -77,8 +65,6 @@ export default {
       const index = projects.findIndex(item => item.id === project.id)
       projects[index] = project
 
-      console.log('ProjectsMain.vue new projects = ', projects)
-
       this.$store.dispatch('updateProjectData', {
         projects: projects,
         userId: this.userId
@@ -86,9 +72,6 @@ export default {
     },
 
     saveItem() {
-      console.log('ProjectsMain.vue, Проекты будут обновлены в БД')
-      console.log('ProjectsMain.vue,  this.projects = ', this.projects)
-      //return
       this.$store.dispatch('updateProjectData', {
         projects: this.projects,
         userId: this.userId
@@ -96,9 +79,6 @@ export default {
     },
 
     removeItem({ type, id }) {
-      console.log('ProjectsMain.vue, remove type = ', type)
-      console.log('ProjectsMain.vue, remove id = ', id)
-
       let project = this.project
       const items = project[type].filter(item => item.id !== id)
 
@@ -112,14 +92,6 @@ export default {
         projects: projects,
         userId: this.userId
       })
-    }
-  },
-  watch: {
-    projects() {
-      console.log('projects in ProjectsMain изменился')
-    },
-    project() {
-      console.log('project in ProjectsMain изменился')
     }
   }
 }

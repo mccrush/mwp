@@ -27,14 +27,18 @@
       </div>
 
       <!-- Цикл свободных полей -->
-      <div v-for="field in item.fields" :key="field" class="input-group mt-1">
+      <div
+        v-for="(field, index) in item.fields"
+        :key="field + index"
+        class="input-group mt-1"
+      >
         <input
           type="text"
-          :id="'inputField' + field.id"
+          :id="'inputField' + index"
           class="form-control form-control-sm"
           placeholder="Введите значение"
-          :value="field"
-          @change="updateContactField"
+          :value="getDecriptField(field)"
+          disabled
         />
 
         <BtnCopy v-if="field" class="border" @click="copyInBuffer($event)" />
@@ -53,6 +57,7 @@
           class="form-control form-control-sm"
           placeholder="Добавить поле"
           v-model.trim="newField"
+          @keyup.enter="addContactFiled"
         />
 
         <BtnAddContactField
@@ -89,7 +94,7 @@ export default {
     BtnAddContactField,
     BtnTrashFlat
   },
-  emits: ['save-item', 'remove-item', 'update-contact-form-fields'],
+  emits: ['save-item', 'remove-item'],
   props: {
     item: Object,
     index: Number,
@@ -103,26 +108,20 @@ export default {
   },
   methods: {
     copyInBuffer,
+    getDecriptField(field) {
+      return decryption(field)
+    },
     addContactFiled() {
-      this.item.fields.push(this.newField)
-      this.newField = ''
-      this.$emit('update-contact-form-fields', {
-        index: this.index,
-        item: this.item
-      })
+      if (this.newField) {
+        const encField = encryption(this.newField)
+        this.item.fields.push(encField)
+        this.newField = ''
+        this.$emit('save-item')
+      }
     },
     removeContactFiled(field) {
       this.item.fields = this.item.fields.filter(item => item !== field)
-      this.$emit('update-contact-form-fields', {
-        index: this.index,
-        item: this.item
-      })
-    },
-    updateContactField() {
-      this.$emit('update-contact-form-fields', {
-        index: this.index,
-        item: this.item
-      })
+      this.$emit('save-item')
     }
   }
 }
