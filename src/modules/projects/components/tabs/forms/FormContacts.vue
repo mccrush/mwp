@@ -32,9 +32,9 @@
           type="text"
           :id="'inputField' + field.id"
           class="form-control form-control-sm"
-          placeholder="Email"
+          placeholder="Введите значение"
           :value="field"
-          @change="$emit('save-item')"
+          @change="updateContactField"
         />
 
         <BtnCopy v-if="field" class="border" @click="copyInBuffer($event)" />
@@ -89,16 +89,11 @@ export default {
     BtnAddContactField,
     BtnTrashFlat
   },
-  emits: ['save-item', 'remove-item'],
+  emits: ['save-item', 'remove-item', 'update-contact-form-fields'],
   props: {
-    item: {
-      type: Object,
-      default: null
-    },
-    index: {
-      type: Number,
-      default: 0
-    }
+    item: Object,
+    index: Number,
+    project: Object
   },
   data() {
     return {
@@ -111,11 +106,23 @@ export default {
     addContactFiled() {
       this.item.fields.push(this.newField)
       this.newField = ''
-      this.$emit('save-item')
+      this.$emit('update-contact-form-fields', {
+        index: this.index,
+        item: this.item
+      })
     },
     removeContactFiled(field) {
       this.item.fields = this.item.fields.filter(item => item !== field)
-      this.$emit('save-item')
+      this.$emit('update-contact-form-fields', {
+        index: this.index,
+        item: this.item
+      })
+    },
+    updateContactField() {
+      this.$emit('update-contact-form-fields', {
+        index: this.index,
+        item: this.item
+      })
     }
   }
 }

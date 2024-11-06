@@ -33,7 +33,6 @@
 </template>
 
 <script>
-import { dataTabs } from './data/dataTabs'
 import { factoryModels } from './../../factories/factoryModels'
 
 import ProjectsList from './components/interface/ProjectsList.vue'
@@ -69,7 +68,7 @@ export default {
   methods: {
     createFormItem({ type }) {
       const form = factoryModels({ type })
-      console.log('form = ', form)
+      console.log('ProjectsMain.vue form = ', form)
 
       let project = this.project
       project[type].push(form)
@@ -87,8 +86,8 @@ export default {
     },
 
     saveItem() {
-      console.log('Проекты будут обновлены в БД')
-      console.log('this.projects = ', this.projects)
+      console.log('ProjectsMain.vue, Проекты будут обновлены в БД')
+      console.log('ProjectsMain.vue,  this.projects = ', this.projects)
       //return
       this.$store.dispatch('updateProjectData', {
         projects: this.projects,
@@ -97,8 +96,8 @@ export default {
     },
 
     removeItem({ type, id }) {
-      console.log('remove type = ', type)
-      console.log('remove id = ', id)
+      console.log('ProjectsMain.vue, remove type = ', type)
+      console.log('ProjectsMain.vue, remove id = ', id)
 
       let project = this.project
       const items = project[type].filter(item => item.id !== id)

@@ -9,8 +9,10 @@
           :key="item.id"
           :item="item"
           :index="index"
+          :project="project"
           @save-item="saveItem"
           @remove-item="removeItem"
+          @update-contact-form-fields="updateContactFormFields"
         />
       </div>
       <p v-else>Создайте первую форму</p>
@@ -58,6 +60,11 @@ export default {
       if (confirm('Точно удалить?')) {
         this.$emit('remove-item', { type, id })
       }
+    },
+
+    updateContactFormFields({ index, item }) {
+      this.project[item.type][index] = item
+      this.$emit('save-item')
     }
   },
   watch: {
