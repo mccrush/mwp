@@ -3,21 +3,21 @@
 export default {
   state: {
     viewTab: localStorage.getItem('mw-viewTab') || 'TabLinks',
-    currentProject: JSON.parse(localStorage.getItem('mw-currentProject')) || null,
+    currentProjectId: localStorage.getItem('mw-currentProjectId') || '',
   },
   mutations: {
     setViewTab(state, viewTab) {
       state.viewTab = viewTab
       localStorage.setItem('mw-viewTab', viewTab)
     },
-    setCurrentProject(state, { currentProject }) {
-      state.currentProject = currentProject
-      localStorage.setItem('mw-currentProject', JSON.stringify(currentProject))
+    setCurrentProjectId(state, { currentProjectId }) {
+      state.currentProjectId = currentProjectId
+      localStorage.setItem('mw-currentProjectId', currentProjectId)
     },
   },
 
   getters: {
     viewTab: state => state.viewTab,
-    currentProject: state => state.currentProject
+    currentProjectId: state => state.currentProjectId
   }
 }

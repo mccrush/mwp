@@ -1,8 +1,8 @@
 <template>
   <div class="row border p-2">
-    TabLinks type = {{ type }}
+    TabForms type = {{ type }}
     <div class="col-12">
-      <div v-if="project && project[type].length" class="row">
+      <div v-if="project[type].length" class="row">
         <component
           :is="formComponent"
           v-for="(item, index) in project[type]"
@@ -12,7 +12,6 @@
           @save-item="saveItem"
           @remove-item="removeItem"
         />
-        <!-- <FormLinks v-for="item in project[type]" :key="item.id" :item="item" /> -->
       </div>
       <p v-else>Создайте первую форму</p>
     </div>
@@ -52,13 +51,18 @@ export default {
   },
   methods: {
     saveItem() {
-      this.$store.commit('setCurrentProject', { currentProject: this.project })
       this.$emit('save-item')
     },
+
     removeItem({ type, id }) {
       if (confirm('Точно удалить?')) {
         this.$emit('remove-item', { type, id })
       }
+    }
+  },
+  watch: {
+    project() {
+      console.log('project in TabForm изменился')
     }
   }
 }

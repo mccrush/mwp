@@ -14,13 +14,13 @@
           @click="setCurrentProject(project)"
           class="text-truncate"
           :class="{
-            active: currentProject && project.id === currentProject.id
+            active: currentProjectId && project.id === currentProjectId
           }"
         >
           {{ project.title }}
         </BtnProjectTitle>
         <BtnEdit
-          v-if="currentProject && project.id === currentProject.id"
+          v-if="currentProjectId && project.id === currentProjectId"
           @click="mod = 'edit'"
         />
       </div>
@@ -33,12 +33,12 @@
       <div class="ps-2 pe-2">
         <FormCreateProject v-if="mod === 'create'" @add-project="addProject" />
 
-        <FormEditProject
-          v-if="currentProject && mod === 'edit'"
+        <!-- <FormEditProject
+          v-if="currentProjectId && mod === 'edit'"
           :item="currentProject"
           @update-project="updateProject"
           @remove-project="removeProject"
-        />
+        /> -->
       </div>
     </div>
   </div>
@@ -78,14 +78,20 @@ export default {
       }
       return []
     },
-    currentProject() {
-      return this.$store.getters.currentProject
+    currentProjectId() {
+      return this.$store.getters.currentProjectId
     }
+    // currentProject() {
+    //   return this.$store.getters.currentProject
+    // }
   },
   methods: {
     setCurrentProject(currentProject) {
       this.mod = 'create'
-      this.$store.commit('setCurrentProject', { currentProject })
+      this.$store.commit('setCurrentProjectId', {
+        currentProjectId: currentProject.id
+      })
+      //this.$store.commit('setCurrentProject', { currentProject })
     },
 
     addProject({ project }) {
@@ -116,7 +122,7 @@ export default {
           userId: this.userId
         })
 
-        this.$store.commit('setCurrentProject', { currentProject: null })
+        //this.$store.commit('setCurrentProject', { currentProject: null })
       }
     }
   }
