@@ -38,7 +38,7 @@ const { data } = supabase.auth.onAuthStateChange((event, session) => {
         'postgres_changes',
         { event: 'UPDATE', schema: 'public', table: 'users', filter: 'id=eq.' + session.user.id },
         (payload) => {
-          console.log('Change received!', payload)
+          //console.log('Change received!', payload)
           store.dispatch('getProjects', { type: 'projects', userId: session.user.id })
         }
       )

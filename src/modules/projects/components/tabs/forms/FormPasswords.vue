@@ -139,8 +139,8 @@ export default {
     saveItem() {
       if (this.login.length) this.item.login = encryption(this.login)
       if (this.password.length) this.item.password = encryption(this.password)
-      console.log('before save this.item.login = ', this.item.login)
-      console.log('before save this.item.password = ', this.item.password)
+      //console.log('before save this.item.login = ', this.item.login)
+      //console.log('before save this.item.password = ', this.item.password)
       this.$emit('save-item')
     },
     copyInBuffer
