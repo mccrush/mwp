@@ -1,7 +1,12 @@
 <template>
   <div>
     <div class="row">
-      <ProjectsList />
+      <ProjectsList
+        :userId="userId"
+        :projects="projects"
+        :project="project"
+        :currentProjectId="currentProjectId"
+      />
 
       <div v-if="project" class="col-9 col-lg-10 border-top border-dark-subtle">
         <ProjectsTabButtons @create-form-item="createFormItem" />

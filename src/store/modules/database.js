@@ -105,25 +105,19 @@ export default {
     // Получение проектов после обновление в таблице
     async getProjects({ commit }, { type, userId }) {
       try {
-        console.log('database.js getProjects() type =', type)
+        //console.log('database.js getProjects() type =', type)
         const { data, error } = await supabase.from('users').select(type).eq('id', userId)
 
         if (error) throw error
         if (data) {
           const projects = data[0].projects
-          console.log('database.js getProjects() data =', data)
+          //console.log('database.js getProjects() data =', data)
           commit('setItems', { type, items: projects })
         }
       } catch (error) {
         console.error('database.js getProjects()', error)
       }
-    },
-
-    // getProjectsFromUserData({ commit, state }, { type }) {
-    //   const data = state.userData?.projects || []
-    //   console.log('database.js getProjectsFromUserData() data =', data)
-    //   commit('setItems', { type, items: data })
-    // }
+    }
   },
 
   getters: {

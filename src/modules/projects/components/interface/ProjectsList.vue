@@ -11,7 +11,7 @@
         role="group"
       >
         <BtnProjectTitle
-          @click="setCurrentProject(project)"
+          @click="setCurrentProjectId(project.id)"
           class="text-truncate"
           :class="{
             active: currentProjectId && project.id === currentProjectId
@@ -33,12 +33,12 @@
       <div class="ps-2 pe-2">
         <FormCreateProject v-if="mod === 'create'" @add-project="addProject" />
 
-        <!-- <FormEditProject
+        <FormEditProject
           v-if="currentProjectId && mod === 'edit'"
-          :item="currentProject"
+          :item="project"
           @update-project="updateProject"
           @remove-project="removeProject"
-        /> -->
+        />
       </div>
     </div>
   </div>
@@ -60,38 +60,31 @@ export default {
     FormCreateProject,
     FormEditProject
   },
+  props: {
+    userId: String,
+    projects: Array,
+    project: Object,
+    currentProjectId: String
+  },
   data() {
     return {
       mod: 'create'
     }
   },
   computed: {
-    userId() {
-      return this.$store.getters.userId
-    },
-    projects() {
-      return this.$store.getters.projects
-    },
     sortProjects() {
       if (this.projects?.length) {
         return sortMethod(this.projects, 'desc', 'position')
       }
       return []
-    },
-    currentProjectId() {
-      return this.$store.getters.currentProjectId
     }
-    // currentProject() {
-    //   return this.$store.getters.currentProject
-    // }
   },
   methods: {
-    setCurrentProject(currentProject) {
+    setCurrentProjectId(currentProjectId) {
       this.mod = 'create'
       this.$store.commit('setCurrentProjectId', {
-        currentProjectId: currentProject.id
+        currentProjectId
       })
-      //this.$store.commit('setCurrentProject', { currentProject })
     },
 
     addProject({ project }) {
@@ -121,8 +114,6 @@ export default {
           projects: projects,
           userId: this.userId
         })
-
-        //this.$store.commit('setCurrentProject', { currentProject: null })
       }
     }
   }

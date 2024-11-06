@@ -34,7 +34,6 @@ export default {
     formComponent() {
       const component =
         'Form' + this.type[0].toUpperCase() + this.type.substring(1)
-      console.log('component = ', component)
       return component
     }
   },
