@@ -94,6 +94,10 @@ export default {
         projects: this.projects,
         userId: this.userId
       })
+
+      this.$store.commit('setCurrentProjectId', {
+        currentProjectId: project.id
+      })
     },
 
     updateProject() {
@@ -113,6 +117,10 @@ export default {
         this.$store.dispatch('updateProjectData', {
           projects: projects,
           userId: this.userId
+        })
+
+        this.$store.commit('setCurrentProjectId', {
+          currentProjectId: ''
         })
       }
     }

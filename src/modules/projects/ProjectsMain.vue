@@ -8,20 +8,25 @@
         :currentProjectId="currentProjectId"
       />
 
-      <div v-if="project" class="col-9 col-lg-10 border-top border-dark-subtle">
-        <ProjectsTabButtons @create-form-item="createFormItem" />
-        <transition name="fade" mode="out-in">
-          <TabForms
-            :project="project"
-            :type="viewTab"
-            @save-item="saveItem"
-            @remove-item="removeItem"
-            @create-form-item="createFormItem"
-          />
-        </transition>
-      </div>
-      <div v-else class="col-10 border-top border-dark-subtle">
-        <p>Выберите проект из списка слева</p>
+      <div class="col-9 col-lg-10 border-top border-dark-subtle">
+        <div v-if="project">
+          <ProjectsTabButtons @create-form-item="createFormItem" />
+          <transition name="fade" mode="out-in">
+            <TabForms
+              :project="project"
+              :type="viewTab"
+              @save-item="saveItem"
+              @remove-item="removeItem"
+              @create-form-item="createFormItem"
+            />
+          </transition>
+        </div>
+        <div v-else class="pt-4">
+          <h6 class="text-center">
+            Выберите проект из списка слева<br />
+            или создайте новый проект
+          </h6>
+        </div>
       </div>
     </div>
   </div>
