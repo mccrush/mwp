@@ -1,7 +1,7 @@
 <template>
   <div class="row border-top p-2">
     <div class="col-12">
-      <div v-if="project[type].length" class="row">
+      <div v-if="projectTypeLength" class="row">
         <component
           :is="formComponent"
           v-for="(item, index) in project[type]"
@@ -38,6 +38,15 @@ export default {
       const component =
         'Form' + this.type[0].toUpperCase() + this.type.substring(1)
       return component
+    },
+    projectTypeLength() {
+      // console.log('project =', this.project)
+      // console.log('this.type =', this.type)
+      // console.log('project[type] =', this.project[this.type])
+      // console.log('project[type].length =', this.project[this.type].length)
+
+      const length = this.project[this.type].length
+      return length
     }
   },
   methods: {

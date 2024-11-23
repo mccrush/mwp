@@ -2,7 +2,7 @@
 
 export default {
   state: {
-    viewTab: localStorage.getItem('mw-viewTab') || 'TabLinks',
+    viewTab: localStorage.getItem('mw-viewTab') || 'links',
     currentProjectId: localStorage.getItem('mw-currentProjectId') || '',
   },
   mutations: {

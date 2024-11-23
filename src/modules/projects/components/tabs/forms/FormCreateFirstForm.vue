@@ -4,17 +4,17 @@
       class="border-top border-dark-subtle rounded shadow-sm bg-body-tertiary p-3"
     >
       <div class="d-flex">
-        <input
+        <!-- <input
           type="text"
           id="createFirstForm"
           class="form-control form-control-sm"
           placeholder="Название"
           value="Создайте первую форму"
           disabled
-        />
+        /> -->
 
         <BtnCreateFirstForm
-          class="d-flex align-items-center ms-1"
+          class="w-100"
           title="Создать первую форму"
           @click="$emit('create-form-item')"
         />
