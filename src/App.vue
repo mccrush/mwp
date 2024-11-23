@@ -16,6 +16,7 @@ import TheNavbar from './components/interface/TheNavbar.vue'
 import PageLogin from './pages/PageLogin.vue'
 import PageUser from './pages/PageUser.vue'
 import PagePrice from './pages/PagePrice.vue'
+import PageDoc from './pages/PageDoc.vue'
 import PageProjects from './pages/PageProjects.vue'
 
 export default {
@@ -24,6 +25,7 @@ export default {
     PageLogin,
     PageUser,
     PagePrice,
+    PageDoc,
     PageProjects
   },
   computed: {

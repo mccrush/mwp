@@ -43,6 +43,10 @@
         class="me-2"
         @click="$store.commit('setViewPage', 'PagePrice')"
       />
+      <BtnPageDoc
+        class="me-2"
+        @click="$store.commit('setViewPage', 'PageDoc')"
+      />
 
       <div class="dropdown">
         <BtnPageUser
@@ -69,12 +73,14 @@ import { version } from './../../../package.json'
 
 import BtnPageProjects from './../buttons/BtnPageProjects.vue'
 import BtnPagePremium from './../buttons/BtnPagePremium.vue'
+import BtnPageDoc from './../buttons/BtnPageDoc.vue'
 import BtnPageUser from './../buttons/BtnPageUser.vue'
 
 export default {
   components: {
     BtnPageProjects,
     BtnPagePremium,
+    BtnPageDoc,
     BtnPageUser
   },
   data() {
