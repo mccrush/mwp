@@ -90,9 +90,8 @@ export default {
     addProject({ project }) {
       this.projects.push(project)
 
-      this.$store.dispatch('updateProjectData', {
-        projects: this.projects,
-        userId: this.userId
+      this.$store.dispatch('updateProjects', {
+        projects: this.projects
       })
 
       this.$store.commit('setCurrentProjectId', {
@@ -103,9 +102,8 @@ export default {
     updateProject() {
       this.mod = 'create'
 
-      this.$store.dispatch('updateProjectData', {
-        projects: this.projects,
-        userId: this.userId
+      this.$store.dispatch('updateProjects', {
+        projects: this.projects
       })
     },
 
@@ -114,9 +112,8 @@ export default {
         this.mod = 'create'
         const projects = this.projects.filter(item => item.id !== projectId)
 
-        this.$store.dispatch('updateProjectData', {
-          projects: projects,
-          userId: this.userId
+        this.$store.dispatch('updateProjects', {
+          projects: this.projects
         })
 
         this.$store.commit('setCurrentProjectId', {

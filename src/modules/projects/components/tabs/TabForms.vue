@@ -40,11 +40,6 @@ export default {
       return component
     },
     projectTypeLength() {
-      // console.log('project =', this.project)
-      // console.log('this.type =', this.type)
-      // console.log('project[type] =', this.project[this.type])
-      // console.log('project[type].length =', this.project[this.type].length)
-
       const length = this.project[this.type].length
       return length
     }

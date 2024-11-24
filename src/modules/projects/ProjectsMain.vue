@@ -80,16 +80,14 @@ export default {
       const index = projects.findIndex(item => item.id === project.id)
       projects[index] = project
 
-      this.$store.dispatch('updateProjectData', {
-        projects: projects,
-        userId: this.userId
+      this.$store.dispatch('updateProjects', {
+        projects: this.projects
       })
     },
 
     saveItem() {
-      this.$store.dispatch('updateProjectData', {
-        projects: this.projects,
-        userId: this.userId
+      this.$store.dispatch('updateProjects', {
+        projects: this.projects
       })
     },
 
@@ -103,9 +101,8 @@ export default {
       const index = projects.findIndex(item => item.id === project.id)
       projects[index] = project
 
-      this.$store.dispatch('updateProjectData', {
-        projects: projects,
-        userId: this.userId
+      this.$store.dispatch('updateProjects', {
+        projects: this.projects
       })
     }
   }

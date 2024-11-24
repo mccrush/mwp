@@ -1,4 +1,4 @@
-//import { supabase } from './../../supabase/supabaseClient'
+import { supabase } from './../../supabase/supabaseClient'
 
 export default {
   state: {
@@ -17,12 +17,14 @@ export default {
   },
 
   actions: {
-    async addProject({ commit }, { item }) {
+    async updateProjects({ commit }, { projects }) {
       try {
-
+        const { data, error } = await supabase.auth.updateUser({
+          data: { projects }
+        })
         if (error) throw error
       } catch (error) {
-        console.error('projects.js addProject()', error)
+        console.error('projects.js updateProjects()', error)
       }
     },
   },

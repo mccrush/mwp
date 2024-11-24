@@ -39,7 +39,7 @@
         @click="$store.commit('setViewPage', 'PageProjects')"
       />
       <BtnPagePremium
-        v-if="userData && !userData.premium"
+        v-if="userMetaData && !userMetaData.premium"
         class="me-2"
         @click="$store.commit('setViewPage', 'PagePrice')"
       />
@@ -95,8 +95,8 @@ export default {
     userEmail() {
       return this.$store.getters.userEmail
     },
-    userData() {
-      return this.$store.getters.userData
+    userMetaData() {
+      return this.$store.getters.userMetaData
     },
     currentUserEmailFormated() {
       if (this.userEmail) {
