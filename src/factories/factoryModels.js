@@ -1,26 +1,18 @@
-import ClassProjects from './../classes-virtual/ClassProjects'
-import ClassLinks from './../classes-virtual/ClassLinks'
-import ClassPasswords from './../classes-virtual/ClassPasswords'
-import ClassContacts from './../classes-virtual/ClassContacts'
+import { factoryProjects } from './factoryProjects'
+import { factoryLinks } from './factoryLinks'
+import { factoryPasswords } from './factoryPasswords'
+import { factoryContacts } from './factoryContacts'
 
 
 export const factoryModels = ({ type }) => {
-  let newObject = {}
-
   switch (type) {
     case 'projects':
-      newObject = new ClassProjects()
-      break
+      return factoryProjects()
     case 'links':
-      newObject = new ClassLinks()
-      break
+      return factoryLinks()
     case 'passwords':
-      newObject = new ClassPasswords()
-      break
+      return factoryPasswords()
     case 'contacts':
-      newObject = new ClassContacts()
-      break
+      return factoryContacts()
   }
-
-  return Object.assign({}, newObject)
 }

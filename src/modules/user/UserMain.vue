@@ -10,6 +10,14 @@
         Удалить аккаунт
       </button>
     </div>
+    <div>
+      <button
+        class="btn btn-sm btn-dark text-danger mt-2"
+        @click="resetUserMetaData"
+      >
+        Сбросить данные
+      </button>
+    </div>
 
     <div><p>Срок до которого активна Pro подписка</p></div>
     <div><p>Возможность продления подписки</p></div>
@@ -32,6 +40,12 @@ export default {
     }
   },
   methods: {
+    resetUserMetaData() {
+      if (confirm('Точно сбросить все данные?')) {
+        const userMetaData = factoryUsers()
+        this.$store.dispatch('resetUserMetaData', { userMetaData })
+      }
+    },
     deleteAccaunt() {
       if (
         confirm(
