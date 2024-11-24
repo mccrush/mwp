@@ -10,6 +10,18 @@
         Удалить аккаунт
       </button>
     </div>
+    <div>
+      userMetaData =
+      <pre>{{ userMetaData }}</pre>
+    </div>
+    <div>
+      <button
+        class="btn btn-sm btn-dark text-success mt-2"
+        @click="addUserData"
+      >
+        Добавить данные
+      </button>
+    </div>
     <div><p>Срок до которого активна Pro подписка</p></div>
     <div><p>Возможность продления подписки</p></div>
     <div><p>Возможность отключения подписки</p></div>
@@ -19,13 +31,28 @@
 </template>
 
 <script>
+import { factoryUsers } from './../../factories/factoryUsers'
+
 export default {
   computed: {
     userEmail() {
       return this.$store.getters.userEmail
+    },
+    userMetaData() {
+      return this.$store.getters.userMetaData
     }
   },
   methods: {
+    addUserData() {
+      const newUserMetaData = factoryUsers('12345')
+      console.log(
+        'UserMain.vue addUserData() newUserMetaData =',
+        newUserMetaData
+      )
+      this.$store.dispatch('updateUserMetaData', {
+        userMetaData: newUserMetaData
+      })
+    },
     deleteAccaunt() {
       if (
         confirm(

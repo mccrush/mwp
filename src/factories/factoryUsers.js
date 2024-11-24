@@ -1,3 +1,10 @@
-import ClassUsers from './../classes/ClassUsers'
+import ClassBasic from './ClassBasic'
 
-export const factoryUsers = (userId) => Object.assign({}, new ClassUsers(userId))
+class ClassUsers extends ClassBasic {
+  premium = false
+  dateStartPremium = ''
+  dateEndPremium = ''
+  projects = []
+}
+
+export const factoryUsers = () => Object.assign({}, new ClassUsers())

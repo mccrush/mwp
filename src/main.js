@@ -27,29 +27,29 @@ const { data } = supabase.auth.onAuthStateChange((event, session) => {
     // handle sign in event
     store.commit('setAuthData', { type: 'userId', data: session.user.id })
     store.commit('setAuthData', { type: 'userEmail', data: session.user.email })
-    store.dispatch('getItem', { type: 'users', userId: session.user.id })
-    store.dispatch('getProjects', { type: 'projects', userId: session.user.id })
-    // store.dispatch('getProjectsFromUserData', { type: 'projects' })
-    // store.commit('setViewPage', 'PageProjects')
+    store.commit('setAuthData', { type: 'userMetaData', data: session.user.user_metadata })
+    // store.dispatch('getItem', { type: 'users', userId: session.user.id })
+    // store.dispatch('getProjects', { type: 'projects', userId: session.user.id })
 
 
-    const channels = supabase.channel('custom-update-channel')
-      .on(
-        'postgres_changes',
-        { event: 'UPDATE', schema: 'public', table: 'users', filter: 'id=eq.' + session.user.id },
-        (payload) => {
-          //console.log('Change received!', payload)
-          store.dispatch('getProjects', { type: 'projects', userId: session.user.id })
-        }
-      )
-      .subscribe()
+    // const channels = supabase.channel('custom-update-channel')
+    //   .on(
+    //     'postgres_changes',
+    //     { event: 'UPDATE', schema: 'public', table: 'users', filter: 'id=eq.' + session.user.id },
+    //     (payload) => {
+    //       //console.log('Change received!', payload)
+    //       store.dispatch('getProjects', { type: 'projects', userId: session.user.id })
+    //     }
+    //   )
+    //   .subscribe()
 
 
   } else if (event === 'SIGNED_OUT') {
     // handle sign out event
     store.commit('setAuthData', { type: 'userId', data: null })
     store.commit('setAuthData', { type: 'userEmail', data: null })
-    store.commit('setItems', { type: 'projects', data: [] })
+    store.commit('setAuthData', { type: 'userMetaData', data: null })
+    //store.commit('setItems', { type: 'projects', data: [] })
     store.commit('setViewPage', 'PageLogin')
   } else if (event === 'PASSWORD_RECOVERY') {
     // handle password recovery event
@@ -59,6 +59,3 @@ const { data } = supabase.auth.onAuthStateChange((event, session) => {
     // handle user updated event
   }
 })
-
-// Подписка на обновление в табилце пользователей
-//const userId = store.getters.userId

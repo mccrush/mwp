@@ -16,6 +16,17 @@ export default {
     },
   },
 
+  actions: {
+    async addProject({ commit }, { item }) {
+      try {
+
+        if (error) throw error
+      } catch (error) {
+        console.error('projects.js addProject()', error)
+      }
+    },
+  },
+
   getters: {
     viewTab: state => state.viewTab,
     currentProjectId: state => state.currentProjectId

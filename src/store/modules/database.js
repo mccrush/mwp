@@ -3,7 +3,7 @@ import { supabase } from './../../supabase/supabaseClient'
 export default {
   state: {
     userData: null,
-    projects: []
+    //projects: []
   },
 
   mutations: {
@@ -122,6 +122,6 @@ export default {
 
   getters: {
     userData: state => state.userData,
-    projects: state => state.projects
+    //projects: state => state.projects
   }
 }

@@ -3,7 +3,8 @@ import { supabase } from './../../supabase/supabaseClient'
 export default {
   state: {
     userId: null,
-    userEmail: null
+    userEmail: null,
+    userMetaData: null
   },
 
   mutations: {
@@ -33,12 +34,35 @@ export default {
       } catch (error) {
         console.error(error)
       }
+    },
+
+    async updateUserMetaData({ commit }, { userMetaData }) {
+      try {
+        console.log(
+          'auth.js updateUserMetaData() userMetaData =',
+          userMetaData
+        )
+        const { data, error } = await supabase.auth.updateUser({
+          data: userMetaData
+        })
+        // const { data, error } = await supabase.auth.updateUser({
+        //   data: { user_metadata: null }
+        // })
+        if (error) throw error
+        console.log('auth.js updateUserMetaData(): Данные пользователя успешно обновлены')
+      } catch (error) {
+        console.error('auth.js updateUserMetaData()', error)
+      }
     }
   },
 
   getters: {
-    isLoggedIn: (state) => state.userId !== null,
+    isLoggedIn: state => state.userId !== null,
     userEmail: state => state.userEmail,
-    userId: state => state.userId
+    userId: state => state.userId,
+    userMetaData: state => state.userMetaData,
+    projects: state => state.userMetaData.projects,
+
+    projectsLength: state => state.userMetaData.projects.length
   }
 }
