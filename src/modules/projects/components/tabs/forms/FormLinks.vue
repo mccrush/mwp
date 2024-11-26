@@ -10,6 +10,7 @@
             :id="'inputTitle' + item.id"
             class="form-control form-control-sm"
             placeholder="Название"
+            maxlength="32"
             v-model.trim="item.title"
             @change="$emit('save-item')"
           />
@@ -37,6 +38,7 @@
           :id="'inputLink' + item.id"
           class="form-control form-control-sm"
           placeholder="URL ссылка"
+          maxlength="256"
           v-model.trim="item.link"
           @change="$emit('save-item')"
         />

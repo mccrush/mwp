@@ -11,8 +11,10 @@
         id="email"
         required
         v-model.trim="email"
-        placeholder="example@mail.ru"
+        placeholder="username@email.com"
         aria-describedby="emailHelp"
+        minlength="5"
+        maxlength="64"
       />
       <div
         v-if="error && error.type === 'email'"
@@ -34,8 +36,10 @@
           required
           v-model.trim="password"
           ref="pass"
-          minlength="8"
           aria-describedby="passwordHelp"
+          minlength="8"
+          maxlength="32"
+          placeholder="От 8 до 64 символов"
         />
         <BtnEyeHide
           v-if="passType"
@@ -56,7 +60,8 @@
         id="passwordHelp"
         class="form-text lh-1"
       >
-        Минимум: 8 символов, 1 цифра, 1 большая, 1 маленькая латинская буква
+        Минимум: 8 символов, 1 цифра, 1 большая, 1 маленькая латинская буква.
+        Например: f2Rs14vZw
       </div>
     </div>
 

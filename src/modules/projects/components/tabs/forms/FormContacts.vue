@@ -10,6 +10,7 @@
             :id="'inputTitle' + item.id"
             class="form-control form-control-sm"
             placeholder="Имя"
+            maxlength="32"
             v-model.trim="item.title"
             @change="$emit('save-item')"
           />
@@ -37,6 +38,7 @@
           :id="'inputField' + index"
           class="form-control form-control-sm"
           placeholder="Введите значение"
+          maxlength="64"
           :value="getDecriptField(field)"
           disabled
         />
@@ -57,6 +59,7 @@
           :id="'addFirstField' + item.id"
           class="form-control form-control-sm"
           placeholder="Добавить поле"
+          maxlength="64"
           v-model.trim="newField"
           @keyup.enter="addContactFiled"
         />

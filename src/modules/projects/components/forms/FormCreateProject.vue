@@ -5,6 +5,8 @@
       id="createNewProject"
       class="form-control form-control-sm"
       placeholder="Название проекта"
+      minlength="1"
+      maxlength="32"
       v-model.trim="projectName"
       @keyup.enter="createProject"
     />

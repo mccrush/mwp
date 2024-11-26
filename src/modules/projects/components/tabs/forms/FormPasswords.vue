@@ -10,6 +10,7 @@
             :id="'inputTitle' + item.id"
             class="form-control form-control-sm"
             placeholder="Название"
+            maxlength="32"
             v-model.trim="item.title"
             @change="$emit('save-item')"
           />
@@ -33,6 +34,7 @@
           :id="'inputLink' + item.id"
           class="form-control form-control-sm"
           placeholder="Ссылка на авторизацию"
+          maxlength="256"
           v-model.trim="item.link"
           @change="$emit('save-item')"
         />
@@ -57,7 +59,8 @@
           :id="'inputLogin' + item.id"
           class="form-control form-control-sm"
           placeholder="Логин"
-          v-model="login"
+          maxlength="64"
+          v-model.trim="login"
           @change="saveItem"
         />
         <BtnCopy v-if="login" class="border" @click="copyInBuffer($event)" />
@@ -70,7 +73,8 @@
           :id="'inputPass' + item.id"
           class="form-control form-control-sm"
           placeholder="Пароль"
-          v-model="password"
+          maxlength="32"
+          v-model.trim="password"
           @change="saveItem"
         />
         <BtnEyeHide
