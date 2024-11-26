@@ -1,4 +1,4 @@
-import { supabase } from './../../supabase/supabaseClient'
+//import { supabase } from './../../supabase/supabaseClient'
 
 export default {
   state: {
@@ -13,19 +13,6 @@ export default {
     setCurrentProjectId(state, { currentProjectId }) {
       state.currentProjectId = currentProjectId
       localStorage.setItem('mw-currentProjectId', currentProjectId)
-    },
-  },
-
-  actions: {
-    async updateProjects({ commit }, { projects }) {
-      try {
-        const { data, error } = await supabase.auth.updateUser({
-          data: { projects }
-        })
-        if (error) throw error
-      } catch (error) {
-        console.error('projects.js updateProjects()', error)
-      }
     },
   },
 

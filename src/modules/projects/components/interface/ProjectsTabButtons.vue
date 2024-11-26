@@ -19,7 +19,7 @@
           <BtnAddTabForm
             class="d-flex justify-content-center align-items-center w-25"
             @click="$emit('create-form-item', { type: tabButton.type })"
-            v-if="tabButton.type === viewTab"
+            v-if="tabButton.type === viewTab && canCreateForm"
           />
         </div>
       </div>
@@ -39,17 +39,28 @@ export default {
     BtnAddTabForm
   },
   emits: ['create-form-item'],
+  props: { project: Object },
   data() {
     return {
       dataTabs
     }
   },
   computed: {
+    userMetaData() {
+      return this.$store.getters.userMetaData
+    },
     viewTab() {
       return this.$store.getters.viewTab
     },
     userId() {
       return this.$store.getters.userId
+    },
+    canCreateForm() {
+      if (this.userMetaData.premium) {
+        if (this.project[this.viewTab].length < 64) return true
+      } else {
+        if (this.project[this.viewTab].length < 4) return true
+      }
     }
   }
 }

@@ -31,7 +31,10 @@
       <div class="border-bottom border-black mt-0"></div>
       <div class="border-top border-dark-subtle mb-3"></div>
       <div class="ps-2 pe-2">
-        <FormCreateProject v-if="mod === 'create'" @add-project="addProject" />
+        <FormCreateProject
+          v-if="mod === 'create' && canCreateProject"
+          @add-project="addProject"
+        />
 
         <FormEditProject
           v-if="currentProjectId && mod === 'edit'"
@@ -72,11 +75,21 @@ export default {
     }
   },
   computed: {
+    userMetaData() {
+      return this.$store.getters.userMetaData
+    },
     sortProjects() {
       if (this.projects?.length) {
         return sortMethod(this.projects, 'desc', 'position')
       }
       return []
+    },
+    canCreateProject() {
+      if (this.userMetaData.premium) {
+        if (this.projects.length < 64) return true
+      } else {
+        if (this.projects.length < 4) return true
+      }
     }
   },
   methods: {
@@ -113,7 +126,7 @@ export default {
         const projects = this.projects.filter(item => item.id !== projectId)
 
         this.$store.dispatch('updateProjects', {
-          projects: this.projects
+          projects
         })
 
         this.$store.commit('setCurrentProjectId', {

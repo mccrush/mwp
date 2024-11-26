@@ -65,7 +65,18 @@ export default {
       } catch (error) {
         console.error('auth.js resetUserMetaData()', error)
       }
-    }
+    },
+
+    async updateProjects({ commit }, { projects }) {
+      try {
+        const { data, error } = await supabase.auth.updateUser({
+          data: { projects }
+        })
+        if (error) throw error
+      } catch (error) {
+        console.error('projects.js updateProjects()', error)
+      }
+    },
   },
 
   getters: {

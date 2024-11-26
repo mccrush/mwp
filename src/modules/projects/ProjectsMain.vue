@@ -10,7 +10,10 @@
 
       <div class="col-9 col-lg-10 border-top border-dark-subtle">
         <div v-if="project">
-          <ProjectsTabButtons @create-form-item="createFormItem" />
+          <ProjectsTabButtons
+            :project="project"
+            @create-form-item="createFormItem"
+          />
           <transition name="fade" mode="out-in">
             <TabForms
               :project="project"
