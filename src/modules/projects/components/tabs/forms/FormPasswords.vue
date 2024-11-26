@@ -141,8 +141,17 @@ export default {
   },
   methods: {
     saveItem() {
-      if (this.login.length) this.item.login = encryption(this.login)
-      if (this.password.length) this.item.password = encryption(this.password)
+      if (this.login.length) {
+        this.item.login = encryption(this.login)
+      } else {
+        this.item.login = ''
+      }
+
+      if (this.password.length) {
+        this.item.password = encryption(this.password)
+      } else {
+        this.item.password = ''
+      }
       //console.log('before save this.item.login = ', this.item.login)
       //console.log('before save this.item.password = ', this.item.password)
       this.$emit('save-item')

@@ -32,7 +32,27 @@ export default {
         const { error } = await supabase.auth.signOut()
         if (error) throw error
       } catch (error) {
-        console.error(error)
+        console.error('auth.js logOut()', error)
+      }
+    },
+
+    async registerUser({ commit }, {
+      loginData,
+      userMetaData
+    }) {
+      try {
+        const { data, error } = await supabase.auth.signUp(
+          {
+            email: loginData.email,
+            password: loginData.password,
+            options: {
+              data: userMetaData
+            }
+          }
+        )
+        if (error) throw error
+      } catch (error) {
+        console.error('auth.js registerUser()', error)
       }
     },
 
@@ -74,7 +94,7 @@ export default {
         })
         if (error) throw error
       } catch (error) {
-        console.error('projects.js updateProjects()', error)
+        console.error('auth.js updateProjects()', error)
       }
     },
   },

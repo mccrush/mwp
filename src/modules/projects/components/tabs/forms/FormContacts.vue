@@ -53,7 +53,7 @@
       </div>
 
       <!-- Добавление нового свободного пля -->
-      <div class="input-group mt-1">
+      <div v-if="item.fields.length < 8" class="input-group mt-1">
         <input
           type="text"
           :id="'addFirstField' + item.id"

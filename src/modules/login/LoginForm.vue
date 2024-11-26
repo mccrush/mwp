@@ -17,7 +17,7 @@
         maxlength="64"
       />
       <div
-        v-if="error && error.type === 'email'"
+        v-if="showMessage && error && error.type === 'email'"
         id="emailHelp"
         class="form-text text-danger lh-1"
       >
@@ -39,7 +39,6 @@
           aria-describedby="passwordHelp"
           minlength="8"
           maxlength="32"
-          placeholder="От 8 до 64 символов"
         />
         <BtnEyeHide
           v-if="passType"
@@ -49,7 +48,7 @@
         <BtnEyeShow v-else class="border" @click="passType = !passType" />
       </div>
       <div
-        v-if="error && error.type === 'password'"
+        v-if="showMessage && error && error.type === 'password'"
         id="passwordHelp"
         class="form-text text-danger lh-1"
       >
@@ -95,6 +94,7 @@
 
 <script>
 import { factoryUsers } from './../../factories/factoryUsers'
+import { createExampleProject } from './helpers/createExampleProject'
 
 import BtnEyeHide from './components/buttons/BtnEyeHide.vue'
 import BtnEyeShow from './components/buttons/BtnEyeShow.vue'
@@ -117,6 +117,7 @@ export default {
       password: 'm[pass]29081988',
       passType: true,
       error: null,
+      showMessage: false,
       regexpEmail: '^\\S+@\\S+\\.\\S+$',
       regexpPassword: '^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$'
     }
@@ -127,6 +128,13 @@ export default {
     }
   },
   methods: {
+    showMeesageForUser({ message }) {
+      this.error = message
+      this.showMessage = true
+      setTimeout(() => {
+        this.showMessage = false
+      }, 3600)
+    },
     auth() {
       switch (this.mod) {
         case 'login':
@@ -140,6 +148,7 @@ export default {
           break
       }
     },
+
     logIn() {
       if (this.email && this.password) {
         const loginData = {
@@ -148,11 +157,18 @@ export default {
         }
         this.$store.dispatch('logIn', loginData)
       } else if (!this.email) {
-        this.error = { type: 'email', text: 'Введите Email' }
+        //this.error = { type: 'email', text: 'Введите Email' }
+        this.showMeesageForUser({
+          message: { type: 'email', text: 'Введите Email' }
+        })
       } else if (!this.password) {
-        this.error = { type: 'password', text: 'Введите пароль' }
+        //this.error = { type: 'password', text: 'Введите пароль' }
+        this.showMeesageForUser({
+          message: { type: 'password', text: 'Введите пароль' }
+        })
       }
     },
+
     async createAccaunt() {
       if (this.email && this.password) {
         if (
@@ -160,32 +176,52 @@ export default {
           this.password.match(this.regexpPassword)
         ) {
           this.error = null
+          this.showMessage = false
 
           const loginData = {
             email: this.email,
             password: this.password
           }
-
-          await this.$store.dispatch('registerUser', loginData)
-          const newUser = factoryUsers(this.userId)
-          this.$store.dispatch('addItem', { item: newUser })
+          const userMetaData = factoryUsers()
+          userMetaData.projects = createExampleProject
+          await this.$store.dispatch('registerUser', {
+            loginData,
+            userMetaData
+          })
+          //const newUser = factoryUsers(this.userId)
+          //this.$store.dispatch('addItem', { item: newUser })
         } else {
-          this.error = {
-            type: 'password',
-            text: 'Пароль не соответствует требованиям безопасности'
-          }
+          // this.error = {
+          //   type: 'password',
+          //   text: 'Пароль не соответствует требованиям безопасности'
+          // }
+          this.showMeesageForUser({
+            message: {
+              type: 'password',
+              text: 'Пароль не соответствует требованиям безопасности'
+            }
+          })
         }
       } else if (!this.email) {
-        this.error = { type: 'email', text: 'Введите Email' }
+        //this.error = { type: 'email', text: 'Введите Email' }
+        this.showMeesageForUser({
+          message: { type: 'email', text: 'Введите Email' }
+        })
       } else if (!this.password) {
-        this.error = { type: 'password', text: 'Введите пароль' }
+        //this.error = { type: 'password', text: 'Введите пароль' }
+        this.showMeesageForUser({
+          message: { type: 'password', text: 'Введите пароль' }
+        })
       }
     },
     restorePassword() {
       if (this.email) {
         this.$store.dispatch('resetPass', { email: this.email })
       } else {
-        this.error = { type: 'email', text: 'Введите Email' }
+        //this.error = { type: 'email', text: 'Введите Email' }
+        this.showMeesageForUser({
+          message: { type: 'email', text: 'Введите Email' }
+        })
       }
     }
   }
