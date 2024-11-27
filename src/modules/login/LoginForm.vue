@@ -218,9 +218,16 @@ export default {
         })
       }
     },
-    restorePassword() {
+
+    async restorePassword() {
       if (this.email) {
-        this.$store.dispatch('resetPass', { email: this.email })
+        const result = await this.$store.dispatch('restoreUserPassword', {
+          email: this.email
+        })
+
+        if (result === 200) {
+          this.$store.commit('setViewPage', 'PageRestorePassword')
+        }
       } else {
         //this.error = { type: 'email', text: 'Введите Email' }
         this.showMeesageForUser({
