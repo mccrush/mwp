@@ -18,6 +18,7 @@ import PageUser from './pages/PageUser.vue'
 import PagePrice from './pages/PagePrice.vue'
 import PageDoc from './pages/PageDoc.vue'
 import PageProjects from './pages/PageProjects.vue'
+import PageConfirm from './pages/PageConfirm.vue'
 
 export default {
   components: {
@@ -26,7 +27,8 @@ export default {
     PageUser,
     PagePrice,
     PageDoc,
-    PageProjects
+    PageProjects,
+    PageConfirm
   },
   computed: {
     viewPage() {

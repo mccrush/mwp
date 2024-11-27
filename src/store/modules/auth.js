@@ -51,6 +51,10 @@ export default {
           }
         )
         if (error) throw error
+
+        if (data) {
+          return 200
+        }
       } catch (error) {
         console.error('auth.js registerUser()', error)
       }

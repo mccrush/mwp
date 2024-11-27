@@ -5,6 +5,11 @@ export const dataPages = [
     name: 'login'
   },
   {
+    title: 'Подтверждение почты',
+    viewPage: 'PageConfirm',
+    name: 'confirm'
+  },
+  {
     title: 'Пользователь',
     viewPage: 'PageUser',
     name: 'user'

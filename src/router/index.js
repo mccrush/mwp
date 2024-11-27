@@ -15,6 +15,8 @@ export const router = (viewPage) => {
       return 'PageProjects'
     }
     return dataPages.find(item => item.viewPage === viewPage).viewPage
+  } else if (viewPage === 'PageConfirm') {
+    return 'PageConfirm'
   }
   return 'PageLogin'
 }

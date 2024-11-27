@@ -184,10 +184,14 @@ export default {
           }
           const userMetaData = factoryUsers()
           userMetaData.projects = createExampleProject
-          await this.$store.dispatch('registerUser', {
+          const result = await this.$store.dispatch('registerUser', {
             loginData,
             userMetaData
           })
+
+          if (result === 200) {
+            this.$store.commit('setViewPage', 'PageConfirm')
+          }
           //const newUser = factoryUsers(this.userId)
           //this.$store.dispatch('addItem', { item: newUser })
         } else {
