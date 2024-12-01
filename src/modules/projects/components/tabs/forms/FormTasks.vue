@@ -18,8 +18,7 @@
               type="text"
               :id="'inputTitle' + item.id"
               class="form-control form-control-sm"
-              placeholder="Название"
-              maxlength="32"
+              maxlength="128"
               v-model.trim="item.title"
               @change="$emit('save-item')"
             />

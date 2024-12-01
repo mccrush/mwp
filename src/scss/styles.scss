@@ -10,7 +10,8 @@ $enable-shadows: true;
 @import "bootstrap/scss/functions";
 
 // Customize some defaults
-//$body-color: #2c3e50;
+$body-color: #0080ff;
+$body-color-rgb: rgb(86 255 0);
 //$body-bg: #f8f9fa;
 //$border-radius: .4rem;
 //$success: #7952b3;
@@ -24,6 +25,7 @@ $enable-shadows: true;
 
 $border-color: #343a40 !important;
 
+//$form-control-color: rgba(222, 226, 230, 0.75) !important;
 
 
 // Базовые, их подключаем всегда

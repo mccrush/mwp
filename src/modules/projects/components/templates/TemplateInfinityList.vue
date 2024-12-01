@@ -14,7 +14,7 @@
           type="text"
           :id="'inputField' + item.id"
           class="form-control form-control-sm"
-          maxlength="64"
+          maxlength="128"
           v-model.trim="item.title"
         />
         <BtnTrashFlat
