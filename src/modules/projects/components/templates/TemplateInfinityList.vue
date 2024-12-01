@@ -15,17 +15,12 @@
           :id="'inputField' + item.id"
           class="form-control form-control-sm"
           maxlength="64"
-        />
-
-        <BtnCopy
-          v-if="item.title"
-          class="border"
-          @click="copyInBuffer($event)"
+          v-model.trim="item.title"
         />
         <BtnTrashFlat
           class="border"
-          title="Удалить задачу"
-          @click="removeContactFiled(item.id)"
+          title="Удалить подзадачу"
+          @click="$emit('delete-children-item', item.id)"
         />
       </div>
 
@@ -48,6 +43,7 @@
           v-for="children in item.childrens"
           :key="children.id"
           :item="children"
+          @delete-children-item="deleteChildrenItem"
         />
       </div>
       <BtnAddChildrenTask
@@ -60,17 +56,18 @@
 </template>
 
 <script>
-import { copyInBuffer } from './../../../../helpers/copyInBuffer'
+//import { copyInBuffer } from './../../../../helpers/copyInBuffer'
 import { factoryTasks } from './../../../../factories/factoryTasks'
 
-import BtnCopy from './../../../../components/buttons/BtnCopy.vue'
+//import BtnCopy from './../../../../components/buttons/BtnCopy.vue'
 import BtnTrashFlat from './../../../../components/buttons/BtnTrashFlat.vue'
 import BtnAddChildrenTask from './../../../../components/buttons/BtnAddChildrenTask.vue'
 import BtnShowCheck from './../../../../components/buttons/BtnShowCheck.vue'
 
 export default {
   name: 'TemplateInfinityList',
-  components: { BtnCopy, BtnTrashFlat, BtnAddChildrenTask, BtnShowCheck },
+  components: { BtnTrashFlat, BtnAddChildrenTask, BtnShowCheck },
+  emits: ['delete-children-item'],
   props: {
     item: Object
   },
@@ -79,11 +76,15 @@ export default {
       const child = factoryTasks()
       this.item.childrens.push(child)
     },
-    removeContactFiled(id) {
-      this.item.childrens = this.item.childrens.filter(item => item.id !== id)
+    deleteChildrenItem(childrenId) {
+      console.log('Templ. deleteChildrenItem() childrenId = ', childrenId)
+
+      this.item.childrens = this.item.childrens.filter(
+        item => item.id !== childrenId
+      )
+
       //this.$emit('save-item')
-    },
-    copyInBuffer
+    }
   }
 }
 </script>

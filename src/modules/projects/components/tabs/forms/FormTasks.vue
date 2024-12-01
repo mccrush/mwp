@@ -49,6 +49,7 @@
             v-for="children in item.childrens"
             :key="children.id"
             :item="children"
+            @delete-children-item="deleteChildrenItem"
           />
         </div>
 
@@ -133,6 +134,12 @@ export default {
     addChildren() {
       const child = factoryTasks()
       this.item.childrens.push(child)
+    },
+    deleteChildrenItem(childrenId) {
+      console.log('Per. deleteChildrenItem() childrenId = ', childrenId)
+      this.item.childrens = this.item.childrens.filter(
+        item => item.id !== childrenId
+      )
     },
     toggleStatus() {
       this.item.status = this.item.status === 'active' ? 'done' : 'active'
