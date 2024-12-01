@@ -77,6 +77,9 @@ export default {
       const form = factoryModels({ type })
 
       let project = this.project
+      if (!project[type]) {
+        project[type] = []
+      }
       project[type].push(form)
 
       let projects = this.projects

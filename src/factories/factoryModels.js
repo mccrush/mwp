@@ -2,6 +2,7 @@ import { factoryProjects } from './factoryProjects'
 import { factoryLinks } from './factoryLinks'
 import { factoryPasswords } from './factoryPasswords'
 import { factoryContacts } from './factoryContacts'
+import { factoryTasks } from './factoryTasks'
 
 
 export const factoryModels = ({ type }) => {
@@ -14,5 +15,7 @@ export const factoryModels = ({ type }) => {
       return factoryPasswords()
     case 'contacts':
       return factoryContacts()
+    case 'tasks':
+      return factoryTasks()
   }
 }

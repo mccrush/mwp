@@ -56,11 +56,14 @@ export default {
       return this.$store.getters.userId
     },
     canCreateForm() {
-      if (this.userMetaData.premium) {
-        if (this.project[this.viewTab].length < 64) return true
-      } else {
-        if (this.project[this.viewTab].length < 4) return true
+      if (this.project[this.viewTab]?.length) {
+        if (this.userMetaData.premium) {
+          if (this.project[this.viewTab].length < 64) return true
+        } else {
+          if (this.project[this.viewTab].length < 4) return true
+        }
       }
+      return true
     }
   }
 }

@@ -16,5 +16,11 @@ export const dataProjectButtons = [
     type: 'contacts',
     color: '#c6def1',
     frame: 'FormContacts'
+  },
+  {
+    title: 'Задачи',
+    type: 'tasks',
+    color: '#c6def1',
+    frame: 'FormTasks'
   }
 ]

@@ -13,5 +13,10 @@ export const dataTabs = [
     title: 'Контакты',
     type: 'contacts',
     viewTab: 'TabContacts'
+  },
+  {
+    title: 'Задачи',
+    type: 'tasks',
+    viewTab: 'TabTasks'
   }
 ]
