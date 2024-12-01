@@ -43,11 +43,16 @@
         </button>
       </div>
       <div class="collapse mt-2" :id="'collapseExample' + item.id">
-        <div class="card card-body">
-          Some placeholder content for the collapse component. This panel is
-          hidden by default but revealed when the user activates the relevant
-          trigger.
+        <div v-if="item.childrens.length" class="card card-body border p-2">
+          <TemplateInfinityList
+            v-for="(children, index) in item.childrens"
+            :key="children.id"
+            :item="children"
+            :class="{ 'ms-4': index >= 2 }"
+          />
         </div>
+
+        <BtnAddChildrenTask v-else class="" @click="addChildren" />
       </div>
 
       <!-- -->
@@ -82,12 +87,16 @@
 <script>
 //import { Collapse } from 'bootstrap'
 import { copyInBuffer } from './../../../../../helpers/copyInBuffer'
+import { factoryTasks } from './../../../../../factories/factoryTasks'
 
 import BtnArrUp from './../../../../../components/buttons/BtnArrUp.vue'
 import BtnArrDown from './../../../../../components/buttons/BtnArrDown.vue'
 import BtnTrash from './../../../../../components/buttons/BtnTrash.vue'
 import BtnCopy from './../../../../../components/buttons/BtnCopy.vue'
 import BtnLink from './../../../../../components/buttons/BtnLink.vue'
+import BtnAddChildrenTask from './../../../../../components/buttons/BtnAddChildrenTask.vue'
+
+import TemplateInfinityList from './../../templates/TemplateInfinityList.vue'
 
 export default {
   components: {
@@ -95,7 +104,9 @@ export default {
     BtnArrDown,
     BtnTrash,
     BtnCopy,
-    BtnLink
+    BtnLink,
+    BtnAddChildrenTask,
+    TemplateInfinityList
   },
   emits: ['save-item', 'remove-item'],
   props: {
@@ -114,6 +125,10 @@ export default {
     }
   },
   methods: {
+    addChildren() {
+      const child = factoryTasks()
+      this.item.childrens.push(child)
+    },
     toggleStatus() {
       this.item.status = this.item.status === 'active' ? 'done' : 'active'
       this.$emit('save-item')

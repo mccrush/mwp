@@ -19,7 +19,7 @@ console.log('main.js: App is run')
 
 // События хуков авторизации
 const { data } = supabase.auth.onAuthStateChange((event, session) => {
-  console.log(event, session)
+  //console.log(event, session)
 
   if (event === 'INITIAL_SESSION') {
     // handle initial session
@@ -41,6 +41,7 @@ const { data } = supabase.auth.onAuthStateChange((event, session) => {
     document.location.reload()
   } else if (event === 'TOKEN_REFRESHED') {
     // handle token refreshed event
+    store.commit('setViewPage', store.getters.viewPage)
   } else if (event === 'USER_UPDATED') {
     // handle user updated event
     store.commit('setAuthData', { type: 'userMetaData', data: session.user.user_metadata })
