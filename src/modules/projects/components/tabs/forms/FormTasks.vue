@@ -31,28 +31,28 @@
           />
         </div>
 
-        <button
+        <BtnShowCheck
           class="btn btn-sm btn-dark"
           type="button"
           data-bs-toggle="collapse"
           :data-bs-target="'#collapseExample' + item.id"
           aria-expanded="false"
           :aria-controls="'collapseExample' + item.id"
-        >
-          Open
-        </button>
+        />
       </div>
       <div class="collapse mt-2" :id="'collapseExample' + item.id">
-        <div v-if="item.childrens.length" class="card card-body border p-2">
+        <div
+          v-if="item.childrens.length"
+          class="card card-body border mb-2 p-2 pt-1"
+        >
           <TemplateInfinityList
-            v-for="(children, index) in item.childrens"
+            v-for="children in item.childrens"
             :key="children.id"
             :item="children"
-            :class="{ 'ms-4': index >= 2 }"
           />
         </div>
 
-        <BtnAddChildrenTask v-else class="" @click="addChildren" />
+        <BtnAddChildrenTask class="" @click="addChildren" />
       </div>
 
       <!-- -->
@@ -95,6 +95,7 @@ import BtnTrash from './../../../../../components/buttons/BtnTrash.vue'
 import BtnCopy from './../../../../../components/buttons/BtnCopy.vue'
 import BtnLink from './../../../../../components/buttons/BtnLink.vue'
 import BtnAddChildrenTask from './../../../../../components/buttons/BtnAddChildrenTask.vue'
+import BtnShowCheck from './../../../../../components/buttons/BtnShowCheck.vue'
 
 import TemplateInfinityList from './../../templates/TemplateInfinityList.vue'
 
@@ -106,6 +107,7 @@ export default {
     BtnCopy,
     BtnLink,
     BtnAddChildrenTask,
+    BtnShowCheck,
     TemplateInfinityList
   },
   emits: ['save-item', 'remove-item'],
