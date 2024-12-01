@@ -52,7 +52,10 @@
           />
         </div>
 
-        <BtnAddChildrenTask class="" @click="addChildren" />
+        <BtnAddChildrenTask
+          v-if="item.childrens.length < 32"
+          @click="addChildren"
+        />
       </div>
 
       <!-- -->

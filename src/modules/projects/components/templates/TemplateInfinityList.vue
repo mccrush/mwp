@@ -23,7 +23,6 @@
           @click="copyInBuffer($event)"
         />
         <BtnTrashFlat
-          v-if="item.title"
           class="border"
           title="Удалить задачу"
           @click="removeContactFiled(item.id)"
@@ -49,10 +48,13 @@
           v-for="children in item.childrens"
           :key="children.id"
           :item="children"
-          class=""
         />
       </div>
-      <BtnAddChildrenTask class="mt-1 ms-2" @click="addChildren" />
+      <BtnAddChildrenTask
+        v-if="item.childrens.length < 32"
+        class="mt-1 ms-2"
+        @click="addChildren"
+      />
     </div>
   </div>
 </template>
