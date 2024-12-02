@@ -48,14 +48,13 @@
             v-for="children in item.childrens"
             :key="children.id"
             :item="children"
+            :nestingLevels="nestingLevels"
+            :userMetaDataPremium="userMetaData.premium"
             @delete-children-item="deleteChildrenItem"
           />
         </div>
 
-        <BtnAddChildrenTask
-          v-if="item.childrens.length < 32"
-          @click="addChildren"
-        />
+        <BtnAddChildrenTask v-if="canCreateUnderTask()" @click="addChildren" />
       </div>
 
       <!-- -->
@@ -126,7 +125,13 @@ export default {
   },
   data() {
     return {
-      passType: true
+      passType: true,
+      nestingLevels: 1
+    }
+  },
+  computed: {
+    userMetaData() {
+      return this.$store.getters.userMetaData
     }
   },
   methods: {
@@ -152,7 +157,15 @@ export default {
     //   this.item.position++
     //   this.$emit('save-item')
     // },
-    copyInBuffer
+    copyInBuffer,
+    canCreateUnderTask() {
+      if (this.userMetaData.premium) {
+        if (this.item.childrens.length < 64) return true
+      } else {
+        if (this.item.childrens.length < 8) return true
+      }
+      return false
+    }
   }
 }
 </script>

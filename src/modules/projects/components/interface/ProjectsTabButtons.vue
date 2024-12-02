@@ -2,7 +2,7 @@
   <div class="p-2">
     <div v-if="userId" class="row">
       <div
-        class="col-6 col-sm-4 pt-2 pb-2"
+        class="col-6 col-sm-3 pt-2 pb-2"
         v-for="tabButton in dataTabs"
         :key="'bt' + tabButton.type"
       >
@@ -60,7 +60,12 @@ export default {
         if (this.userMetaData.premium) {
           if (this.project[this.viewTab].length < 64) return true
         } else {
-          if (this.project[this.viewTab].length < 4) return true
+          if (this.viewTab === 'tasks') {
+            if (this.project[this.viewTab].length < 8) return true
+          } else {
+            if (this.project[this.viewTab].length < 4) return true
+          }
+          return false
         }
       }
       return true

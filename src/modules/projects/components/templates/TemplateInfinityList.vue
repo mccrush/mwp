@@ -23,8 +23,8 @@
           @click="$emit('delete-children-item', item.id)"
         />
       </div>
-
       <BtnShowCheck
+        v-if="nestingLevels < 4"
         class="btn btn-sm btn-dark ms-2"
         type="button"
         data-bs-toggle="collapse"
@@ -43,11 +43,13 @@
           v-for="children in item.childrens"
           :key="children.id"
           :item="children"
+          :nestingLevels="nestingLevels + 1"
+          :userMetaDataPremium="userMetaDataPremium"
           @delete-children-item="deleteChildrenItem"
         />
       </div>
       <BtnAddChildrenTask
-        v-if="item.childrens.length < 32"
+        v-if="canCreateUnderTask()"
         class="mt-1 ms-2"
         @click="addChildren"
       />
@@ -69,12 +71,15 @@ export default {
   components: { BtnTrashFlat, BtnAddChildrenTask, BtnShowCheck },
   emits: ['delete-children-item'],
   props: {
-    item: Object
+    item: Object,
+    nestingLevels: Number,
+    userMetaDataPremium: Boolean
   },
   methods: {
     addChildren() {
       const child = factoryTasks()
       this.item.childrens.push(child)
+      //this.$emit('up-nesting-levels')
     },
     deleteChildrenItem(childrenId) {
       console.log('Templ. deleteChildrenItem() childrenId = ', childrenId)
@@ -82,8 +87,16 @@ export default {
       this.item.childrens = this.item.childrens.filter(
         item => item.id !== childrenId
       )
-
       //this.$emit('save-item')
+    },
+
+    canCreateUnderTask() {
+      if (this.userMetaDataPremium) {
+        if (this.item.childrens.length < 64) return true
+      } else {
+        if (this.item.childrens.length < 8) return true
+      }
+      return false
     }
   }
 }
