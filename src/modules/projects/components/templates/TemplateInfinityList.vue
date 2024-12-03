@@ -2,10 +2,10 @@
   <div class="mt-1">
     <div class="d-flex justify-content-between">
       <div class="input-group">
-        <div class="input-group-text ps-2 pe-2">
+        <div class="input-group-text border ps-2 pe-2">
           <input
             type="checkbox"
-            class="form-check-input mt-0"
+            class="form-check-input border mt-0"
             @change="toggleStatus"
             :checked="item.status === 'done'"
           />
