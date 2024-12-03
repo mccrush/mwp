@@ -30,13 +30,24 @@
           />
         </div>
 
-        <BtnShowCheck
-          class="btn btn-sm btn-dark"
+        <!-- <BtnShowCheckFill
+          v-if="item.childrens.length"
+          class=""
           type="button"
           data-bs-toggle="collapse"
           :data-bs-target="'#collapseExample' + item.id"
           aria-expanded="false"
           :aria-controls="'collapseExample' + item.id"
+          :childrensLength="item.childrens.length"
+        /> -->
+        <BtnShowCheck
+          class=""
+          type="button"
+          data-bs-toggle="collapse"
+          :data-bs-target="'#collapseExample' + item.id"
+          aria-expanded="false"
+          :aria-controls="'collapseExample' + item.id"
+          :childrensLength="item.childrens.length"
         />
         <!-- <BtnAddUnderTask
           v-else-if="canCreateUnderTask()"
@@ -60,6 +71,7 @@
             :item="children"
             :nestingLevels="nestingLevels"
             :userMetaDataPremium="userMetaData.premium"
+            @save-item="$emit('save-item')"
             @delete-children-item="deleteChildrenItem"
           />
         </div>
@@ -82,6 +94,7 @@ import BtnTrash from './../../../../../components/buttons/BtnTrash.vue'
 import BtnCopy from './../../../../../components/buttons/BtnCopy.vue'
 import BtnLink from './../../../../../components/buttons/BtnLink.vue'
 import BtnAddChildrenTask from './../../../../../components/buttons/BtnAddChildrenTask.vue'
+//import BtnShowCheckFill from './../../../../../components/buttons/BtnShowCheckFill.vue'
 import BtnShowCheck from './../../../../../components/buttons/BtnShowCheck.vue'
 //import BtnAddUnderTask from './../../../../../components/buttons/BtnAddUnderTask.vue'
 
@@ -124,12 +137,14 @@ export default {
     addChildren() {
       const child = factoryTasks()
       this.item.childrens.push(child)
+      this.$emit('save-item')
     },
     deleteChildrenItem(childrenId) {
       console.log('Per. deleteChildrenItem() childrenId = ', childrenId)
       this.item.childrens = this.item.childrens.filter(
         item => item.id !== childrenId
       )
+      this.$emit('save-item')
     },
     toggleStatus() {
       this.item.status = this.item.status === 'active' ? 'done' : 'active'

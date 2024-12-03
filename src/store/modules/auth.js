@@ -108,6 +108,7 @@ export default {
           data: { projects }
         })
         if (error) throw error
+        console.log('auth.js updateProjects(): Проекты успешно обновлены')
       } catch (error) {
         console.error('auth.js updateProjects()', error)
       }

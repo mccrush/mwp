@@ -16,6 +16,7 @@
           class="form-control form-control-sm"
           maxlength="128"
           v-model.trim="item.title"
+          @change="$emit('save-item')"
         />
         <BtnTrashFlat
           class="border"
@@ -25,12 +26,13 @@
       </div>
       <BtnShowCheck
         v-if="nestingLevels < 4"
-        class="btn btn-sm btn-dark ms-2"
+        class="ms-2"
         type="button"
         data-bs-toggle="collapse"
         :data-bs-target="'#collapseExample' + item.id"
         aria-expanded="false"
         :aria-controls="'collapseExample' + item.id"
+        :childrensLength="item.childrens.length"
       />
       <!-- <BtnAddUnderTask
         v-else-if="canCreateUnderTask() && nestingLevels < 4"
@@ -55,6 +57,7 @@
           :item="children"
           :nestingLevels="nestingLevels + 1"
           :userMetaDataPremium="userMetaDataPremium"
+          @save-item="$emit('save-item')"
           @delete-children-item="deleteChildrenItem"
         />
       </div>
@@ -84,7 +87,7 @@ export default {
     BtnAddChildrenTask,
     BtnShowCheck
   },
-  emits: ['delete-children-item'],
+  emits: ['save-item', 'delete-children-item'],
   props: {
     item: Object,
     nestingLevels: Number,
@@ -94,7 +97,7 @@ export default {
     addChildren() {
       const child = factoryTasks()
       this.item.childrens.push(child)
-      //this.$emit('up-nesting-levels')
+      this.$emit('save-item')
     },
     deleteChildrenItem(childrenId) {
       console.log('Templ. deleteChildrenItem() childrenId = ', childrenId)
@@ -102,7 +105,7 @@ export default {
       this.item.childrens = this.item.childrens.filter(
         item => item.id !== childrenId
       )
-      //this.$emit('save-item')
+      this.$emit('save-item')
     },
 
     canCreateUnderTask() {
