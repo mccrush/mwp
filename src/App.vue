@@ -69,9 +69,9 @@ textarea {
   font-size: 0.875rem !important;
 }
 
-.form-control {
+/*.form-control {
   color: rgba(222, 226, 230, 0.75);
-}
+}*/
 
 .fade-enter-active,
 .fade-leave-active {
