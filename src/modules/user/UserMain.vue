@@ -1,36 +1,93 @@
 <template>
-  <div class="p-2">
+  <div class="p-3">
     <h4>Настройки аккаунта</h4>
-    <div>Email: {{ userEmail }}</div>
-    <div>
-      <button
-        class="btn btn-sm btn-dark text-danger mt-2"
-        @click="deleteAccaunt"
-      >
-        Удалить аккаунт
-      </button>
-    </div>
-    <div>
-      <button
-        class="btn btn-sm btn-dark text-danger mt-2"
-        @click="resetUserMetaData"
-      >
-        Сбросить данные
-      </button>
+
+    <div class="row border rounded mt-3 p-3">
+      <div class="row">
+        <div class="col-12">Email: {{ userEmail }}</div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-4">
+          <input type="text" class="form-control form-control-sm" />
+        </div>
+        <div class="col-3 ps-0">
+          <BtnUserProfile title="Обновить Email" class="w-100" />
+        </div>
+      </div>
+
+      <div class="row mt-2">
+        <div class="col-4">
+          <input type="text" class="form-control form-control-sm" />
+        </div>
+        <div class="col-3 ps-0">
+          <BtnUserProfile title="Обновить Пароль" class="w-100" />
+        </div>
+      </div>
     </div>
 
-    <div><p>Срок до которого активна Pro подписка</p></div>
-    <div><p>Возможность продления подписки</p></div>
-    <div><p>Возможность отключения подписки</p></div>
-    <div><p>Возможность обновить пароль</p></div>
-    <div><p>Возможность обновить почту</p></div>
+    <div v-if="userMetaData.premium" class="row border rounded mt-3 p-3">
+      <div class="col-12 lh-1">
+        <p>Статус Про подписки: {{ userMetaData.premium }}</p>
+        <p>
+          Дата начала Про подписки:
+          {{ getLocaleDateFromDateDigit(userMetaData.dateStartPremium) }}
+        </p>
+        <p>
+          Дата окончания Про подписки:
+          {{ getLocaleDateFromDateDigit(userMetaData.dateEndPremium) }}
+        </p>
+      </div>
+      <div class="col-3">
+        <BtnUserProfile title="Продлить подписку" class="w-100" />
+      </div>
+      <div class="col-3">
+        <BtnUserProfile title="Отменить подписку" class="w-100" />
+      </div>
+    </div>
+
+    <div class="row border rounded mt-3 p-3">
+      <div class="col-3">
+        <BtnUserProfile
+          title="Сбросить данные"
+          class="text-danger w-100"
+          @click="resetUserMetaData"
+        />
+      </div>
+      <div class="col-3">
+        <BtnUserProfile
+          title="Удалить аккаунт"
+          class="text-danger w-100"
+          @click="deleteAccaunt"
+        />
+      </div>
+      <div class="col-3">
+        <BtnUserProfile
+          v-if="userMetaData.premium"
+          title="Отключить Pro"
+          class="text-primary w-100"
+          @click="proOff"
+        />
+        <BtnUserProfile
+          v-else
+          title="Сделать Pro"
+          class="text-primary w-100"
+          @click="proOn"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import getDateNow from './../../helpers/getDateNow'
+import getLocaleDateFromDateDigit from './../../helpers/getLocaleDateFromDateDigit'
+import getDatePlusMonths from './../../helpers/getDatePlusMonths'
 import { factoryUsers } from './../../factories/factoryUsers'
 
+import BtnUserProfile from './components/buttons/BtnUserProfile.vue'
+
 export default {
+  components: { BtnUserProfile },
   computed: {
     userEmail() {
       return this.$store.getters.userEmail
@@ -40,6 +97,12 @@ export default {
     }
   },
   methods: {
+    getDateNow,
+    getLocaleDateFromDateDigit,
+    getDatePlusMonths,
+    updateUserMetaData(userMetaData) {
+      this.$store.dispatch('updateUserMetaData', { userMetaData })
+    },
     resetUserMetaData() {
       if (confirm('Точно сбросить все данные?')) {
         const userMetaData = factoryUsers()
@@ -49,11 +112,29 @@ export default {
     deleteAccaunt() {
       if (
         confirm(
-          'Также будут удалены все данные пользователя. Вы уверенны в том, что хотите удалить аккаунт?'
+          'Также будут удалены все данные пользователя. Вы уверенны, что хотите удалить аккаунт?'
         )
       ) {
-        console.log('Аккаунт успешно удален')
+        console.log('LOG: Аккаунт успешно удален')
       }
+    },
+
+    getRemainingDays() {
+      return 5
+    },
+    proOff() {
+      const userMetaData = this.userMetaData
+      userMetaData.premium = false
+      userMetaData.dateStartPremium = getDateNow()
+      userMetaData.dateEndPremium = getDatePlusMonths(3)
+      this.updateUserMetaData(userMetaData)
+    },
+    proOn() {
+      const userMetaData = this.userMetaData
+      userMetaData.premium = true
+      userMetaData.dateStartPremium = getDateNow()
+      userMetaData.dateEndPremium = getDatePlusMonths(3)
+      this.updateUserMetaData(userMetaData)
     }
   }
 }
