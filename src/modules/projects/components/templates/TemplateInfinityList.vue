@@ -32,6 +32,16 @@
         aria-expanded="false"
         :aria-controls="'collapseExample' + item.id"
       />
+      <!-- <BtnAddUnderTask
+        v-else-if="canCreateUnderTask() && nestingLevels < 4"
+        class="btn btn-sm btn-dark ms-2"
+        type="button"
+        data-bs-toggle="collapse"
+        :data-bs-target="'#collapseExample' + item.id"
+        aria-expanded="false"
+        :aria-controls="'collapseExample' + item.id"
+        @click="addChildren"
+      /> -->
     </div>
 
     <div class="collapse ms-4" :id="'collapseExample' + item.id">
@@ -65,10 +75,15 @@ import { factoryTasks } from './../../../../factories/factoryTasks'
 import BtnTrashFlat from './../../../../components/buttons/BtnTrashFlat.vue'
 import BtnAddChildrenTask from './../../../../components/buttons/BtnAddChildrenTask.vue'
 import BtnShowCheck from './../../../../components/buttons/BtnShowCheck.vue'
+//import BtnAddUnderTask from './../../../../components/buttons/BtnAddUnderTask.vue'
 
 export default {
   name: 'TemplateInfinityList',
-  components: { BtnTrashFlat, BtnAddChildrenTask, BtnShowCheck },
+  components: {
+    BtnTrashFlat,
+    BtnAddChildrenTask,
+    BtnShowCheck
+  },
   emits: ['delete-children-item'],
   props: {
     item: Object,
