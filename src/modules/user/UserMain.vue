@@ -8,10 +8,18 @@
       </div>
       <div class="row mt-2">
         <div class="col-4">
-          <input type="text" class="form-control form-control-sm" />
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            v-model="newEmail"
+          />
         </div>
         <div class="col-3 ps-0">
-          <BtnUserProfile title="Обновить Email" class="w-100" />
+          <BtnUserProfile
+            title="Обновить Email"
+            class="w-100"
+            @click="updateUserEmail"
+          />
         </div>
       </div>
 
@@ -104,10 +112,20 @@ export default {
       return this.$store.getters.userMetaData
     }
   },
+  data() {
+    return {
+      newEmail: ''
+    }
+  },
   methods: {
     getDateNow,
     getLocaleDateFromDateDigit,
     getDatePlusMonths,
+    //////////////////////////////////////
+    updateUserEmail() {
+      console.log('Новый email = ', this.newEmail)
+    },
+    ///////////////////////////////////////////
     updateUserMetaData(userMetaData) {
       this.$store.dispatch('updateUserMetaData', { userMetaData })
     },
@@ -126,7 +144,7 @@ export default {
         console.log('LOG: Аккаунт успешно удален')
       }
     },
-
+    ///////////////////////////////////////////
     getSubscribeStatus(premiumStatus) {
       return premiumStatus ? 'Активна' : 'Не активна'
     },
@@ -148,6 +166,7 @@ export default {
       userMetaData.dateEndPremium = getDatePlusMonths(3)
       this.updateUserMetaData(userMetaData)
     }
+    /////////////////////////////////////////////////////
   }
 }
 </script>
