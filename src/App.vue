@@ -6,12 +6,14 @@
         <component :is="myComponent" />
       </transition>
     </div>
+    <TheMessage />
   </div>
 </template>
 
 <script>
 import { router } from './router'
 import TheNavbar from './components/interface/TheNavbar.vue'
+import TheMessage from './components/interface/TheMessage.vue'
 
 import PageLogin from './pages/PageLogin.vue'
 import PageUser from './pages/PageUser.vue'
@@ -24,6 +26,7 @@ import PageRestorePassword from './pages/PageRestorePassword.vue'
 export default {
   components: {
     TheNavbar,
+    TheMessage,
     PageLogin,
     PageUser,
     PagePrice,
@@ -44,6 +47,10 @@ export default {
 </script>
 
 <style>
+.btn-close:focus {
+  box-shadow: none;
+}
+
 .opacity-06 {
   opacity: 0.6;
 }

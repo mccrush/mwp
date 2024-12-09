@@ -123,6 +123,11 @@ export default {
     getDatePlusMonths,
     //////////////////////////////////////
     updateUserEmail() {
+      this.$store.commit('addMessage', {
+        text: 'Ваш новый Email:' + this.newEmail,
+        bg: 'alert-primary'
+      })
+
       console.log('Новый email = ', this.newEmail)
     },
     ///////////////////////////////////////////
@@ -147,9 +152,6 @@ export default {
     ///////////////////////////////////////////
     getSubscribeStatus(premiumStatus) {
       return premiumStatus ? 'Активна' : 'Не активна'
-    },
-    getRemainingDays() {
-      return 5
     },
 
     proOff() {
