@@ -28,14 +28,14 @@ export default {
   },
   methods: {
     hideMessage() {
-      this.$store.commit('addMessage', { text: '', bg: '' })
+      this.$store.commit('addMessage', { text: '' })
     }
   },
   watch: {
     message() {
       if (this.message.text) {
         setTimeout(() => {
-          this.$store.commit('addMessage', { text: '', bg: '' })
+          this.$store.commit('addMessage', { text: '' })
         }, 4800)
       }
     }

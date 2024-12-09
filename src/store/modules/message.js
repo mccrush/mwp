@@ -1,4 +1,4 @@
-// type: info, warning, success, error
+// возможные bg:
 // alert-primary
 // alert-success
 // alert-warning

@@ -3,20 +3,15 @@
     <div class="my-vh100 col-12 pt-4">
       <LoginForm />
     </div>
-    <!-- <transition name="fade" mode="out-in">
-      <Message />
-    </transition> -->
   </div>
 </template>
 
 <script>
 import LoginForm from './../modules/login/LoginForm.vue'
-import Message from './../components/Message.vue'
 
 export default {
   components: {
-    LoginForm,
-    Message
+    LoginForm
   },
   data() {
     return {}

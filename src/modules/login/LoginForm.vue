@@ -133,7 +133,7 @@ export default {
       this.showMessage = true
       setTimeout(() => {
         this.showMessage = false
-      }, 3600)
+      }, 4800)
     },
     auth() {
       switch (this.mod) {
