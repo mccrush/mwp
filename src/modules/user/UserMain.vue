@@ -25,22 +25,30 @@
       </div>
     </div>
 
-    <div v-if="userMetaData.premium" class="row border rounded mt-3 p-3">
+    <div class="row border rounded mt-3 p-3">
       <div class="col-12 lh-1">
-        <p>Статус Про подписки: {{ userMetaData.premium }}</p>
         <p>
-          Дата начала Про подписки:
-          {{ getLocaleDateFromDateDigit(userMetaData.dateStartPremium) }}
+          Подписка Pro:
+          <strong>{{ getSubscribeStatus(userMetaData.premium) }}</strong>
         </p>
-        <p>
-          Дата окончания Про подписки:
-          {{ getLocaleDateFromDateDigit(userMetaData.dateEndPremium) }}
-        </p>
+        <div v-if="userMetaData.premium">
+          <p>
+            Дата начала подписки:
+            {{ getLocaleDateFromDateDigit(userMetaData.dateStartPremium) }}
+          </p>
+          <p>
+            Дата окончания подписки:
+            {{ getLocaleDateFromDateDigit(userMetaData.dateEndPremium) }}
+          </p>
+        </div>
       </div>
-      <div class="col-3">
+      <div v-if="!userMetaData.premium" class="col-3">
+        <BtnUserProfile title="Оформить подписку" class="w-100" />
+      </div>
+      <div v-if="userMetaData.premium" class="col-3">
         <BtnUserProfile title="Продлить подписку" class="w-100" />
       </div>
-      <div class="col-3">
+      <div v-if="userMetaData.premium" class="col-3">
         <BtnUserProfile title="Отменить подписку" class="w-100" />
       </div>
     </div>
@@ -119,9 +127,13 @@ export default {
       }
     },
 
+    getSubscribeStatus(premiumStatus) {
+      return premiumStatus ? 'Активна' : 'Не активна'
+    },
     getRemainingDays() {
       return 5
     },
+
     proOff() {
       const userMetaData = this.userMetaData
       userMetaData.premium = false
