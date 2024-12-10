@@ -1,6 +1,6 @@
 <template>
   <div
-    class="my-vh100 col-3 col-lg-2 d-flex flex-column border-top border-dark-subtle border-end border-black p-0 pb-2"
+    class="my-vh100 col-3 col-lg-2 d-flex flex-column border-end border-dark-subtle p-0 pb-2"
   >
     <!-- Список проектов -->
     <div class="overflow-y-auto p-2">

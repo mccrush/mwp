@@ -1,7 +1,10 @@
 <template>
   <div>
-    <div class="my-container-992 container-xl shadow text-body-secondary pl-0">
+    <div
+      class="my-container-992 container-xl shadow rounded text-body-secondary pl-0"
+    >
       <TheNavbar />
+      <div class="row border-top border-dark-subtle"></div>
       <transition name="fade" mode="out-in">
         <component :is="myComponent" />
       </transition>
@@ -67,7 +70,7 @@ export default {
 }
 
 .my-vh100 {
-  height: calc(100vh - 51px); /* Точное число после настройки навбара */
+  height: calc(100vh - 52px); /* Точное число после настройки навбара */
 }
 
 .my-container-992 {

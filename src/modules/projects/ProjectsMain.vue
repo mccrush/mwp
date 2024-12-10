@@ -1,35 +1,33 @@
 <template>
-  <div>
-    <div class="row">
-      <ProjectsList
-        :userId="userId"
-        :projects="projects"
-        :project="project"
-        :currentProjectId="currentProjectId"
-      />
+  <div class="row">
+    <ProjectsList
+      :userId="userId"
+      :projects="projects"
+      :project="project"
+      :currentProjectId="currentProjectId"
+    />
 
-      <div class="col-9 col-lg-10 border-top border-dark-subtle">
-        <div v-if="project">
-          <ProjectsTabButtons
+    <div class="col-9 col-lg-10">
+      <div v-if="project">
+        <ProjectsTabButtons
+          :project="project"
+          @create-form-item="createFormItem"
+        />
+        <transition name="fade" mode="out-in">
+          <TabForms
             :project="project"
+            :type="viewTab"
+            @save-item="saveItem"
+            @remove-item="removeItem"
             @create-form-item="createFormItem"
           />
-          <transition name="fade" mode="out-in">
-            <TabForms
-              :project="project"
-              :type="viewTab"
-              @save-item="saveItem"
-              @remove-item="removeItem"
-              @create-form-item="createFormItem"
-            />
-          </transition>
-        </div>
-        <div v-else class="pt-4">
-          <h6 class="text-center">
-            Выберите проект из списка слева<br />
-            или создайте новый проект
-          </h6>
-        </div>
+        </transition>
+      </div>
+      <div v-else class="pt-4">
+        <h6 class="text-center">
+          Выберите проект из списка слева<br />
+          или создайте новый проект
+        </h6>
       </div>
     </div>
   </div>

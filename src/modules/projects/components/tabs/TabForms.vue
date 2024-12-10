@@ -1,5 +1,5 @@
 <template>
-  <div class="row border-top p-2">
+  <div class="row border-top border-dark-subtle p-2">
     <div class="col-12">
       <div v-if="projectTypeLength" class="row">
         <component
