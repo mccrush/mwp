@@ -29,17 +29,14 @@
       </div>
     </div>
 
-    <div
-      v-if="isLoggedIn"
-      class="col-9 col-lg-10 d-flex justify-content-end align-items-center"
-    >
+    <div class="col-9 col-lg-10 d-flex justify-content-end align-items-center">
       <BtnPageProjects
-        v-if="viewPage !== 'PageProjects'"
+        v-if="isLoggedIn && viewPage !== 'PageProjects'"
         class="me-2"
         @click="$store.commit('setViewPage', 'PageProjects')"
       />
       <BtnPagePremium
-        v-if="userMetaData && !userMetaData.premium"
+        v-if="isLoggedIn && userMetaData && !userMetaData.premium"
         class="me-2"
         @click="$store.commit('setViewPage', 'PagePrice')"
       />
@@ -48,7 +45,13 @@
         @click="$store.commit('setViewPage', 'PageDoc')"
       />
 
-      <div class="dropdown">
+      <BtnPageLogin
+        v-if="!isLoggedIn"
+        class="me-2"
+        @click="$store.commit('setViewPage', 'PageLogin')"
+      />
+
+      <div v-if="isLoggedIn" class="dropdown">
         <BtnPageUser
           class="dropdown-toggle"
           type="button"
@@ -75,13 +78,15 @@ import BtnPageProjects from './../buttons/BtnPageProjects.vue'
 import BtnPagePremium from './../buttons/BtnPagePremium.vue'
 import BtnPageDoc from './../buttons/BtnPageDoc.vue'
 import BtnPageUser from './../buttons/BtnPageUser.vue'
+import BtnPageLogin from './../buttons/BtnPageLogin.vue'
 
 export default {
   components: {
     BtnPageProjects,
     BtnPagePremium,
     BtnPageDoc,
-    BtnPageUser
+    BtnPageUser,
+    BtnPageLogin
   },
   data() {
     return {

@@ -59,8 +59,16 @@
         id="passwordHelp"
         class="form-text lh-1"
       >
-        Минимум: 8 символов, 1 цифра, 1 большая, 1 маленькая латинская буква.
-        Например: f2Rs14vZw
+        <span>
+          Минимум: 8 символов, 1 цифра, 1 большая, 1 маленькая латинская буква.
+          Например: f2Rs14vZw
+        </span>
+        <div class="border rounded-1 text-primary-emphasis mt-2 p-2">
+          Нажимая на кнопку «Зарегистрироваться», вы принимаете
+          <a href="#" @click="$store.commit('setViewPage', 'PagePolicy')"
+            >«Пользовательское соглашение»</a
+          >
+        </div>
       </div>
     </div>
 

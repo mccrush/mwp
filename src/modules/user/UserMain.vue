@@ -115,6 +115,14 @@
         />
       </div>
     </div>
+
+    <div class="row border rounded mt-3 p-3">
+      <div class="col-12">
+        <a href="#" @click="$store.commit('setViewPage', 'PagePolicy')"
+          >Пользовательское соглашение</a
+        >
+      </div>
+    </div>
   </div>
 </template>
 
