@@ -34,4 +34,9 @@ export const dataPages = [
     viewPage: 'PageRestorePassword',
     name: 'restore'
   },
+  {
+    title: 'Политики',
+    viewPage: 'PagePolicy',
+    name: 'policy'
+  },
 ]

@@ -157,12 +157,10 @@ export default {
         }
         this.$store.dispatch('logIn', loginData)
       } else if (!this.email) {
-        //this.error = { type: 'email', text: 'Введите Email' }
         this.showMeesageForUser({
           message: { type: 'email', text: 'Введите Email' }
         })
       } else if (!this.password) {
-        //this.error = { type: 'password', text: 'Введите пароль' }
         this.showMeesageForUser({
           message: { type: 'password', text: 'Введите пароль' }
         })
@@ -190,15 +188,12 @@ export default {
           })
 
           if (result === 200) {
-            this.$store.commit('setViewPage', 'PageConfirm')
+            this.$store.commit('addMessage', {
+              text: 'Проверьте почту и подтвердите Email',
+              bg: 'alert-primary'
+            })
           }
-          //const newUser = factoryUsers(this.userId)
-          //this.$store.dispatch('addItem', { item: newUser })
         } else {
-          // this.error = {
-          //   type: 'password',
-          //   text: 'Пароль не соответствует требованиям безопасности'
-          // }
           this.showMeesageForUser({
             message: {
               type: 'password',
@@ -207,12 +202,10 @@ export default {
           })
         }
       } else if (!this.email) {
-        //this.error = { type: 'email', text: 'Введите Email' }
         this.showMeesageForUser({
           message: { type: 'email', text: 'Введите Email' }
         })
       } else if (!this.password) {
-        //this.error = { type: 'password', text: 'Введите пароль' }
         this.showMeesageForUser({
           message: { type: 'password', text: 'Введите пароль' }
         })
@@ -232,7 +225,6 @@ export default {
 
         this.email = ''
       } else {
-        //this.error = { type: 'email', text: 'Введите Email' }
         this.showMeesageForUser({
           message: { type: 'email', text: 'Введите Email' }
         })

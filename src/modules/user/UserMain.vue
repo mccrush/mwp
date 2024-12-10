@@ -42,17 +42,23 @@
         <div v-if="userMetaData.subscription">
           <p class="mb-2">
             Дата начала подписки:
-            {{ getLocaleDateFromDateDigit(userMetaData.dateStartPremium) }}
+            <small class="font-monospace border rounded ps-1 pe-1">
+              {{ getLocaleDateFromDateDigit(userMetaData.dateStartPremium) }}
+            </small>
           </p>
           <p class="mb-2">
             Дата окончания подписки:
-            {{ getLocaleDateFromDateDigit(userMetaData.dateEndPremium) }}
+            <small class="font-monospace border rounded ps-1 pe-1">
+              {{ getLocaleDateFromDateDigit(userMetaData.dateEndPremium) }}
+            </small>
           </p>
         </div>
         <div v-if="userMetaData.premium">
           <p>
             Функции Pro доступны до:
-            {{ getLocaleDateFromDateDigit(userMetaData.dateEndPremium) }}
+            <small class="font-monospace border rounded ps-1 pe-1">
+              {{ getLocaleDateFromDateDigit(userMetaData.dateEndPremium) }}
+            </small>
           </p>
         </div>
       </div>
