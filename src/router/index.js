@@ -7,8 +7,6 @@ export const router = (viewPage) => {
     if (viewPage === 'PageLogin') {
       store.commit('setViewPage', 'PageProjects')
       return 'PageProjects'
-    } else if (viewPage === 'PageRestorePassword') {
-      return 'PageUser'
     }
     return dataPages.find(item => item.viewPage === viewPage).viewPage
   } else if (viewPage === 'PageConfirm') {

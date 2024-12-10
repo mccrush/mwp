@@ -37,8 +37,8 @@ const { data } = supabase.auth.onAuthStateChange((event, session) => {
     store.commit('setViewPage', 'PageLogin')
   } else if (event === 'PASSWORD_RECOVERY') {
     // handle password recovery event
-    //store.commit('setViewPage', 'PageUser')
-    document.location.reload()
+    store.commit('setViewPage', 'PageRestorePassword')
+    //document.location.reload()
   } else if (event === 'TOKEN_REFRESHED') {
     // handle token refreshed event
     store.commit('setViewPage', store.getters.viewPage)

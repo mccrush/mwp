@@ -225,9 +225,12 @@ export default {
           email: this.email
         })
 
-        if (result === 200) {
-          this.$store.commit('setViewPage', 'PageRestorePassword')
-        }
+        this.$store.commit('addMessage', {
+          text: 'Ссылка для сброса пароля отправлена вам на Email',
+          bg: 'alert-primary'
+        })
+
+        this.email = ''
       } else {
         //this.error = { type: 'email', text: 'Введите Email' }
         this.showMeesageForUser({

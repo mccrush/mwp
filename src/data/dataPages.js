@@ -29,4 +29,9 @@ export const dataPages = [
     viewPage: 'PageProjects',
     name: 'projects'
   },
+  {
+    title: 'Восстановление пароля',
+    viewPage: 'PageRestorePassword',
+    name: 'restore'
+  },
 ]
