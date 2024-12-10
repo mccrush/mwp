@@ -6,7 +6,7 @@
       <div class="row">
         <div class="col-12">Email: {{ userEmail }}</div>
       </div>
-      <div class="row mt-2">
+      <!-- <div class="row mt-2">
         <div class="col-4">
           <input
             type="text"
@@ -21,43 +21,61 @@
             @click="updateUserEmail"
           />
         </div>
-      </div>
+      </div> -->
 
-      <div class="row mt-2">
+      <!-- <div class="row mt-2">
         <div class="col-4">
           <input type="text" class="form-control form-control-sm" />
         </div>
         <div class="col-3 ps-0">
           <BtnUserProfile title="Обновить Пароль" class="w-100" />
         </div>
-      </div>
+      </div> -->
     </div>
 
     <div class="row border rounded mt-3 p-3">
       <div class="col-12 lh-1">
         <p>
           Подписка Pro:
-          <strong>{{ getSubscribeStatus(userMetaData.premium) }}</strong>
+          <strong>{{ getSubscribeStatus(userMetaData.subscription) }}</strong>
         </p>
-        <div v-if="userMetaData.premium">
-          <p>
+        <div v-if="userMetaData.subscription">
+          <p class="mb-2">
             Дата начала подписки:
             {{ getLocaleDateFromDateDigit(userMetaData.dateStartPremium) }}
           </p>
-          <p>
+          <p class="mb-2">
             Дата окончания подписки:
             {{ getLocaleDateFromDateDigit(userMetaData.dateEndPremium) }}
           </p>
         </div>
+        <div v-if="userMetaData.premium">
+          <p>
+            Функции Pro доступны до:
+            {{ getLocaleDateFromDateDigit(userMetaData.dateEndPremium) }}
+          </p>
+        </div>
       </div>
-      <div v-if="!userMetaData.premium" class="col-3">
-        <BtnUserProfile title="Оформить подписку" class="w-100" />
+      <div v-if="!userMetaData.subscription" class="col-3">
+        <BtnUserProfile
+          title="Оформить подписку"
+          class="w-100"
+          @click="onUserSubscription"
+        />
       </div>
-      <div v-if="userMetaData.premium" class="col-3">
-        <BtnUserProfile title="Продлить подписку" class="w-100" />
+      <div v-if="userMetaData.subscription" class="col-3">
+        <BtnUserProfile
+          title="Продлить подписку"
+          class="w-100"
+          @click="renewUserSubscription"
+        />
       </div>
-      <div v-if="userMetaData.premium" class="col-3">
-        <BtnUserProfile title="Отменить подписку" class="w-100" />
+      <div v-if="userMetaData.subscription" class="col-3">
+        <BtnUserProfile
+          title="Отменить подписку"
+          class="w-100"
+          @click="offUserSubscription"
+        />
       </div>
     </div>
 
@@ -78,7 +96,7 @@
       </div>
       <div class="col-3">
         <BtnUserProfile
-          v-if="userMetaData.premium"
+          v-if="userMetaData.subscription"
           title="Отключить Pro"
           class="text-primary w-100"
           @click="proOff"
@@ -122,14 +140,20 @@ export default {
     getLocaleDateFromDateDigit,
     getDatePlusMonths,
     //////////////////////////////////////
-    updateUserEmail() {
-      this.$store.commit('addMessage', {
-        text: 'Ваш новый Email:' + this.newEmail,
-        bg: 'alert-primary'
-      })
-
-      console.log('Новый email = ', this.newEmail)
-    },
+    // async updateUserEmail() {
+    //   if (this.newEmail) {
+    //     const res = await this.$store.dispatch('updateUserEmail', {
+    //       email: this.newEmail
+    //     })
+    //     if (res === 200) {
+    //       this.newEmail = ''
+    //       this.$store.commit('addMessage', {
+    //         text: 'Email успешно обновлен',
+    //         bg: 'alert-success'
+    //       })
+    //     }
+    //   }
+    // },
     ///////////////////////////////////////////
     updateUserMetaData(userMetaData) {
       this.$store.dispatch('updateUserMetaData', { userMetaData })
@@ -150,20 +174,41 @@ export default {
       }
     },
     ///////////////////////////////////////////
-    getSubscribeStatus(premiumStatus) {
-      return premiumStatus ? 'Активна' : 'Не активна'
+    getSubscribeStatus(subscription) {
+      return subscription ? 'Активна' : 'Не активна'
+    },
+
+    onUserSubscription() {
+      console.log('LOG: Подписка будет оформлена...')
+    },
+
+    renewUserSubscription() {
+      console.log('LOG: Подписка будет продлена...')
+    },
+
+    offUserSubscription() {
+      if (confirm('Уверены, что хотите отменить подписку?')) {
+        const userMetaData = this.userMetaData
+        userMetaData.subscription = false
+        this.updateUserMetaData(userMetaData)
+
+        this.$store.commit('addMessage', {
+          text: 'Подписка успешно отменена',
+          bg: 'alert-success'
+        })
+      }
     },
 
     proOff() {
       const userMetaData = this.userMetaData
       userMetaData.premium = false
-      userMetaData.dateStartPremium = getDateNow()
-      userMetaData.dateEndPremium = getDatePlusMonths(3)
+      userMetaData.subscription = false
       this.updateUserMetaData(userMetaData)
     },
     proOn() {
       const userMetaData = this.userMetaData
       userMetaData.premium = true
+      userMetaData.subscription = true
       userMetaData.dateStartPremium = getDateNow()
       userMetaData.dateEndPremium = getDatePlusMonths(3)
       this.updateUserMetaData(userMetaData)

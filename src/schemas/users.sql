@@ -10,6 +10,7 @@ create table
     projects jsonb null default '[]'::jsonb,
     user_id uuid null,
     premium boolean null default false,
+    subscription boolean null default false,
     "dateStartPremium" text null,
     "dateEndPremium" text null,
     constraint users_pkey primary key (id)

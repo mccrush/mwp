@@ -36,6 +36,22 @@ export default {
       }
     },
 
+    // async updateUserEmail({ commit }, { email }) {
+    //   try {
+    //     const { data, error } = await supabase.auth.updateUser({
+    //       email
+    //     })
+
+    //     if (error) throw error
+    //     if (data) {
+    //       return 200
+    //     }
+
+    //   } catch (error) {
+    //     console.error('auth.js updateUserEmail()', error)
+    //   }
+    // },
+
     async restoreUserPassword({ commit }, { email }) {
       try {
         const { data, error } = await supabase.auth.resetPasswordForEmail(email)
