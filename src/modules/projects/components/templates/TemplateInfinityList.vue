@@ -115,6 +115,11 @@ export default {
         if (this.item.childrens.length < 8) return true
       }
       return false
+    },
+
+    toggleStatus() {
+      this.item.status = this.item.status === 'active' ? 'done' : 'active'
+      this.$emit('save-item')
     }
   }
 }

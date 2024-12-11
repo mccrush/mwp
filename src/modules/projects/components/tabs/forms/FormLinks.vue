@@ -79,14 +79,8 @@ export default {
   },
   emits: ['save-item', 'remove-item'],
   props: {
-    item: {
-      type: Object,
-      default: null
-    },
-    index: {
-      type: Number,
-      default: 0
-    }
+    item: Object,
+    index: Number
   },
   data() {
     return {

@@ -101,8 +101,7 @@ export default {
   emits: ['save-item', 'remove-item'],
   props: {
     item: Object,
-    index: Number,
-    project: Object
+    index: Number
   },
   data() {
     return {

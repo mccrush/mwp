@@ -8,7 +8,6 @@
           :key="item.id"
           :item="item"
           :index="index"
-          :project="project"
           @save-item="saveItem"
           @remove-item="removeItem"
         />
