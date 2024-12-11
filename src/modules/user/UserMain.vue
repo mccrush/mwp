@@ -93,13 +93,13 @@
           @click="resetUserMetaData"
         />
       </div>
-      <div class="col-3">
+      <!-- <div class="col-3">
         <BtnUserProfile
           title="Удалить аккаунт"
           class="text-danger w-100"
           @click="deleteAccaunt"
         />
-      </div>
+      </div> -->
       <div class="col-3">
         <BtnUserProfile
           v-if="userMetaData.subscription"
@@ -121,6 +121,12 @@
         <a href="#" @click="$store.commit('setViewPage', 'PagePolicy')"
           >Пользовательское соглашение</a
         >
+      </div>
+    </div>
+    <div class="row border rounded mt-3 p-3">
+      <div class="col-12">
+        Для удаления своего аккаунта и всех связанных с ним данных, напишите нам
+        на почту mccrush2027@gmail.com
       </div>
     </div>
   </div>
