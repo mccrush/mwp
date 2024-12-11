@@ -34,7 +34,7 @@ export default {
 
     },
 
-    async logOut() {
+    async logOut({ commit }) {
       try {
         commit('setLoading', true)
         const { error } = await supabase.auth.signOut()
