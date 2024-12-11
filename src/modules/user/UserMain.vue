@@ -123,12 +123,42 @@
         >
       </div>
     </div>
+
     <div class="row border rounded mt-3 p-3">
       <div class="col-12">
         Для удаления своего аккаунта и всех связанных с ним данных, напишите нам
         на почту mccrush2027@gmail.com
       </div>
     </div>
+
+    <!-- <div class="row border rounded mt-3 p-3">
+      <div class="col-3">
+        <BtnUserProfile
+          title="Данные в JSON"
+          class="w-100"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseUserData"
+          aria-expanded="false"
+          aria-controls="collapseUserData"
+        />
+      </div>
+      <div class="col-3">
+        <BtnUserProfile
+          title="Копировать"
+          class="w-100"
+          @click="copyInBufferData(userMetaData.projects.links)"
+        />
+      </div>
+      <div class="col-12">
+        <div class="collapse small mt-1" id="collapseUserData">
+          <pre
+            >{{ userMetaData.projects }}
+            </pre
+          >
+        </div>
+      </div>
+    </div> -->
   </div>
 </template>
 
@@ -136,6 +166,7 @@
 import getDateNow from './../../helpers/getDateNow'
 import getLocaleDateFromDateDigit from './../../helpers/getLocaleDateFromDateDigit'
 import getDatePlusMonths from './../../helpers/getDatePlusMonths'
+//import { copyInBufferText } from './../../helpers/copyInBufferText'
 import { factoryUsers } from './../../factories/factoryUsers'
 
 import BtnUserProfile from './components/buttons/BtnUserProfile.vue'
@@ -156,6 +187,16 @@ export default {
     }
   },
   methods: {
+    // copyInBufferData(data) {
+    //   const pretty = JSON.stringify(data, undefined, 2)
+    //   copyInBufferText(pretty)
+
+    //   this.$store.commit('addMessage', {
+    //     text: 'Данные скопированы в буфер обмена',
+    //     bg: 'alert-success'
+    //   })
+    // },
+    // copyInBufferText,
     getDateNow,
     getLocaleDateFromDateDigit,
     getDatePlusMonths,
@@ -184,15 +225,19 @@ export default {
         this.$store.dispatch('resetUserMetaData', { userMetaData })
       }
     },
-    deleteAccaunt() {
-      if (
-        confirm(
-          'Также будут удалены все данные пользователя. Вы уверенны, что хотите удалить аккаунт?'
-        )
-      ) {
-        console.log('LOG: Аккаунт успешно удален')
-      }
+
+    exportUserProjects() {
+      console.log('LOG: Данные будут эеспортированны в JSON формате')
     },
+    // deleteAccaunt() {
+    //   if (
+    //     confirm(
+    //       'Также будут удалены все данные пользователя. Вы уверенны, что хотите удалить аккаунт?'
+    //     )
+    //   ) {
+    //     console.log('LOG: Аккаунт успешно удален')
+    //   }
+    // },
     ///////////////////////////////////////////
     getSubscribeStatus(subscription) {
       return subscription ? 'Активна' : 'Не активна'

@@ -71,14 +71,11 @@
 </template>
 
 <script>
-//import { copyInBuffer } from './../../../../helpers/copyInBuffer'
 import { factoryTasks } from './../../../../factories/factoryTasks'
 
-//import BtnCopy from './../../../../components/buttons/BtnCopy.vue'
 import BtnTrashFlat from './../../../../components/buttons/BtnTrashFlat.vue'
 import BtnAddChildrenTask from './../../../../components/buttons/BtnAddChildrenTask.vue'
 import BtnShowCheck from './../../../../components/buttons/BtnShowCheck.vue'
-//import BtnAddUnderTask from './../../../../components/buttons/BtnAddUnderTask.vue'
 
 export default {
   name: 'TemplateInfinityList',

@@ -30,37 +30,18 @@
           />
         </div>
 
-        <!-- <BtnShowCheckFill
-          v-if="item.childrens.length"
-          class=""
-          type="button"
-          data-bs-toggle="collapse"
-          :data-bs-target="'#collapseExample' + item.id"
-          aria-expanded="false"
-          :aria-controls="'collapseExample' + item.id"
-          :childrensLength="item.childrens.length"
-        /> -->
         <BtnShowCheck
           class=""
           type="button"
           data-bs-toggle="collapse"
-          :data-bs-target="'#collapseExample' + item.id"
+          :data-bs-target="'#collapseUnderTask' + item.id"
           aria-expanded="false"
-          :aria-controls="'collapseExample' + item.id"
+          :aria-controls="'collapseUnderTask' + item.id"
           :childrensLength="item.childrens.length"
         />
-        <!-- <BtnAddUnderTask
-          v-else-if="canCreateUnderTask()"
-          class="btn btn-sm btn-dark"
-          type="button"
-          data-bs-toggle="collapse"
-          :data-bs-target="'#collapseExample' + item.id"
-          aria-expanded="false"
-          :aria-controls="'collapseExample' + item.id"
-          @click="addChildren"
-        /> -->
       </div>
-      <div class="collapse mt-1" :id="'collapseExample' + item.id">
+
+      <div class="collapse mt-1" :id="'collapseUnderTask' + item.id">
         <div
           v-if="item.childrens.length"
           class="card card-body border mb-1 p-2 pt-1"
@@ -84,7 +65,6 @@
 </template>
 
 <script>
-//import { Collapse } from 'bootstrap'
 import { copyInBuffer } from './../../../../../helpers/copyInBuffer'
 import { factoryTasks } from './../../../../../factories/factoryTasks'
 
@@ -94,9 +74,7 @@ import BtnTrash from './../../../../../components/buttons/BtnTrash.vue'
 import BtnCopy from './../../../../../components/buttons/BtnCopy.vue'
 import BtnLink from './../../../../../components/buttons/BtnLink.vue'
 import BtnAddChildrenTask from './../../../../../components/buttons/BtnAddChildrenTask.vue'
-//import BtnShowCheckFill from './../../../../../components/buttons/BtnShowCheckFill.vue'
 import BtnShowCheck from './../../../../../components/buttons/BtnShowCheck.vue'
-//import BtnAddUnderTask from './../../../../../components/buttons/BtnAddUnderTask.vue'
 
 import TemplateInfinityList from './../../templates/TemplateInfinityList.vue'
 

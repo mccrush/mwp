@@ -1,0 +1,1 @@
+export const copyInBufferText = async (string) => await navigator.clipboard.writeText(string)
