@@ -3,16 +3,21 @@
     <div
       class="col-3 col-lg-2 d-flex justify-content-between border-end border-dark-subtle pt-2 pb-2"
     >
-      <div class="">
-        <img
-          src="/img/logo.png"
-          width="30"
-          height="30"
-          class="logo-image d-inline-block align-top mt-1"
-          :class="{ rotate: loading }"
-          alt="Logo MWP"
-          title="Manager of Web Projects"
-        />
+      <div>
+        <transition mode="out-in">
+          <TheSpinner v-if="loading" />
+          <img
+            v-else
+            src="/img/logo.png"
+            width="30"
+            height="30"
+            class="logo-image d-inline-block align-top mt-1"
+            :class="{ rotate: loading }"
+            alt="Logo MWP"
+            title="Manager of Web Projects"
+          />
+        </transition>
+
         <span class="cursor-def d-inline-block text-body-secondary ms-2 pt-2"
           ><strong>MWP</strong>
           <a
@@ -74,6 +79,7 @@
 <script>
 import { version } from './../../../package.json'
 
+import TheSpinner from './TheSpinner.vue'
 import BtnPageProjects from './../buttons/BtnPageProjects.vue'
 import BtnPagePremium from './../buttons/BtnPagePremium.vue'
 import BtnPageDoc from './../buttons/BtnPageDoc.vue'
@@ -82,6 +88,7 @@ import BtnPageLogin from './../buttons/BtnPageLogin.vue'
 
 export default {
   components: {
+    TheSpinner,
     BtnPageProjects,
     BtnPagePremium,
     BtnPageDoc,
