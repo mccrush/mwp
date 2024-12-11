@@ -9,7 +9,7 @@
           width="30"
           height="30"
           class="logo-image d-inline-block align-top mt-1"
-          :class="{ rotate: loadingRT || loading }"
+          :class="{ rotate: loading }"
           alt="Logo MWP"
           title="Manager of Web Projects"
         />
@@ -114,9 +114,6 @@ export default {
     },
     loading() {
       return this.$store.getters.loading
-    },
-    loadingRT() {
-      return this.$store.getters.loadingRT
     }
   },
   methods: {
