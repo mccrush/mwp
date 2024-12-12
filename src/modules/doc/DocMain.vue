@@ -1,23 +1,42 @@
 <template>
-  <div class="p-3">
-    <h4>Руководство пользователя</h4>
-    <p>
-      Приложение MWP предназначено для хранения информации, связанной с
-      разработкой программного обеспечения. Подразумевается, что связанная между
-      собой информация, объединяется в проекты. На данный момент в каждом из
-      проектов доступно хранение трех видов информации: ссылки, пароли,
-      контакты.
-    </p>
-    <p>
-      В приложении существуют ограничения как на количество создаваемых
-      проектов, так и на количество создаваемых форм для каждого вида
-      информации. А также есть ограничение на максимальную длину вводимых строк
-      в формы (название проекта, URL ссылка, пароль, имя контакта и т.д.).
-    </p>
-    <p>
-      Для связи с командой разработчиков, вы можете использовать данный адрес
-      электронной почты mccrush2027@gmail.com
-    </p>
-    <p></p>
+  <div class="row">
+    <MenuList :items="dataDocRazdels" />
+    <div class="col-9 col-lg-10 p-3">
+      <h4 class="mb-3">Пользовательское соглашение</h4>
+      <div v-for="razdel in dataDocRazdels" :key="razdel.alias">
+        <h5 :id="razdel.alias">{{ razdel.title }}</h5>
+        <component :is="razdel.component" />
+        <hr />
+      </div>
+    </div>
   </div>
 </template>
+
+<script>
+import { dataDocRazdels } from './data/dataDocRazdels'
+
+import MenuList from './../../components/templates/MenuList.vue'
+import DocRazdel1 from './razdels/DocRazdel1.vue'
+import DocRazdel2 from './razdels/DocRazdel2.vue'
+import DocRazdel3 from './razdels/DocRazdel3.vue'
+import DocRazdel4 from './razdels/DocRazdel4.vue'
+import DocRazdel5 from './razdels/DocRazdel5.vue'
+import DocRazdel6 from './razdels/DocRazdel6.vue'
+
+export default {
+  components: {
+    MenuList,
+    DocRazdel1,
+    DocRazdel2,
+    DocRazdel3,
+    DocRazdel4,
+    DocRazdel5,
+    DocRazdel6
+  },
+  data() {
+    return {
+      dataDocRazdels
+    }
+  }
+}
+</script>

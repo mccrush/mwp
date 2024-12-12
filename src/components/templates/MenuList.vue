@@ -10,7 +10,7 @@
         role="group"
       >
         <a
-          class="btn btn-sm btn-dark text-truncate"
+          class="btn btn-sm btn-dark text-truncate text-start"
           :href="'#' + item.alias"
           :class="{
             active: true
