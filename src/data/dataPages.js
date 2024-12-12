@@ -35,8 +35,8 @@ export const dataPages = [
     name: 'restore'
   },
   {
-    title: 'Политики',
-    viewPage: 'PagePolicy',
-    name: 'policy'
+    title: 'Пользовательское соглашение',
+    viewPage: 'PageEula',
+    name: 'eula'
   },
 ]

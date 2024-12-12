@@ -1,15 +1,15 @@
 <template>
   <div>
-    <PriceMain />
+    <EulaMain />
   </div>
 </template>
 
 <script>
-import PriceMain from './../modules/price/PriceMain.vue'
+import EulaMain from './../modules/eula/EulaMain.vue'
 
 export default {
   components: {
-    PriceMain
+    EulaMain
   }
 }
 </script>

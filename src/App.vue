@@ -25,7 +25,7 @@ import PageDoc from './pages/PageDoc.vue'
 import PageProjects from './pages/PageProjects.vue'
 import PageConfirm from './pages/PageConfirm.vue'
 import PageRestorePassword from './pages/PageRestorePassword.vue'
-import PagePolicy from './pages/PagePolicy.vue'
+import PageEula from './pages/PageEula.vue'
 
 export default {
   components: {
@@ -38,7 +38,7 @@ export default {
     PageProjects,
     PageConfirm,
     PageRestorePassword,
-    PagePolicy
+    PageEula
   },
   computed: {
     viewPage() {

@@ -65,7 +65,7 @@
         </span>
         <div class="border rounded-1 text-primary-emphasis mt-2 p-2">
           Нажимая на кнопку «Зарегистрироваться», вы принимаете
-          <a href="#" @click="$store.commit('setViewPage', 'PagePolicy')"
+          <a href="#" @click="$store.commit('setViewPage', 'PageEula')"
             >«Пользовательское соглашение»</a
           >
         </div>
