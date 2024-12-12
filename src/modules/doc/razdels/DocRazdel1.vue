@@ -99,18 +99,6 @@
           <td class="text-center" width="208">4</td>
           <td class="text-center" width="208">4</td>
         </tr>
-        <tr>
-          <td width="208">Поиск по проектам и формам</td>
-          <td class="text-center" width="208">-</td>
-          <td class="text-center" width="208">Да</td>
-        </tr>
-        <tr>
-          <td width="208">
-            Закрытый Telegram чат для Профессиональных пользователей
-          </td>
-          <td class="text-center" width="208">-</td>
-          <td class="text-center" width="208">Да</td>
-        </tr>
       </tbody>
     </table>
 

@@ -12,9 +12,6 @@
         <a
           class="btn btn-sm btn-dark text-truncate text-start"
           :href="'#' + item.alias"
-          :class="{
-            active: true
-          }"
         >
           {{ item.title }}
         </a>
