@@ -2,7 +2,7 @@
   <div class="row">
     <MenuList :items="dataDocRazdels" />
     <div class="col-9 col-lg-10 p-3">
-      <h4 class="mb-3">Пользовательское соглашение</h4>
+      <h4 class="mb-3">Руководство пользователя</h4>
       <div v-for="razdel in dataDocRazdels" :key="razdel.alias">
         <h5 :id="razdel.alias">{{ razdel.title }}</h5>
         <component :is="razdel.component" />

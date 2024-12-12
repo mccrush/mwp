@@ -77,6 +77,10 @@ export default {
   max-width: 992px;
 }
 
+.table-striped > tbody > tr > * {
+  color: rgba(222, 226, 230, 0.75) !important;
+}
+
 textarea {
   font-size: 0.875rem !important;
 }
