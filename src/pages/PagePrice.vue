@@ -1,15 +1,15 @@
 <template>
   <div>
-    <PolicyMain />
+    <PriceMain />
   </div>
 </template>
 
 <script>
-import PolicyMain from './../modules/policy/PolicyMain.vue'
+import PriceMain from './../modules/price/PriceMain.vue'
 
 export default {
   components: {
-    PolicyMain
+    PriceMain
   }
 }
 </script>
