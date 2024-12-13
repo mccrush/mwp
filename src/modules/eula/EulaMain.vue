@@ -1,12 +1,11 @@
 <template>
   <div class="row">
     <MenuList :items="dataEulaRazdels" />
-    <div class="col-9 col-lg-10 p-3">
-      <h4 class="mb-3">Пользовательское соглашение</h4>
-      <div v-for="razdel in dataEulaRazdels" :key="razdel.alias">
-        <h5 :id="razdel.alias">{{ razdel.title }}</h5>
+    <div class="col-9 col-lg-10 p-5 my-vh100 overflow-y-auto">
+      <h4 class="mb-4">Пользовательское соглашение</h4>
+      <div v-for="razdel in dataEulaRazdels" :key="razdel.alias" class="mb-5">
+        <h5 :id="razdel.alias" class="mb-3">{{ razdel.title }}</h5>
         <component :is="razdel.component" />
-        <hr />
       </div>
     </div>
   </div>

@@ -6,11 +6,11 @@
       <div
         v-for="item in items"
         :key="item.id"
-        class="btn-group w-100 mt-2"
+        class="btn-group w-100"
         role="group"
       >
         <a
-          class="btn btn-sm btn-dark text-truncate text-start"
+          class="btn btn-sm btn-dark text-truncate text-start shadow-none"
           :href="'#' + item.alias"
         >
           {{ item.title }}
