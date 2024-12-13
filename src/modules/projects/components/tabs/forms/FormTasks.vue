@@ -25,7 +25,7 @@
           </div>
           <BtnTrash
             class="d-flex align-items-center ms-1"
-            title="Удалить ссылку"
+            title="Удалить задачу"
             @click="$emit('remove-item', { type: item.type, id: item.id })"
           />
         </div>

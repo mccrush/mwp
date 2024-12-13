@@ -5,6 +5,7 @@ class ClassProjects extends ClassBasic {
   links = []
   passwords = []
   contacts = []
+  tasks = []
 }
 
 export const factoryProjects = () => Object.assign({}, new ClassProjects())
