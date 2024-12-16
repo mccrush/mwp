@@ -155,20 +155,20 @@ export default {
       }
     },
 
-    async updateProjects({ commit }, { projects }) {
-      try {
-        commit('setLoading', true)
-        const { data, error } = await supabase.auth.updateUser({
-          data: { projects }
-        })
-        if (error) throw error
-        console.log('auth.js updateProjects(): Проекты успешно обновлены')
-      } catch (error) {
-        console.error('auth.js updateProjects()', error)
-      } finally {
-        commit('setLoading', false)
-      }
-    },
+    // async updateProjects({ commit }, { projects }) {
+    //   try {
+    //     commit('setLoading', true)
+    //     const { data, error } = await supabase.auth.updateUser({
+    //       data: { projects }
+    //     })
+    //     if (error) throw error
+    //     console.log('auth.js updateProjects(): Проекты успешно обновлены')
+    //   } catch (error) {
+    //     console.error('auth.js updateProjects()', error)
+    //   } finally {
+    //     commit('setLoading', false)
+    //   }
+    // },
   },
 
   getters: {
@@ -178,8 +178,5 @@ export default {
     userEmail: state => state.userEmail,
     userId: state => state.userId,
     userMetaData: state => state.userMetaData,
-    projects: state => state.userMetaData.projects,
-
-    projectsLength: state => state.userMetaData.projects.length
   }
 }

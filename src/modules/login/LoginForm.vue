@@ -196,9 +196,16 @@ export default {
           })
 
           if (result === 200) {
+            // Создать запись в таблице проектов с id = user_id
+
             this.$store.commit('addMessage', {
               text: 'Проверьте почту и подтвердите Email',
               bg: 'alert-primary'
+            })
+          } else {
+            this.$store.commit('addMessage', {
+              text: 'Ошибка при создании аккаунта',
+              bg: 'alert-danger'
             })
           }
         } else {

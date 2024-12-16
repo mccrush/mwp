@@ -1,9 +1,11 @@
-//import { supabase } from './../../supabase/supabaseClient'
+import { supabase } from './../../supabase/supabaseClient'
 
 export default {
   state: {
+    loadingData: false,
     viewTab: localStorage.getItem('mw-viewTab') || 'links',
     currentProjectId: localStorage.getItem('mw-currentProjectId') || '',
+    projects: []
   },
   mutations: {
     setViewTab(state, viewTab) {
@@ -14,10 +16,72 @@ export default {
       state.currentProjectId = currentProjectId
       localStorage.setItem('mw-currentProjectId', currentProjectId)
     },
+    setLoadingData(state, value) {
+      state.loading = value
+    },
+    setProjects(state, projects) {
+      state.projects = projects
+    }
+  },
+
+  actions: {
+    async updateProjects({ commit }, { projects, userId }) {
+      try {
+        commit('setLoadingData', true)
+        const { error } = await supabase
+          .from('projects')
+          .update({ projects })
+          .eq('id', userId)
+
+        if (error) throw error
+
+      } catch (error) {
+        console.error('projects.js updateProjects()', error)
+      } finally {
+        commit('setLoadingData', false)
+      }
+    },
+
+    async getProjects({ commit }, { userId }) {
+      try {
+        commit('setLoadingData', true)
+        const { data, error } = await supabase
+          .from('projects')
+          .select('projects')
+          .eq('id', userId)
+
+        if (error) throw error
+        if (data) {
+          console.log('projects.js getProjects() data =', data)
+          //commit('setProjects', data)
+        }
+      } catch (error) {
+        console.error('projects.js getProjects()', error)
+      } finally {
+        commit('setLoadingData', false)
+      }
+    },
+
+    async addProjects({ commit }, { projects, userId }) {
+      try {
+        commit('setLoadingData', true)
+        const { error } = await supabase
+          .from('projects')
+          .insert({ id: userId, projects })
+
+      } catch (error) {
+        console.error('projects.js addProjects()', error)
+      } finally {
+        commit('setLoadingData', false)
+      }
+    }
   },
 
   getters: {
+    loadingData: state => state.loadingData,
     viewTab: state => state.viewTab,
-    currentProjectId: state => state.currentProjectId
+    currentProjectId: state => state.currentProjectId,
+    projects: state => state.projects,
+    projectsLength: state => state.projects.length
   }
 }

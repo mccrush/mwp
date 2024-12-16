@@ -5,14 +5,13 @@
     >
       <div>
         <transition mode="out-in">
-          <TheSpinner v-if="loading" />
+          <TheSpinner v-if="loading || loadingData" />
           <img
             v-else
             src="/img/logo.png"
             width="30"
             height="30"
             class="logo-image d-inline-block align-top mt-1"
-            :class="{ rotate: loading }"
             alt="Logo MWP"
             title="Manager of Web Projects"
           />
@@ -121,6 +120,9 @@ export default {
     },
     loading() {
       return this.$store.getters.loading
+    },
+    loadingData() {
+      return this.$store.getters.loadingData
     }
   },
   methods: {
@@ -130,18 +132,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.rotate {
-  animation: rotation 2s infinite linear;
-}
-
-@keyframes rotation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-</style>

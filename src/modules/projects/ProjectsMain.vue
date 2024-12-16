@@ -85,13 +85,15 @@ export default {
       projects[index] = project
 
       this.$store.dispatch('updateProjects', {
-        projects: this.projects
+        projects: this.projects,
+        userId: this.userId
       })
     },
 
     saveItem() {
       this.$store.dispatch('updateProjects', {
-        projects: this.projects
+        projects: this.projects,
+        userId: this.userId
       })
     },
 
@@ -106,7 +108,8 @@ export default {
       projects[index] = project
 
       this.$store.dispatch('updateProjects', {
-        projects: this.projects
+        projects: this.projects,
+        userId: this.userId
       })
     }
   }

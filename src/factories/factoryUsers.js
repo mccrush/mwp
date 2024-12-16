@@ -5,7 +5,6 @@ class ClassUsers extends ClassBasic {
   subscription = false
   dateStartPremium = ''
   dateEndPremium = ''
-  projects = []
 }
 
 export const factoryUsers = () => Object.assign({}, new ClassUsers())
