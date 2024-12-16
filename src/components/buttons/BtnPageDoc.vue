@@ -1,5 +1,8 @@
 <template>
-  <button class="btn btn-sm text-body-secondary d-flex align-items-center">
+  <button
+    class="btn btn-sm text-body-secondary d-flex align-items-center"
+    aria-label="Руководство пользователя"
+  >
     <span class="me-1">&nbsp;</span>
     <svg
       xmlns="http://www.w3.org/2000/svg"

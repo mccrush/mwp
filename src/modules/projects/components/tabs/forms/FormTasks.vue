@@ -10,6 +10,7 @@
               <input
                 type="checkbox"
                 class="form-check-input border mt-0"
+                aria-label="Checkbox"
                 @change="toggleStatus"
                 :checked="item.status === 'done'"
               />
@@ -19,6 +20,7 @@
               :id="'inputTitle' + item.id"
               class="form-control form-control-sm"
               maxlength="128"
+              aria-label="Задача"
               v-model.trim="item.title"
               @change="$emit('save-item')"
             />
