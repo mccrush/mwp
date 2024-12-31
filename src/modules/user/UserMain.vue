@@ -53,7 +53,7 @@
             </small>
           </p>
         </div>
-        <div v-if="userMetaData.premium">
+        <div v-if="userMetaData.proStatus">
           <p>
             Функции Pro доступны до:
             <small class="font-monospace border rounded ps-1 pe-1">
@@ -266,13 +266,13 @@ export default {
 
     proOff() {
       const userMetaData = this.userMetaData
-      userMetaData.premium = false
+      userMetaData.proStatus = false
       userMetaData.subscription = false
       this.updateUserMetaData(userMetaData)
     },
     proOn() {
       const userMetaData = this.userMetaData
-      userMetaData.premium = true
+      userMetaData.proStatus = true
       userMetaData.subscription = true
       userMetaData.dateStartPremium = getDateNow()
       userMetaData.dateEndPremium = getDatePlusMonths(3)

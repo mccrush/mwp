@@ -143,8 +143,11 @@ export default {
     async resetUserMetaData({ commit }, { userMetaData }) {
       try {
         commit('setLoading', true)
+        // const { data, error } = await supabase.auth.updateUser({
+        //   data: { projects: [] }
+        // })
         const { data, error } = await supabase.auth.updateUser({
-          data: { projects: [] }
+          data: userMetaData
         })
         if (error) throw error
         console.log('auth.js resetUserMetaData(): Данные пользователя успешно сброшены')

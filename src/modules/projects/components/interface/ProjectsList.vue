@@ -85,7 +85,7 @@ export default {
       return []
     },
     canCreateProject() {
-      if (this.userMetaData.premium) {
+      if (this.userMetaData.proStatus) {
         if (this.projects.length < 64) return true
       } else {
         if (this.projects.length < 4) return true

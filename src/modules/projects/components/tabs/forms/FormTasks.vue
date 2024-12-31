@@ -53,7 +53,7 @@
             :key="children.id"
             :item="children"
             :nestingLevels="nestingLevels"
-            :userMetaDataPremium="userMetaData.premium"
+            :userMetaDataPremium="userMetaData.proStatus"
             @save-item="$emit('save-item')"
             @delete-children-item="deleteChildrenItem"
           />
@@ -134,7 +134,7 @@ export default {
     // },
     copyInBuffer,
     canCreateUnderTask() {
-      if (this.userMetaData.premium) {
+      if (this.userMetaData.proStatus) {
         if (this.item.childrens.length < 64) return true
       } else {
         if (this.item.childrens.length < 8) return true
