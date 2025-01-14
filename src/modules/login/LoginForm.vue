@@ -108,6 +108,10 @@ import BtnEyeHide from './components/buttons/BtnEyeHide.vue'
 import BtnEyeShow from './components/buttons/BtnEyeShow.vue'
 import BtnLogin from './components/buttons/BtnLogin.vue'
 
+const devMode = import.meta.env.MODE
+const devEmail = import.meta.env.VITE_LOGIN
+const devPass = import.meta.env.VITE_PASSWORD
+
 export default {
   components: { BtnEyeHide, BtnEyeShow, BtnLogin },
   data() {
@@ -121,8 +125,8 @@ export default {
         }
       },
       mod: 'login',
-      email: 'mccrush2027@gmail.com',
-      password: 'm[pass]29081988',
+      email: devMode === 'development' ? devEmail : '',
+      password: devMode === 'development' ? devPass : '',
       passType: true,
       error: null,
       showMessage: false,

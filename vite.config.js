@@ -6,6 +6,6 @@ export default defineConfig({
   plugins: [vue()],
   root: '.',
   build: {
-    outDir: 'docs'
+    outDir: 'dist'
   }
 })

@@ -66,6 +66,7 @@
         <BtnUserProfile
           title="Оформить подписку"
           class="w-100"
+          :disabled="devMode !== 'development'"
           @click="onUserSubscription"
         />
       </div>
@@ -85,7 +86,7 @@
       </div>
     </div>
 
-    <div class="row border rounded mt-3 p-3">
+    <div v-if="devMode === 'development'" class="row border rounded mt-3 p-3">
       <div class="col-3">
         <BtnUserProfile
           title="Сбросить данные"
@@ -171,6 +172,8 @@ import { factoryUsers } from './../../factories/factoryUsers'
 
 import BtnUserProfile from './components/buttons/BtnUserProfile.vue'
 
+const devMode = import.meta.env.MODE
+
 export default {
   components: { BtnUserProfile },
   computed: {
@@ -183,7 +186,8 @@ export default {
   },
   data() {
     return {
-      newEmail: ''
+      newEmail: '',
+      devMode
     }
   },
   methods: {
@@ -200,21 +204,7 @@ export default {
     getDateNow,
     getLocaleDateFromDateDigit,
     getDatePlusMonths,
-    //////////////////////////////////////
-    // async updateUserEmail() {
-    //   if (this.newEmail) {
-    //     const res = await this.$store.dispatch('updateUserEmail', {
-    //       email: this.newEmail
-    //     })
-    //     if (res === 200) {
-    //       this.newEmail = ''
-    //       this.$store.commit('addMessage', {
-    //         text: 'Email успешно обновлен',
-    //         bg: 'alert-success'
-    //       })
-    //     }
-    //   }
-    // },
+
     ///////////////////////////////////////////
     updateUserMetaData(userMetaData) {
       this.$store.dispatch('updateUserMetaData', { userMetaData })
@@ -229,15 +219,6 @@ export default {
     exportUserProjects() {
       console.log('LOG: Данные будут эеспортированны в JSON формате')
     },
-    // deleteAccaunt() {
-    //   if (
-    //     confirm(
-    //       'Также будут удалены все данные пользователя. Вы уверенны, что хотите удалить аккаунт?'
-    //     )
-    //   ) {
-    //     console.log('LOG: Аккаунт успешно удален')
-    //   }
-    // },
     ///////////////////////////////////////////
     getSubscribeStatus(subscription) {
       return subscription ? 'Активна' : 'Не активна'
