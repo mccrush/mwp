@@ -17,7 +17,7 @@ export default {
       localStorage.setItem('mw-currentProjectId', currentProjectId)
     },
     setLoadingData(state, value) {
-      state.loading = value
+      state.loadingData = value
     },
     setProjects(state, projects) {
       state.projects = projects
