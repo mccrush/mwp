@@ -1,5 +1,5 @@
 <template>
-  <button
+  <a
     class="btn btn-sm text-body-secondary d-flex align-items-center"
     aria-label="Руководство пользователя"
   >
@@ -20,5 +20,5 @@
       />
     </svg>
     <span class="ms-1">&nbsp;</span>
-  </button>
+  </a>
 </template>

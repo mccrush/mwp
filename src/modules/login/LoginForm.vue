@@ -65,7 +65,10 @@
         </span>
         <div class="border rounded-1 text-primary-emphasis mt-2 p-2">
           Нажимая на кнопку «Зарегистрироваться», вы принимаете
-          <a href="#" @click="$store.commit('setViewPage', 'PageEula')"
+          <a
+            href="https://doc.mwpapp.ru/eula/"
+            target="_blank"
+            title="Открыть соглашение"
             >«Пользовательское соглашение»</a
           >
         </div>
@@ -117,7 +120,7 @@ export default {
   data() {
     return {
       dataLogin: {
-        login: { header: 'Аторизация', button: 'Войти' },
+        login: { header: 'Авторизация', button: 'Войти' },
         create: { header: 'Регистрация', button: 'Зарегистрироваться' },
         restore: {
           header: 'Восстановление пароля',
