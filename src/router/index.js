@@ -11,10 +11,6 @@ export const router = (viewPage) => {
       return 'PageRestorePassword'
     }
     return dataPages.find(item => item.viewPage === viewPage).viewPage
-  } else if (viewPage === 'PagePolicy') {
-    return 'PagePolicy'
-  } else if (viewPage === 'PageDoc') {
-    return 'PageDoc'
   }
   return 'PageLogin'
 }

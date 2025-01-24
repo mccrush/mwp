@@ -21,11 +21,11 @@ import TheMessage from './components/interface/TheMessage.vue'
 import PageLogin from './pages/PageLogin.vue'
 import PageUser from './pages/PageUser.vue'
 import PagePrice from './pages/PagePrice.vue'
-import PageDoc from './pages/PageDoc.vue'
+//import PageDoc from './pages/PageDoc.vue'
 import PageProjects from './pages/PageProjects.vue'
 import PageConfirm from './pages/PageConfirm.vue'
 import PageRestorePassword from './pages/PageRestorePassword.vue'
-import PageEula from './pages/PageEula.vue'
+//import PageEula from './pages/PageEula.vue'
 
 export default {
   components: {
@@ -34,11 +34,9 @@ export default {
     PageLogin,
     PageUser,
     PagePrice,
-    PageDoc,
     PageProjects,
     PageConfirm,
-    PageRestorePassword,
-    PageEula
+    PageRestorePassword
   },
   computed: {
     viewPage() {
