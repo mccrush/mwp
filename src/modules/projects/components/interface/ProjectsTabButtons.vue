@@ -34,6 +34,7 @@ import BtnTabTitle from './../buttons/BtnTabTitle.vue'
 import BtnAddTabForm from './../buttons/BtnAddTabForm.vue'
 
 export default {
+  name: 'ProjectsTabButtons',
   components: {
     BtnTabTitle,
     BtnAddTabForm

@@ -175,6 +175,7 @@ import BtnUserProfile from './components/buttons/BtnUserProfile.vue'
 const devMode = import.meta.env.MODE
 
 export default {
+  name: 'UserMain',
   components: { BtnUserProfile },
   computed: {
     userEmail() {

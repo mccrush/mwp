@@ -27,6 +27,7 @@
 import BtnCreateFirstForm from './../../../../../components/buttons/BtnCreateFirstForm.vue'
 
 export default {
+  name: 'FormCreateFirstForm',
   components: { BtnCreateFirstForm },
   emits: ['create-form-item']
 }

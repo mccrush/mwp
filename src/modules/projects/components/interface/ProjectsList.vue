@@ -57,6 +57,7 @@ import FormCreateProject from './../forms/FormCreateProject.vue'
 import FormEditProject from './../forms/FormEditProject.vue'
 
 export default {
+  name: 'ProjectsList',
   components: {
     BtnProjectTitle,
     BtnEdit,

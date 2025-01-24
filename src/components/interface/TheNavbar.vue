@@ -103,6 +103,7 @@ import BtnPageUser from './../buttons/BtnPageUser.vue'
 import BtnPageLogin from './../buttons/BtnPageLogin.vue'
 
 export default {
+  name: 'TheNavbar',
   components: {
     TheSpinner,
     BtnPageProjects,

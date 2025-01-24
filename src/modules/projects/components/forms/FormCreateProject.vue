@@ -20,6 +20,7 @@ import { factoryModels } from './../../../../factories/factoryModels'
 import BtnAddProject from './../buttons/BtnAddProject.vue'
 
 export default {
+  name: 'FormCreateProject',
   components: {
     BtnAddProject
   },

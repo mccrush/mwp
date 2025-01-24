@@ -33,6 +33,7 @@
 import BtnRestorePass from './components/buttons/BtnRestorePass.vue'
 
 export default {
+  name: 'RestorePasswordMain',
   components: { BtnRestorePass },
   data() {
     return {

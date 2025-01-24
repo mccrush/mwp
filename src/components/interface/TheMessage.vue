@@ -21,6 +21,7 @@
 
 <script>
 export default {
+  name: 'TheMessage',
   computed: {
     message() {
       return this.$store.getters.message

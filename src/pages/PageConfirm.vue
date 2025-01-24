@@ -8,6 +8,7 @@
 import ConfirmMain from './../modules/confirm/ConfirmMain.vue'
 
 export default {
+  name: 'PageConfirm',
   components: {
     ConfirmMain
   }

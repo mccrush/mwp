@@ -116,6 +116,7 @@ const devEmail = import.meta.env.VITE_LOGIN
 const devPass = import.meta.env.VITE_PASSWORD
 
 export default {
+  name: 'LoginForm',
   components: { BtnEyeHide, BtnEyeShow, BtnLogin },
   data() {
     return {

@@ -34,6 +34,7 @@ import BtnSave from './../../../../components/buttons/BtnSave.vue'
 import BtnTrash from './../../../../components/buttons/BtnTrash.vue'
 
 export default {
+  name: 'FormEditProject',
   components: {
     BtnSave,
     BtnTrash

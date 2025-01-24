@@ -42,6 +42,7 @@ import ProjectsTabButtons from './components/interface/ProjectsTabButtons.vue'
 import TabForms from './components/tabs/TabForms.vue'
 
 export default {
+  name: 'ProjectsMain',
   components: {
     ProjectsList,
     ProjectsTabButtons,

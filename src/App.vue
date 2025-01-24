@@ -28,6 +28,7 @@ import PageRestorePassword from './pages/PageRestorePassword.vue'
 //import PageEula from './pages/PageEula.vue'
 
 export default {
+  name: 'App',
   components: {
     TheNavbar,
     TheMessage,

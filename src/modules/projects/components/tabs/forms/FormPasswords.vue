@@ -111,6 +111,7 @@ import BtnCopy from './../../../../../components/buttons/BtnCopy.vue'
 import BtnLink from './../../../../../components/buttons/BtnLink.vue'
 
 export default {
+  name: 'FormPasswords',
   components: {
     BtnTrash,
     BtnEyeHide,

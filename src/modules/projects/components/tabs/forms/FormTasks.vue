@@ -81,6 +81,7 @@ import BtnShowCheck from './../../../../../components/buttons/BtnShowCheck.vue'
 import TemplateInfinityList from './../../templates/TemplateInfinityList.vue'
 
 export default {
+  name: 'FormTasks',
   components: {
     BtnArrUp,
     BtnArrDown,
