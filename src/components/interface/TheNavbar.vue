@@ -19,15 +19,10 @@
 
         <span class="cursor-def d-inline-block text-body-secondary ms-2 pt-2"
           ><strong>MWP</strong>
-          <a
-            href="https://github.com/mccrush/mwp"
-            target="_blank"
-            title="Go to GitHub"
-            class="text-decoration-none"
-          >
+          <span>
             <code class="text-body-secondary ms-2">
               <small>v{{ version }}</small>
-            </code></a
+            </code></span
           >
         </span>
       </div>
@@ -45,31 +40,53 @@
         @click="$store.commit('setViewPage', 'PagePrice')"
       />
       <BtnPageDoc
+        v-if="!isLoggedIn"
         class="me-2"
-        @click="$store.commit('setViewPage', 'PageDoc')"
+        href="https://doc.mwpapp.ru/"
+        target="_blank"
+        title="Открыть руководство"
       />
 
       <BtnPageLogin
-        v-if="!isLoggedIn"
+        v-if="!isLoggedIn && viewPage !== 'PageLogin'"
         class="me-2"
         @click="$store.commit('setViewPage', 'PageLogin')"
       />
 
       <div v-if="isLoggedIn" class="dropdown">
-        <BtnPageUser
-          class="dropdown-toggle"
-          type="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          {{ currentUserEmailFormated }}
-        </BtnPageUser>
-        <ul class="dropdown-menu dropdown-menu-end">
+        <BtnPageUser data-bs-toggle="dropdown" aria-expanded="false" />
+
+        <div class="dropdown-menu dropdown-menu-end p-2">
+          <a
+            class="btn btn-dark btn-sm text-body-secondary w-100"
+            href="https://doc.mwpapp.ru/"
+            target="_blank"
+            >Руководство</a
+          >
+          <a
+            class="btn btn-dark btn-sm text-body-secondary w-100 mt-2"
+            @click="$store.commit('setViewPage', 'PageUser')"
+            >Настройки</a
+          >
+          <div class="text-center small mt-2 mb-1">
+            <code class="text-primary-emphasis">
+              {{ currentUserEmailFormated }}</code
+            >
+          </div>
+
+          <a
+            class="btn btn-dark btn-sm text-body-secondary w-100"
+            href="#"
+            @click="logOut"
+            >Выйти</a
+          >
+        </div>
+        <!-- <ul class="dropdown-menu dropdown-menu-end">
           <li @click="$store.commit('setViewPage', 'PageUser')">
             <a class="dropdown-item">Настройки</a>
           </li>
           <li><a class="dropdown-item" href="#" @click="logOut">Выйти</a></li>
-        </ul>
+        </ul> -->
       </div>
     </div>
   </div>
@@ -86,6 +103,7 @@ import BtnPageUser from './../buttons/BtnPageUser.vue'
 import BtnPageLogin from './../buttons/BtnPageLogin.vue'
 
 export default {
+  name: 'TheNavbar',
   components: {
     TheSpinner,
     BtnPageProjects,

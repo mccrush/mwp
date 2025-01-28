@@ -10,6 +10,7 @@
 import LoginForm from './../modules/login/LoginForm.vue'
 
 export default {
+  name: 'PageLogin',
   components: {
     LoginForm
   },

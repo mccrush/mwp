@@ -65,7 +65,10 @@
         </span>
         <div class="border rounded-1 text-primary-emphasis mt-2 p-2">
           Нажимая на кнопку «Зарегистрироваться», вы принимаете
-          <a href="#" @click="$store.commit('setViewPage', 'PageEula')"
+          <a
+            href="https://doc.mwpapp.ru/eula/"
+            target="_blank"
+            title="Открыть соглашение"
             >«Пользовательское соглашение»</a
           >
         </div>
@@ -101,8 +104,7 @@
 </template>
 
 <script>
-import { factoryUsers } from './../../factories/factoryUsers'
-import { createExampleProject } from './helpers/createExampleProject'
+import { factory_users } from './factories/factory_users'
 
 import BtnEyeHide from './components/buttons/BtnEyeHide.vue'
 import BtnEyeShow from './components/buttons/BtnEyeShow.vue'
@@ -113,11 +115,12 @@ const devEmail = import.meta.env.VITE_LOGIN
 const devPass = import.meta.env.VITE_PASSWORD
 
 export default {
+  name: 'LoginForm',
   components: { BtnEyeHide, BtnEyeShow, BtnLogin },
   data() {
     return {
       dataLogin: {
-        login: { header: 'Аторизация', button: 'Войти' },
+        login: { header: 'Авторизация', button: 'Войти' },
         create: { header: 'Регистрация', button: 'Зарегистрироваться' },
         restore: {
           header: 'Восстановление пароля',
@@ -192,16 +195,14 @@ export default {
             email: this.email,
             password: this.password
           }
-          const userMetaData = factoryUsers()
-          userMetaData.projects = createExampleProject
+          const userMetaData = factory_users()
+
           const result = await this.$store.dispatch('registerUser', {
             loginData,
             userMetaData
           })
 
           if (result === 200) {
-            // Создать запись в таблице проектов с id = user_id
-
             this.$store.commit('addMessage', {
               text: 'Проверьте почту и подтвердите Email',
               bg: 'alert-primary'

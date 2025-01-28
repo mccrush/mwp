@@ -5,7 +5,8 @@ export default {
     loadingData: false,
     viewTab: localStorage.getItem('mw-viewTab') || 'links',
     currentProjectId: localStorage.getItem('mw-currentProjectId') || '',
-    projects: []
+    projects: [],
+    projectsRowId: null
   },
   mutations: {
     setViewTab(state, viewTab) {
@@ -17,10 +18,13 @@ export default {
       localStorage.setItem('mw-currentProjectId', currentProjectId)
     },
     setLoadingData(state, value) {
-      state.loading = value
+      state.loadingData = value
     },
     setProjects(state, projects) {
       state.projects = projects
+    },
+    setProjectsRowId(state, rowId) {
+      state.projectsRowId = rowId
     }
   },
 
@@ -52,8 +56,9 @@ export default {
 
         if (error) throw error
         if (data) {
-          //console.log('projects.js getProjects() data[0].projects =', data[0].projects)
-          commit('setProjects', data[0].projects)
+          if (data.length) {
+            commit('setProjects', data[0].projects)
+          }
         }
       } catch (error) {
         console.error('projects.js getProjects()', error)
@@ -74,14 +79,38 @@ export default {
       } finally {
         commit('setLoadingData', false)
       }
-    }
+    },
+
+    async getProjectsRowId({ commit }, { userId }) {
+      try {
+        commit('setLoadingData', true)
+        const { data, error } = await supabase
+          .from('projects')
+          .select('id')
+          .eq('id', userId)
+
+        if (error) throw error
+        if (data) {
+          if (data.length) {
+            commit('setProjectsRowId', data[0].id)
+          }
+        }
+      } catch (error) {
+        console.error('projects.js getProjectsRowId()', error)
+      } finally {
+        commit('setLoadingData', false)
+      }
+    },
   },
+
+
 
   getters: {
     loadingData: state => state.loadingData,
     viewTab: state => state.viewTab,
     currentProjectId: state => state.currentProjectId,
     projects: state => state.projects,
-    projectsLength: state => state.projects.length
+    projectsLength: state => state.projects.length,
+    projectsRowId: state => state.projectsRowId
   }
 }

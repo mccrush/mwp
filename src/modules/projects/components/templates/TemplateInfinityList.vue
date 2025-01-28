@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import { factoryTasks } from './../../../../factories/factoryTasks'
+import { factory_tasks } from '../../factories/factory_tasks'
 
 import BtnTrashFlat from './../../../../components/buttons/BtnTrashFlat.vue'
 import BtnAddChildrenTask from './../../../../components/buttons/BtnAddChildrenTask.vue'
@@ -92,7 +92,7 @@ export default {
   },
   methods: {
     addChildren() {
-      const child = factoryTasks()
+      const child = factory_tasks()
       this.item.childrens.push(child)
       this.$emit('save-item')
     },

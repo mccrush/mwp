@@ -15,14 +15,9 @@ export const dataPages = [
     name: 'user'
   },
   {
-    title: 'Премиум',
+    title: 'Pro функции',
     viewPage: 'PagePrice',
     name: 'price'
-  },
-  {
-    title: 'Руководство пользователя',
-    viewPage: 'PageDoc',
-    name: 'doc'
   },
   {
     title: 'Проекты',
@@ -33,10 +28,5 @@ export const dataPages = [
     title: 'Восстановление пароля',
     viewPage: 'PageRestorePassword',
     name: 'restore'
-  },
-  {
-    title: 'Пользовательское соглашение',
-    viewPage: 'PageEula',
-    name: 'eula'
-  },
+  }
 ]

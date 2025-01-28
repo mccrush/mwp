@@ -15,11 +15,12 @@
 </template>
 
 <script>
-import { factoryModels } from './../../../../factories/factoryModels'
+import { factory_projects } from './../../factories/factory_projects'
 
 import BtnAddProject from './../buttons/BtnAddProject.vue'
 
 export default {
+  name: 'FormCreateProject',
   components: {
     BtnAddProject
   },
@@ -33,7 +34,7 @@ export default {
   methods: {
     createProject() {
       if (this.projectName) {
-        let project = factoryModels({ type: 'projects' })
+        let project = factory_projects()
         project.title = this.projectName
         this.$emit('add-project', { project })
         this.projectName = ''

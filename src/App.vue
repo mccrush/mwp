@@ -15,37 +15,44 @@
 
 <script>
 import { router } from './router'
+
 import TheNavbar from './components/interface/TheNavbar.vue'
 import TheMessage from './components/interface/TheMessage.vue'
 
 import PageLogin from './pages/PageLogin.vue'
 import PageUser from './pages/PageUser.vue'
 import PagePrice from './pages/PagePrice.vue'
-import PageDoc from './pages/PageDoc.vue'
 import PageProjects from './pages/PageProjects.vue'
 import PageConfirm from './pages/PageConfirm.vue'
 import PageRestorePassword from './pages/PageRestorePassword.vue'
-import PageEula from './pages/PageEula.vue'
 
 export default {
+  name: 'App',
   components: {
     TheNavbar,
     TheMessage,
     PageLogin,
     PageUser,
     PagePrice,
-    PageDoc,
     PageProjects,
     PageConfirm,
-    PageRestorePassword,
-    PageEula
+    PageRestorePassword
   },
   computed: {
+    userId() {
+      return this.$store.getters.userId
+    },
+    loadingData() {
+      return this.$store.getters.loadingData
+    },
     viewPage() {
       return this.$store.getters.viewPage
     },
     myComponent() {
       return router(this.viewPage)
+    },
+    projectsLength() {
+      return this.$store.getters.projectsLength
     }
   }
 }

@@ -27,6 +27,7 @@ import FormTasks from './forms/FormTasks.vue'
 import FormCreateFirstForm from './forms/FormCreateFirstForm.vue'
 
 export default {
+  name: 'TabForms',
   components: {
     FormLinks,
     FormPasswords,

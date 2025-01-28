@@ -68,7 +68,7 @@
 
 <script>
 import { copyInBuffer } from './../../../../../helpers/copyInBuffer'
-import { factoryTasks } from './../../../../../factories/factoryTasks'
+import { factory_tasks } from '../../../factories/factory_tasks'
 
 import BtnArrUp from './../../../../../components/buttons/BtnArrUp.vue'
 import BtnArrDown from './../../../../../components/buttons/BtnArrDown.vue'
@@ -81,6 +81,7 @@ import BtnShowCheck from './../../../../../components/buttons/BtnShowCheck.vue'
 import TemplateInfinityList from './../../templates/TemplateInfinityList.vue'
 
 export default {
+  name: 'FormTasks',
   components: {
     BtnArrUp,
     BtnArrDown,
@@ -109,7 +110,7 @@ export default {
   },
   methods: {
     addChildren() {
-      const child = factoryTasks()
+      const child = factory_tasks()
       this.item.childrens.push(child)
       this.$emit('save-item')
     },

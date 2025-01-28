@@ -57,6 +57,7 @@ import FormCreateProject from './../forms/FormCreateProject.vue'
 import FormEditProject from './../forms/FormEditProject.vue'
 
 export default {
+  name: 'ProjectsList',
   components: {
     BtnProjectTitle,
     BtnEdit,
@@ -78,9 +79,12 @@ export default {
     userMetaData() {
       return this.$store.getters.userMetaData
     },
+    projectsRowId() {
+      return this.$store.getters.projectsRowId
+    },
     sortProjects() {
       if (this.projects?.length) {
-        return sortMethod(this.projects, 'desc', 'position')
+        return sortMethod(this.projects, 'asc', 'position')
       }
       return []
     },
@@ -102,11 +106,18 @@ export default {
 
     addProject({ project }) {
       this.projects.push(project)
-
-      this.$store.dispatch('updateProjects', {
-        projects: this.projects,
-        userId: this.userId
-      })
+      if (this.projectsRowId) {
+        this.$store.dispatch('updateProjects', {
+          projects: this.projects,
+          userId: this.userId
+        })
+      } else {
+        this.$store.dispatch('addProjects', {
+          projects: this.projects,
+          userId: this.userId
+        })
+        this.$store.dispatch('getProjectsRowId', { userId: this.userId })
+      }
 
       this.$store.commit('setCurrentProjectId', {
         currentProjectId: project.id

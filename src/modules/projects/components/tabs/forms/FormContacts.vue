@@ -70,14 +70,6 @@
           @click="addContactFiled"
         />
       </div>
-
-      <!-- -->
-      <!-- <textarea
-        rows="2"
-        class="form-control mt-1"
-        v-model="item.description"
-        @change="$emit('save-item')"
-      ></textarea> -->
     </div>
   </div>
 </template>
@@ -92,6 +84,7 @@ import BtnAddContactField from './../../../../../components/buttons/BtnAddContac
 import BtnTrashFlat from './../../../../../components/buttons/BtnTrashFlat.vue'
 
 export default {
+  name: 'FormContacts',
   components: {
     BtnTrash,
     BtnCopy,

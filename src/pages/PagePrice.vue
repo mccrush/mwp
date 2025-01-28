@@ -8,6 +8,7 @@
 import PriceMain from './../modules/price/PriceMain.vue'
 
 export default {
+  name: 'PagePrice',
   components: {
     PriceMain
   }
