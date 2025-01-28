@@ -1,4 +1,4 @@
-import ClassBasic from './ClassBasic'
+import ClassBasic from './../../../helpers/ClassBasic'
 
 class ClassUsers extends ClassBasic {
   proStatus = false
@@ -8,4 +8,4 @@ class ClassUsers extends ClassBasic {
   dateEndPro = ''
 }
 
-export const factoryUsers = () => Object.assign({}, new ClassUsers())
+export const factory_users = () => Object.assign({}, new ClassUsers())

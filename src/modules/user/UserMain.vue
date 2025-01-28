@@ -168,7 +168,7 @@ import getDateNow from './../../helpers/getDateNow'
 import getLocaleDateFromDateDigit from './../../helpers/getLocaleDateFromDateDigit'
 import getDatePlusMonths from './../../helpers/getDatePlusMonths'
 //import { copyInBufferText } from './../../helpers/copyInBufferText'
-import { factoryUsers } from './../../factories/factoryUsers'
+import { factory_users } from '../login/factories/factory_users'
 
 import BtnUserProfile from './components/buttons/BtnUserProfile.vue'
 
@@ -212,7 +212,7 @@ export default {
     },
     resetUserMetaData() {
       if (confirm('Точно сбросить все данные?')) {
-        const userMetaData = factoryUsers()
+        const userMetaData = factory_users()
         this.$store.dispatch('resetUserMetaData', { userMetaData })
       }
     },

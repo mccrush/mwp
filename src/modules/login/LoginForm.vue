@@ -104,7 +104,7 @@
 </template>
 
 <script>
-import { factoryUsers } from './../../factories/factoryUsers'
+import { factory_users } from './factories/factory_users'
 import { createExampleProject } from './helpers/createExampleProject'
 
 import BtnEyeHide from './components/buttons/BtnEyeHide.vue'
@@ -196,7 +196,7 @@ export default {
             email: this.email,
             password: this.password
           }
-          const userMetaData = factoryUsers()
+          const userMetaData = factory_users()
           userMetaData.projects = createExampleProject
           const result = await this.$store.dispatch('registerUser', {
             loginData,
