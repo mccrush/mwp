@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { factoryModels } from './../../factories/factoryModels'
+import { createModelItem } from './helpers/createModelItem'
 
 import ProjectsList from './components/interface/ProjectsList.vue'
 import ProjectsTabButtons from './components/interface/ProjectsTabButtons.vue'
@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     createFormItem({ type }) {
-      const form = factoryModels({ type })
+      const form = createModelItem(type)
 
       let project = this.project
       if (!project[type]) {
