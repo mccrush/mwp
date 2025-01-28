@@ -36,18 +36,18 @@
     <div class="row border rounded mt-3 p-3">
       <div class="col-12 lh-1">
         <p>
-          Подписка Pro:
+          Pro функции:
           <strong>{{ getSubscribeStatus(userMetaData.subscription) }}</strong>
         </p>
         <div v-if="userMetaData.subscription">
           <p class="mb-2">
-            Дата начала подписки:
+            Дата начала Pro функций:
             <small class="font-monospace border rounded ps-1 pe-1">
               {{ getLocaleDateFromDateDigit(userMetaData.dateStartPremium) }}
             </small>
           </p>
           <p class="mb-2">
-            Дата окончания подписки:
+            Дата окончания Pro функций:
             <small class="font-monospace border rounded ps-1 pe-1">
               {{ getLocaleDateFromDateDigit(userMetaData.dateEndPremium) }}
             </small>
@@ -64,7 +64,7 @@
       </div>
       <div v-if="!userMetaData.subscription" class="col-3">
         <BtnUserProfile
-          title="Оформить подписку"
+          title="Включить Pro функции"
           class="w-100"
           :disabled="devMode !== 'development'"
           @click="onUserSubscription"
@@ -72,14 +72,14 @@
       </div>
       <div v-if="userMetaData.subscription" class="col-3">
         <BtnUserProfile
-          title="Продлить подписку"
+          title="Продлить Pro функции"
           class="w-100"
           @click="renewUserSubscription"
         />
       </div>
       <div v-if="userMetaData.subscription" class="col-3">
         <BtnUserProfile
-          title="Отменить подписку"
+          title="Отключить Pro функции"
           class="w-100"
           @click="offUserSubscription"
         />
@@ -119,7 +119,10 @@
 
     <div class="row border rounded mt-3 p-3">
       <div class="col-12">
-        <a href="#" @click="$store.commit('setViewPage', 'PageEula')"
+        <a
+          href="https://doc.mwpapp.ru/eula/"
+          target="_blank"
+          title="Открыть Пользовательское соглашение"
           >Пользовательское соглашение</a
         >
       </div>
@@ -222,7 +225,7 @@ export default {
     },
     ///////////////////////////////////////////
     getSubscribeStatus(subscription) {
-      return subscription ? 'Активна' : 'Не активна'
+      return subscription ? 'Включены' : 'Отключены'
     },
 
     onUserSubscription() {
