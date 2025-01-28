@@ -81,7 +81,7 @@ export default {
     },
     sortProjects() {
       if (this.projects?.length) {
-        return sortMethod(this.projects, 'desc', 'position')
+        return sortMethod(this.projects, 'asc', 'position')
       }
       return []
     },
@@ -102,12 +102,19 @@ export default {
     },
 
     addProject({ project }) {
-      this.projects.push(project)
-
-      this.$store.dispatch('updateProjects', {
-        projects: this.projects,
-        userId: this.userId
-      })
+      if (this.projects.length) {
+        this.projects.push(project)
+        this.$store.dispatch('updateProjects', {
+          projects: this.projects,
+          userId: this.userId
+        })
+      } else {
+        this.projects.push(project)
+        this.$store.dispatch('addProjects', {
+          projects: this.projects,
+          userId: this.userId
+        })
+      }
 
       this.$store.commit('setCurrentProjectId', {
         currentProjectId: project.id

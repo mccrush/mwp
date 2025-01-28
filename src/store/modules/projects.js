@@ -52,8 +52,9 @@ export default {
 
         if (error) throw error
         if (data) {
-          //console.log('projects.js getProjects() data[0].projects =', data[0].projects)
-          commit('setProjects', data[0].projects)
+          if (data.length) {
+            commit('setProjects', data[0].projects)
+          }
         }
       } catch (error) {
         console.error('projects.js getProjects()', error)

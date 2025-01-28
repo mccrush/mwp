@@ -15,7 +15,6 @@
 
 <script>
 import { router } from './router'
-import { createExampleProjects } from './helpers/createExampleProjects'
 
 import TheNavbar from './components/interface/TheNavbar.vue'
 import TheMessage from './components/interface/TheMessage.vue'
@@ -40,6 +39,12 @@ export default {
     PageRestorePassword
   },
   computed: {
+    userId() {
+      return this.$store.getters.userId
+    },
+    loadingData() {
+      return this.$store.getters.loadingData
+    },
     viewPage() {
       return this.$store.getters.viewPage
     },
@@ -48,23 +53,6 @@ export default {
     },
     projectsLength() {
       return this.$store.getters.projectsLength
-    }
-  },
-  methods: {
-    createStartProject(userId) {
-      const projects = createExampleProjects()
-
-      this.$store.dispatch('updateProjects', {
-        projects,
-        userId
-      })
-    }
-  },
-  watch: {
-    userId(n, o) {
-      if (n && !this.projectsLength) {
-        this.createStartProject(n)
-      }
     }
   }
 }
