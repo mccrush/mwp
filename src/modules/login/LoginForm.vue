@@ -105,7 +105,6 @@
 
 <script>
 import { factory_users } from './factories/factory_users'
-import { createExampleProject } from './helpers/createExampleProject'
 
 import BtnEyeHide from './components/buttons/BtnEyeHide.vue'
 import BtnEyeShow from './components/buttons/BtnEyeShow.vue'
@@ -197,15 +196,13 @@ export default {
             password: this.password
           }
           const userMetaData = factory_users()
-          userMetaData.projects = createExampleProject
+
           const result = await this.$store.dispatch('registerUser', {
             loginData,
             userMetaData
           })
 
           if (result === 200) {
-            // Создать запись в таблице проектов с id = user_id
-
             this.$store.commit('addMessage', {
               text: 'Проверьте почту и подтвердите Email',
               bg: 'alert-primary'

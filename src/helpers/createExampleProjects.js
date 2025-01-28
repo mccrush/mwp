@@ -1,5 +1,4 @@
-
-export const createExampleProject = [
+const exampleProjects = [
   {
     "id": "1732602918334",
     "type": "projects",
@@ -47,3 +46,7 @@ export const createExampleProject = [
     "description": ""
   }
 ]
+
+export const createExampleProjects = () => {
+  return exampleProjects
+}

@@ -15,17 +15,17 @@
 
 <script>
 import { router } from './router'
+import { createExampleProjects } from './helpers/createExampleProjects'
+
 import TheNavbar from './components/interface/TheNavbar.vue'
 import TheMessage from './components/interface/TheMessage.vue'
 
 import PageLogin from './pages/PageLogin.vue'
 import PageUser from './pages/PageUser.vue'
 import PagePrice from './pages/PagePrice.vue'
-//import PageDoc from './pages/PageDoc.vue'
 import PageProjects from './pages/PageProjects.vue'
 import PageConfirm from './pages/PageConfirm.vue'
 import PageRestorePassword from './pages/PageRestorePassword.vue'
-//import PageEula from './pages/PageEula.vue'
 
 export default {
   name: 'App',
@@ -45,6 +45,26 @@ export default {
     },
     myComponent() {
       return router(this.viewPage)
+    },
+    projectsLength() {
+      return this.$store.getters.projectsLength
+    }
+  },
+  methods: {
+    createStartProject(userId) {
+      const projects = createExampleProjects()
+
+      this.$store.dispatch('updateProjects', {
+        projects,
+        userId
+      })
+    }
+  },
+  watch: {
+    userId(n, o) {
+      if (n && !this.projectsLength) {
+        this.createStartProject(n)
+      }
     }
   }
 }
