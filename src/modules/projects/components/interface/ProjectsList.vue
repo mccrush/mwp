@@ -79,6 +79,9 @@ export default {
     userMetaData() {
       return this.$store.getters.userMetaData
     },
+    projectsRowId() {
+      return this.$store.getters.projectsRowId
+    },
     sortProjects() {
       if (this.projects?.length) {
         return sortMethod(this.projects, 'asc', 'position')
@@ -102,18 +105,18 @@ export default {
     },
 
     addProject({ project }) {
-      if (this.projects.length) {
-        this.projects.push(project)
+      this.projects.push(project)
+      if (this.projectsRowId) {
         this.$store.dispatch('updateProjects', {
           projects: this.projects,
           userId: this.userId
         })
       } else {
-        this.projects.push(project)
         this.$store.dispatch('addProjects', {
           projects: this.projects,
           userId: this.userId
         })
+        this.$store.dispatch('getProjectsRowId', { userId: this.userId })
       }
 
       this.$store.commit('setCurrentProjectId', {
