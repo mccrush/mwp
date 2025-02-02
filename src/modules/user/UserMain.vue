@@ -37,32 +37,33 @@
       <div class="col-12 lh-1">
         <p>
           Pro функции:
-          <strong>{{ getSubscribeStatus(userMetaData.subscription) }}</strong>
+          <strong>{{ getSubscribeStatus(userMetaData.dateEndPro) }}</strong>
         </p>
-        <div v-if="userMetaData.subscription">
-          <p class="mb-2">
-            Дата начала Pro функций:
-            <small class="font-monospace border rounded ps-1 pe-1">
-              {{ getLocaleDateFromDateDigit(userMetaData.dateStartPremium) }}
-            </small>
-          </p>
-          <p class="mb-2">
-            Дата окончания Pro функций:
-            <small class="font-monospace border rounded ps-1 pe-1">
-              {{ getLocaleDateFromDateDigit(userMetaData.dateEndPremium) }}
-            </small>
-          </p>
-        </div>
-        <div v-if="userMetaData.proStatus">
-          <p>
-            Функции Pro доступны до:
-            <small class="font-monospace border rounded ps-1 pe-1">
-              {{ getLocaleDateFromDateDigit(userMetaData.dateEndPremium) }}
-            </small>
-          </p>
+        <div v-if="userMetaData.dateEndPro">
+          <div class="d-sm-flex">
+            <div>Дата начала Pro функций:</div>
+            <div class="mt-2 ms-sm-2 mt-sm-0">
+              <small class="font-monospace border rounded mt-1 ps-1 pe-1">
+                {{ getLocaleDateFromDateDigit(userMetaData.dateStartPro) }}
+              </small>
+            </div>
+          </div>
+
+          <div class="d-sm-flex mt-3">
+            <div>Дата окончания Pro функций:</div>
+            <div class="mt-2 ms-sm-2 mt-sm-0">
+              <small class="font-monospace border rounded ps-1 pe-1">
+                {{ getLocaleDateFromDateDigit(userMetaData.dateEndPro) }}
+              </small>
+            </div>
+          </div>
         </div>
       </div>
-      <div v-if="!userMetaData.subscription" class="col-3">
+
+      <div
+        v-if="!userMetaData.dateEndPro"
+        class="col-12 col-sm-6 col-md-4 mt-3"
+      >
         <BtnUserProfile
           title="Включить Pro функции"
           class="w-100"
@@ -70,14 +71,16 @@
           @click="onUserSubscription"
         />
       </div>
-      <div v-if="userMetaData.subscription" class="col-3">
+
+      <div v-if="userMetaData.dateEndPro" class="col-12 col-sm-6 col-md-4 mt-3">
         <BtnUserProfile
           title="Продлить Pro функции"
           class="w-100"
           @click="renewUserSubscription"
         />
       </div>
-      <div v-if="userMetaData.subscription" class="col-3">
+
+      <div v-if="userMetaData.dateEndPro" class="col-12 col-sm-6 col-md-4 mt-3">
         <BtnUserProfile
           title="Отключить Pro функции"
           class="w-100"
@@ -87,7 +90,7 @@
     </div>
 
     <div v-if="devMode === 'development'" class="row border rounded mt-3 p-3">
-      <div class="col-3">
+      <div class="col-12 col-md-3">
         <BtnUserProfile
           title="Сбросить данные"
           class="text-danger w-100"
@@ -101,16 +104,16 @@
           @click="deleteAccaunt"
         />
       </div> -->
-      <div class="col-3">
+      <div class="col-12 col-md-3">
         <BtnUserProfile
-          v-if="userMetaData.subscription"
-          title="Отключить Pro"
+          v-if="userMetaData.dateEndPro"
+          title="Отключить Pro функции"
           class="text-primary w-100"
           @click="proOff"
         />
         <BtnUserProfile
           v-else
-          title="Сделать Pro"
+          title="Включить Pro функции"
           class="text-primary w-100"
           @click="proOn"
         />
@@ -224,8 +227,8 @@ export default {
       console.log('LOG: Данные будут эеспортированны в JSON формате')
     },
     ///////////////////////////////////////////
-    getSubscribeStatus(subscription) {
-      return subscription ? 'Включены' : 'Отключены'
+    getSubscribeStatus(dateEndPro) {
+      return dateEndPro ? 'Включены' : 'Отключены'
     },
 
     onUserSubscription() {
@@ -251,16 +254,14 @@ export default {
 
     proOff() {
       const userMetaData = this.userMetaData
-      userMetaData.proStatus = false
-      userMetaData.subscription = false
+      userMetaData.dateStartPro = ''
+      userMetaData.dateEndPro = ''
       this.updateUserMetaData(userMetaData)
     },
     proOn() {
       const userMetaData = this.userMetaData
-      userMetaData.proStatus = true
-      userMetaData.subscription = true
-      userMetaData.dateStartPremium = getDateNow()
-      userMetaData.dateEndPremium = getDatePlusMonths(3)
+      userMetaData.dateStartPro = String(new Date())
+      userMetaData.dateEndPro = getDatePlusMonths(3)
       this.updateUserMetaData(userMetaData)
     }
     /////////////////////////////////////////////////////

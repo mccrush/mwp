@@ -40,7 +40,7 @@
           aria-controls="offcanvasUserForm"
         />
       </div>
-      <div>
+      <div class="d-flex">
         <BtnPageProjects
           v-if="isLoggedIn && viewPage !== 'PageProjects'"
           class="me-2"
