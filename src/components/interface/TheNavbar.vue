@@ -17,9 +17,10 @@
           />
         </transition>
 
-        <span class="cursor-def d-inline-block text-body-secondary ms-2 pt-2"
+        <span
+          class="cursor-def d-none d-sm-inline-block text-body-secondary ms-2 pt-2"
           ><strong>MWP</strong>
-          <span>
+          <span class="d-none d-md-inline-block">
             <code class="text-body-secondary ms-2">
               <small>v{{ version }}</small>
             </code></span
@@ -81,12 +82,6 @@
             >Выйти</a
           >
         </div>
-        <!-- <ul class="dropdown-menu dropdown-menu-end">
-          <li @click="$store.commit('setViewPage', 'PageUser')">
-            <a class="dropdown-item">Настройки</a>
-          </li>
-          <li><a class="dropdown-item" href="#" @click="logOut">Выйти</a></li>
-        </ul> -->
       </div>
     </div>
   </div>
