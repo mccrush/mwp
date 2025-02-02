@@ -115,7 +115,7 @@ export default {
       this.$emit('save-item')
     },
     deleteChildrenItem(childrenId) {
-      console.log('Per. deleteChildrenItem() childrenId = ', childrenId)
+      //console.log('Per. deleteChildrenItem() childrenId = ', childrenId)
       this.item.childrens = this.item.childrens.filter(
         item => item.id !== childrenId
       )

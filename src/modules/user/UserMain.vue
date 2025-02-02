@@ -224,7 +224,7 @@ export default {
     },
 
     exportUserProjects() {
-      console.log('LOG: Данные будут эеспортированны в JSON формате')
+      //console.log('LOG: Данные будут эеспортированны в JSON формате')
     },
     ///////////////////////////////////////////
     getSubscribeStatus(dateEndPro) {
@@ -232,11 +232,11 @@ export default {
     },
 
     onUserSubscription() {
-      console.log('LOG: Подписка будет оформлена...')
+      //console.log('LOG: Подписка будет оформлена...')
     },
 
     renewUserSubscription() {
-      console.log('LOG: Подписка будет продлена...')
+      //console.log('LOG: Подписка будет продлена...')
     },
 
     offUserSubscription() {

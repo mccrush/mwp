@@ -97,7 +97,7 @@ export default {
       this.$emit('save-item')
     },
     deleteChildrenItem(childrenId) {
-      console.log('Templ. deleteChildrenItem() childrenId = ', childrenId)
+      //console.log('Templ. deleteChildrenItem() childrenId = ', childrenId)
 
       this.item.childrens = this.item.childrens.filter(
         item => item.id !== childrenId

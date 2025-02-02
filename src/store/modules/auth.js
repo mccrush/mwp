@@ -121,18 +121,16 @@ export default {
     async updateUserMetaData({ commit }, { userMetaData }) {
       try {
         commit('setLoading', true)
-        console.log(
-          'auth.js updateUserMetaData() userMetaData =',
-          userMetaData
-        )
+        // console.log(
+        //   'auth.js updateUserMetaData() userMetaData =',
+        //   userMetaData
+        // )
         const { data, error } = await supabase.auth.updateUser({
           data: userMetaData
         })
-        // const { data, error } = await supabase.auth.updateUser({
-        //   data: { user_metadata: null }
-        // })
+
         if (error) throw error
-        console.log('auth.js updateUserMetaData(): Данные пользователя успешно обновлены')
+        //console.log('auth.js updateUserMetaData(): Данные пользователя успешно обновлены')
       } catch (error) {
         console.error('auth.js updateUserMetaData()', error)
       } finally {
@@ -150,7 +148,7 @@ export default {
           data: userMetaData
         })
         if (error) throw error
-        console.log('auth.js resetUserMetaData(): Данные пользователя успешно сброшены')
+        //console.log('auth.js resetUserMetaData(): Данные пользователя успешно сброшены')
       } catch (error) {
         console.error('auth.js resetUserMetaData()', error)
       } finally {
