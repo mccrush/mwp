@@ -17,6 +17,7 @@
 
     <div class="offcanvas-body">
       <ProjectsList
+        v-if="userId"
         :userId="userId"
         :projects="projects"
         :project="project"
