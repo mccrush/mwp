@@ -6,31 +6,10 @@
       <div class="row">
         <div class="col-12">Email: {{ userEmail }}</div>
       </div>
-      <!-- <div class="row mt-2">
-        <div class="col-4">
-          <input
-            type="text"
-            class="form-control form-control-sm"
-            v-model="newEmail"
-          />
-        </div>
-        <div class="col-3 ps-0">
-          <BtnUserProfile
-            title="Обновить Email"
-            class="w-100"
-            @click="updateUserEmail"
-          />
-        </div>
-      </div> -->
+    </div>
 
-      <!-- <div class="row mt-2">
-        <div class="col-4">
-          <input type="text" class="form-control form-control-sm" />
-        </div>
-        <div class="col-3 ps-0">
-          <BtnUserProfile title="Обновить Пароль" class="w-100" />
-        </div>
-      </div> -->
+    <div>
+      <pre>{{ userMetaData }}</pre>
     </div>
 
     <div class="row border rounded mt-3 p-3">
