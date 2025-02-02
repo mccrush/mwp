@@ -58,7 +58,7 @@ export default {
     },
     canCreateForm() {
       if (this.project[this.viewTab]?.length) {
-        if (this.userMetaData.proStatus) {
+        if (this.userMetaData.dateEndPro) {
           if (this.project[this.viewTab].length < 64) return true
         } else {
           if (this.viewTab === 'tasks') {

@@ -48,7 +48,7 @@
           @click="$store.commit('setViewPage', 'PageProjects')"
         />
         <BtnPagePremium
-          v-if="isLoggedIn && userMetaData && !userMetaData.proStatus"
+          v-if="isLoggedIn && userMetaData && !userMetaData.dateEndPro"
           class="me-2"
           @click="$store.commit('setViewPage', 'PagePrice')"
         />
