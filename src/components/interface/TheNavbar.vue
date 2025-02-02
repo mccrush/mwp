@@ -34,6 +34,7 @@
     >
       <div>
         <BtnShowOffcanvas
+          v-if="viewPage === 'PageProjects'"
           class="d-sm-none"
           data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasUserForm"
