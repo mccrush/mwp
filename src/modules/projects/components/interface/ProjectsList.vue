@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="my-vh100 col-3 col-lg-2 d-flex flex-column border-end border-dark-subtle p-0 pb-2"
-  >
+  <div>
     <!-- Список проектов -->
     <div class="overflow-y-auto p-2">
       <div
@@ -12,7 +10,17 @@
       >
         <BtnProjectTitle
           @click="setCurrentProjectId(project.id)"
-          class="text-truncate"
+          class="text-truncate d-sm-none"
+          :class="{
+            active: currentProjectId && project.id === currentProjectId
+          }"
+          data-bs-dismiss="offcanvas"
+        >
+          {{ project.title }}
+        </BtnProjectTitle>
+        <BtnProjectTitle
+          @click="setCurrentProjectId(project.id)"
+          class="text-truncate d-none d-sm-block"
           :class="{
             active: currentProjectId && project.id === currentProjectId
           }"
