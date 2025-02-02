@@ -47,7 +47,7 @@
           title="Включить Pro функции"
           class="w-100"
           :disabled="devMode !== 'development'"
-          @click="onUserSubscription"
+          @click="$store.commit('setViewPage', 'PagePrice')"
         />
       </div>
 
@@ -55,17 +55,17 @@
         <BtnUserProfile
           title="Продлить Pro функции"
           class="w-100"
-          @click="renewUserSubscription"
+          @click="$store.commit('setViewPage', 'PagePrice')"
         />
       </div>
 
-      <div v-if="userMetaData.dateEndPro" class="col-12 col-sm-6 col-md-4 mt-3">
+      <!-- <div v-if="userMetaData.dateEndPro" class="col-12 col-sm-6 col-md-4 mt-3">
         <BtnUserProfile
           title="Отключить Pro функции"
           class="w-100"
           @click="offUserSubscription"
         />
-      </div>
+      </div> -->
     </div>
 
     <div v-if="devMode === 'development'" class="row border rounded mt-3 p-3">
@@ -191,7 +191,13 @@ export default {
     getLocaleDateFromDateDigit,
     getDatePlusMonths,
 
+    getSubscribeStatus(dateEndPro) {
+      return dateEndPro ? 'Включены' : 'Отключены'
+    },
+
     ///////////////////////////////////////////
+    // Доступны толкь в режиме разработки
+
     updateUserMetaData(userMetaData) {
       this.$store.dispatch('updateUserMetaData', { userMetaData })
     },
@@ -199,35 +205,6 @@ export default {
       if (confirm('Точно сбросить все данные?')) {
         const userMetaData = factory_users()
         this.$store.dispatch('resetUserMetaData', { userMetaData })
-      }
-    },
-
-    exportUserProjects() {
-      //console.log('LOG: Данные будут эеспортированны в JSON формате')
-    },
-    ///////////////////////////////////////////
-    getSubscribeStatus(dateEndPro) {
-      return dateEndPro ? 'Включены' : 'Отключены'
-    },
-
-    onUserSubscription() {
-      //console.log('LOG: Подписка будет оформлена...')
-    },
-
-    renewUserSubscription() {
-      //console.log('LOG: Подписка будет продлена...')
-    },
-
-    offUserSubscription() {
-      if (confirm('Уверены, что хотите отменить подписку?')) {
-        const userMetaData = this.userMetaData
-        userMetaData.subscription = false
-        this.updateUserMetaData(userMetaData)
-
-        this.$store.commit('addMessage', {
-          text: 'Подписка успешно отменена',
-          bg: 'alert-success'
-        })
       }
     },
 

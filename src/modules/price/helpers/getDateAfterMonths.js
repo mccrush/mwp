@@ -1,8 +1,8 @@
 import { getTimeNow } from './getTimeNow'
 
-export const getDateAfterMonths = (months) => {
+export const getDateAfterMonths = (data, months) => {
   // Получаем текущую дату
-  const currentDate = new Date();
+  const currentDate = data ? new Date(data) : new Date();
 
   // Добавляем указанное количество месяцев
   currentDate.setMonth(currentDate.getMonth() + months);
