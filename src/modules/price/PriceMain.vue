@@ -8,7 +8,7 @@
     </p>
     <div>
       <label for="customRange3" class="form-label small"
-        >Период оплаты, до 24.12.2025</label
+        >Период оплаты, до {{ getDateEndPro }}</label
       >
       <input
         type="range"
@@ -36,6 +36,9 @@
 </template>
 
 <script>
+import { getDateAfterMonths } from './helpers/getDateAfterMonths'
+import { getLocaleDateTimeFromDate } from './helpers/getLocaleDateTimeFromDate'
+
 import BtnPay from './components/buttons/BtnPay.vue'
 
 export default {
@@ -51,6 +54,9 @@ export default {
     summa() {
       if (this.period == 12) return 4800
       return this.period * this.price
+    },
+    getDateEndPro() {
+      return getLocaleDateTimeFromDate(getDateAfterMonths(this.period))
     }
   }
 }
