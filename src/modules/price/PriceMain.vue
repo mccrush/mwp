@@ -3,34 +3,40 @@
     <h4>Оформление Pro функций</h4>
     <p class="m-0">Выберите период оплаты</p>
     <p class="lh-sm small">
-      От 1 месяца до года. При оформлении на год,
+      От 1 месяца до года.<br />При оформлении на год,
       <span class="text-primary-emphasis">2 месяца в подарок!</span>
     </p>
-    <div>
-      <label for="customRange3" class="form-label small"
-        >Период оплаты, до {{ getDateEndPro }}</label
-      >
-      <input
-        type="range"
-        class="form-range"
-        min="1"
-        max="12"
-        step="1"
-        id="customRange3"
-        v-model.number="period"
-      />
-      <div class="d-flex justify-content-between">
-        <div>{{ period }} мес.</div>
-        <div>
-          {{ summa }} ₽
-          <span
-            v-if="period == 12"
-            class="ms-1 text-body-tertiary text-decoration-line-through small"
-            >5760 ₽</span
-          >
+    <div class="row">
+      <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+        <label for="customRange3" class="form-label small"
+          >Период оплаты, до {{ getDateEndPro }}</label
+        >
+        <input
+          type="range"
+          class="form-range"
+          min="1"
+          max="12"
+          step="1"
+          id="customRange3"
+          v-model.number="period"
+        />
+        <div class="d-flex justify-content-between">
+          <div>{{ period }} мес.</div>
+          <div>
+            {{ summa }} ₽
+            <span
+              v-if="period == 12"
+              class="ms-1 text-body-tertiary text-decoration-line-through small"
+              >5760 ₽</span
+            >
+          </div>
         </div>
+        <BtnPay
+          class="mt-3 w-100 disabled"
+          :href="'#?pay=' + summa"
+          target="_blank"
+        ></BtnPay>
       </div>
-      <BtnPay class="mt-3 w-100"></BtnPay>
     </div>
   </div>
 </template>

@@ -1,3 +1,3 @@
 <template>
-  <button class="btn btn btn-primary">Оплатить <slot></slot></button>
+  <a class="btn btn btn-primary">Оплатить <slot></slot></a>
 </template>
