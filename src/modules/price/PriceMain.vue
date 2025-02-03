@@ -41,6 +41,7 @@
             >
           </div>
         </div>
+        <!-- Еще нужно сохранять дату приобретения Pro -->
         <BtnPay
           class="mt-3 w-100 disabled"
           :href="'#?pay=' + summa + '&email=' + userEmail"
