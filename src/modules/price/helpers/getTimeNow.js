@@ -1,3 +1,6 @@
+// getTimeNow 1.0
+// 03.02.2025
+
 export const getTimeNow = () => {
   // Получаем текущую дату
   const currentDate = new Date();
