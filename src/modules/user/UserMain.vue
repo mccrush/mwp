@@ -149,7 +149,7 @@
 </template>
 
 <script>
-import getDateNow from './../../helpers/getDateNow'
+import { getDateNow2 } from './helpers/getDateNow2'
 import getLocaleDateFromDateDigit from './../../helpers/getLocaleDateFromDateDigit'
 import getDatePlusMonths from './../../helpers/getDatePlusMonths'
 //import { copyInBufferText } from './../../helpers/copyInBufferText'
@@ -187,7 +187,6 @@ export default {
     //   })
     // },
     // copyInBufferText,
-    getDateNow,
     getLocaleDateFromDateDigit,
     getDatePlusMonths,
 
@@ -216,7 +215,7 @@ export default {
     },
     proOn() {
       const userMetaData = this.userMetaData
-      userMetaData.dateStartPro = String(new Date())
+      userMetaData.dateStartPro = getDateNow2()
       userMetaData.dateEndPro = getDatePlusMonths(3)
       this.updateUserMetaData(userMetaData)
     }
