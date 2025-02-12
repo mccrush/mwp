@@ -42,11 +42,7 @@
           </div>
         </div>
         <!-- Еще нужно сохранять дату приобретения Pro -->
-        <BtnPay
-          class="mt-3 w-100 disabled"
-          :href="'#?pay=' + summa + '&email=' + userEmail"
-          target="_blank"
-        ></BtnPay>
+        <BtnPay class="mt-3 w-100" @click="getConfirmationKey"></BtnPay>
       </div>
     </div>
   </div>
@@ -88,7 +84,39 @@ export default {
     }
   },
   methods: {
-    getLocaleDateTimeFromDate
+    getLocaleDateTimeFromDate,
+    async getConfirmationKey() {
+      try {
+        const res = await fetch('https://api.yookassa.ru/v3/payments', {
+          method: 'POST',
+          headers: {
+            'Idempotence-Key': 'my-idem-potence-key',
+            'Content-Type': 'application/json',
+            Authorization:
+              'Basic ' +
+              btoa('1026319:test_vEoODzFSjybxtsNDUUjF8kC0lRKFPBv2Wm_8MHjacVk')
+          },
+          body: JSON.stringify({
+            amount: {
+              value: this.summa,
+              currency: 'RUB'
+            },
+            confirmation: {
+              type: 'embedded'
+            },
+            capture: true,
+            description: 'Оплата периода ' + this.period + ' мес.'
+          })
+        })
+
+        const data = await JSON.parse(res.json())
+        if (data) {
+          console.log('getConfirmationKey() res data = ', data)
+        }
+      } catch (error) {
+        console.error('getConfirmationKey() error = ', error)
+      }
+    }
   }
 }
 </script>
