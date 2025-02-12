@@ -1,13 +1,17 @@
 <template>
   <div class="row">
-    <ProjectsList
-      :userId="userId"
-      :projects="projects"
-      :project="project"
-      :currentProjectId="currentProjectId"
-    />
+    <div
+      class="my-vh100 col-sm-3 col-lg-2 d-none d-sm-flex flex-column border-end border-dark-subtle p-0 pb-2"
+    >
+      <ProjectsList
+        :userId="userId"
+        :projects="projects"
+        :project="project"
+        :currentProjectId="currentProjectId"
+      />
+    </div>
 
-    <div class="col-9 col-lg-10">
+    <div class="col-12 col-sm-9 col-lg-10">
       <div v-if="project">
         <ProjectsTabButtons
           :project="project"

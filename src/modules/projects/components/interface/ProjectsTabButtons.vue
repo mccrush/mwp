@@ -2,7 +2,7 @@
   <div class="p-2">
     <div v-if="userId" class="row">
       <div
-        class="col-6 col-sm-3 pt-2 pb-2"
+        class="col-6 col-md-3 pt-sm-2 pb-sm-2"
         v-for="tabButton in dataTabs"
         :key="'bt' + tabButton.type"
       >
@@ -58,7 +58,7 @@ export default {
     },
     canCreateForm() {
       if (this.project[this.viewTab]?.length) {
-        if (this.userMetaData.proStatus) {
+        if (this.userMetaData.dateEndPro) {
           if (this.project[this.viewTab].length < 64) return true
         } else {
           if (this.viewTab === 'tasks') {

@@ -1,7 +1,7 @@
 <template>
   <div class="row border-bottom border-black">
     <div
-      class="col-3 col-lg-2 d-flex justify-content-between border-end border-dark-subtle pt-2 pb-2"
+      class="col-sm-3 col-lg-2 d-none d-sm-flex justify-content-between border-end border-dark-subtle pt-2 pb-2"
     >
       <div>
         <transition mode="out-in">
@@ -17,9 +17,10 @@
           />
         </transition>
 
-        <span class="cursor-def d-inline-block text-body-secondary ms-2 pt-2"
+        <span
+          class="cursor-def d-none d-sm-inline-block text-body-secondary ms-2 pt-2"
           ><strong>MWP</strong>
-          <span>
+          <span class="d-none d-md-inline-block">
             <code class="text-body-secondary ms-2">
               <small>v{{ version }}</small>
             </code></span
@@ -28,67 +29,80 @@
       </div>
     </div>
 
-    <div class="col-9 col-lg-10 d-flex justify-content-end align-items-center">
-      <BtnPageProjects
-        v-if="isLoggedIn && viewPage !== 'PageProjects'"
-        class="me-2"
-        @click="$store.commit('setViewPage', 'PageProjects')"
-      />
-      <BtnPagePremium
-        v-if="isLoggedIn && userMetaData && !userMetaData.proStatus"
-        class="me-2"
-        @click="$store.commit('setViewPage', 'PagePrice')"
-      />
-      <BtnPageDoc
-        v-if="!isLoggedIn"
-        class="me-2"
-        href="https://doc.mwpapp.ru/"
-        target="_blank"
-        title="Открыть руководство"
-      />
+    <div
+      class="mw-h-50 col-12 col-sm-9 col-lg-10 d-flex justify-content-between align-items-center"
+    >
+      <div>
+        <BtnShowOffcanvas
+          v-if="viewPage === 'PageProjects'"
+          class="d-sm-none"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasUserForm"
+          aria-controls="offcanvasUserForm"
+        />
+      </div>
+      <div class="d-flex">
+        <BtnPageProjects
+          v-if="isLoggedIn && viewPage !== 'PageProjects'"
+          class="me-2"
+          @click="$store.commit('setViewPage', 'PageProjects')"
+        />
+        <BtnPagePremium
+          v-if="
+            isLoggedIn &&
+            userMetaData &&
+            !userMetaData.dateEndPro &&
+            viewPage !== 'PagePrice'
+          "
+          class="me-2"
+          @click="$store.commit('setViewPage', 'PagePrice')"
+        />
+        <BtnPageDoc
+          v-if="!isLoggedIn"
+          class="me-2"
+          href="https://doc.mwpapp.ru/"
+          target="_blank"
+          title="Открыть руководство"
+        />
 
-      <BtnPageLogin
-        v-if="!isLoggedIn && viewPage !== 'PageLogin'"
-        class="me-2"
-        @click="$store.commit('setViewPage', 'PageLogin')"
-      />
+        <BtnPageLogin
+          v-if="!isLoggedIn && viewPage !== 'PageLogin'"
+          class="me-2"
+          @click="$store.commit('setViewPage', 'PageLogin')"
+        />
 
-      <div v-if="isLoggedIn" class="dropdown">
-        <BtnPageUser data-bs-toggle="dropdown" aria-expanded="false" />
+        <div v-if="isLoggedIn" class="dropdown">
+          <BtnPageUser data-bs-toggle="dropdown" aria-expanded="false" />
 
-        <div class="dropdown-menu dropdown-menu-end p-2">
-          <a
-            class="btn btn-dark btn-sm text-body-secondary w-100"
-            href="https://doc.mwpapp.ru/"
-            target="_blank"
-            >Руководство</a
-          >
-          <a
-            class="btn btn-dark btn-sm text-body-secondary w-100 mt-2"
-            @click="$store.commit('setViewPage', 'PageUser')"
-            >Настройки</a
-          >
-          <div class="text-center small mt-2 mb-1">
-            <code class="text-primary-emphasis">
-              {{ currentUserEmailFormated }}</code
+          <div class="dropdown-menu dropdown-menu-end p-2">
+            <a
+              class="btn btn-dark btn-sm text-body-secondary w-100"
+              href="https://doc.mwpapp.ru/"
+              target="_blank"
+              >Руководство</a
+            >
+            <a
+              class="btn btn-dark btn-sm text-body-secondary w-100 mt-2"
+              @click="$store.commit('setViewPage', 'PageUser')"
+              >Настройки</a
+            >
+            <div class="text-center small mt-2 mb-1">
+              <code class="text-primary-emphasis">
+                {{ currentUserEmailFormated }}</code
+              >
+            </div>
+
+            <a
+              class="btn btn-dark btn-sm text-body-secondary w-100"
+              href="#"
+              @click="logOut"
+              >Выйти</a
             >
           </div>
-
-          <a
-            class="btn btn-dark btn-sm text-body-secondary w-100"
-            href="#"
-            @click="logOut"
-            >Выйти</a
-          >
         </div>
-        <!-- <ul class="dropdown-menu dropdown-menu-end">
-          <li @click="$store.commit('setViewPage', 'PageUser')">
-            <a class="dropdown-item">Настройки</a>
-          </li>
-          <li><a class="dropdown-item" href="#" @click="logOut">Выйти</a></li>
-        </ul> -->
       </div>
     </div>
+    <TheOffcanvas />
   </div>
 </template>
 
@@ -101,6 +115,9 @@ import BtnPagePremium from './../buttons/BtnPagePremium.vue'
 import BtnPageDoc from './../buttons/BtnPageDoc.vue'
 import BtnPageUser from './../buttons/BtnPageUser.vue'
 import BtnPageLogin from './../buttons/BtnPageLogin.vue'
+import BtnShowOffcanvas from './../buttons/BtnShowOffcanvas.vue'
+
+import TheOffcanvas from './../interface/TheOffcanvas.vue'
 
 export default {
   name: 'TheNavbar',
@@ -110,7 +127,9 @@ export default {
     BtnPagePremium,
     BtnPageDoc,
     BtnPageUser,
-    BtnPageLogin
+    BtnPageLogin,
+    BtnShowOffcanvas,
+    TheOffcanvas
   },
   data() {
     return {
@@ -150,3 +169,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.mw-h-50 {
+  height: 50px;
+}
+</style>

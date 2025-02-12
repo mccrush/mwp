@@ -6,88 +6,70 @@
       <div class="row">
         <div class="col-12">Email: {{ userEmail }}</div>
       </div>
-      <!-- <div class="row mt-2">
-        <div class="col-4">
-          <input
-            type="text"
-            class="form-control form-control-sm"
-            v-model="newEmail"
-          />
-        </div>
-        <div class="col-3 ps-0">
-          <BtnUserProfile
-            title="Обновить Email"
-            class="w-100"
-            @click="updateUserEmail"
-          />
-        </div>
-      </div> -->
-
-      <!-- <div class="row mt-2">
-        <div class="col-4">
-          <input type="text" class="form-control form-control-sm" />
-        </div>
-        <div class="col-3 ps-0">
-          <BtnUserProfile title="Обновить Пароль" class="w-100" />
-        </div>
-      </div> -->
     </div>
+
+    <!-- <div>
+      <pre>{{ userMetaData }}</pre>
+    </div> -->
 
     <div class="row border rounded mt-3 p-3">
       <div class="col-12 lh-1">
         <p>
           Pro функции:
-          <strong>{{ getSubscribeStatus(userMetaData.subscription) }}</strong>
+          <strong>{{ getSubscribeStatus(userMetaData.dateEndPro) }}</strong>
         </p>
-        <div v-if="userMetaData.subscription">
-          <p class="mb-2">
-            Дата начала Pro функций:
-            <small class="font-monospace border rounded ps-1 pe-1">
-              {{ getLocaleDateFromDateDigit(userMetaData.dateStartPremium) }}
-            </small>
-          </p>
-          <p class="mb-2">
-            Дата окончания Pro функций:
-            <small class="font-monospace border rounded ps-1 pe-1">
-              {{ getLocaleDateFromDateDigit(userMetaData.dateEndPremium) }}
-            </small>
-          </p>
-        </div>
-        <div v-if="userMetaData.proStatus">
-          <p>
-            Функции Pro доступны до:
-            <small class="font-monospace border rounded ps-1 pe-1">
-              {{ getLocaleDateFromDateDigit(userMetaData.dateEndPremium) }}
-            </small>
-          </p>
+        <div v-if="userMetaData.dateEndPro">
+          <div class="d-sm-flex">
+            <div>Дата начала Pro функций:</div>
+            <div class="mt-2 ms-sm-2 mt-sm-0">
+              <small class="font-monospace border rounded mt-1 ps-1 pe-1">
+                {{ getLocaleDateFromDateDigit(userMetaData.dateStartPro) }}
+              </small>
+            </div>
+          </div>
+
+          <div class="d-sm-flex mt-3">
+            <div>Дата окончания Pro функций:</div>
+            <div class="mt-2 ms-sm-2 mt-sm-0">
+              <small class="font-monospace border rounded ps-1 pe-1">
+                {{ getLocaleDateFromDateDigit(userMetaData.dateEndPro) }}
+              </small>
+            </div>
+          </div>
         </div>
       </div>
-      <div v-if="!userMetaData.subscription" class="col-3">
+
+      <div
+        v-if="!userMetaData.dateEndPro"
+        class="col-12 col-sm-6 col-md-4 mt-3"
+      >
         <BtnUserProfile
           title="Включить Pro функции"
           class="w-100"
           :disabled="devMode !== 'development'"
-          @click="onUserSubscription"
+          @click="$store.commit('setViewPage', 'PagePrice')"
         />
       </div>
-      <div v-if="userMetaData.subscription" class="col-3">
+
+      <div v-if="userMetaData.dateEndPro" class="col-12 col-sm-6 col-md-4 mt-3">
         <BtnUserProfile
           title="Продлить Pro функции"
           class="w-100"
-          @click="renewUserSubscription"
+          @click="$store.commit('setViewPage', 'PagePrice')"
         />
       </div>
-      <div v-if="userMetaData.subscription" class="col-3">
+
+      <!-- <div v-if="userMetaData.dateEndPro" class="col-12 col-sm-6 col-md-4 mt-3">
         <BtnUserProfile
           title="Отключить Pro функции"
           class="w-100"
           @click="offUserSubscription"
         />
-      </div>
+      </div> -->
     </div>
 
     <div v-if="devMode === 'development'" class="row border rounded mt-3 p-3">
-      <div class="col-3">
+      <div class="col-12 col-md-3">
         <BtnUserProfile
           title="Сбросить данные"
           class="text-danger w-100"
@@ -101,16 +83,16 @@
           @click="deleteAccaunt"
         />
       </div> -->
-      <div class="col-3">
+      <div class="col-12 col-md-3">
         <BtnUserProfile
-          v-if="userMetaData.subscription"
-          title="Отключить Pro"
+          v-if="userMetaData.dateEndPro"
+          title="Отключить Pro функции"
           class="text-primary w-100"
           @click="proOff"
         />
         <BtnUserProfile
           v-else
-          title="Сделать Pro"
+          title="Включить Pro функции"
           class="text-primary w-100"
           @click="proOn"
         />
@@ -167,7 +149,7 @@
 </template>
 
 <script>
-import getDateNow from './../../helpers/getDateNow'
+import { getDateNow2 } from './helpers/getDateNow2'
 import getLocaleDateFromDateDigit from './../../helpers/getLocaleDateFromDateDigit'
 import getDatePlusMonths from './../../helpers/getDatePlusMonths'
 //import { copyInBufferText } from './../../helpers/copyInBufferText'
@@ -205,11 +187,16 @@ export default {
     //   })
     // },
     // copyInBufferText,
-    getDateNow,
     getLocaleDateFromDateDigit,
     getDatePlusMonths,
 
+    getSubscribeStatus(dateEndPro) {
+      return dateEndPro ? 'Включены' : 'Отключены'
+    },
+
     ///////////////////////////////////////////
+    // Доступны толкь в режиме разработки
+
     updateUserMetaData(userMetaData) {
       this.$store.dispatch('updateUserMetaData', { userMetaData })
     },
@@ -220,47 +207,16 @@ export default {
       }
     },
 
-    exportUserProjects() {
-      console.log('LOG: Данные будут эеспортированны в JSON формате')
-    },
-    ///////////////////////////////////////////
-    getSubscribeStatus(subscription) {
-      return subscription ? 'Включены' : 'Отключены'
-    },
-
-    onUserSubscription() {
-      console.log('LOG: Подписка будет оформлена...')
-    },
-
-    renewUserSubscription() {
-      console.log('LOG: Подписка будет продлена...')
-    },
-
-    offUserSubscription() {
-      if (confirm('Уверены, что хотите отменить подписку?')) {
-        const userMetaData = this.userMetaData
-        userMetaData.subscription = false
-        this.updateUserMetaData(userMetaData)
-
-        this.$store.commit('addMessage', {
-          text: 'Подписка успешно отменена',
-          bg: 'alert-success'
-        })
-      }
-    },
-
     proOff() {
       const userMetaData = this.userMetaData
-      userMetaData.proStatus = false
-      userMetaData.subscription = false
+      userMetaData.dateStartPro = ''
+      userMetaData.dateEndPro = ''
       this.updateUserMetaData(userMetaData)
     },
     proOn() {
       const userMetaData = this.userMetaData
-      userMetaData.proStatus = true
-      userMetaData.subscription = true
-      userMetaData.dateStartPremium = getDateNow()
-      userMetaData.dateEndPremium = getDatePlusMonths(3)
+      userMetaData.dateStartPro = getDateNow2()
+      userMetaData.dateEndPro = getDatePlusMonths(3)
       this.updateUserMetaData(userMetaData)
     }
     /////////////////////////////////////////////////////
