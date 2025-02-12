@@ -94,7 +94,7 @@ export default {
             'Content-Type': 'application/json',
             Authorization:
               'Basic ' +
-              btoa('1026319:test_vEoODzFSjybxtsNDUUjF8kC0lRKFPBv2Wm_8MHjacVk')
+              btoa('1032599:test_fe-_OOs5UEnpyrx0sNcHTGz7RRzy7BrOjKPv8cWny_I')
           },
           body: JSON.stringify({
             amount: {
