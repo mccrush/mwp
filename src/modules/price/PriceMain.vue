@@ -42,7 +42,7 @@
           </div>
         </div>
         <!-- Еще нужно сохранять дату приобретения Pro -->
-        <BtnPay class="mt-3 w-100" @click="getConfirmationKey"></BtnPay>
+        <BtnPay class="mt-3 w-100" @click="getPayId"></BtnPay>
       </div>
     </div>
   </div>
@@ -117,6 +117,7 @@ export default {
         const data = await JSON.parse(res.json())
         if (data) {
           console.log('getPayId() res data = ', data)
+          // Redorect on Pay Form
         }
       } catch (error) {
         console.error('getPayId() error = ', error)
