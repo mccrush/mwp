@@ -114,10 +114,11 @@ export default {
           }
         )
 
-        const data = await JSON.parse(res.json())
-        if (data) {
-          console.log('getPayId() res data = ', data)
+        const { url } = await res.json()
+        if (url) {
+          console.log('getPayId() res url = ', url)
           // Redorect on Pay Form
+          window.location.replace(url)
         }
       } catch (error) {
         console.error('getPayId() error = ', error)
