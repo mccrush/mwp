@@ -52,6 +52,7 @@
 import { v4 as uuidv4 } from 'uuid'
 import { getDateAfterMonths } from './helpers/getDateAfterMonths'
 import { getLocaleDateTimeFromDate } from './helpers/getLocaleDateTimeFromDate'
+import { supabase } from './../../supabase/supabaseClient'
 
 import BtnPay from './components/buttons/BtnPay.vue'
 
@@ -94,6 +95,28 @@ export default {
   methods: {
     getLocaleDateTimeFromDate,
     async getPayId() {
+      try {
+        const { data, error } = await supabase.functions.invoke('get-pay-id', {
+          body: JSON.stringify({
+            idempotencekey: uuidv4(),
+            userid: this.userId,
+            datestatr: '2025-02-11T14:20',
+            dateend: '2025-05-31T14:20',
+            summa: this.summa,
+            description: 'Оплата периода ' + this.period + ' мес.'
+          })
+        })
+        const { url } = await data.json()
+        if (url) {
+          console.log('getPayId() res url = ', url)
+          // Redorect on Pay Form
+          //window.location.replace(url)
+        }
+      } catch (error) {
+        console.error('getPayId() error = ', error)
+      }
+    },
+    async getPayId2() {
       try {
         const res = await fetch(
           'https://gjkdzpxffmklmhlctxbk.supabase.co/functions/v1/get-pay-id',
