@@ -49,10 +49,15 @@
 </template>
 
 <script>
+import { v4 as uuidv4 } from 'uuid'
 import { getDateAfterMonths } from './helpers/getDateAfterMonths'
 import { getLocaleDateTimeFromDate } from './helpers/getLocaleDateTimeFromDate'
 
 import BtnPay from './components/buttons/BtnPay.vue'
+
+//import Form_price from './components/forms/Form_price.vue'
+
+const anonKey = import.meta.env.VITE_anonKey
 
 export default {
   name: 'PriceMain',
@@ -64,6 +69,9 @@ export default {
     }
   },
   computed: {
+    userId() {
+      return this.$store.getters.userId
+    },
     userEmail() {
       return this.$store.getters.userEmail
     },
@@ -85,36 +93,33 @@ export default {
   },
   methods: {
     getLocaleDateTimeFromDate,
-    async getConfirmationKey() {
+    async getPayId() {
       try {
-        const res = await fetch('https://api.yookassa.ru/v3/payments', {
-          method: 'POST',
-          headers: {
-            'Idempotence-Key': 'my-idem-potence-key',
-            'Content-Type': 'application/json',
-            Authorization:
-              'Basic ' +
-              btoa('1032602:test_JoP-ZadPDPt77TYZkiohJ7SAv9Wm8aBW88U1R80-w9U')
-          },
-          body: JSON.stringify({
-            amount: {
-              value: this.summa,
-              currency: 'RUB'
+        const res = await fetch(
+          'https://gjkdzpxffmklmhlctxbk.supabase.co/functions/v1/get-pay-id',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + anonKey
             },
-            confirmation: {
-              type: 'embedded'
-            },
-            capture: true,
-            description: 'Оплата периода ' + this.period + ' мес.'
-          })
-        })
+            body: JSON.stringify({
+              idempotencekey: uuidv4(),
+              userid: this.userId,
+              datestatr: '2025-02-11T14:20',
+              dateend: '2025-05-31T14:20',
+              summa: this.summa,
+              description: 'Оплата периода ' + this.period + ' мес.'
+            })
+          }
+        )
 
         const data = await JSON.parse(res.json())
         if (data) {
-          console.log('getConfirmationKey() res data = ', data)
+          console.log('getPayId() res data = ', data)
         }
       } catch (error) {
-        console.error('getConfirmationKey() error = ', error)
+        console.error('getPayId() error = ', error)
       }
     }
   }
