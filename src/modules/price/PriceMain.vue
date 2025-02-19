@@ -97,6 +97,11 @@ export default {
     async getPayId() {
       try {
         const { data, error } = await supabase.functions.invoke('get-pay-id', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + anonKey
+          },
           body: JSON.stringify({
             idempotencekey: uuidv4(),
             userid: this.userId,
