@@ -95,14 +95,24 @@ export default {
   methods: {
     getLocaleDateTimeFromDate,
     async getPayId() {
-      const { data, error } = await supabase.functions.invoke(
-        'browser-with-cors',
-        {}
-      )
+      try {
+        const { data, error } = await supabase.functions.invoke(
+          'browser-with-cors',
+          {
+            body: JSON.stringify({
+              name: 'Biba'
+            })
+          }
+        )
 
-      if (data) {
-        const res = await data.json()
-        console.log('getPayId() res =', res)
+        if (error) throw error
+
+        if (data) {
+          const res = await data.json()
+          console.log('getPayId() res =', res)
+        }
+      } catch (error) {
+        console.error('getPayId() error = ', error)
       }
     },
     async getPayId_0() {
