@@ -100,7 +100,12 @@ export default {
           'browser-with-cors',
           {
             body: JSON.stringify({
-              name: 'Biba'
+              idempotencekey: uuidv4(),
+              userid: this.userId,
+              datestatr: '2025-02-11T14:20',
+              dateend: '2025-05-31T14:20',
+              summa: this.summa,
+              description: 'Оплата периода ' + this.period + ' мес.'
             })
           }
         )
@@ -111,6 +116,7 @@ export default {
           console.log('getPayId() data =', data)
           const { message } = data
           console.log('getPayId() message =', message)
+          console.log('getPayId() confirmation =', confirmation)
         }
       } catch (error) {
         console.error('getPayId() error = ', error)
