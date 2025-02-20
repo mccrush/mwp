@@ -114,7 +114,7 @@ export default {
 
         if (data) {
           console.log('getPayId() data =', data)
-          const { message } = data
+          const { message, confirmation } = data
           console.log('getPayId() message =', message)
           console.log('getPayId() confirmation =', confirmation)
         }
