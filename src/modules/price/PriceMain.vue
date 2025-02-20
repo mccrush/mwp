@@ -112,12 +112,13 @@ export default {
           })
         })
 
-        if (data === 'ok') {
-          console.log('getPayId() data =', data)
-        } else {
-          const { url } = await data.json()
-          console.log('getPayId() url = ', url)
-        }
+        console.log('getPayId() data =', data)
+        // if (data === 'ok') {
+        //   console.log('getPayId() data =', data)
+        // } else {
+        //   const { url } = await data.json()
+        //   console.log('getPayId() url = ', url)
+        // }
       } catch (error) {
         console.error('getPayId() error = ', error)
       }
