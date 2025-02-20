@@ -109,8 +109,8 @@ export default {
 
         if (data) {
           console.log('getPayId() data =', data)
-          const res = await data.json()
-          console.log('getPayId() res =', res)
+          const { message } = data
+          console.log('getPayId() message =', message)
         }
       } catch (error) {
         console.error('getPayId() error = ', error)
