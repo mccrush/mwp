@@ -108,6 +108,7 @@ export default {
         if (error) throw error
 
         if (data) {
+          console.log('getPayId() data =', data)
           const res = await data.json()
           console.log('getPayId() res =', res)
         }
