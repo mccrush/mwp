@@ -113,6 +113,13 @@ export default {
         })
 
         console.log('getPayId() data =', data)
+        const res = await data
+        console.log('getPayId() res =', res)
+        if (res) {
+          console.log('getPayId() if res =', res)
+        } else {
+          console.log('getPayId() if res = null', res)
+        }
         // if (data === 'ok') {
         //   console.log('getPayId() data =', data)
         // } else {
