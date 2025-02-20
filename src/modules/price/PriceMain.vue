@@ -111,11 +111,12 @@ export default {
             description: 'Оплата периода ' + this.period + ' мес.'
           })
         })
-        const { url } = await data.json()
-        if (url) {
-          console.log('getPayId() res url = ', url)
-          // Redorect on Pay Form
-          //window.location.replace(url)
+
+        if (data === 'ok') {
+          console.log('getPayId() data =', data)
+        } else {
+          const { url } = await data.json()
+          console.log('getPayId() url = ', url)
         }
       } catch (error) {
         console.error('getPayId() error = ', error)
