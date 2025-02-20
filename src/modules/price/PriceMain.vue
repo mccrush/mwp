@@ -117,6 +117,7 @@ export default {
           const { message, confirmation } = data
           console.log('getPayId() message =', message)
           console.log('getPayId() confirmation =', confirmation)
+          window.location.href = confirmation
         }
       } catch (error) {
         console.error('getPayId() error = ', error)
