@@ -99,8 +99,7 @@ export default {
         const { data, error } = await supabase.functions.invoke('get-pay-id', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + anonKey
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify({
             idempotencekey: uuidv4(),
@@ -111,6 +110,8 @@ export default {
             description: 'Оплата периода ' + this.period + ' мес.'
           })
         })
+
+        if (error) throw error
 
         console.log('getPayId() data =', data)
         const res = await data
