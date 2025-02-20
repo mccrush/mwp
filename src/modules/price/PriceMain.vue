@@ -95,6 +95,17 @@ export default {
   methods: {
     getLocaleDateTimeFromDate,
     async getPayId() {
+      const { data, error } = await supabase.functions.invoke(
+        'browser-with-cors',
+        {}
+      )
+
+      if (data) {
+        const res = await data.json()
+        console.log('getPayId() res =', res)
+      }
+    },
+    async getPayId_0() {
       try {
         const { data, error } = await supabase.functions.invoke('get-pay-id', {
           method: 'POST',
