@@ -53,7 +53,7 @@
             :key="children.id"
             :item="children"
             :nestingLevels="nestingLevels"
-            :userMetaDataPremium="userMetaData.dateEndPro"
+            :userMetaDataPremium="userMetaDataPremium"
             @save-item="$emit('save-item')"
             @delete-children-item="deleteChildrenItem"
           />
@@ -106,6 +106,9 @@ export default {
   computed: {
     userMetaData() {
       return this.$store.getters.userMetaData
+    },
+    userMetaDataPremium() {
+      return this.userMetaData.dateEndPro ? true : false
     }
   },
   methods: {
