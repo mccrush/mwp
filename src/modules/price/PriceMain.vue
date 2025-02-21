@@ -50,15 +50,12 @@
 
 <script>
 import { v4 as uuidv4 } from 'uuid'
+import { getDateNow2 } from './helpers/getDateNow2'
 import { getDateAfterMonths } from './helpers/getDateAfterMonths'
 import { getLocaleDateTimeFromDate } from './helpers/getLocaleDateTimeFromDate'
 import { supabase } from './../../supabase/supabaseClient'
 
 import BtnPay from './components/buttons/BtnPay.vue'
-
-//import Form_price from './components/forms/Form_price.vue'
-
-const anonKey = import.meta.env.VITE_anonKey
 
 export default {
   name: 'PriceMain',
@@ -102,8 +99,8 @@ export default {
             body: JSON.stringify({
               idempotencekey: uuidv4(),
               userid: this.userId,
-              datestatr: '2025-02-11T14:20',
-              dateend: '2025-05-31T14:20',
+              datestatr: getDateNow2(),
+              dateend: this.getDateEndPro,
               summa: this.summa,
               description: 'Оплата периода ' + this.period + ' мес.'
             })
@@ -113,79 +110,11 @@ export default {
         if (error) throw error
 
         if (data) {
-          console.log('getPayId() data =', data)
-          const { message, confirmation } = data
-          console.log('getPayId() message =', message)
-          console.log('getPayId() confirmation =', confirmation)
+          //console.log('getPayId() data =', data)
+          const { confirmation } = data
+          //console.log('getPayId() message =', message)
+          //console.log('getPayId() confirmation =', confirmation)
           window.location.href = confirmation
-        }
-      } catch (error) {
-        console.error('getPayId() error = ', error)
-      }
-    },
-    async getPayId_0() {
-      try {
-        const { data, error } = await supabase.functions.invoke('get-pay-id', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            idempotencekey: uuidv4(),
-            userid: this.userId,
-            datestatr: '2025-02-11T14:20',
-            dateend: '2025-05-31T14:20',
-            summa: this.summa,
-            description: 'Оплата периода ' + this.period + ' мес.'
-          })
-        })
-
-        if (error) throw error
-
-        console.log('getPayId() data =', data)
-        const res = await data
-        console.log('getPayId() res =', res)
-        if (res) {
-          console.log('getPayId() if res =', res)
-        } else {
-          console.log('getPayId() if res = null', res)
-        }
-        // if (data === 'ok') {
-        //   console.log('getPayId() data =', data)
-        // } else {
-        //   const { url } = await data.json()
-        //   console.log('getPayId() url = ', url)
-        // }
-      } catch (error) {
-        console.error('getPayId() error = ', error)
-      }
-    },
-    async getPayId2() {
-      try {
-        const res = await fetch(
-          'https://gjkdzpxffmklmhlctxbk.supabase.co/functions/v1/get-pay-id',
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + anonKey
-            },
-            body: JSON.stringify({
-              idempotencekey: uuidv4(),
-              userid: this.userId,
-              datestatr: '2025-02-11T14:20',
-              dateend: '2025-05-31T14:20',
-              summa: this.summa,
-              description: 'Оплата периода ' + this.period + ' мес.'
-            })
-          }
-        )
-
-        const { url } = await res.json()
-        if (url) {
-          console.log('getPayId() res url = ', url)
-          // Redorect on Pay Form
-          window.location.replace(url)
         }
       } catch (error) {
         console.error('getPayId() error = ', error)
