@@ -42,6 +42,9 @@ export default {
     userId() {
       return this.$store.getters.userId
     },
+    // isLoggedIn() {
+    //   return this.$store.getters.isLoggedIn
+    // },
     loadingData() {
       return this.$store.getters.loadingData
     },
@@ -55,6 +58,13 @@ export default {
       return this.$store.getters.projectsLength
     }
   }
+  // watch: {
+  //   isLoggedIn(n) {
+  //     if (n === null) {
+  //       document.location.reload()
+  //     }
+  //   }
+  // }
 }
 </script>
 

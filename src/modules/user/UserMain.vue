@@ -46,7 +46,6 @@
         <BtnUserProfile
           title="Включить Pro функции"
           class="w-100"
-          :disabled="devMode !== 'development'"
           @click="$store.commit('setViewPage', 'PagePrice')"
         />
       </div>

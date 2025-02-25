@@ -43,6 +43,16 @@
         </div>
         <!-- Еще нужно сохранять дату приобретения Pro -->
         <BtnPay class="mt-3 w-100" @click="getPayId"></BtnPay>
+
+        <div class="border rounded-1 lh-1 small p-2 mt-3">
+          Нажимая на кнопку «Оплатить»,<br />вы принимаете
+          <a
+            href="https://doc.mwpapp.ru/eula/"
+            target="_blank"
+            title="Открыть Пользовательское соглашение"
+            >«Пользовательское соглашение»</a
+          >
+        </div>
       </div>
     </div>
   </div>
