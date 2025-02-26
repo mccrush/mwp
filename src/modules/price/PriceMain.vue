@@ -19,7 +19,7 @@
     <div class="row">
       <div class="col-12 col-sm-8 col-md-6 col-lg-4">
         <label for="customRange3" class="form-label small"
-          >Период оплаты, до {{ getDateEndPro }}</label
+          >Период оплаты, до {{getLocaleDateTimeFromDate(getDateEndPro) }}</label
         >
         <input
           type="range"
@@ -92,11 +92,10 @@ export default {
     },
     getDateEndPro() {
       if (this.userMetaData.dateEndPro) {
-        return getLocaleDateTimeFromDate(
-          getDateAfterMonths(this.userMetaData.dateEndPro, this.period)
-        )
+        return getDateAfterMonths(this.userMetaData.dateEndPro, this.period)
+        
       }
-      return getLocaleDateTimeFromDate(getDateAfterMonths('', this.period))
+      return getDateAfterMonths('', this.period)
     }
   },
   methods: {
