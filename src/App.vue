@@ -73,6 +73,10 @@ export default {
   box-shadow: none;
 }
 
+input::placeholder {
+  color: #6c757d !important;
+}
+
 .opacity-06 {
   opacity: 0.6;
 }
