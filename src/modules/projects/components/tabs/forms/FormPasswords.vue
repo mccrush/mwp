@@ -46,7 +46,7 @@
         <BtnLink
           v-if="item.link"
           class="border"
-          :href="item.link"
+          :href="getFoolLink(item.link)"
           target="_blank"
           title="Открыть ссылку"
         />
@@ -103,6 +103,7 @@
 <script>
 import { encryption, decryption } from './../../../../../helpers/encryption'
 import { copyInBuffer } from './../../../../../helpers/copyInBuffer'
+import {getFoolLink} from './../../../helpers/getFoolLink'
 
 import BtnTrash from './../../../../../components/buttons/BtnTrash.vue'
 import BtnEyeHide from './../../../../../components/buttons/BtnEyeHide.vue'
@@ -151,7 +152,8 @@ export default {
       //console.log('before save this.item.password = ', this.item.password)
       this.$emit('save-item')
     },
-    copyInBuffer
+    copyInBuffer,
+    getFoolLink
   },
   watch: {
     item(n) {

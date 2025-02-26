@@ -50,7 +50,7 @@
         <BtnLink
           v-if="item.link"
           class="border"
-          :href="item.link"
+          :href="getFoolLink(item.link)"
           target="_blank"
           title="Открыть ссылку"
         />
@@ -62,6 +62,7 @@
 
 <script>
 import { copyInBuffer } from './../../../../../helpers/copyInBuffer'
+import {getFoolLink} from './../../../helpers/getFoolLink'
 
 import BtnArrUp from './../../../../../components/buttons/BtnArrUp.vue'
 import BtnArrDown from './../../../../../components/buttons/BtnArrDown.vue'
@@ -97,7 +98,8 @@ export default {
     //   this.item.position++
     //   this.$emit('save-item')
     // },
-    copyInBuffer
+    copyInBuffer,
+    getFoolLink
   }
 }
 </script>
