@@ -34,7 +34,7 @@
     >
       <div>
         <BtnShowOffcanvas
-          v-if="viewPage === 'PageProjects'"
+          v-if="isLoggedIn && viewPage === 'PageProjects'"
           class="d-sm-none"
           data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasUserForm"
@@ -65,11 +65,11 @@
           title="Открыть руководство"
         />
 
-        <BtnPageLogin
+        <!-- <BtnPageLogin
           v-if="!isLoggedIn && viewPage !== 'PageLogin'"
           class="me-2"
           @click="$store.commit('setViewPage', 'PageLogin')"
-        />
+        /> -->
 
         <div v-if="isLoggedIn" class="dropdown">
           <BtnPageUser data-bs-toggle="dropdown" aria-expanded="false" />
@@ -114,7 +114,7 @@ import BtnPageProjects from './../buttons/BtnPageProjects.vue'
 import BtnPagePremium from './../buttons/BtnPagePremium.vue'
 import BtnPageDoc from './../buttons/BtnPageDoc.vue'
 import BtnPageUser from './../buttons/BtnPageUser.vue'
-import BtnPageLogin from './../buttons/BtnPageLogin.vue'
+//import BtnPageLogin from './../buttons/BtnPageLogin.vue'
 import BtnShowOffcanvas from './../buttons/BtnShowOffcanvas.vue'
 
 import TheOffcanvas from './../interface/TheOffcanvas.vue'
@@ -127,7 +127,6 @@ export default {
     BtnPagePremium,
     BtnPageDoc,
     BtnPageUser,
-    BtnPageLogin,
     BtnShowOffcanvas,
     TheOffcanvas
   },
