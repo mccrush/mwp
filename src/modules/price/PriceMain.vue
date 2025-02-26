@@ -124,6 +124,7 @@ export default {
           const { confirmation } = data
           //console.log('getPayId() message =', message)
           //console.log('getPayId() confirmation =', confirmation)
+          this.$store.dispatch('logOut')
           window.location.href = confirmation
         }
       } catch (error) {
