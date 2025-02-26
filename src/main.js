@@ -19,7 +19,7 @@ console.log('main.js: App is run')
 
 // События хуков авторизации
 const { data } = supabase.auth.onAuthStateChange((event, session) => {
-  console.log('event =', event)
+  //console.log('event =', event)
 
   if (event === 'INITIAL_SESSION') {
     // handle initial session
