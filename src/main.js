@@ -19,7 +19,7 @@ console.log('main.js: App is run')
 
 // События хуков авторизации
 const { data } = supabase.auth.onAuthStateChange((event, session) => {
-  //console.log(event, session)
+  console.log('event =', event)
 
   if (event === 'INITIAL_SESSION') {
     // handle initial session
@@ -49,6 +49,9 @@ const { data } = supabase.auth.onAuthStateChange((event, session) => {
     store.commit('setViewPage', 'PageLogin')
   } else if (event === 'PASSWORD_RECOVERY') {
     // handle password recovery event
+    store.commit('setAuthData', { type: 'userId', data: session.user.id })
+    store.commit('setAuthData', { type: 'userEmail', data: session.user.email })
+    store.commit('setAuthData', { type: 'userMetaData', data: session.user.user_metadata })
     store.commit('setViewPage', 'PageRestorePassword')
     //document.location.reload()
   } else if (event === 'TOKEN_REFRESHED') {
