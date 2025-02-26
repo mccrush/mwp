@@ -73,7 +73,7 @@ export default {
   data() {
     return {
       period: 2,
-      price: 480
+      price: 10
     }
   },
   computed: {
