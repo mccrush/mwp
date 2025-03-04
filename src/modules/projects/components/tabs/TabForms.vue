@@ -4,7 +4,7 @@
       <div v-if="projectTypeLength" class="row">
         <component
           :is="formComponent"
-          v-for="(item, index) in project[type]"
+          v-for="(item, index) in projectTypeArrayLimit"
           :key="item.id"
           :item="item"
           :index="index"
@@ -41,17 +41,28 @@ export default {
     type: String
   },
   computed: {
+    userMetaData() {
+      return this.$store.getters.userMetaData
+    },
     formComponent() {
       const component =
         'Form' + this.type[0].toUpperCase() + this.type.substring(1)
       return component
     },
-    projectTypeLength() {
+    projectTypeArray() {
       if (this.project[this.type]) {
-        const length = this.project[this.type].length
-        return length
+        return this.project[this.type]
       }
-      return 0
+      return []
+    },
+    projectTypeArrayLimit() {
+      if (!this.userMetaData.dateEndPro) {
+        return this.projectTypeArray.slice(0, 4)
+      }
+      return this.projectTypeArray
+    },
+    projectTypeLength() {
+      return this.projectTypeArray.length
     }
   },
   methods: {

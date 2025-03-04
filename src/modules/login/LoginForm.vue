@@ -164,13 +164,21 @@ export default {
       }
     },
 
-    logIn() {
+    async logIn() {
       if (this.email && this.password) {
         const loginData = {
           email: this.email,
           password: this.password
         }
-        this.$store.dispatch('logIn', loginData)
+
+        const result = await this.$store.dispatch('logIn', loginData)
+
+        if (result === 400) {
+          this.$store.commit('addMessage', {
+            text: 'Ошибка авторизации! Проверьте правильность логина и пароля',
+            bg: 'alert-danger'
+          })
+        }
       } else if (!this.email) {
         this.showMeesageForUser({
           message: { type: 'email', text: 'Введите Email' }

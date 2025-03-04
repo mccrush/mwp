@@ -39,35 +39,20 @@
         </div>
       </div>
 
-      <div
-        v-if="!userMetaData.dateEndPro"
-        class="col-12 col-sm-6 col-md-4 mt-3"
-      >
+      <div class="col-12 col-sm-6 col-md-4 mt-3">
         <BtnUserProfile
-          title="Включить Pro функции"
+          :title="
+            userMetaData.dateEndPro
+              ? 'Продлить Pro функции'
+              : 'Включить Pro функции'
+          "
           class="w-100"
           @click="$store.commit('setViewPage', 'PagePrice')"
         />
       </div>
-
-      <div v-if="userMetaData.dateEndPro" class="col-12 col-sm-6 col-md-4 mt-3">
-        <BtnUserProfile
-          title="Продлить Pro функции"
-          class="w-100"
-          @click="$store.commit('setViewPage', 'PagePrice')"
-        />
-      </div>
-
-      <!-- <div v-if="userMetaData.dateEndPro" class="col-12 col-sm-6 col-md-4 mt-3">
-        <BtnUserProfile
-          title="Отключить Pro функции"
-          class="w-100"
-          @click="offUserSubscription"
-        />
-      </div> -->
     </div>
 
-    <div v-if="devMode === 'development'" class="row border rounded mt-3 p-3">
+    <!-- <div v-if="devMode === 'development'" class="row border rounded mt-3 p-3">
       <div class="col-12 col-md-3">
         <BtnUserProfile
           title="Сбросить данные"
@@ -75,13 +60,6 @@
           @click="resetUserMetaData"
         />
       </div>
-      <!-- <div class="col-3">
-        <BtnUserProfile
-          title="Удалить аккаунт"
-          class="text-danger w-100"
-          @click="deleteAccaunt"
-        />
-      </div> -->
       <div class="col-12 col-md-3">
         <BtnUserProfile
           v-if="userMetaData.dateEndPro"
@@ -96,9 +74,9 @@
           @click="proOn"
         />
       </div>
-    </div>
+    </div> -->
 
-    <div class="row border rounded mt-3 p-3">
+    <!-- <div class="row border rounded mt-3 p-3">
       <div class="col-12">
         <a
           href="https://doc.mwpapp.ru/eula/"
@@ -107,7 +85,7 @@
           >Пользовательское соглашение</a
         >
       </div>
-    </div>
+    </div> -->
 
     <div class="row border rounded mt-3 p-3">
       <div class="col-12">
