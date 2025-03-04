@@ -25,9 +25,11 @@ export default {
           email,
           password,
         })
+
         if (error) throw error
       } catch (error) {
         console.error('auth.js logIn()', error)
+        return 400
       } finally {
         commit('setLoading', false)
       }
