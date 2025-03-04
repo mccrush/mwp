@@ -90,9 +90,15 @@ export default {
     projectsRowId() {
       return this.$store.getters.projectsRowId
     },
+    projectsArrayLimit() {
+      if (!this.userMetaData.dateEndPro) {
+        return this.projects.slice(0, 4)
+      }
+      return this.projects
+    },
     sortProjects() {
       if (this.projects?.length) {
-        return sortMethod(this.projects, 'asc', 'position')
+        return sortMethod(this.projectsArrayLimit, 'asc', 'position')
       }
       return []
     },
