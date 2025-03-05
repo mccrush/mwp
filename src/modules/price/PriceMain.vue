@@ -1,6 +1,6 @@
 <template>
   <div class="row p-3">
-    <div class="col-12 col-md-4 p-md-0 pe-3">
+    <div class="col-12 col-md-5 p-md-0 pe-3">
       <h4>Оформление Pro функций</h4>
       <p class="m-0">Выберите период оплаты</p>
       <p class="lh-sm small">
@@ -55,10 +55,15 @@
               >«Пользовательское соглашение»</a
             >
           </div>
+
+          <div class="border rounded-1 text-center lh-1 small p-2 mt-2">
+            Деменко Сергей Николаевич<br />ИНН&nbsp;222514507009<br />
+            mccrush2027@gmail.com
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-8 mt-3 mt-md-0">
+    <div class="col-12 col-md-7 mt-3 mt-md-0">
       <PriceTable />
     </div>
   </div>
