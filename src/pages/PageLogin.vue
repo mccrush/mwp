@@ -2,17 +2,20 @@
   <div class="row justify-content-center">
     <div class="my-vh100 col-12 pt-4">
       <LoginForm />
+      <TheSecurity />
     </div>
   </div>
 </template>
 
 <script>
 import LoginForm from './../modules/login/LoginForm.vue'
+import TheSecurity from './../components/interface/TheSecurity.vue'
 
 export default {
   name: 'PageLogin',
   components: {
-    LoginForm
+    LoginForm,
+    TheSecurity
   },
   data() {
     return {}
