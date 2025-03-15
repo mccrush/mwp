@@ -6,10 +6,12 @@
           :is="formComponent"
           v-for="(item, index) in projectTypeArrayLimit"
           :key="item.id"
+          :ref="'formComponent' + item.id"
           :item="item"
           :index="index"
           @save-item="saveItem"
           @remove-item="removeItem"
+          @create-form-item="createFormItem"
         />
       </div>
       <div v-else class="row">
@@ -65,6 +67,7 @@ export default {
       return this.projectTypeArray.length
     }
   },
+  updated() {},
   methods: {
     saveItem() {
       this.$emit('save-item')
@@ -76,8 +79,16 @@ export default {
       }
     },
 
-    createFormItem() {
+    async createFormItem() {
       this.$emit('create-form-item', { type: this.type })
+      await this.$nextTick()
+      this.setInputFocus(
+        this.projectTypeArrayLimit[this.projectTypeArrayLimit.length - 1].id
+      )
+    },
+    setInputFocus(formId) {
+      const comp = this.$refs['formComponent' + formId][0]
+      comp.setInputFocus2()
     }
   }
 }

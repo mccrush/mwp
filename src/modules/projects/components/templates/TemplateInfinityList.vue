@@ -13,6 +13,7 @@
         <input
           type="text"
           :id="'inputField' + item.id"
+          :ref="'inputField' + item.id"
           class="form-control form-control-sm"
           maxlength="128"
           v-model.trim="item.title"
@@ -59,6 +60,7 @@
           :userMetaDataPremium="userMetaDataPremium"
           @save-item="$emit('save-item')"
           @delete-children-item="deleteChildrenItem"
+          @keyup.enter="addChildren"
         />
       </div>
       <BtnAddChildrenTask
