@@ -10,7 +10,11 @@
       v-model.trim="projectName"
       @keyup.enter="createProject"
     />
-    <BtnAddProject class="mt-1" @click="createProject" />
+    <BtnAddProject
+      class="mt-1"
+      :class="{ disabled: !projectName }"
+      @click="createProject"
+    />
   </div>
 </template>
 
