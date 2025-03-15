@@ -67,7 +67,6 @@ export default {
       return this.projectTypeArray.length
     }
   },
-  updated() {},
   methods: {
     saveItem() {
       this.$emit('save-item')
@@ -82,9 +81,11 @@ export default {
     async createFormItem() {
       this.$emit('create-form-item', { type: this.type })
       await this.$nextTick()
-      this.setInputFocus(
-        this.projectTypeArrayLimit[this.projectTypeArrayLimit.length - 1].id
-      )
+      if (this.type === 'tasks') {
+        this.setInputFocus(
+          this.projectTypeArrayLimit[this.projectTypeArrayLimit.length - 1].id
+        )
+      }
     },
     setInputFocus(formId) {
       const comp = this.$refs['formComponent' + formId][0]

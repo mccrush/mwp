@@ -53,12 +53,13 @@
           <TemplateInfinityList
             v-for="children in item.childrens"
             :key="children.id"
+            :ref="'childrenItem' + children.id"
             :item="children"
             :nestingLevels="nestingLevels"
             :userMetaDataPremium="userMetaDataPremium"
             @save-item="$emit('save-item')"
             @delete-children-item="deleteChildrenItem"
-            @keyup.enter="addChildren"
+            @create-children-task="addChildren"
           />
         </div>
 
@@ -120,6 +121,9 @@ export default {
       this.item.childrens.push(child)
       this.$emit('save-item')
       await this.$nextTick()
+      this.setInputFocus3(
+        this.item.childrens[this.item.childrens.length - 1].id
+      )
     },
     deleteChildrenItem(childrenId) {
       //console.log('Per. deleteChildrenItem() childrenId = ', childrenId)
@@ -151,6 +155,10 @@ export default {
     },
     setInputFocus2() {
       this.$refs['inputTitle' + this.item.id].focus()
+    },
+    setInputFocus3(formId) {
+      const comp = this.$refs['childrenItem' + formId][0]
+      comp.setInputFocus4()
     }
   }
 }
