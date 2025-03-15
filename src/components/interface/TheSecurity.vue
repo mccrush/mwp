@@ -1,6 +1,6 @@
 <template>
   <div
-    class="col-12 col-md-4 border border-success rounded bg-body-tertiary m-auto d-flex mt-5 p-2"
+    class="col-12 col-sm-8 col-md-6 col-lg-4 border border-success rounded bg-body-tertiary m-auto d-flex mt-5 p-2"
   >
     <div
       class="w-25 border-end d-flex align-items-center justify-content-center pe-2"
