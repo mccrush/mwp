@@ -39,6 +39,7 @@
           aria-describedby="passwordHelp"
           minlength="8"
           maxlength="32"
+          @keyup.enter="auth"
         />
         <BtnEyeHide
           v-if="passType"
