@@ -13,10 +13,12 @@
         <input
           type="text"
           :id="'inputField' + item.id"
+          :ref="'inputField' + item.id"
           class="form-control form-control-sm"
           maxlength="128"
           v-model.trim="item.title"
           @change="$emit('save-item')"
+          @keyup.enter="$emit('create-children-task')"
         />
         <BtnTrashFlat
           class="border"
@@ -34,16 +36,6 @@
         :aria-controls="'collapseExample' + item.id"
         :childrensLength="item.childrens.length"
       />
-      <!-- <BtnAddUnderTask
-        v-else-if="canCreateUnderTask() && nestingLevels < 4"
-        class="btn btn-sm btn-dark ms-2"
-        type="button"
-        data-bs-toggle="collapse"
-        :data-bs-target="'#collapseExample' + item.id"
-        aria-expanded="false"
-        :aria-controls="'collapseExample' + item.id"
-        @click="addChildren"
-      /> -->
     </div>
 
     <div class="collapse ms-4" :id="'collapseExample' + item.id">
@@ -54,11 +46,13 @@
         <TemplateInfinityList
           v-for="children in item.childrens"
           :key="children.id"
+          :ref="'childrenItem' + children.id"
           :item="children"
           :nestingLevels="nestingLevels + 1"
           :userMetaDataPremium="userMetaDataPremium"
           @save-item="$emit('save-item')"
           @delete-children-item="deleteChildrenItem"
+          @create-children-task="addChildren"
         />
       </div>
       <BtnAddChildrenTask
@@ -84,17 +78,21 @@ export default {
     BtnAddChildrenTask,
     BtnShowCheck
   },
-  emits: ['save-item', 'delete-children-item'],
+  emits: ['save-item', 'delete-children-item', 'create-children-task'],
   props: {
     item: Object,
     nestingLevels: Number,
     userMetaDataPremium: Boolean
   },
   methods: {
-    addChildren() {
+    async addChildren() {
       const child = factory_tasks()
       this.item.childrens.push(child)
       this.$emit('save-item')
+      await this.$nextTick()
+      this.setInputFocus3(
+        this.item.childrens[this.item.childrens.length - 1].id
+      )
     },
     deleteChildrenItem(childrenId) {
       //console.log('Templ. deleteChildrenItem() childrenId = ', childrenId)
@@ -117,6 +115,13 @@ export default {
     toggleStatus() {
       this.item.status = this.item.status === 'active' ? 'done' : 'active'
       this.$emit('save-item')
+    },
+    setInputFocus3(formId) {
+      const comp = this.$refs['childrenItem' + formId][0]
+      comp.setInputFocus4()
+    },
+    setInputFocus4() {
+      this.$refs['inputField' + this.item.id].focus()
     }
   }
 }

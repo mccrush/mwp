@@ -18,11 +18,13 @@
             <input
               type="text"
               :id="'inputTitle' + item.id"
+              :ref="'inputTitle' + item.id"
               class="form-control form-control-sm"
               maxlength="128"
               aria-label="Задача"
               v-model.trim="item.title"
               @change="$emit('save-item')"
+              @keyup.enter="$emit('create-form-item')"
             />
           </div>
           <BtnTrash
@@ -51,11 +53,13 @@
           <TemplateInfinityList
             v-for="children in item.childrens"
             :key="children.id"
+            :ref="'childrenItem' + children.id"
             :item="children"
             :nestingLevels="nestingLevels"
             :userMetaDataPremium="userMetaDataPremium"
             @save-item="$emit('save-item')"
             @delete-children-item="deleteChildrenItem"
+            @create-children-task="addChildren"
           />
         </div>
 
@@ -92,7 +96,7 @@ export default {
     BtnShowCheck,
     TemplateInfinityList
   },
-  emits: ['save-item', 'remove-item'],
+  emits: ['save-item', 'remove-item', 'create-form-item'],
   props: {
     item: Object,
     index: Number
@@ -112,10 +116,14 @@ export default {
     }
   },
   methods: {
-    addChildren() {
+    async addChildren() {
       const child = factory_tasks()
       this.item.childrens.push(child)
       this.$emit('save-item')
+      await this.$nextTick()
+      this.setInputFocus3(
+        this.item.childrens[this.item.childrens.length - 1].id
+      )
     },
     deleteChildrenItem(childrenId) {
       //console.log('Per. deleteChildrenItem() childrenId = ', childrenId)
@@ -144,6 +152,13 @@ export default {
         if (this.item.childrens.length < 8) return true
       }
       return false
+    },
+    setInputFocus2() {
+      this.$refs['inputTitle' + this.item.id].focus()
+    },
+    setInputFocus3(formId) {
+      const comp = this.$refs['childrenItem' + formId][0]
+      comp.setInputFocus4()
     }
   }
 }

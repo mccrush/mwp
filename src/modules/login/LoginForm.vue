@@ -1,5 +1,5 @@
 <template>
-  <div class="login-form col-md-4 border rounded m-auto p-3">
+  <div class="login-form col-sm-8 col-md-6 col-lg-4 border rounded m-auto p-3">
     <h4 class="text-center mt-2">{{ dataLogin[mod].header }}</h4>
 
     <div class="mt-3">
@@ -39,6 +39,7 @@
           aria-describedby="passwordHelp"
           minlength="8"
           maxlength="32"
+          @keyup.enter="auth"
         />
         <BtnEyeHide
           v-if="passType"

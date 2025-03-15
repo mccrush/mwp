@@ -35,8 +35,8 @@ const { data } = supabase.auth.onAuthStateChange((event, session) => {
     supabase
       .channel('room1')
       .on('postgres_changes', { event: '*', schema: 'public', table: 'projects', filter: 'id=eq.' + session.user.id }, payload => {
-        console.log('table =', payload.table, ', eventType =', payload.eventType
-        )
+        // console.log('table =', payload.table, ', eventType =', payload.eventType
+        // )
         store.dispatch('getProjects', { userId: session.user.id })
       })
       .subscribe()
