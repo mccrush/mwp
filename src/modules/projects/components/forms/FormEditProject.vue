@@ -9,7 +9,7 @@
       maxlength="32"
       v-model.trim="item.title"
     />
-    <input
+    <!-- <input
       type="number"
       id="positionProject"
       class="form-control form-control-sm mt-1"
@@ -18,7 +18,7 @@
       max="64"
       @input="maxLength"
       v-model.number="item.position"
-    />
+    /> -->
     <div class="btn-group w-100 mt-1" role="group">
       <BtnSave title="Сохранить изменения" @click="$emit('update-project')" />
       <BtnTrash

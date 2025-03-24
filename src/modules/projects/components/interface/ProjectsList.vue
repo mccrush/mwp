@@ -68,10 +68,13 @@
 
     <div class="mt-2 ps-2 pe-2">
       <BtnSettingsProjectList
-        v-if="mod !== 'settings'"
+        v-if="mod !== 'settings' && mod !== 'edit'"
         @click="mod = 'settings'"
       />
-      <BtnSettingsProjectListSave v-else @click="updateProject" />
+      <BtnSettingsProjectListSave
+        v-if="mod === 'settings'"
+        @click="updateProject"
+      />
     </div>
   </div>
 </template>
