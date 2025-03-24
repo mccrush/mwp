@@ -8,6 +8,12 @@
         class="btn-group w-100 mt-2"
         role="group"
       >
+        <button
+          v-if="mod === 'settings'"
+          class="btn btn-sm btn-dark disabled ps-1 pe-1"
+        >
+          {{ project.position }}
+        </button>
         <BtnProjectTitle
           @click="setCurrentProjectId(project.id)"
           class="text-truncate d-sm-none"
@@ -28,9 +34,15 @@
           {{ project.title }}
         </BtnProjectTitle>
         <BtnEdit
-          v-if="currentProjectId && project.id === currentProjectId"
+          v-if="
+            currentProjectId &&
+            project.id === currentProjectId &&
+            mod !== 'settings'
+          "
           @click="mod = 'edit'"
         />
+        <BtnArrUp v-if="mod === 'settings'" @click="project.position--" />
+        <BtnArrDown v-if="mod === 'settings'" @click="project.position++" />
       </div>
     </div>
 
@@ -41,6 +53,7 @@
       <div class="ps-2 pe-2">
         <FormCreateProject
           v-if="mod === 'create' && canCreateProject"
+          :nextProjectPosition="nextProjectPosition"
           @add-project="addProject"
         />
 
@@ -52,6 +65,17 @@
         />
       </div>
     </div>
+
+    <div class="mt-2 ps-2 pe-2">
+      <BtnSettingsProjectList
+        v-if="mod !== 'settings' && mod !== 'edit'"
+        @click="mod = 'settings'"
+      />
+      <BtnSettingsProjectListSave
+        v-if="mod === 'settings'"
+        @click="updateProject"
+      />
+    </div>
   </div>
 </template>
 
@@ -60,6 +84,10 @@ import { sortMethod } from './../../../../helpers/sortMethod'
 
 import BtnProjectTitle from './../buttons/BtnProjectTitle.vue'
 import BtnEdit from './../../../../components/buttons/BtnEdit.vue'
+import BtnArrUp from './../../../../components/buttons/BtnArrUp.vue'
+import BtnArrDown from './../../../../components/buttons/BtnArrDown.vue'
+import BtnSettingsProjectList from './../../../../components/buttons/BtnSettingsProjectList.vue'
+import BtnSettingsProjectListSave from './../../../../components/buttons/BtnSettingsProjectListSave.vue'
 
 import FormCreateProject from './../forms/FormCreateProject.vue'
 import FormEditProject from './../forms/FormEditProject.vue'
@@ -69,6 +97,10 @@ export default {
   components: {
     BtnProjectTitle,
     BtnEdit,
+    BtnArrUp,
+    BtnArrDown,
+    BtnSettingsProjectList,
+    BtnSettingsProjectListSave,
     FormCreateProject,
     FormEditProject
   },
@@ -108,6 +140,9 @@ export default {
       } else {
         if (this.projects.length < 4) return true
       }
+    },
+    nextProjectPosition() {
+      return this.sortProjects.length + 1
     }
   },
   methods: {

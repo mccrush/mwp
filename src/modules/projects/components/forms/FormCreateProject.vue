@@ -29,6 +29,9 @@ export default {
     BtnAddProject
   },
   emits: ['add-project'],
+  props: {
+    nextProjectPosition: Number
+  },
   data() {
     return {
       projectName: ''
@@ -40,6 +43,7 @@ export default {
       if (this.projectName) {
         let project = factory_projects()
         project.title = this.projectName
+        project.position = this.nextProjectPosition
         this.$emit('add-project', { project })
         this.projectName = ''
       }

@@ -1,5 +1,7 @@
 <template>
-  <button class="btn btn-sm btn-dark text-body-secondary p-0 ps-1 pe-1">
+  <button
+    class="btn btn-sm btn-dark text-body-secondary d-flex align-items-center p-0 ps-1 pe-1"
+  >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="16"
