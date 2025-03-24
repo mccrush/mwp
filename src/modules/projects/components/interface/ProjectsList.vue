@@ -53,6 +53,7 @@
       <div class="ps-2 pe-2">
         <FormCreateProject
           v-if="mod === 'create' && canCreateProject"
+          :nextProjectPosition="nextProjectPosition"
           @add-project="addProject"
         />
 
@@ -136,6 +137,9 @@ export default {
       } else {
         if (this.projects.length < 4) return true
       }
+    },
+    nextProjectPosition() {
+      return this.sortProjects.length + 1
     }
   },
   methods: {
