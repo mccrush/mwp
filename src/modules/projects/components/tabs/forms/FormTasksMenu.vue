@@ -33,18 +33,21 @@ const { index } = defineProps({
       <div>
         <div class="btn-group w-100">
           <BtnTasksCircle
-            bgColor="#dc3545"
-            @click="emit('set-priority-color', '#dc3545')"
+            bgColor="#842029"
+            @click="emit('set-priority-color', '#842029')"
           />
           <BtnTasksCircle
-            bgColor="#ffc107"
-            @click="emit('set-priority-color', '#ffc107')"
+            bgColor="#997404"
+            @click="emit('set-priority-color', '#997404')"
           />
           <BtnTasksCircle
-            bgColor="#198754"
-            @click="emit('set-priority-color', '#198754')"
+            bgColor="#0f5132"
+            @click="emit('set-priority-color', '#0f5132')"
           />
-          <BtnTasksCircle @click="emit('set-priority-color', '')" />
+          <BtnTasksCircle
+            bgColor="#dee2e6bf"
+            @click="emit('set-priority-color', '#212529')"
+          />
         </div>
       </div>
       <div class="mt-1">
