@@ -1,5 +1,6 @@
 <script setup>
 import BtnTaskMenu from './../../buttons/BtnTaskMenu.vue'
+import BtnCopyTask from './../../buttons/BtnCopyTask.vue'
 import BtnTrashTask from './../../buttons/BtnTrashTask.vue'
 import BtnTasksCircle from './../../buttons/BtnTasksCircle.vue'
 import BtnPositionUp from '../../buttons/BtnPositionUp.vue'
@@ -59,11 +60,14 @@ const { index } = defineProps({
         </div>
       </div>
       <div class="mt-1">
-        <BtnTrashTask
-          class="w-100"
-          title="Удалить задачу"
-          @click="emit('delete-item')"
-        />
+        <div class="btn-group w-100">
+          <BtnCopyTask class="" @click="emit('copy-in-buffer')" />
+          <BtnTrashTask
+            class=""
+            title="Удалить задачу"
+            @click="emit('delete-item')"
+          />
+        </div>
       </div>
     </div>
   </div>

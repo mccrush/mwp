@@ -36,6 +36,7 @@
             "
             @set-priority-color="setPriorityColor"
             @change-position="changePosition"
+            @copy-in-buffer="copyInBufferText(item.title)"
           />
 
           <!-- <BtnTrash
@@ -82,7 +83,7 @@
 </template>
 
 <script>
-//import { copyInBuffer } from './../../../../../helpers/copyInBuffer'
+import { copyInBufferText } from './../../../../../helpers/copyInBufferText'
 import { factory_tasks } from '../../../factories/factory_tasks'
 
 //import BtnArrUp from './../../../../../components/buttons/BtnArrUp.vue'
@@ -125,6 +126,7 @@ export default {
     }
   },
   methods: {
+    copyInBufferText,
     async addChildren() {
       const child = factory_tasks()
       this.item.childrens.push(child)
