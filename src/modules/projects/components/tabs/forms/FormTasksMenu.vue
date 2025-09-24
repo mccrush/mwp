@@ -5,7 +5,22 @@ import BtnTasksCircle from './../../buttons/BtnTasksCircle.vue'
 import BtnPositionUp from '../../buttons/BtnPositionUp.vue'
 import BtnPositionDown from '../../buttons/BtnPositionDown.vue'
 
-const emit = defineEmits(['set-priority-color', 'delete-item'])
+const emit = defineEmits([
+  'set-priority-color',
+  'delete-item',
+  'change-position'
+])
+
+const { index } = defineProps({
+  index: {
+    type: Number,
+    required: true
+  },
+  length: {
+    type: Number,
+    required: true
+  }
+})
 </script>
 
 <template>
@@ -33,8 +48,14 @@ const emit = defineEmits(['set-priority-color', 'delete-item'])
       </div>
       <div class="mt-1">
         <div class="btn-group w-100">
-          <BtnPositionUp />
-          <BtnPositionDown />
+          <BtnPositionUp
+            :disabled="index === 0"
+            @click="emit('change-position', 'up')"
+          />
+          <BtnPositionDown
+            :disabled="index === length - 1"
+            @click="emit('change-position', 'down')"
+          />
         </div>
       </div>
       <div class="mt-1">

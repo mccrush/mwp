@@ -16,7 +16,6 @@
                 :checked="item.status === 'done'"
               />
             </div>
-            <div>{{ item.position }}</div>
             <input
               type="text"
               :id="'inputTitle' + item.id"
@@ -30,10 +29,13 @@
             />
           </div>
           <FormTasksMenu
+            :index="index"
+            :length="length"
             @delete-item="
               $emit('remove-item', { type: item.type, id: item.id })
             "
             @set-priority-color="setPriorityColor"
+            @change-position="changePosition"
           />
 
           <!-- <BtnTrash
@@ -102,10 +104,11 @@ export default {
     FormTasksMenu,
     TemplateInfinityList
   },
-  emits: ['save-item', 'remove-item', 'create-form-item'],
+  emits: ['save-item', 'remove-item', 'create-form-item', 'change-position'],
   props: {
     item: Object,
-    index: Number
+    index: Number,
+    length: Number
   },
   data() {
     return {
@@ -146,6 +149,10 @@ export default {
     setPriorityColor(color) {
       this.item.priority_color = color
       this.$emit('save-item')
+    },
+
+    changePosition(direction) {
+      this.$emit('change-position', { index: this.index, direction })
     },
     // updatePositionUp() {
     //   this.item.position--

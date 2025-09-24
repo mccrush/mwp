@@ -9,9 +9,11 @@
           :ref="'formComponent' + item.id"
           :item="item"
           :index="index"
+          :length="projectTypeArrayLimit.length"
           @save-item="saveItem"
           @remove-item="removeItem"
           @create-form-item="createFormItem"
+          @change-position="changePosition"
         />
       </div>
       <div v-else class="row">
@@ -90,6 +92,19 @@ export default {
     setInputFocus(formId) {
       const comp = this.$refs['formComponent' + formId][0]
       comp.setInputFocus2()
+    },
+
+    changePosition({ index, direction }) {
+      if (direction === 'up') {
+        const temp = this.project[this.type][index - 1]
+        this.project[this.type][index - 1] = this.project[this.type][index]
+        this.project[this.type][index] = temp
+      } else if (direction === 'down') {
+        const temp = this.project[this.type][index + 1]
+        this.project[this.type][index + 1] = this.project[this.type][index]
+        this.project[this.type][index] = temp
+      }
+      this.$emit('save-item')
     }
   }
 }
