@@ -10,11 +10,13 @@
               <input
                 type="checkbox"
                 class="form-check-input border mt-0"
+                :style="'background-color: ' + item.priority_color"
                 aria-label="Checkbox"
                 @change="toggleStatus"
                 :checked="item.status === 'done'"
               />
             </div>
+            <div>{{ item.position }}</div>
             <input
               type="text"
               :id="'inputTitle' + item.id"
@@ -27,11 +29,18 @@
               @keyup.enter="$emit('create-form-item')"
             />
           </div>
-          <BtnTrash
+          <FormTasksMenu
+            @delete-item="
+              $emit('remove-item', { type: item.type, id: item.id })
+            "
+            @set-priority-color="setPriorityColor"
+          />
+
+          <!-- <BtnTrash
             class="d-flex align-items-center ms-1"
             title="Удалить задачу"
             @click="$emit('remove-item', { type: item.type, id: item.id })"
-          />
+          /> -->
         </div>
 
         <BtnShowCheck
@@ -71,29 +80,26 @@
 </template>
 
 <script>
-import { copyInBuffer } from './../../../../../helpers/copyInBuffer'
+//import { copyInBuffer } from './../../../../../helpers/copyInBuffer'
 import { factory_tasks } from '../../../factories/factory_tasks'
 
-import BtnArrUp from './../../../../../components/buttons/BtnArrUp.vue'
-import BtnArrDown from './../../../../../components/buttons/BtnArrDown.vue'
-import BtnTrash from './../../../../../components/buttons/BtnTrash.vue'
-import BtnCopy from './../../../../../components/buttons/BtnCopy.vue'
-import BtnLink from './../../../../../components/buttons/BtnLink.vue'
+//import BtnArrUp from './../../../../../components/buttons/BtnArrUp.vue'
+//import BtnArrDown from './../../../../../components/buttons/BtnArrDown.vue'
+//import BtnTrash from './../../../../../components/buttons/BtnTrash.vue'
+//import BtnCopy from './../../../../../components/buttons/BtnCopy.vue'
+//import BtnLink from './../../../../../components/buttons/BtnLink.vue'
 import BtnAddChildrenTask from './../../../../../components/buttons/BtnAddChildrenTask.vue'
 import BtnShowCheck from './../../../../../components/buttons/BtnShowCheck.vue'
+import FormTasksMenu from './FormTasksMenu.vue'
 
 import TemplateInfinityList from './../../templates/TemplateInfinityList.vue'
 
 export default {
   name: 'FormTasks',
   components: {
-    BtnArrUp,
-    BtnArrDown,
-    BtnTrash,
-    BtnCopy,
-    BtnLink,
     BtnAddChildrenTask,
     BtnShowCheck,
+    FormTasksMenu,
     TemplateInfinityList
   },
   emits: ['save-item', 'remove-item', 'create-form-item'],
@@ -136,6 +142,11 @@ export default {
       this.item.status = this.item.status === 'active' ? 'done' : 'active'
       this.$emit('save-item')
     },
+
+    setPriorityColor(color) {
+      this.item.priority_color = color
+      this.$emit('save-item')
+    },
     // updatePositionUp() {
     //   this.item.position--
     //   this.$emit('save-item')
@@ -144,7 +155,7 @@ export default {
     //   this.item.position++
     //   this.$emit('save-item')
     // },
-    copyInBuffer,
+    //copyInBuffer,
     canCreateUnderTask() {
       if (this.userMetaData.dateEndPro) {
         if (this.item.childrens.length < 64) return true
