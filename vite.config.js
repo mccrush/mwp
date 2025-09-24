@@ -7,5 +7,17 @@ export default defineConfig({
   root: '.',
   build: {
     outDir: 'docs'
-  }
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        silenceDeprecations: [
+          'import',
+          'color-functions',
+          'global-builtin',
+          'legacy-js-api',
+        ],
+      },
+    },
+  },
 })
