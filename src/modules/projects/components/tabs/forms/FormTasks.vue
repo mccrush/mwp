@@ -4,7 +4,7 @@
       class="border-top border-dark-subtle rounded shadow-sm bg-body-tertiary p-2"
     >
       <div class="d-flex justify-content-between">
-        <div class="d-flex w-75">
+        <div class="d-flex w-100">
           <div class="input-group">
             <div class="input-group-text border ps-2 pe-2">
               <input
@@ -35,7 +35,7 @@
         </div>
 
         <BtnShowCheck
-          class=""
+          class="ms-1"
           type="button"
           data-bs-toggle="collapse"
           :data-bs-target="'#collapseUnderTask' + item.id"
