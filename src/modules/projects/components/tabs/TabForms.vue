@@ -27,7 +27,7 @@
 import FormLinks from './forms/FormLinks.vue'
 import FormPasswords from './forms/FormPasswords.vue'
 import FormContacts from './forms/FormContacts.vue'
-import FormTasks from './forms/FormTasks.vue'
+import FormTasks from './forms/FormTasksCard.vue'
 import FormCreateFirstForm from './forms/FormCreateFirstForm.vue'
 
 export default {
