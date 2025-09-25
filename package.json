@@ -6,6 +6,7 @@
   "author": "mccrush.ru",
   "scripts": {
     "dev": "vite",
+    "test": "vitest",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -22,7 +23,8 @@
     "@vitejs/plugin-vue": "^5.2.4",
     "bs-dark-theme": "^1.2.0",
     "sass": "^1.93.2",
-    "vite": "^6.3.6"
+    "vite": "^6.3.6",
+    "vitest": "^3.2.4"
   },
   "prettier": {
     "singleQuote": true,
